@@ -1,0 +1,12 @@
+{
+  "total_cases": 24,
+  "archetypes": {
+    "Authorized Insider": 6,
+    "Compromised Identity": 6,
+    "Time-Window Manipulator": 6,
+    "Evidence Cover-Up": 6
+  },
+  "files_per_case": 3,
+  "suspects_per_case": 3,
+  "note": "case.json contains server-side answer key; do not expose it to players or Gemini."
+}

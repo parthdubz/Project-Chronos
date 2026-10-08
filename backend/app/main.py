@@ -11,12 +11,15 @@ from fastapi.staticfiles import StaticFiles
 from .database.schema import create_tables, seed_round1_items_if_empty
 from .routes.auth import router as auth_router
 from .routes.round1 import router as round1_router
+from .routes.round2 import router as round2_router
+from .services.round2_service import init_round2
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     create_tables()
     seed_round1_items_if_empty()  # no-op when items already exist
+    init_round2()  # Round 2 tables + the 24 cases (no-op when already loaded)
     yield
 
 
@@ -79,6 +82,9 @@ app.include_router(
     round1_router,
     prefix="/api/round1"
 )
+
+# Round 2 router carries its own /api/round2 prefix.
+app.include_router(round2_router)
 
 
 # Must stay LAST: catch-all for the frontend's files and client-side routes.

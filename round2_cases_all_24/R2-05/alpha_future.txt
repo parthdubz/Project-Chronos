@@ -1,0 +1,42 @@
+CHRONOS // ALPHA // FUTURE CONFIGURATION AUDIT
+CASE R2-05
+INCIDENT: Permission cascade
+
+CONFIGURATION DELTAS — T-15
+
+20:58:14  D-45
+RESOURCE: T-15
+CHANGE: observation window 90s -> 120s
+STATUS: APPROVED
+
+21:03:27  D-46
+RESOURCE: T-15
+CHANGE: prediction threshold 0.72 -> 0.68
+STATUS: APPROVED
+
+21:07:46  D-47
+RESOURCE: T-15
+CHANGE: recovery mode AUTO -> MANUAL
+STATUS: PENDING
+
+21:09:11  D-48
+RESOURCE: T-15
+CHANGE: recovery window 30s -> 10s
+STATUS: APPROVED
+
+21:12:03  D-47
+RESOURCE: T-15
+ACTION: REVERTED
+
+21:13:19  D-49
+RESOURCE: T-15
+CHANGE: safety threshold 0.68 -> 0.71
+STATUS: APPROVED
+
+21:16:02  D-50
+RESOURCE: T-15
+CHANGE: archive verbosity LOW -> HIGH
+STATUS: APPROVED
+
+NOTE: approval status describes whether a change was permitted by workflow. It does not
+indicate whether the resulting state was causal to the incident.

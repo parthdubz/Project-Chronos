@@ -1,0 +1,30 @@
+{
+  "case_id": "R2-06",
+  "archetype": "authorized_insider",
+  "incident": "Temporal cache corruption",
+  "culprit": "Mira Kael",
+  "candidates": [
+    {
+      "name": "Mira Kael",
+      "user_id": "MK-22",
+      "role": "security auditor"
+    },
+    {
+      "name": "Aria Sen",
+      "user_id": "AS-17",
+      "role": "timeline analyst"
+    },
+    {
+      "name": "Noah Vale",
+      "user_id": "NV-09",
+      "role": "systems engineer"
+    }
+  ],
+  "intended_deduction": "Requires correlating multiple plausible configuration changes, incident timing, and access/session history; no single file identifies the culprit.",
+  "difficulty_target": "5/5",
+  "player_files": {
+    "alpha": "alpha_future.txt",
+    "beta": "beta_present.txt",
+    "gamma": "gamma_past.txt"
+  }
+}

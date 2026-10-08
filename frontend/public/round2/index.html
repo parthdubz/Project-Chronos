@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CHRONOS OS · Round 2</title>
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+<style>
+:root{--void:#05070c;--base:#05070c;--panel:#070c18;--raised:rgba(34,211,238,.1);--line:#155e75;--ink:#22d3ee;--dim:#0891b2;--faint:#164e63;--cyan:#a5f3fc;--cyan2:#22d3ee;--warn:#e0bd45;--alert:#ff5a4d;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;background:#05070c;color:var(--ink);font:400 19px/1.2 'VT323',ui-monospace,monospace;letter-spacing:.02em;text-shadow:0 0 4px rgba(34,211,238,.45);color-scheme:dark;overflow:hidden}
+input{-webkit-user-select:text;user-select:text}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-shadow:inherit;text-transform:uppercase;letter-spacing:inherit}
+button:disabled{cursor:not-allowed;opacity:.45}
+:focus-visible{outline:1px solid var(--cyan);outline-offset:2px}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:35;background:repeating-linear-gradient(to bottom,rgba(0,0,0,.3) 0 1px,transparent 1px 3px),radial-gradient(ellipse at center,transparent 58%,rgba(0,0,0,.65));animation:fk 6s steps(1) infinite}
+@keyframes fk{0%,100%{opacity:1}92%{opacity:.92}94%{opacity:1}}
+.bar{position:fixed;left:0;right:0;top:-80px;height:70px;background:linear-gradient(rgba(34,211,238,.07),transparent);animation:scan 9s linear infinite;pointer-events:none;z-index:36}
+@keyframes scan{to{transform:translateY(calc(100vh + 160px))}}
+#app{position:relative;z-index:2;height:100%;display:grid;grid-template-rows:48px minmax(0,1fr) 30px}
+header{display:flex;align-items:center;gap:26px;padding:0 16px;border-bottom:1px solid var(--line)}
+.brand{font-size:24px;letter-spacing:.14em}
+.st{color:var(--dim);letter-spacing:.1em}.st i{display:inline-block;width:8px;height:8px;background:var(--ink);margin-right:8px;animation:bl 1.6s steps(1) infinite}
+@keyframes bl{50%{opacity:.2}}
+#cd{font-size:30px;font-variant-numeric:tabular-nums;margin:0 auto;letter-spacing:.1em}#cd.w{color:var(--warn)}#cd.a{color:var(--alert);animation:bl 1s steps(1) infinite}
+#meter{margin-left:auto;display:flex;align-items:center;gap:12px}#meter b{font-weight:400;letter-spacing:.1em;min-width:210px;text-align:right}
+#meter div{display:flex;gap:6px}#meter span{width:14px;height:14px;border:1px solid var(--ink)}
+#meter .on{background:var(--ink);box-shadow:0 0 6px var(--ink)}
+#ws{display:grid;grid-template-columns:300px minmax(0,1fr) 370px;gap:14px;padding:14px;min-height:0}
+.pn{min-width:0;overflow:hidden;min-height:0;display:flex;flex-direction:column;position:relative;border:1px solid var(--line)}
+.pt{white-space:nowrap;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+#ctr{min-width:0;display:grid;grid-template-rows:minmax(0,58fr) minmax(40px,42fr);gap:14px;min-height:0}
+#fl{overflow:auto;flex:1}
+.fr{display:grid;grid-template-columns:1fr auto;gap:0 8px;width:100%;text-align:left;padding:6px 12px;border-bottom:1px solid var(--line)}
+.fr:hover,.fr.on{background:var(--ink);color:#000;text-shadow:none}.fr.on>span:first-child:before{content:'> '}
+.fr .m{color:var(--dim);grid-column:1/3;font-size:17px;text-transform:none}.fr:hover .m,.fr.on .m{color:#083344}.fr .s{font-size:15px;letter-spacing:.04em;white-space:nowrap;align-self:center}
+.fr.lk{color:var(--faint)}.fr.lk .m{color:var(--faint)}.fr.lk:hover{background:none;color:var(--dim)}
+.cs{animation:cas .5s both}@keyframes cas{from{opacity:0;transform:translateX(-6px)}}
+#vm{color:var(--dim);padding:5px 14px;border-bottom:1px solid var(--line);font-size:17px}
+#vb{padding:12px 16px;overflow:auto;flex:1;font-size:22px;line-height:1.3}
+#vb.ld{animation:ld .5s ease-out}@keyframes ld{from{clip-path:inset(0 0 100% 0);opacity:0}}
+.ln{animation:rv .45s steps(34) both;white-space:pre-wrap}@keyframes rv{from{clip-path:inset(0 100% 0 0)}}
+.dim{color:var(--faint)}
+.btn{margin-top:10px;border:1px solid var(--ink);padding:2px 14px}.btn:hover:not(:disabled){background:var(--ink);color:#000;text-shadow:none}
+.btn.no{border-color:var(--line);color:var(--dim)}
+.hint{color:var(--dim);padding:12px 14px;font-size:19px}
+#sb{flex:1;overflow:auto;padding:10px 14px;display:flex;flex-direction:column;gap:8px}
+#sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px}
+.sc{border:1px solid var(--line);padding:5px 10px;text-align:left;text-transform:none;display:block}
+.sc small{display:block;color:var(--dim);font-size:16px}
+.sc:hover:not(:disabled){border-color:var(--ink)}
+.sc.on{background:var(--ink);color:#000;text-shadow:none}.sc.on small{color:#083344}
+#sa{display:flex;gap:10px;align-items:center;flex-wrap:wrap}#sa .btn{margin-top:0}
+#sr{border:1px solid var(--ink);padding:8px 12px;display:none;font-size:21px;line-height:1.25}
+#sr.ok{border-color:var(--cyan)}#sr.bad{border-color:var(--warn);color:var(--warn)}
+#chat{flex:1;overflow:auto;padding:10px 14px;font-size:21px;line-height:1.25}
+.msg{margin-bottom:10px}.msg b{color:var(--cyan);font-weight:400}.msg.u{color:var(--dim)}.msg.sys{color:var(--warn)}
+#orb{margin:14px auto 4px;width:60px;height:60px;border-radius:50%;background:radial-gradient(circle,#ecfeff 0,var(--cyan) 22%,rgba(34,211,238,.3) 55%,transparent 72%);animation:br 3s ease-in-out infinite;position:relative}
+#orb.th{animation-duration:.9s}
+#orb:after{content:'';position:absolute;inset:-6px;border:1px solid var(--ink);border-radius:50%;opacity:0}
+#orb.th:after{animation:pr 1.6s ease-out infinite}
+@keyframes br{50%{transform:scale(1.07)}}@keyframes pr{from{opacity:.5;transform:scale(1)}to{opacity:0;transform:scale(1.7)}}
+#os{text-align:center;letter-spacing:.16em;color:var(--dim);padding-bottom:8px;border-bottom:1px solid var(--line)}
+#qc{padding:6px 14px;border-top:1px solid var(--line);color:var(--ink);font-size:19px;letter-spacing:.06em}
+.in{display:flex;align-items:center;margin:4px 10px 10px;min-height:54px;border:2px solid var(--ink);background:rgba(34,211,238,.09);box-shadow:0 0 10px rgba(34,211,238,.35),inset 0 0 10px rgba(34,211,238,.12);transition:box-shadow .2s,background .2s}
+.in:focus-within{background:rgba(34,211,238,.16);box-shadow:0 0 18px rgba(165,243,252,.7),inset 0 0 12px rgba(34,211,238,.2)}
+.in span{padding:0 0 0 14px;font-size:30px;line-height:1;color:var(--cyan)}
+.in input{flex:1;min-width:0;background:none;border:0;color:var(--cyan);font:inherit;font-size:25px;text-shadow:0 0 6px rgba(165,243,252,.6);padding:12px 14px 12px 10px;outline:0}
+.in input::placeholder{color:rgba(165,243,252,.75);text-shadow:none}
+.in:has(input:disabled){opacity:.45;box-shadow:none;border-color:var(--line)}
+footer{border-top:1px solid var(--line);display:flex;align-items:center;padding:0 14px;gap:12px}
+#tk{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--dim);transition:opacity .3s}
+#tk.warn{color:var(--warn)}#tk.error{color:var(--alert)}#tk.f{opacity:0}
+footer button:hover{background:var(--ink);color:#000;text-shadow:none}
+#lg{position:absolute;right:0;bottom:30px;width:min(580px,100%);max-height:50vh;overflow:auto;background:#05070c;border:1px solid var(--ink);z-index:5;display:none}
+#lg.o{display:block}#lg div{display:flex;gap:10px;padding:2px 12px;border-bottom:1px solid var(--line);color:var(--dim)}#lg div span{flex:1}
+#bn{position:fixed;top:60px;left:50%;transform:translate(-50%,-30px);opacity:0;z-index:20;background:#05070c;border:1px solid var(--cyan);padding:6px 24px;text-align:center;letter-spacing:.12em;font-size:22px;pointer-events:none;transition:.3s steps(6);box-shadow:0 0 14px rgba(34,211,238,.4)}
+#bn.s{opacity:1;transform:translate(-50%,0)}#bn small{display:block;color:var(--dim);letter-spacing:.05em;font-size:18px}
+.om{--omega:#f472b6}
+#cin{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;text-align:center;cursor:pointer}
+#cin.s{display:flex}#cin .cd{animation:ci .7s cubic-bezier(.22,1,.36,1)}
+@keyframes ci{from{opacity:0;transform:scale(.96);letter-spacing:.4em}}
+#cin h2{font-weight:400;font-size:40px;letter-spacing:.2em;margin-top:14px;color:var(--ink)}#cin p{color:var(--dim);margin-top:4px}
+#og{stroke-dasharray:1;animation:dr 1.3s ease-in-out both}@keyframes dr{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+#lobby{position:fixed;inset:0;z-index:25;background:#05070c;display:none;align-items:center;justify-content:center;padding:20px;overflow:auto}
+#lobby.s{display:flex}
+#lobby .box{position:relative;width:min(640px,100%);border:1px solid var(--line);padding:26px 30px;text-align:center;box-shadow:0 0 24px rgba(34,211,238,.15)}
+#lobby .box:before{content:"";position:absolute;left:-1px;right:-1px;top:-1px;height:3px;background:linear-gradient(90deg,#22d3ee,#f472b6,#22d3ee);box-shadow:0 0 12px rgba(34,211,238,.6)}
+#lobby .k{color:var(--dim);letter-spacing:.2em;font-size:17px}
+#lobby h1{font-weight:400;font-size:38px;letter-spacing:.18em;margin:6px 0 14px}
+#lobby .id{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:8px 0;margin:14px 0;text-align:left}
+#lobby .id b{font-weight:400;font-size:26px;color:var(--cyan)}
+#lobby p{color:var(--dim);font-size:21px;line-height:1.3}
+#lobby .wait{margin-top:18px;border:1px solid var(--ink);padding:10px 14px;font-size:24px;letter-spacing:.12em;animation:bl 1.6s steps(1) infinite}
+#lobby .out{margin-top:18px;background:none;border:1px solid var(--line);color:var(--dim);font:inherit;font-size:20px;letter-spacing:.14em;padding:8px 22px;cursor:pointer}
+#lobby .out:hover,#lobby .out:focus-visible{border-color:var(--ink);color:var(--ink);outline:0;box-shadow:0 0 12px rgba(34,211,238,.35)}
+#lobby .wait.go{animation:none;background:var(--ink);color:#000;text-shadow:none}
+#app{opacity:0}body.rdy #app{opacity:1;transition:opacity 1.1s ease}
+#boot{position:fixed;inset:0;z-index:40;background:#05070c;color:#22d3ee;font-family:'VT323',ui-monospace,monospace;text-shadow:0 0 5px rgba(34,211,238,.6),0 0 1px #22d3ee;overflow:hidden}
+#boot:after{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(0,0,0,.28) 0 1px,transparent 1px 3px),radial-gradient(ellipse at center,transparent 60%,rgba(0,0,0,.6))}
+#bt{position:absolute;left:10vw;top:6vh;font-size:clamp(16px,3vh,30px);line-height:1.12;white-space:pre}
+#gate{position:absolute;inset:0;display:none;align-items:center;justify-content:center;z-index:2;font-size:clamp(20px,3.4vh,34px);letter-spacing:.14em;cursor:pointer;animation:bl 1.2s steps(1) infinite}#bt.j{animation:jt .08s steps(2) 14}@keyframes jt{50%{transform:translateX(2px) skewX(-2deg);opacity:.7}}
+#bt div{visibility:hidden;min-height:1.12em}#bt div.v{visibility:visible;animation:gl .22s ease-out}@keyframes gl{from{opacity:.15;filter:blur(2px)}}
+@media(max-width:1023px){body{overflow:auto}#app{height:auto;grid-template-rows:48px auto 30px}#ws{grid-template-columns:1fr}.pn{min-height:380px}#ctr{grid-template-rows:auto 420px}header{gap:10px;padding:0 10px;overflow:hidden}.st{display:none}#cd{margin:0 auto 0 0}#meter b{min-width:0}}
+@media(max-width:600px){#bt{left:4vw;font-size:15px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+</style></head><body>
+<div id="fx"></div><div class="bar"></div>
+<div id="app">
+<header><div class="brand">CHRONOS OS</div><div class="st"><i></i>TERMINAL SECURE</div><div id="cd"></div><div id="meter"><div id="ms"></div><b id="ml"></b></div></header>
+<div id="ws">
+<section class="pn"><div class="pt">Evidence database:</div><div id="fl"></div></section>
+<div id="ctr">
+<section class="pn"><div class="pt">Evidence viewer:</div><div id="vm">No file open</div><div id="vb"><p class="hint">Select a file to read it. Compare all three before you decide.</p></div></section>
+<section class="pn"><div class="pt"><span>Suspect board:</span><span id="sbs" class="dim">NOT SUBMITTED</span></div>
+<div id="sb"><p class="hint" id="sbh" style="padding:0">Who caused the timeline failure? Select one person. You get one submission and it cannot be changed.</p><div id="sg"></div><div id="sa"></div><div id="sr"></div></div></section>
+</div>
+<section class="pn"><div class="pt">Chronos analyst:</div><div id="orb"></div><div id="os">LISTENING</div><div id="chat" aria-live="polite"></div>
+<div id="qc"></div>
+<div class="in"><span>&gt;</span><input id="qi" placeholder="ask about the evidence" autocomplete="off" maxlength="300"></div></section>
+</div>
+<footer><span class="dim">SYS▸</span><div id="tk"></div><button id="lb">▴ Log</button><div id="lg"></div></footer>
+</div>
+<div id="lobby"><div class="box">
+<div class="k">CHRONOS OS · ROUND 3 LOBBY</div>
+<h1 id="lt">ROUND 2 COMPLETE</h1>
+<div class="id"><div><span class="k">CALLSIGN</span><br><b id="ln"></b></div><div><span class="k">TEAM ID</span><br><b id="li"></b></div></div>
+<p id="lp">Your investigation has been filed and recorded. Results are not shown to players.</p>
+<div class="wait" id="lw" role="status" aria-live="polite">WAITING FOR ROUND 3 TO BEGIN...</div>
+<p style="margin-top:12px;font-size:18px">Stand by, Temporal Engineer. Do not close this window.</p>
+<button class="out" id="lo" type="button">LOGOUT</button>
+</div></div>
+<div id="bn" aria-live="polite"></div>
+<div id="cin" class="om"><div class="cd"><svg viewBox="0 0 60 60" width="72" fill="none"><path id="og" pathLength="1" d="M14 46h9C15 40 11 33 11 27a19 19 0 1 1 38 0c0 6-4 13-12 19h9" stroke="var(--omega)" stroke-width="2.5" stroke-linecap="round"/></svg><h2 id="ct"></h2><p id="cs"></p></div></div>
+<div id="boot"><div id="bt"></div><div id="gate">[ CLICK ANYWHERE OR PRESS ANY KEY TO INITIALIZE ]</div></div>
+<script>
+const $=s=>document.querySelector(s),el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.textContent=h;return e};
+const AMB=[['info','CHRONOS self-check passed'],['info','Sync node 12 responding (412ms)'],['notice','Cache rebuilt, 2 entries skipped'],['info','Timeline index integrity: 97.2%'],['notice','Operator session renewed']];
+
+/* ---------- backend (FastAPI, Round 2 Backend PRD) ----------
+   Open  http://<server>:<port>/round2/?team_id=<id>
+   Evidence, the AI question limit, point deductions, the culprit answer, the score
+   and the timer all live on the server. This page only renders what the API returns. */
+const QS=new URLSearchParams(location.search);
+const API=(QS.get('api')||(location.protocol.startsWith('http')?location.origin:'http://localhost:8000')).replace(/\/$/,'');
+let TEAM=QS.get('team_id')||localStorage.getItem('chronos_team_id')||'';
+async function api(path,body){const get=body===undefined;
+ const url=API+'/api/round2'+path+(get?(path.includes('?')?'&':'?')+'team_id='+encodeURIComponent(TEAM):'');
+ let r;try{r=await fetch(url,get?{}:{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({team_id:TEAM,...body})})}catch(e){throw new Error('CHRONOS server unreachable.')}
+ const j=await r.json().catch(()=>({}));if(!r.ok)throw Object.assign(new Error(typeof j.detail==='string'?j.detail:'Request failed.'),{status:r.status});return j}
+
+const S={files:[],open:null,opened:new Set(),prog:null,suspects:[],sel:null,confirm:0,dl:0,state:'',log:[],expired:0,last:Date.now(),convo:0,welcome:''};
+const live=()=>S.state==='ROUND_2_ACTIVE'&&!(S.prog&&S.prog.submitted);
+const left=()=>S.dl?(S.dl-Date.now())/1000:Infinity;
+
+/* ---------- ticker + log ---------- */
+function showTk(l){const t=$('#tk');t.classList.add('f');setTimeout(()=>{t.className=l.lv==='warn'||l.lv==='error'?l.lv:'';t.textContent=l.lv.toUpperCase()+': '+l.text},250)}
+function pushLog(lv,text){const l={lv,text};S.log.unshift(l);S.log=S.log.slice(0,50);renderLog();return l}
+function renderLog(){$('#lg').innerHTML='';S.log.forEach(l=>{const d=el('div');d.append(el('span','',l.lv.toUpperCase()+': '+l.text));$('#lg').append(d)})}
+setInterval(()=>{const a=AMB[Math.floor(Math.random()*AMB.length)];const l={lv:a[0],text:a[1]};showTk(l);pushLog(l.lv,l.text)},5000);
+$('#lb').onclick=()=>$('#lg').classList.toggle('o');
+
+/* ---------- notifications (banner / cinematic) ---------- */
+let Q=[],busy=0;
+function notify(e){e.t===2?Q.unshift(e):Q.push(e);pump()}
+function pump(){if(busy||!Q.length)return;const e=Q.shift();busy=1;
+ if(e.t===2){$('#ct').textContent=e.a;$('#cs').textContent=e.b;const c=$('#cin'),g=$('#og');c.classList.add('s');g.style.animation='none';void g.getBoundingClientRect();g.style.animation='';
+  const end=()=>{c.classList.remove('s');c.onclick=null;busy=0;if(e.then)e.then();setTimeout(pump,300)};c.onclick=end;setTimeout(()=>busy&&end(),3500)}
+ else{const b=$('#bn');b.textContent=e.a;if(e.b){const s=el('small','',e.b);b.append(s)}b.classList.add('s');setTimeout(()=>{b.classList.remove('s');setTimeout(()=>{busy=0;pump()},400)},2200)}}
+addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#cin').onclick)$('#cin').onclick()});
+
+/* ---------- apply a server progress snapshot (the server is the source of truth) ---------- */
+function sync(p){S.prog=p;S.state=p.state;S.welcome=p.welcome;S.dl=p.seconds_left!=null?Date.now()+p.seconds_left*1000:0;meter();aiUi();suspectUi();rf()}
+function meter(){const a=S.prog.ai;$('#ms').innerHTML='';for(let i=1;i<=a.max_questions;i++)$('#ms').append(el('span',i<=a.remaining?'on':''));
+ $('#ml').textContent=`AI ${a.points_remaining} PTS · ${a.remaining} Q LEFT`}
+function aiUi(){const a=S.prog.ai,i=$('#qi'),qc=$('#qc');
+ if(S.prog.submitted){i.disabled=true;i.placeholder='Investigation submitted';qc.textContent='ROUND 2 CLOSED';return}
+ if(!live()){i.disabled=true;i.placeholder='Round 2 is closed';qc.textContent='ROUND 2 CLOSED';return}
+ if(a.remaining<=0){i.disabled=true;i.placeholder='No AI questions remaining';qc.textContent='NO QUESTIONS LEFT · AI POINTS: '+a.points_remaining;return}
+ i.disabled=false;i.placeholder='Type your question...';
+ qc.textContent=`QUESTION ${a.used+1}/${a.max_questions} · COSTS -${a.next_cost} PTS · ENTER`}
+
+/* ---------- evidence ---------- */
+async function loadFiles(casc){S.files=await api('/files');rf(casc)}
+function rf(casc){const L=$('#fl');L.innerHTML='';S.files.forEach(F=>{const lock=F.is_locked;
+ const r=el('button','fr'+(lock?' lk':'')+(S.open===F.file_id?' on':'')+(casc?' cs':''));
+ r.append(el('span','',`${F.project_name} · ${F.timeline_tag}`),el('span','s',lock?'LOCKED':S.opened.has(F.file_id)?'READ':'OPEN'),el('span','m',F.filename));
+ r.onclick=()=>openFile(F);L.append(r)})}
+async function openFile(F){S.last=Date.now();
+ if(F.is_locked){notify({t:1,a:'FILE LOCKED',b:'Access denied'});return}
+ let d;try{d=await api('/files/'+encodeURIComponent(F.file_id))}catch(e){notify({t:1,a:e.message});return}
+ S.open=F.file_id;S.opened.add(F.file_id);rf();
+ $('#vm').textContent=`/archive/${d.filename} · ${d.project_name.toUpperCase()} · ${d.timeline_tag.toUpperCase()}`;
+ const b=$('#vb');b.className='';b.innerHTML='';void b.offsetWidth;b.className='ld';
+ d.content_text.split('\n').forEach((t,i)=>{const ln=el('div','ln',t||' ');ln.style.animationDelay=(i*.04)+'s';b.append(ln)});b.scrollTop=0}
+
+/* ---------- suspect board (the culprit answer never reaches the browser) ---------- */
+async function loadSuspects(){S.suspects=await api('/suspects');suspectUi()}
+function suspectUi(){const g=$('#sg'),a=$('#sa'),sr=$('#sr');if(!S.prog)return;
+ const done=S.prog.submitted,open=live();g.innerHTML='';a.innerHTML='';
+ S.suspects.forEach(s=>{const chosen=done?S.prog.suspect===s.name:S.sel===s.user_id;
+  const b=el('button','sc'+(chosen?' on':''));b.append(document.createTextNode(s.name),el('small','',s.user_id));b.disabled=!open;
+  b.onclick=()=>{S.sel=s.user_id;S.confirm=0;suspectUi()};g.append(b)});
+ $('#sbs').textContent=done?'SUBMITTED':open?'NOT SUBMITTED':'CLOSED';
+ if(done){sr.style.display='block';sr.className='';sr.textContent=`INVESTIGATION FILED: ${S.prog.suspect}. Results are not shown to players.`;return}
+ sr.style.display='none';if(!open)return;
+ const pick=S.suspects.find(s=>s.user_id===S.sel);
+ if(!pick){a.append(el('span','dim','Select a suspect to continue'));return}
+ if(!S.confirm){const b=el('button','btn','Submit investigation');b.onclick=()=>{S.confirm=1;suspectUi()};a.append(b);return}
+ a.append(el('span','',`CONFIRM: ${pick.name}? FINAL.`));
+ const y=el('button','btn','Confirm');y.onclick=()=>submit(pick);const n=el('button','btn no','Cancel');n.onclick=()=>{S.confirm=0;suspectUi()};a.append(y,n)}
+async function submit(pick){S.last=Date.now();document.querySelectorAll('#sa button').forEach(b=>b.disabled=true);
+ let r;try{r=await api('/submit',{suspect:pick.name})}catch(e){notify({t:1,a:e.message});S.confirm=0;suspectUi();return}
+ sync(r.progress);pushLog('notice','Investigation submitted');
+ notify({t:2,a:'INVESTIGATION FILED',b:'FINDINGS RECORDED · STAND BY FOR ROUND 3',then:showLobby})}
+
+/* ---------- Round 3 lobby (shown once Round 2 is over; no score or result is ever shown) ---------- */
+let lobbyTimer=0;
+function round2Over(){return !!S.prog&&(S.prog.submitted||['ROUND_2_COMPLETED','TIMEOUT'].includes(S.state))}
+$('#lo').onclick=()=>{try{localStorage.removeItem('chronos_team_id')}catch(e){}if(window.parent!==window)window.parent.postMessage({type:'chronos-logout'},location.origin);else location.href=location.pathname};
+function showLobby(){if(!S.prog||$('#lobby').classList.contains('s'))return;
+ $('#ln').textContent=S.prog.team_name;$('#li').textContent='#'+S.prog.team_id;
+ if(S.state==='TIMEOUT'&&!S.prog.submitted){$('#lt').textContent='TIME UP';$('#lp').textContent='Round 2 time has ended. Results are not shown to players.'}
+ $('#lobby').classList.add('s');
+ /* Round 3 does not exist yet: this only watches for the server moving the team on. */
+ lobbyTimer=setInterval(async()=>{try{const p=await api('/progress');
+  if(/^ROUND3/.test((p.state||'').replace(/_/g,'').toUpperCase())){clearInterval(lobbyTimer);const w=$('#lw');w.textContent='ROUND 3 IS NOW OPEN';w.className='wait go'}}catch(e){}},5000)}
+
+/* ---------- assistant ---------- */
+function typeInto(d,t,i=0){d.textContent=t.slice(0,i);$('#chat').scrollTop=1e6;if(i<t.length)setTimeout(()=>typeInto(d,t,i+1),12)}
+function addMsg(kind){const m=el('div','msg'+(kind==='u'?' u':kind==='sys'?' sys':''));m.append(document.createTextNode(kind==='u'?'> ':kind==='sys'?'SYSTEM: ':''));
+ if(kind==='a')m.append(el('b','','CHRONOS: '));const s=el('span');m.append(s);$('#chat').append(m);$('#chat').scrollTop=1e6;return s}
+function say(t,kind){const s=addMsg(kind||'a');if(kind==='u'||kind==='sys'){s.textContent=t;return}
+ $('#orb').classList.add('th');$('#os').textContent='PROCESSING…';
+ Promise.all([Promise.resolve(t).catch(e=>e.message||'CHRONOS link lost.'),new Promise(r=>setTimeout(r,600))]).then(([x])=>{$('#orb').classList.remove('th');$('#os').textContent='LISTENING';typeInto(s,x)})}
+$('#qi').onkeydown=e=>{if(e.key!=='Enter'||!e.target.value.trim()||e.target.disabled)return;
+ const q=e.target.value.trim();e.target.value='';e.target.disabled=true;S.last=Date.now();say(q,'u');
+ const p=api('/chat',{message:q}).then(r=>{sync(r.progress);notify({t:1,a:`AI QUESTION ${r.question_number}/3 · -${r.points_deducted} PTS`,b:`AI points left: ${r.progress.ai.points_remaining}`});return r.reply});
+ p.catch(()=>{aiUi()});
+ $('#orb').classList.add('th');$('#os').textContent='PROCESSING…';
+ const s=addMsg('a');p.then(x=>{$('#orb').classList.remove('th');$('#os').textContent='LISTENING';typeInto(s,x)})
+  .catch(x=>{$('#orb').classList.remove('th');$('#os').textContent='LISTENING';s.parentElement.remove();say(x.message||'CHRONOS link lost.','sys')})};
+addEventListener('selectstart',e=>{if(!/^(INPUT|TEXTAREA)$/.test(e.target.tagName||e.target.parentElement?.tagName))e.preventDefault()});
+
+/* ---------- session start (resumes on refresh; the server never restarts the timer) ---------- */
+function fail(m){notify({t:1,a:m});$('#vb').innerHTML='';const p=el('p','hint','> '+m);$('#vb').append(p);$('#qi').disabled=true}
+async function init(){
+ if(!TEAM)TEAM=(prompt('Enter your team ID')||'').trim();
+ if(!TEAM){fail('NO TEAM ID. Open this page as /round2/?team_id=1');return}
+ try{localStorage.setItem('chronos_team_id',TEAM)}catch(e){}
+ try{sync(await api('/start',{}));await loadFiles();await loadSuspects();
+  const c=await api('/conversation');c.forEach(m=>{say(m.user_prompt,'u');if(m.ai_response)addMsg('a').textContent=m.ai_response});S.convo=c.length;$('#chat').scrollTop=1e6;
+  if(round2Over())showLobby()}
+ catch(e){fail(e.message)}}
+$('#qi').disabled=true;
+const INIT=init();
+setInterval(()=>{const c=$('#cd');
+ if(!S.state){c.textContent='';return}
+ if(!live()){c.textContent=S.prog&&S.prog.submitted?'DONE':S.state==='TIMEOUT'?'TIME UP':'DONE';c.className='';return}
+ const t=Math.max(0,Math.ceil(left()));c.textContent=String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(2,'0');c.className=t<60?'a':t<300?'w':'';
+ if(t===0&&!S.expired){S.expired=1;S.state='TIMEOUT';aiUi();suspectUi();notify({t:1,a:'TIME EXPIRED',b:'Round 2 is closed'});setTimeout(showLobby,2500)}},500);
+
+/* ---------- boot intro ---------- */
+function runBoot(){const BL=['CHRONOS Standard Electronics','Temporal Computer Model = 2140','','C-Boot 2140.01-rc1-00194-g4ed085ac (Nov 03 2139 - 04:12:09 +0000)','','DRAM:  128 MiB','MMC:   ','Using default environment','','In:    serial ──────────[B0]','Out:   serial ──────────[B1]','Err:   serial ──────────[B2]','SCSI:  Net connection found.','IDE:   Bus 0 not available','','Hit any key to stop autoboot:  0','reading timeline.img','FAT: Misaligned buffer address (0x4f7d5e0a)','4927488 bytes read in 19 ms (247.3 MiB/s)','reading chronos.dtb','FAT: Misaligned buffer address (0x4f7d9a10)','10385 bytes read in 17 ms','Setting up image ID = 4927488','','## Flattened Device Tree blob at 4f7d9a10','Booting using the fdt blob at 0x4f7d9a10 ...'];
+ const W=22,DUR=[1700,1450,1200],T=$('#bt'),rows=[],bars=[];let fin=0;
+ BL.forEach(l=>{const d=el('div');const m=l.match(/^(.*)\[B(\d)\]$/);if(m){d.append(document.createTextNode(m[1]+'['));const b=el('span');b.textContent=' '.repeat(W);d.append(b,document.createTextNode(']'));bars[+m[2]]=b}else d.textContent=l;T.append(d);rows.push(d)});
+ function done(){if(fin)return;fin=1;T.style.transition='opacity .12s';T.style.opacity=0;setTimeout(()=>{$('#boot').remove();S.last=Date.now();document.body.classList.add('rdy');setTimeout(()=>INIT.then(()=>{if(!S.convo&&S.welcome&&S.prog)say(S.welcome)}),900)},420)}
+ setTimeout(()=>{T.classList.add('j');let i=0;const iv=setInterval(()=>{rows[i]&&rows[i].classList.add('v');if(++i>=rows.length)clearInterval(iv)},48)},450);
+ const t0=Date.now()+2900;const fill=()=>{if(fin)return;const t=Date.now()-t0;bars.forEach((b,k)=>{const p=Math.max(0,Math.min(1,t/DUR[k])),n=Math.floor(p*W);b.textContent='█'.repeat(n)+' '.repeat(W-n)});if(t<DUR[0])requestAnimationFrame(fill)};requestAnimationFrame(fill);
+ setTimeout(done,4900)}
+
+/* ---------- sound effects (folder: CHRONOS_SFX) ---------- */
+(function(){const D='CHRONOS_SFX/',mk=n=>{const a=new Audio(D+n+'.mp3');a.preload='auto';return a};
+ const A={intro:mk('intro'),hv:mk('hover_available'),hl:mk('hover_locked'),ck:mk('click')};
+ function play(a,vol){try{const c=a===A.intro?a:a.cloneNode();c.volume=vol;c.currentTime=0;const p=c.play();p&&p.catch(()=>{})}catch(e){}}
+ let started=0;const go=()=>{if(started)return;started=1;rm();$('#gate').style.display='none';runBoot()};
+ const rm=()=>['pointerdown','keydown'].forEach(e=>removeEventListener(e,onGesture,true));
+ const onGesture=()=>{A.intro.volume=.9;const p=A.intro.play();p&&p.catch(()=>{});go()};
+ /* try autoplay; if the browser blocks it, wait for one click/key, then start intro sound + boot together */
+ /* ?boot=0 (a reload, or opening the page after Round 2): no boot screen, no intro sound.
+    The boot sequence only plays when a team enters Round 2 from the Round 2 lobby. */
+ if(QS.get('boot')==='0'){started=1;rm();$('#boot').remove();S.last=Date.now();document.body.classList.add('rdy');INIT.then(()=>{if(!S.convo&&S.welcome&&S.prog&&!$('#lobby').classList.contains('s'))say(S.welcome)})}
+ else{A.intro.volume=.9;const ap=A.intro.play();
+ if(ap)ap.then(go).catch(()=>{$('#gate').style.display='flex';['pointerdown','keydown'].forEach(e=>addEventListener(e,onGesture,true))});else go()}
+ const SEL='button,.fr,.sc';let last=null;
+ addEventListener('mouseover',e=>{const t=e.target.closest&&e.target.closest(SEL);if(t===last)return;last=t;if(!t||document.getElementById('boot'))return;
+  play(t.classList.contains('lk')?A.hl:A.hv,.5)},true);
+ addEventListener('mouseout',e=>{if(!e.relatedTarget)last=null},true);
+ addEventListener('pointerdown',e=>{if(document.getElementById('boot'))return;const t=e.target.closest&&e.target.closest(SEL+',#cin');if(t)play(A.ck,.7)},true);
+ addEventListener('keydown',e=>{if(e.key==='Enter'&&/^BUTTON$/.test(e.target.tagName)&&!document.getElementById('boot'))play(A.ck,.7)},true);
+})();
+</script></body></html>

@@ -1,0 +1,30 @@
+{
+  "case_id": "R2-16",
+  "archetype": "Time-Window Manipulator",
+  "incident": "a delayed permission rule opens a configuration path during a later event",
+  "culprit": "Elias Voss",
+  "candidates": [
+    {
+      "name": "Elias Voss",
+      "user_id": "EV-04",
+      "role": "archive operator"
+    },
+    {
+      "name": "Aria Sen",
+      "user_id": "AS-17",
+      "role": "timeline analyst"
+    },
+    {
+      "name": "Noah Vale",
+      "user_id": "NV-09",
+      "role": "systems engineer"
+    }
+  ],
+  "player_files": {
+    "alpha": "future_permission_schedule.log",
+    "beta": "incident_report.txt",
+    "gamma": "access_history.log"
+  },
+  "intended_deduction": "Requires correlating multiple plausible configuration changes, incident timing, and access/session history; no single file identifies the culprit.",
+  "difficulty_target": "5/5"
+}

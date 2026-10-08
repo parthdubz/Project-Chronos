@@ -1,0 +1,30 @@
+{
+  "case_id": "R2-19",
+  "archetype": "Evidence Cover-Up",
+  "incident": "configuration change followed by selective audit cleanup",
+  "culprit": "Elias Voss",
+  "candidates": [
+    {
+      "name": "Elias Voss",
+      "user_id": "EV-04",
+      "role": "archive operator"
+    },
+    {
+      "name": "Aria Sen",
+      "user_id": "AS-17",
+      "role": "timeline analyst"
+    },
+    {
+      "name": "Noah Vale",
+      "user_id": "NV-09",
+      "role": "systems engineer"
+    }
+  ],
+  "player_files": {
+    "alpha": "future_configuration_audit.log",
+    "beta": "incident_report.txt",
+    "gamma": "access_history.log"
+  },
+  "intended_deduction": "Requires correlating multiple plausible configuration changes, incident timing, and access/session history; no single file identifies the culprit.",
+  "difficulty_target": "5/5"
+}

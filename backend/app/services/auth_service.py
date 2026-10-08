@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 from fastapi import HTTPException
 
 from ..database.connection import get_connection
+from .round2_cases import assign_case
 
 DEFAULT_STATE = "READY"
 
@@ -142,6 +143,16 @@ def login_team(team_name, member_1_name, member_2_name, member_1_prn, member_2_p
             "UPDATE sqlite_sequence SET seq = (SELECT MAX(id) FROM teams) "
             "WHERE name = 'teams'"
         )
+
+        # Round 2: the team's case is decided the moment the team is created. The
+        # savepoint means login still succeeds if the Round 2 tables are unavailable
+        # (the case is then assigned when Round 2 starts).
+        connection.execute("SAVEPOINT round2_case")
+        try:
+            assign_case(connection, next_id)
+        except Exception:
+            connection.execute("ROLLBACK TO SAVEPOINT round2_case")
+        connection.execute("RELEASE SAVEPOINT round2_case")
 
         _log_event(connection, next_id, "LOGIN", {"result": "REGISTERED_NEW_TEAM"})
         connection.commit()

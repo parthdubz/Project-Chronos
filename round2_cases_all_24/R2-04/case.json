@@ -1,0 +1,30 @@
+{
+  "case_id": "R2-04",
+  "archetype": "authorized_insider",
+  "incident": "Prediction drift",
+  "culprit": "Elias Voss",
+  "candidates": [
+    {
+      "name": "Elias Voss",
+      "user_id": "EV-04",
+      "role": "archive operator"
+    },
+    {
+      "name": "Aria Sen",
+      "user_id": "AS-17",
+      "role": "timeline analyst"
+    },
+    {
+      "name": "Noah Vale",
+      "user_id": "NV-09",
+      "role": "systems engineer"
+    }
+  ],
+  "intended_deduction": "Requires correlating multiple plausible configuration changes, incident timing, and access/session history; no single file identifies the culprit.",
+  "difficulty_target": "5/5",
+  "player_files": {
+    "alpha": "alpha_future.txt",
+    "beta": "beta_present.txt",
+    "gamma": "gamma_past.txt"
+  }
+}

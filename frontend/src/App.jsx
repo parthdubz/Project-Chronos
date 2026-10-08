@@ -8,6 +8,7 @@ import Login from './pages/Login.jsx';
 import Round1PreLobby from './pages/Round1PreLobby.jsx';
 import Round1 from './pages/Round1.jsx';
 import Round2Lobby from './pages/Round2Lobby.jsx';
+import Round2 from './pages/Round2.jsx';
 
 // View order:
 //  'landing'  -> Glitch title page  (START MISSION button)
@@ -15,13 +16,15 @@ import Round2Lobby from './pages/Round2Lobby.jsx';
 //  'login'    -> Team authentication form
 //  'prelobby' -> Post-login lobby: START ROUND 1 -> 5 second countdown -> Round 1
 //  'round1'   -> Round 1 (timeline classification)
-//  'round2lobby' -> Lobby after Round 1: PLAY ROUND 2 -> waiting state
+//  'round2lobby' -> Lobby after Round 1: PLAY ROUND 2 -> Round 2
+//  'round2'   -> Round 2 (its own page; it also shows the Round 3 lobby when it ends)
 //
 // A logged-in team (session in localStorage) is routed by its server-side state on reload
-// ('resuming'): READY -> prelobby, ROUND1_ACTIVE -> round1, ROUND1_COMPLETED -> round2lobby.
+// ('resuming'): READY -> prelobby, ROUND1_ACTIVE -> round1, ROUND1_COMPLETED -> round2lobby,
+// ROUND_2_ACTIVE / ROUND_2_COMPLETED -> round2.
 // It stays logged in until LOGOUT.
 
-const LOGGED_IN_VIEWS = ['resuming', 'prelobby', 'round1', 'round2lobby'];
+const LOGGED_IN_VIEWS = ['resuming', 'prelobby', 'round1', 'round2lobby', 'round2'];
 const PRE_ROUND_STATES = ['READY', 'LOGGED_IN'];
 
 function AppContent() {
@@ -29,6 +32,8 @@ function AppContent() {
   const [currentView, setCurrentView] = useState(() => (team ? 'resuming' : 'landing'));
   const [isCrtActive, setIsCrtActive] = useState(false);
   const [round1Result, setRound1Result] = useState(null);
+  // The Round 2 boot sequence plays only on the way in from the Round 2 lobby, never on a reload.
+  const [round2Boot, setRound2Boot] = useState(false);
 
   // Session ended (logout, or server says the team no longer exists) -> back to landing.
   useEffect(() => {
@@ -45,6 +50,12 @@ function AppContent() {
     }
     if (!state || PRE_ROUND_STATES.includes(state)) {
       setCurrentView('prelobby');
+      return;
+    }
+    // Round 2 started (or already finished): its page resumes where the team left off.
+    if (['ROUND_2_ACTIVE', 'ROUND_2_COMPLETED', 'TIMEOUT'].includes(state)) {
+      setRound2Boot(false);
+      setCurrentView('round2');
       return;
     }
     // Round 1 is finished: the lobby shows its result.
@@ -154,12 +165,16 @@ function AppContent() {
           <Round1 onComplete={handleRound1Complete} />
         )}
 
-        {/* Lobby after Round 1: PLAY ROUND 2 -> waiting */}
+        {/* Round 2 — full-screen page; the backend owns the case, clock, AI and scoring */}
+        {currentView === 'round2' && team && <Round2 onLogout={handleLogout} boot={round2Boot} />}
+
+        {/* Lobby after Round 1: PLAY ROUND 2 -> Round 2 */}
         {currentView === 'round2lobby' && team && (
           <Round2Lobby
             result={round1Result}
             onStartRound2={() => {
-              // Hand-over point: the Round 2 page plugs in here (the team waits meanwhile).
+              setRound2Boot(true);
+              setCurrentView('round2');
             }}
             onLogout={handleLogout}
           />

@@ -1,0 +1,30 @@
+{
+  "case_id": "R2-22",
+  "archetype": "Evidence Cover-Up",
+  "incident": "an archive export is edited after a damaging configuration change",
+  "culprit": "Aria Sen",
+  "candidates": [
+    {
+      "name": "Aria Sen",
+      "user_id": "AS-17",
+      "role": "timeline analyst"
+    },
+    {
+      "name": "Noah Vale",
+      "user_id": "NV-09",
+      "role": "systems engineer"
+    },
+    {
+      "name": "Mira Kael",
+      "user_id": "MK-22",
+      "role": "security auditor"
+    }
+  ],
+  "player_files": {
+    "alpha": "future_parameter_audit.log",
+    "beta": "incident_report.txt",
+    "gamma": "access_history.log"
+  },
+  "intended_deduction": "Requires correlating multiple plausible configuration changes, incident timing, and access/session history; no single file identifies the culprit.",
+  "difficulty_target": "5/5"
+}

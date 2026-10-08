@@ -1,0 +1,30 @@
+{
+  "case_id": "R2-18",
+  "archetype": "Time-Window Manipulator",
+  "incident": "a preloaded failover mode activates after a delay and masks the original sequence",
+  "culprit": "Mira Kael",
+  "candidates": [
+    {
+      "name": "Mira Kael",
+      "user_id": "MK-22",
+      "role": "security auditor"
+    },
+    {
+      "name": "Aria Sen",
+      "user_id": "AS-17",
+      "role": "timeline analyst"
+    },
+    {
+      "name": "Noah Vale",
+      "user_id": "NV-09",
+      "role": "systems engineer"
+    }
+  ],
+  "player_files": {
+    "alpha": "future_failover_audit.log",
+    "beta": "incident_report.txt",
+    "gamma": "access_history.log"
+  },
+  "intended_deduction": "Requires correlating multiple plausible configuration changes, incident timing, and access/session history; no single file identifies the culprit.",
+  "difficulty_target": "5/5"
+}

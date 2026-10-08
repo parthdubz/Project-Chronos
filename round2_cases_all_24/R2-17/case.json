@@ -1,0 +1,30 @@
+{
+  "case_id": "R2-17",
+  "archetype": "Time-Window Manipulator",
+  "incident": "a future timestamp causes an automated cleanup to erase a needed state",
+  "culprit": "Noah Vale",
+  "candidates": [
+    {
+      "name": "Noah Vale",
+      "user_id": "NV-09",
+      "role": "systems engineer"
+    },
+    {
+      "name": "Aria Sen",
+      "user_id": "AS-17",
+      "role": "timeline analyst"
+    },
+    {
+      "name": "Mira Kael",
+      "user_id": "MK-22",
+      "role": "security auditor"
+    }
+  ],
+  "player_files": {
+    "alpha": "future_cleanup_audit.log",
+    "beta": "incident_report.txt",
+    "gamma": "access_history.log"
+  },
+  "intended_deduction": "Requires correlating multiple plausible configuration changes, incident timing, and access/session history; no single file identifies the culprit.",
+  "difficulty_target": "5/5"
+}

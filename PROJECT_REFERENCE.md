@@ -521,17 +521,34 @@ Backend determines:
 ## Round 2
 
 ```http
-POST /api/round2/start
-GET  /api/round2/files
-POST /api/round2/unlock
-POST /api/round2/hint
-POST /api/round2/chat
-GET  /api/round2/conversation
-POST /api/round2/submit
-POST /api/round2/complete
+POST /api/round2/start                  body {team_id}
+GET  /api/round2/progress?team_id=
+GET  /api/round2/files?team_id=         Alpha / Beta / Gamma list (no content)
+GET  /api/round2/files/{file_id}?team_id=
+GET  /api/round2/suspects?team_id=      the 4 candidates of the team's case
+POST /api/round2/chat                   body {team_id, message}  (3 questions, -5 / -5 / -10)
+GET  /api/round2/conversation?team_id=
+POST /api/round2/submit                 body {team_id, suspect}  (+30 right, +0 wrong)
 ```
 
 Backend verifies that the team is allowed to access requested evidence.
+
+**24 cases.** The case folders are in `round2_cases_all_24/` (`R2-01 ... R2-24`:
+`case.json` + Alpha / Beta / Gamma text). They are loaded into the single database at
+server start (`round2_cases`, `round2_case_files`, `round2_case_suspects`). A random
+case is assigned to a team the moment the team is created in auth
+(`auth_service.login_team` -> `round2_cases.assign_case`, table `round2_team_cases`);
+teams that exist without a case get one at server start. Evidence, suspects, the AI
+analyst and the culprit check all use the team's own case; the culprit never leaves
+the database. Players are never told whether they were right or what they scored
+(`round2_submissions` and `teams.round2_score` are for the admin leaderboard).
+
+Round 2 page: `frontend/public/round2/index.html`, shown by `pages/Round2.jsx` (an
+iframe). `App.jsx` sends `ROUND_2_ACTIVE` / `ROUND_2_COMPLETED` / `TIMEOUT` teams to it,
+and it shows the Round 3 lobby when the round ends. Gemini (key in `backend/.env`,
+`GEMINI_API_KEY`) is optional: without it, or when it fails, canned replies are used.
+Round 2 time limit is a placeholder (`ROUND2_DURATION_SECONDS`, default 1200).
+`backend/reset_round2_team.py <id>` starts one team's Round 2 over.
 
 ## Round 3
 
