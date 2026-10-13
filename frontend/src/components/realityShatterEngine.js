@@ -1218,9 +1218,17 @@ export function runRealityShatter({ els, app, soundFx, onSwap, onDone }) {
   window.addEventListener('resize', onResize);
 
   const startedAt = performance.now();
+  let frames = 0;
   function step(now) {
     if (now - startedAt > MAX_WALL_MS) {
       finish(); // slow device: skip what is left, the next round is swapped in by finish()
+      return;
+    }
+    // A machine that cannot hold ~20 fps would make the click feel dead for seconds: after a
+    // dozen frames, give up on the effect and go straight to the next round.
+    frames += 1;
+    if (frames === 12 && (now - startedAt) / frames > 60) {
+      finish();
       return;
     }
     const dt = Math.min(0.25, Math.max(0, (now - last) / 1000)) * SPEED;

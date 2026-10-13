@@ -93,7 +93,7 @@ echo.
 echo ================================================================
 echo  CHRONOS is starting.
 echo.
-echo  On this PC:               http://localhost:%PORT%/
+echo  On this PC:               http://127.0.0.1:%PORT%/
 echo  Other PCs ^(same network^), open one of:
 for /f "tokens=2 delims=:" %%a in ('ipconfig ^| findstr /c:"IPv4"') do (
   for /f "tokens=* delims= " %%b in ("%%a") do echo      http://%%b:%PORT%/
@@ -106,6 +106,6 @@ echo ================================================================
 
 if not defined NO_BROWSER (
   timeout /t 4 /nobreak >nul
-  start "" "http://localhost:%PORT%/"
+  start "" "http://127.0.0.1:%PORT%/"
 )
 endlocal

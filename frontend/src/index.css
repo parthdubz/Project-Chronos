@@ -688,3 +688,9 @@
     rgba(0, 0, 0, 0.35) 3px
   );
 }
+
+/* Cards are already ~95% opaque; the live backdrop blur only costs GPU time on every frame. */
+.backdrop-blur-xl, .backdrop-blur-md, .backdrop-blur-sm, .backdrop-blur {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}

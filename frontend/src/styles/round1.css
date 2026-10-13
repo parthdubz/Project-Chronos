@@ -16,13 +16,13 @@
 .r1-root .chronos-shell { min-height: 100vh; position: relative; overflow: hidden; background: radial-gradient(circle at 50% 35%, #101127 0, #070b17 38%, #03050b 78%); isolation: isolate; }
 .r1-root .background-effects,
 .r1-root .vignette { position: fixed; inset: 0; pointer-events: none; z-index: -1; }
-.r1-root .r1-grid { position: absolute; inset: -20%; opacity: .17; background-image: linear-gradient(rgba(73, 107, 130, .18) 1px, transparent 1px), linear-gradient(90deg, rgba(73, 107, 130, .18) 1px, transparent 1px); background-size: 54px 54px; transform: perspective(700px) rotateX(60deg) translateY(15%); transform-origin: center bottom; animation: gridMove 15s linear infinite; }
-.r1-root .r1-scanlines { position: absolute; inset: 0; opacity: .11; background: repeating-linear-gradient(0deg, transparent 0, transparent 3px, rgba(255,255,255,.06) 4px); animation: scan 8s linear infinite; }
+.r1-root .r1-grid { position: absolute; inset: -20%; opacity: .17; background-image: linear-gradient(rgba(73, 107, 130, .18) 1px, transparent 1px), linear-gradient(90deg, rgba(73, 107, 130, .18) 1px, transparent 1px); background-size: 54px 54px; transform: perspective(700px) rotateX(60deg) translateY(15%); transform-origin: center bottom; }
+.r1-root .r1-scanlines { position: absolute; inset: 0; opacity: .11; background: repeating-linear-gradient(0deg, transparent 0, transparent 3px, rgba(255,255,255,.06) 4px); }
 .r1-root .noise { position: absolute; inset: 0; opacity: .035; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E"); }
-.r1-root .orb { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .16; animation: drift 16s ease-in-out infinite alternate; }
-.r1-root .orb-a { width: 35vw; height: 35vw; background: #422078; top: -15vw; left: -10vw; }
-.r1-root .orb-b { width: 30vw; height: 30vw; background: #063e4b; right: -8vw; top: 20%; animation-delay: -5s; }
-.r1-root .orb-c { width: 20vw; height: 20vw; background: #65103d; left: 40%; bottom: -12vw; animation-delay: -9s; }
+.r1-root .orb { position: absolute; border-radius: 50%; opacity: .16; }
+.r1-root .orb-a { width: 35vw; height: 35vw; background: radial-gradient(circle, #422078 0%, transparent 68%); top: -15vw; left: -10vw; }
+.r1-root .orb-b { width: 30vw; height: 30vw; background: radial-gradient(circle, #063e4b 0%, transparent 68%); right: -8vw; top: 20%; }
+.r1-root .orb-c { width: 20vw; height: 20vw; background: radial-gradient(circle, #65103d 0%, transparent 68%); left: 40%; bottom: -12vw; }
 .r1-root .data-stream { position: absolute; color: #5b7c80; opacity: .12; white-space: nowrap; font-size: 10px; letter-spacing: .18em; animation: dataDrift 28s linear infinite; }
 .r1-root .stream-a { top: 27%; left: -30%; }
 .r1-root .stream-b { bottom: 19%; right: -35%; animation-direction: reverse; }
@@ -30,7 +30,7 @@
 .r1-root .circuit-a { top: 11%; left: -80px; border-left: 0; transform: skewX(-25deg); }
 .r1-root .circuit-b { bottom: 4%; right: -80px; border-right: 0; transform: skewX(-25deg); }
 .r1-root .vignette { z-index: 10; box-shadow: inset 0 0 140px 40px #010207; opacity: .35; }
-.r1-root .topbar { height: 76px; padding: 15px 34px; border-bottom: 1px solid rgba(112, 122, 161, .17); background: rgba(3,5,11,.72); backdrop-filter: blur(14px); display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 20; }
+.r1-root .topbar { height: 76px; padding: 15px 34px; border-bottom: 1px solid rgba(112, 122, 161, .17); background: rgba(3,5,11,.72); display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 20; }
 .r1-root .brand-block { display: flex; gap: 13px; align-items: center; }
 .r1-root .brand-name { font-family: 'Super Sliced', 'Share Tech', sans-serif; font-weight: 400; font-size: 30px; line-height: 1; letter-spacing: .16em; }
 .r1-root .brand-sub { display: none; }
@@ -94,8 +94,8 @@
 .r1-root .fragment-corner { font-size: 6px; color: #6f8190; letter-spacing: .12em; margin-bottom: 5px; }
 .r1-root .fragment-image-wrap { height: 74px; overflow: hidden; position: relative; background: #080c12; border: 1px solid rgba(120,139,155,.12); }
 .r1-root .fragment-image-wrap img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.78) contrast(1.08); }
-.r1-root .scan-line { position: absolute; left: 0; right: 0; top: -5%; height: 2px; background: rgba(125,230,212,.65); box-shadow: 0 0 12px #5ce5cf; animation: imageScan 3.3s linear infinite; opacity: .5; }
-.r1-root .image-noise { position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 13px, rgba(255, 0, 85, .03) 14px 15px); mix-blend-mode: screen; }
+.r1-root .scan-line { position: absolute; left: 0; right: 0; top: -5%; height: 2px; background: rgba(125,230,212,.65); opacity: .5; top: 38%; }
+.r1-root .image-noise { position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 13px, rgba(255, 0, 85, .03) 14px 15px); }
 .r1-root .fragment-meta,
 .r1-root .fragment-footer { display: flex; justify-content: space-between; margin-top: 5px; font-size: 6px; color: #596b78; letter-spacing: .08em; }
 .r1-root .fragment-meta b { color: #8b779d; font-weight: 500; }
