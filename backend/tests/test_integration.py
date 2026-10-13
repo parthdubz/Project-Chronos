@@ -143,6 +143,13 @@ class IntegrationTests(unittest.TestCase):
             self.assertEqual(res.status_code, 401, path)
         res = self.client.post("/api/round3/start", json={"team_id": a.id}, headers=b.headers)
         self.assertEqual(res.status_code, 401)
+        # Own id in the query, someone else's in the body: must not act on the other team.
+        for path in ("/api/round3/start", "/api/transition/start", "/api/transition/stop"):
+            res = self.client.post(path, params={"team_id": b.id}, json={"team_id": a.id}, headers=b.headers)
+            self.assertEqual(res.status_code, 400, path)
+        # Absurd ids are rejected cleanly, never a 500.
+        res = self.client.get("/api/round1/status", params={"team_id": 10 ** 30}, headers=b.headers)
+        self.assertEqual(res.status_code, 401)
 
     # --------------------------------------------------------------------- Round 1
     def test_03_round1_still_works(self):

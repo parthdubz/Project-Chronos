@@ -61,18 +61,28 @@ async def require_team(request: Request) -> int:
     """FastAPI dependency: the request's team_id (query string or JSON body) must
     be accompanied by that team's session token."""
     raw = request.query_params.get("team_id")
-    if raw is None and request.method in _BODY_METHODS:
+    body_raw = None
+    if request.method in _BODY_METHODS:
         try:
             body = await request.json()
         except Exception:
             body = None
         if isinstance(body, dict):
-            raw = body.get("team_id")
+            body_raw = body.get("team_id")
+    # The handlers act on the body's team_id for POSTs: if a request names two different teams
+    # (own id in the query, someone else's in the body) it must not pass as the first one.
+    if raw is not None and body_raw is not None and str(raw).strip() != str(body_raw).strip():
+        raise HTTPException(status_code=400, detail="team_id does not match.")
+    if raw is None:
+        raw = body_raw
 
     try:
         team_id = int(str(raw).strip())
     except (TypeError, ValueError):
         raise HTTPException(status_code=400, detail="team_id is required.")
+
+    if not 0 < team_id < 2**31:  # no such team; also keeps SQLite from overflowing on huge ids
+        raise HTTPException(status_code=401, detail=INVALID_SESSION)
 
     token = request.headers.get(TOKEN_HEADER, "").strip()
     if not token_matches(team_id, token):
