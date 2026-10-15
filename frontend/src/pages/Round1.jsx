@@ -26,6 +26,22 @@ export default function Round1({ onComplete }) {
   const { team, updateTeamState } = useAuth();
   const teamId = team?.team_id;
 
+  // Round 1 lays out in px (it fills a 1080p screen at 1x). Text is scaled up with the screen via
+  // --r1-fs so the small labels stay readable on a 22" monitor without changing the layout.
+  useEffect(() => {
+    const root = document.documentElement;
+    const apply = () => {
+      const fs = Math.min(Math.max(Math.min(window.innerWidth / 1366, window.innerHeight / 768), 1), 1.2);
+      root.style.setProperty('--r1-fs', fs.toFixed(2));
+    };
+    apply();
+    window.addEventListener('resize', apply);
+    return () => {
+      window.removeEventListener('resize', apply);
+      root.style.removeProperty('--r1-fs');
+    };
+  }, []);
+
   const [fragments, setFragments] = useState([]);
   const [zones, setZones] = useState(initialZones);
   const [selectedId, setSelectedId] = useState(null);

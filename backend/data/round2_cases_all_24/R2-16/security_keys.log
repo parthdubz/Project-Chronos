@@ -1,20 +1,17 @@
 SECURITY KEY LOG
-Case R2-16 | Covers 21:27:00 to 23:37:00 (master clock)
+Case R2-16 | Covers 21:27:00 to 23:37:00
 
-CLOCK NOTE: this log's clock runs 39 seconds FAST. Subtract 39 s from every time in this file before comparing it with the other files.
-
-How keys work: a security key has to be armed by a badge before it can be used, and an armed key
-stays valid for the time shown. A standing authorization is a general permission and is not tied
-to one badge. Badges are explained in login_records.log (BADGE REGISTRY); terminals are written as
-codes (see its TERMINAL LIST).
+What this is: a security key must be ARMED by a badge before it can be USED.
+- An armed key stays valid for the time shown.
+- A STANDING AUTHORIZATION is a general permission: it is not tied to one badge.
+- Badges are explained in login_records.log (BADGE REGISTRY).
 
 KEY EVENTS
-21:50:39 | Key LYRA-6841 | ARMED by badge B-1856 | valid 120 s | purpose: maintenance window
-21:52:14 | Key LYRA-6841 | DISARMED after use
-23:24:29 | Key HELIX-1773 | ARMED by badge B-7796 | valid 120 s | never used
-23:26:29 | Key HELIX-1773 | EXPIRED unused
-23:26:49 | Key ONYX-3798 | ARMED by badge B-2196 | valid 120 s
-23:27:39 | Key ONYX-3798 | USED at terminal T-9896 | Change #4915
-23:28:35 | Key HOLD-4001 | ARMED by badge B-7796 | valid 120 s
+21:50:00 | Key LYRA-6841 | ARMED by badge B-1856 | valid 120 s | purpose: maintenance window
+21:51:35 | Key LYRA-6841 | DISARMED after use
+23:23:50 | Key HELIX-1773 | ARMED by badge B-7796 | valid 120 s | never used
+23:25:50 | Key HELIX-1773 | EXPIRED unused
+23:26:10 | Key ONYX-3798 | ARMED by badge B-2196 | valid 120 s
+23:27:00 | Key ONYX-3798 | USED at Transit Buffer TB-2 | Change #4915
 
 END OF LOG

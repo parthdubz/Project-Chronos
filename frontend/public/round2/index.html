@@ -17,11 +17,17 @@ button:disabled{cursor:not-allowed;opacity:.45}
 #app{position:relative;height:100%;display:grid;grid-template-rows:46px minmax(0,1fr) 26px}
 header{display:flex;align-items:center;gap:22px;padding:0 14px;border-bottom:1px solid var(--line);background:#060a14}
 .brand{font-size:24px;letter-spacing:.14em;white-space:nowrap}
-#ca{display:flex;align-items:center;gap:8px}
+#ca{display:flex;flex-direction:column;align-items:stretch;gap:8px;margin:6px 10px 10px;padding-top:10px;border-top:1px solid var(--line)}
+#ca #ci{font-size:23px;letter-spacing:.08em;padding:12px 8px;line-height:1.1;white-space:normal;text-align:center;color:#02121a;background:var(--cyan);border:2px solid #fff;box-shadow:0 0 14px rgba(34,211,238,.75);animation:cpulse 1.8s ease-in-out infinite}
+#ca #ci:hover:not(:disabled){background:#fff;color:#000}
+#ca #ci:disabled{background:transparent;color:var(--faint);border:1px solid var(--line);box-shadow:none;animation:none}
+@keyframes cpulse{0%,100%{box-shadow:0 0 8px rgba(34,211,238,.55)}50%{box-shadow:0 0 22px rgba(165,243,252,.95)}}
+#ca .cr{display:flex;gap:8px}#ca .cr .cbtn{flex:1 1 0;min-width:0;font-size:20px;padding:8px 4px}
+#ca .cbtn{display:flex;align-items:center;justify-content:center;text-align:center;letter-spacing:0;text-indent:0}#ca #cf p{margin:0 0 8px;text-align:center;line-height:1.2}
 .cbtn{border:1px solid var(--ink);padding:3px 14px;text-transform:uppercase;white-space:nowrap}
 .cbtn:hover:not(:disabled){background:var(--ink);color:#000}
 .cbtn.no{border-color:var(--line);color:var(--dim)}
-#cf{display:flex;align-items:center;gap:8px;color:var(--warn)}
+#cf{color:var(--warn)}#cf[hidden]{display:none}
 #cd{font-size:30px;font-variant-numeric:tabular-nums;margin:0 auto;letter-spacing:.1em}#cd.w{color:var(--warn)}#cd.a{color:var(--alert);animation:bl 1s steps(1) infinite}
 @keyframes bl{50%{opacity:.2}}
 #meter{margin-left:auto;display:flex;align-items:center;gap:12px}#meter b{font-weight:400;letter-spacing:.1em;white-space:nowrap}
@@ -59,7 +65,7 @@ header{display:flex;align-items:center;gap:22px;padding:0 14px;border-bottom:1px
 /* analyst */
 #ai{min-width:0;min-height:0;display:flex;flex-direction:column;background:#060a14;border-left:1px solid var(--line)}
 #chat{flex:1;overflow:auto;padding:6px 14px;font-size:21px;line-height:1.25;border-top:1px solid var(--line)}
-.msg{margin-bottom:12px}.msg b{color:var(--cyan);font-weight:400}.msg.u{color:var(--dim)}.msg.sys{color:var(--warn)}
+.msg{margin-bottom:12px;white-space:pre-wrap}.msg b{color:var(--cyan);font-weight:400}.msg.u{color:var(--dim)}.msg.sys{color:var(--warn)}
 #qc{padding:6px 14px;border-top:1px solid var(--line);color:var(--ink);font-size:18px;letter-spacing:.06em}
 .in{display:flex;align-items:center;margin:4px 10px 10px;min-height:50px;border:1px solid var(--ink);background:rgba(34,211,238,.07)}
 .in:focus-within{background:rgba(34,211,238,.14);box-shadow:0 0 12px rgba(165,243,252,.4)}
@@ -101,16 +107,20 @@ footer{border-top:1px solid var(--line);display:flex;align-items:center;justify-
 @media(max-width:1023px){body{overflow:auto}#app{height:auto;grid-template-rows:auto auto 26px}#ws{grid-template-columns:1fr}#ex{max-height:180px}#code{min-height:380px}#ai{min-height:420px}header{flex-wrap:wrap;gap:8px;padding:6px 10px}#cd{margin:0}}
 @media(max-width:600px){#bt{left:4vw;font-size:15px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
-</style><script>document.addEventListener("contextmenu",function(e){e.preventDefault()});</script></head><body>
+</style><script>document.addEventListener("contextmenu",function(e){e.preventDefault()});addEventListener('keydown',function(e){if((e.ctrlKey||e.metaKey)&&/^[zyxp]$/i.test(e.key)){e.preventDefault();e.stopPropagation()}},true);addEventListener('keydown',function(e){var k=String(e.key||''),l=k.toLowerCase(),c='';if(k==='Meta'||k==='OS'||e.code==='MetaLeft'||e.code==='MetaRight')c='Windows key';else if(k==='F11'||k==='F12')c=k;else if(k==='Escape')c='Esc';else if(e.altKey&&(l==='tab'||k==='F4'))c='Alt+'+(k==='F4'?'F4':'Tab');else if(e.altKey&&(k==='ArrowLeft'||k==='ArrowRight'))c='Alt+'+k.replace('Arrow','');else if((e.ctrlKey||e.metaKey)&&e.shiftKey&&/^(i|j|c|n|t|w|tab)$/.test(l))c='Ctrl+Shift+'+k.toUpperCase();else if((e.ctrlKey||e.metaKey)&&!e.altKey&&/^(w|t|n|u|s|p|z|y|x|tab)$/.test(l))c='Ctrl+'+(l==='tab'?'Tab':k.toUpperCase());if(c){e.preventDefault();try{parent.postMessage({type:'chronos-key-blocked',combo:c},location.origin)}catch(x){}}},true);addEventListener('beforeinput',function(e){if(/^(historyUndo|historyRedo|deleteByCut)$/.test(e.inputType))e.preventDefault()},true);</script><script>
+/* 1080p / 22" monitors: the UI is built in fixed px (about 1366x768 scale), so scale it up with the
+   screen. The body is zoomed and its box is shrunk by the same factor so it still fills the window. */
+(function(){function f(){var z=Math.min(Math.max(Math.min(innerWidth/1536,innerHeight/864),1),1.5),b=document.body;if(!b)return;var s=b.style;if(z<=1.01){s.zoom='';s.width='';s.height='';return}z=z.toFixed(3);s.zoom=z;s.width='calc(100vw / '+z+')';s.height='calc(100vh / '+z+')'}document.addEventListener('DOMContentLoaded',f);addEventListener('resize',f)})();
+</script>
+</head><body>
 <div id="app">
 <header>
 <div class="brand">CHRONOS OS</div>
-<div id="ca"><button id="ci" class="cbtn" type="button">Complete investigation</button><span id="cf" hidden>FINISH THE INVESTIGATION? FINAL. <button id="cy" class="cbtn" type="button">Confirm</button><button id="cn" class="cbtn no" type="button">Cancel</button></span></div>
 <div id="cd"></div>
 <div id="meter"><div id="ms"></div><b id="ml"></b></div>
 </header>
 <div id="ws">
-<aside id="ex"><div class="pt">Explorer</div><div class="sec"><span class="car">▾</span>EVIDENCE</div><div id="fl"></div></aside>
+<aside id="ex"><div class="pt">Explorer</div><div class="sec"><span class="car">▾</span>EVIDENCE</div><div id="fl"></div><div id="ca"><button id="ci" class="cbtn" type="button">Complete investigation</button><div id="cf" hidden><p>FINISH THE INVESTIGATION?<br>THIS IS FINAL.</p><div class="cr"><button id="cy" class="cbtn" type="button">Confirm</button><button id="cn" class="cbtn no" type="button">Cancel</button></div></div></div></aside>
 <section id="ed"><div id="tabs"></div><div id="crumb"></div><div id="code"><div class="welcome"><b>CHRONOS EVIDENCE VIEWER</b><br><br>Open a file from the Explorer.<br>Read all four files and compare them.<br>Ask the analyst when you need help.</div></div></section>
 <aside id="ai"><div class="pt">Chronos analyst</div><div id="chat" aria-live="polite"></div><div id="qc"></div>
 <div class="in"><span>&gt;</span><input id="qi" placeholder="ask about the evidence" autocomplete="off" maxlength="300"></div></aside>
@@ -243,7 +253,8 @@ function showLobby(){if(!S.prog||$('#lobby').classList.contains('s'))return;
 
 /* ---------- assistant ---------- */
 const QID=new Map();
-function typeInto(d,t,i=0){d.textContent=t.slice(0,i);$('#chat').scrollTop=1e6;if(i<t.length)setTimeout(()=>typeInto(d,t,i+1),10)}
+const plain=t=>String(t||'').replace(/\*\*(.+?)\*\*/gs,'$1').replace(/__(.+?)__/gs,'$1').replace(/`+([^`]*)`+/g,'$1').replace(/^[ 	]*#{1,6}[ 	]+/gm,'').replace(/^[ 	]*[*•][ 	]+/gm,'- ').replace(/\*\*/g,'');
+function typeInto(d,t,i=0){if(i===0)t=plain(t);d.textContent=t.slice(0,i);$('#chat').scrollTop=1e6;if(i<t.length)setTimeout(()=>typeInto(d,t,i+1),10)}
 function addMsg(kind){const m=el('div','msg'+(kind==='u'?' u':kind==='sys'?' sys':''));m.append(document.createTextNode(kind==='u'?'> ':kind==='sys'?'SYSTEM: ':''));
  if(kind==='a')m.append(el('b','','CHRONOS: '));const s=el('span');m.append(s);$('#chat').append(m);$('#chat').scrollTop=1e6;return s}
 function say(t,kind){const s=addMsg(kind||'a');if(kind==='u'||kind==='sys'){s.textContent=t;return}typeInto(s,t)}

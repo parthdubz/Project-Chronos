@@ -1,20 +1,17 @@
 SECURITY KEY LOG
-Case R2-19 | Covers 21:23:24 to 23:39:24 (master clock)
+Case R2-19 | Covers 21:23:24 to 23:39:24
 
-CLOCK NOTE: this log's clock runs 22 seconds FAST. Subtract 22 s from every time in this file before comparing it with the other files.
-
-How keys work: a security key has to be armed by a badge before it can be used, and an armed key
-stays valid for the time shown. A standing authorization is a general permission and is not tied
-to one badge. Badges are explained in login_records.log (BADGE REGISTRY); terminals are written as
-codes (see its TERMINAL LIST).
+What this is: a security key must be ARMED by a badge before it can be USED.
+- An armed key stays valid for the time shown.
+- A STANDING AUTHORIZATION is a general permission: it is not tied to one badge.
+- Badges are explained in login_records.log (BADGE REGISTRY).
 
 KEY EVENTS
-21:44:46 | Key ORION-1940 | ARMED by badge B-7521 | valid 120 s | purpose: maintenance window
-21:46:21 | Key ORION-1940 | DISARMED after use
-23:20:00 | Key NOVA-2478 | ARMED by badge B-9092 | valid 120 s | never used
-23:22:00 | Key NOVA-2478 | EXPIRED unused
-23:22:16 | Key VEGA-1657 | STANDING AUTHORIZATION | maintenance window MW-29 | not tied to any one badge
-23:23:46 | Key VEGA-1657 | USED at terminal T-9336 | Change #7212
-23:24:31 | Key HOLD-2309 | ARMED by badge B-9092 | valid 120 s
+21:44:24 | Key ORION-1940 | ARMED by badge B-7521 | valid 120 s | purpose: maintenance window
+21:45:59 | Key ORION-1940 | DISARMED after use
+23:19:38 | Key NOVA-2478 | ARMED by badge B-9092 | valid 120 s | never used
+23:21:38 | Key NOVA-2478 | EXPIRED unused
+23:21:54 | Key VEGA-1657 | STANDING AUTHORIZATION | maintenance window MW-29 | not tied to any one badge
+23:23:24 | Key VEGA-1657 | USED at Frequency Station CH-1 | Change #7212
 
 END OF LOG

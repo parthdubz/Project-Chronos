@@ -1,42 +1,25 @@
 SYSTEM CHANGE LOG
 Case R2-23 | Covers 19:22:22 to 21:34:22
 
-What this is: every time someone changed a system setting, it was written down here.
-- Terminals are written as codes such as T-1234. login_records.log has the TERMINAL LIST that says
-  which terminal each code is.
-- Badge is the ID badge number of whoever made the change. This file does not say which project a
-  badge belongs to: login_records.log has the BADGE REGISTRY.
+What this is: every change to a system setting is written down here.
+- Badge = the ID badge number of whoever made the change.
+- This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
-20:11:22 | Change #6390 | Terminal T-4298
+CHANGES
+20:11:22 | Change #6390 | At: Terminal Node Iota-5
   Setting: health check interval (seconds) (30 -> 15)
   Result: APPLIED | Badge: B-2090
 
-20:25:22 | Change #8975 | Terminal T-6544
+20:25:22 | Change #8975 | At: Operator Desk OD-9
   Setting: snapshot keep-days (7 -> 14)
   Result: APPLIED | Badge: B-2090
 
-20:39:22 | Change #6799 | Terminal T-1532
-  Setting: archive cleanup schedule (NIGHTLY -> WEEKLY)
-  Result: UNDONE | Badge: B-2090
-
-20:45:22 | Change #2813 | Terminal T-4298
+21:18:33 | Change #9955 | At: Sync Controller SG-5
   Setting: heartbeat timeout (seconds) (5 -> 8)
   Result: APPLIED | Badge: B-6973
 
-21:15:34 | Change #4996 | Terminal T-3069
-  Setting: queue size limit (512 -> 1024)
-  Result: APPLIED | Badge: B-6973
-
-21:16:17 | Change #7109 | Terminal T-1532
-  Setting: retry rule (STANDARD -> LIMITED)
-  Result: APPLIED | Badge: B-6973
-
-21:22:22 | Change #4274 | Terminal T-3069
+21:22:22 | Change #4274 | At: Sync Controller SG-2
   Setting: sync controller state (RUNNING -> STOPPED)
   Result: APPLIED | Badge: B-8735
-
-21:23:12 | Change #4232 | Terminal T-3069
-  Setting: mitigation hold (NONE -> HOLD)
-  Result: APPLIED | Badge: B-2090
 
 END OF LOG

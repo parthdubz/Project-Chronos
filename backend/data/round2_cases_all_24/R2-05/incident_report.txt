@@ -8,7 +8,6 @@ TIMELINE OF EVENTS
 18:34:16 | First abnormal reading: anchor drift of 346 ms along the relay chain
 18:34:30 | Monitoring reports a sustained inconsistency
 18:35:01 | Automatic recovery fails to restore normal readings
-18:36:06 | Results across timelines leave the normal range
 
 WHERE IT STARTED
 The first abnormal reading came from Anchor Relay AR-9.
@@ -16,7 +15,6 @@ It lines up with Change #5232 made at 18:34:04 (manual change of the anchor offs
 No other change in this period touched the anchor offset table.
 
 OTHER NOTES
-A mitigation hold was applied at Anchor Relay AR-9 at 18:35:18; it did not restore normal readings.
 Readings before the incident were in their normal range.
 Operators on shift reported no scheduled maintenance for this system.
 

@@ -1,42 +1,25 @@
 SYSTEM CHANGE LOG
 Case R2-15 | Covers 21:14:56 to 23:29:56
 
-What this is: every time someone changed a system setting, it was written down here.
-- Terminals are written as codes such as T-1234. login_records.log has the TERMINAL LIST that says
-  which terminal each code is.
-- Badge is the ID badge number of whoever made the change. This file does not say which project a
-  badge belongs to: login_records.log has the BADGE REGISTRY.
+What this is: every change to a system setting is written down here.
+- Badge = the ID badge number of whoever made the change.
+- This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
-21:31:56 | Change #8385 | Terminal T-3867
+CHANGES
+21:31:56 | Change #8385 | At: Terminal Node Iota-1
   Setting: queue size limit (512 -> 1024)
   Result: APPLIED | Badge: B-8739
 
-21:41:56 | Change #1060 | Terminal T-6348
+21:41:56 | Change #1060 | At: Operator Desk OD-8
   Setting: cache lifetime (seconds) (300 -> 600)
   Result: APPLIED | Badge: B-8739
 
-21:55:56 | Change #6478 | Terminal T-6348
+23:09:46 | Change #4464 | At: Sync Controller SG-5
   Setting: queue size limit (512 -> 1024)
-  Result: APPLIED | Badge: B-8739
-
-22:34:56 | Change #5701 | Terminal T-1670
-  Setting: log detail level (NORMAL -> DETAILED)
-  Result: UNDONE | Badge: B-8739
-
-23:08:17 | Change #8657 | Terminal T-3305
-  Setting: retry rule (STANDARD -> LIMITED)
   Result: APPLIED | Badge: B-1698
 
-23:10:51 | Change #4631 | Terminal T-1670
-  Setting: log detail level (NORMAL -> DETAILED)
-  Result: APPLIED | Badge: B-1698
-
-23:14:56 | Change #2832 | Terminal T-3305
+23:14:56 | Change #2832 | At: Sync Controller SG-7
   Setting: sync controller state (RUNNING -> STOPPED)
   Result: APPLIED | Badge: not recorded (run by a scheduled task)
-
-23:15:57 | Change #3529 | Terminal T-3305
-  Setting: mitigation hold (NONE -> HOLD)
-  Result: APPLIED | Badge: B-8739
 
 END OF LOG

@@ -1,42 +1,25 @@
 SYSTEM CHANGE LOG
 Case R2-04 | Covers 20:51:19 to 23:04:19
 
-What this is: every time someone changed a system setting, it was written down here.
-- Terminals are written as codes such as T-1234. login_records.log has the TERMINAL LIST that says
-  which terminal each code is.
-- Badge is the ID badge number of whoever made the change. This file does not say which project a
-  badge belongs to: login_records.log has the BADGE REGISTRY.
+What this is: every change to a system setting is written down here.
+- Badge = the ID badge number of whoever made the change.
+- This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
-21:06:19 | Change #5933 | Terminal T-2300
+CHANGES
+21:06:19 | Change #5933 | At: Maintenance Console MC-5
   Setting: log detail level (NORMAL -> DETAILED)
   Result: APPLIED | Badge: B-1841
 
-21:20:19 | Change #2109 | Terminal T-4294
+21:20:19 | Change #2109 | At: Terminal Node Iota-8
   Setting: health check interval (seconds) (30 -> 15)
   Result: APPLIED | Badge: B-2896
 
-21:30:19 | Change #1366 | Terminal T-8727
+22:47:03 | Change #1366 | At: Archive Vault AV-7
   Setting: archive cleanup schedule (NIGHTLY -> WEEKLY)
   Result: APPLIED | Badge: B-2051
 
-22:12:19 | Change #7302 | Terminal T-5915
-  Setting: log detail level (NORMAL -> DETAILED)
-  Result: UNDONE | Badge: B-1841
-
-22:42:41 | Change #4056 | Terminal T-6175
-  Setting: health check interval (seconds) (30 -> 15)
-  Result: APPLIED | Badge: B-2051
-
-22:47:30 | Change #7314 | Terminal T-5915
-  Setting: log detail level (NORMAL -> DETAILED)
-  Result: APPLIED | Badge: B-2051
-
-22:51:19 | Change #4802 | Terminal T-6175
+22:51:19 | Change #4802 | At: Archive Vault AV-3
   Setting: anchor record store (KEPT -> DELETED (551 records))
   Result: APPLIED | Badge: B-2896
-
-22:52:31 | Change #2539 | Terminal T-6175
-  Setting: mitigation hold (NONE -> HOLD)
-  Result: APPLIED | Badge: B-1841
 
 END OF LOG

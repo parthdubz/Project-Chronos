@@ -1,42 +1,25 @@
 SYSTEM CHANGE LOG
 Case R2-12 | Covers 18:07:57 to 20:23:57
 
-What this is: every time someone changed a system setting, it was written down here.
-- Terminals are written as codes such as T-1234. login_records.log has the TERMINAL LIST that says
-  which terminal each code is.
-- Badge is the ID badge number of whoever made the change. This file does not say which project a
-  badge belongs to: login_records.log has the BADGE REGISTRY.
+What this is: every change to a system setting is written down here.
+- Badge = the ID badge number of whoever made the change.
+- This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
-18:34:57 | Change #6030 | Terminal T-2773
+CHANGES
+18:34:57 | Change #6030 | At: Maintenance Console MC-2
   Setting: archive cleanup schedule (NIGHTLY -> WEEKLY)
   Result: APPLIED | Badge: B-9249
 
-18:47:57 | Change #4834 | Terminal T-4008
+18:47:57 | Change #4834 | At: Terminal Node Iota-2
   Setting: queue size limit (512 -> 1024)
   Result: APPLIED | Badge: B-5545
 
-19:04:57 | Change #4020 | Terminal T-3653
+20:04:23 | Change #7508 | At: Archive Vault AV-5
   Setting: cache lifetime (seconds) (300 -> 600)
-  Result: APPLIED | Badge: B-9249
-
-19:18:57 | Change #4304 | Terminal T-2600
-  Setting: archive cleanup schedule (NIGHTLY -> WEEKLY)
-  Result: UNDONE | Badge: B-9249
-
-20:00:49 | Change #7417 | Terminal T-1589
-  Setting: snapshot keep-days (7 -> 14)
   Result: APPLIED | Badge: B-5545
 
-20:02:33 | Change #5672 | Terminal T-2600
-  Setting: archive cleanup schedule (NIGHTLY -> WEEKLY)
-  Result: APPLIED | Badge: B-5545
-
-20:07:57 | Change #1130 | Terminal T-1589
+20:07:57 | Change #1130 | At: Archive Vault AV-3
   Setting: anchor record store (KEPT -> DELETED (457 records))
   Result: APPLIED | Badge: B-6065
-
-20:09:16 | Change #4862 | Terminal T-1589
-  Setting: mitigation hold (NONE -> HOLD)
-  Result: APPLIED | Badge: B-9249
 
 END OF LOG

@@ -2,33 +2,20 @@ LOGIN AND BADGE RECORDS
 Case R2-04 | Covers 20:51:19 to 23:04:19
 
 What this is: who logged in, at which terminal, and with what access level.
-This file also holds the BADGE REGISTRY and the TERMINAL LIST used by the other files.
+Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
 B-2896 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
 B-1841 | Project Beta | Present Timeline | Lead: Commander V. Reyes
 B-2051 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
 
-TERMINAL LIST (terminal code | terminal name)
-T-2300 | Maintenance Console MC-5
-T-2785 | Operator Desk OD-1
-T-4294 | Terminal Node Iota-8
-T-5915 | Archive Vault AV-7
-T-6175 | Archive Vault AV-3
-T-8727 | Diagnostics Bay DB-1
-
-ACCESS LEVELS (lowest to highest): VIEW ONLY < TEST ONLY < FULL CONTROL
-Only FULL CONTROL can change a system setting.
-
 LOGIN RECORDS
 21:19:41 | Badge B-2051 | Diagnostics Bay DB-1 | LOGGED IN | TEST ONLY
+21:39:19 | Badge B-1841 | Terminal Node Iota-8 | LOGGED IN | FULL CONTROL
 21:42:19 | Badge B-2896 | Maintenance Console MC-5 | LOGGED IN | VIEW ONLY
 21:45:00 | Badge B-1841 | Terminal Node Iota-8 | LOGGED IN | VIEW ONLY
-22:07:22 | Badge B-2051 | Operator Desk OD-1 | LOGGED IN | TEST ONLY
-22:42:31 | Badge B-2051 | Archive Vault AV-3 | LOGGED IN | FULL CONTROL
-22:49:12 | Badge B-1841 | Archive Vault AV-3 | REFUSED | FULL CONTROL (not allowed for this badge)
-22:50:16 | Badge B-2051 | Archive Vault AV-7 | LOGGED IN | FULL CONTROL
-22:50:51 - 22:51:27 | RECORDS LOST | the log buffer overflowed and the records in this interval were not recovered
-22:52:14 | Badge B-1841 | Archive Vault AV-3 | LOGGED IN | FULL CONTROL
+22:49:48 | Badge B-1841 | Archive Vault AV-3 | REFUSED | FULL CONTROL (not allowed for this badge)
+22:50:23 | Badge B-2051 | Archive Vault AV-7 | LOGGED IN | FULL CONTROL
+22:50:51 - 22:51:23 | RECORDS LOST | the log buffer overflowed and the records in this interval were not recovered
 
 END OF RECORDS

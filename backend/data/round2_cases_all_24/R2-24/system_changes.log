@@ -1,42 +1,25 @@
 SYSTEM CHANGE LOG
 Case R2-24 | Covers 16:45:11 to 18:56:11
 
-What this is: every time someone changed a system setting, it was written down here.
-- Terminals are written as codes such as T-1234. login_records.log has the TERMINAL LIST that says
-  which terminal each code is.
-- Badge is the ID badge number of whoever made the change. This file does not say which project a
-  badge belongs to: login_records.log has the BADGE REGISTRY.
+What this is: every change to a system setting is written down here.
+- Badge = the ID badge number of whoever made the change.
+- This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
-17:32:11 | Change #3345 | Terminal T-6168
+CHANGES
+17:32:11 | Change #3345 | At: Terminal Node Iota-5
   Setting: archive cleanup schedule (NIGHTLY -> WEEKLY)
   Result: APPLIED | Badge: B-3792
 
-17:46:11 | Change #9347 | Terminal T-6168
+17:46:11 | Change #9347 | At: Terminal Node Iota-5
   Setting: heartbeat timeout (seconds) (5 -> 8)
   Result: APPLIED | Badge: B-5376
 
-17:55:11 | Change #7908 | Terminal T-1887
-  Setting: cache lifetime (seconds) (300 -> 600)
-  Result: UNDONE | Badge: B-5376
-
-18:02:11 | Change #7072 | Terminal T-6090
+18:41:56 | Change #7813 | At: Transit Buffer TB-7
   Setting: heartbeat timeout (seconds) (5 -> 8)
-  Result: APPLIED | Badge: B-5376
-
-18:36:35 | Change #9919 | Terminal T-8834
-  Setting: log detail level (NORMAL -> DETAILED)
   Result: APPLIED | Badge: B-7343
 
-18:39:32 | Change #2007 | Terminal T-1887
-  Setting: queue size limit (512 -> 1024)
-  Result: APPLIED | Badge: B-7343
-
-18:45:11 | Change #5781 | Terminal T-8834
+18:45:11 | Change #5781 | At: Transit Buffer TB-1
   Setting: transit buffer content (HELD -> FLUSHED (328 MB))
   Result: APPLIED | Badge: B-3792
-
-18:46:02 | Change #5840 | Terminal T-8834
-  Setting: mitigation hold (NONE -> HOLD)
-  Result: APPLIED | Badge: B-5376
 
 END OF LOG

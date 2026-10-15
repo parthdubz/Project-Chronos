@@ -1,42 +1,25 @@
 SYSTEM CHANGE LOG
 Case R2-10 | Covers 19:03:13 to 21:15:13
 
-What this is: every time someone changed a system setting, it was written down here.
-- Terminals are written as codes such as T-1234. login_records.log has the TERMINAL LIST that says
-  which terminal each code is.
-- Badge is the ID badge number of whoever made the change. This file does not say which project a
-  badge belongs to: login_records.log has the BADGE REGISTRY.
+What this is: every change to a system setting is written down here.
+- Badge = the ID badge number of whoever made the change.
+- This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
-19:39:13 | Change #6398 | Terminal T-7107
+CHANGES
+19:39:13 | Change #6398 | At: Maintenance Console MC-8
   Setting: retry rule (STANDARD -> LIMITED)
   Result: APPLIED | Badge: B-7613
 
-19:49:13 | Change #1086 | Terminal T-1373
+19:49:13 | Change #1086 | At: Terminal Node Iota-7
   Setting: log detail level (NORMAL -> DETAILED)
   Result: APPLIED | Badge: B-7613
 
-19:59:13 | Change #9724 | Terminal T-1373
+21:00:14 | Change #2335 | At: Console SEC-14
   Setting: log detail level (NORMAL -> DETAILED)
-  Result: APPLIED | Badge: B-7613
-
-20:22:13 | Change #1901 | Terminal T-2073
-  Setting: log detail level (NORMAL -> DETAILED)
-  Result: UNDONE | Badge: B-7836
-
-20:55:41 | Change #6161 | Terminal T-6859
-  Setting: heartbeat timeout (seconds) (5 -> 8)
   Result: APPLIED | Badge: B-3328
 
-20:58:42 | Change #2426 | Terminal T-2073
-  Setting: snapshot keep-days (7 -> 14)
-  Result: APPLIED | Badge: B-3328
-
-21:03:13 | Change #1357 | Terminal T-6859
+21:03:13 | Change #1357 | At: Console SEC-01
   Setting: time bridge link (CONNECTED -> FORCED OFF)
   Result: APPLIED | Badge: B-7613
-
-21:04:33 | Change #9935 | Terminal T-6859
-  Setting: mitigation hold (NONE -> HOLD)
-  Result: APPLIED | Badge: B-7836
 
 END OF LOG

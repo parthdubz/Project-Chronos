@@ -8,14 +8,12 @@ TIMELINE OF EVENTS
 22:16:16 | First abnormal reading: 84 unresolved cause-and-effect loops detected
 22:16:34 | Monitoring reports a sustained inconsistency
 22:17:09 | Automatic recovery fails to restore normal readings
-22:18:15 | Results across timelines leave the normal range
 
 WHERE IT STARTED
 The first abnormal reading cannot be traced to a single source. Possible terminals: Filter Array PF-5 and Filter Array PF-9.
 No change record could be matched to the reading with certainty.
 
 OTHER NOTES
-A mitigation hold was applied at Filter Array PF-5 at 22:17:17; it did not restore normal readings.
 Readings before the incident were in their normal range.
 Operators on shift reported no scheduled maintenance for this system.
 

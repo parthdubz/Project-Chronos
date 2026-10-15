@@ -1,20 +1,17 @@
 SECURITY KEY LOG
-Case R2-03 | Covers 21:05:11 to 23:19:11 (master clock)
+Case R2-03 | Covers 21:05:11 to 23:19:11
 
-CLOCK NOTE: this log's clock runs 20 seconds FAST. Subtract 20 s from every time in this file before comparing it with the other files.
-
-How keys work: a security key has to be armed by a badge before it can be used, and an armed key
-stays valid for the time shown. A standing authorization is a general permission and is not tied
-to one badge. Badges are explained in login_records.log (BADGE REGISTRY); terminals are written as
-codes (see its TERMINAL LIST).
+What this is: a security key must be ARMED by a badge before it can be USED.
+- An armed key stays valid for the time shown.
+- A STANDING AUTHORIZATION is a general permission: it is not tied to one badge.
+- Badges are explained in login_records.log (BADGE REGISTRY).
 
 KEY EVENTS
-21:53:31 | Key LYRA-9737 | ARMED by badge B-4012 | valid 120 s | purpose: maintenance window
-21:55:06 | Key LYRA-9737 | DISARMED after use
-23:02:17 | Key PULSAR-5469 | ARMED by badge B-9357 | valid 120 s | never used
-23:04:17 | Key PULSAR-5469 | EXPIRED unused
-23:04:46 | Key ZENITH-6914 | ARMED by badge B-9301 | valid 120 s
-23:05:31 | Key ZENITH-6914 | USED at terminal T-4017 | Change #2083
-23:06:18 | Key HOLD-7770 | ARMED by badge B-9357 | valid 120 s
+21:53:11 | Key LYRA-9737 | ARMED by badge B-4012 | valid 120 s | purpose: maintenance window
+21:54:46 | Key LYRA-9737 | DISARMED after use
+23:01:57 | Key PULSAR-5469 | ARMED by badge B-9357 | valid 120 s | never used
+23:03:57 | Key PULSAR-5469 | EXPIRED unused
+23:04:26 | Key ZENITH-6914 | ARMED by badge B-9301 | valid 120 s
+23:05:11 | Key ZENITH-6914 | USED at Frequency Station CH-5 | Change #2083
 
 END OF LOG

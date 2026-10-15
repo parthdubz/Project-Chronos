@@ -1,20 +1,17 @@
 SECURITY KEY LOG
-Case R2-18 | Covers 17:23:39 to 19:38:39 (master clock)
+Case R2-18 | Covers 17:23:39 to 19:38:39
 
-CLOCK NOTE: this log's clock runs 27 seconds FAST. Subtract 27 s from every time in this file before comparing it with the other files.
-
-How keys work: a security key has to be armed by a badge before it can be used, and an armed key
-stays valid for the time shown. A standing authorization is a general permission and is not tied
-to one badge. Badges are explained in login_records.log (BADGE REGISTRY); terminals are written as
-codes (see its TERMINAL LIST).
+What this is: a security key must be ARMED by a badge before it can be USED.
+- An armed key stays valid for the time shown.
+- A STANDING AUTHORIZATION is a general permission: it is not tied to one badge.
+- Badges are explained in login_records.log (BADGE REGISTRY).
 
 KEY EVENTS
-18:07:06 | Key ORION-5661 | ARMED by badge B-5748 | valid 120 s | purpose: maintenance window
-18:08:41 | Key ORION-5661 | DISARMED after use
-19:21:05 | Key VEGA-5612 | ARMED by badge B-8626 | valid 120 s | never used
-19:23:05 | Key VEGA-5612 | EXPIRED unused
-19:23:32 | Key NOVA-8434 | ARMED by badge B-1200 | valid 120 s
-19:24:06 | Key NOVA-8434 | USED at terminal T-4648 | Change #6093
-19:24:52 | Key HOLD-6734 | ARMED by badge B-8626 | valid 120 s
+18:06:39 | Key ORION-5661 | ARMED by badge B-5748 | valid 120 s | purpose: maintenance window
+18:08:14 | Key ORION-5661 | DISARMED after use
+19:20:38 | Key VEGA-5612 | ARMED by badge B-8626 | valid 120 s | never used
+19:22:38 | Key VEGA-5612 | EXPIRED unused
+19:23:05 | Key NOVA-8434 | ARMED by badge B-1200 | valid 120 s
+19:23:39 | Key NOVA-8434 | USED at Console SEC-05 | Change #6093
 
 END OF LOG

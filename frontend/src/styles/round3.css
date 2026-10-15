@@ -40,9 +40,9 @@
 
 .r3-count {
   display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px;
-  border: 1px solid rgba(100, 116, 139, 0.6); color: #94a3b8; font-size: 11px; letter-spacing: 0.08em; transition: all 0.25s;
+  border: 1px solid rgba(100, 116, 139, 0.6); color: #94a3b8; font-size: 0.8125rem; letter-spacing: 0.08em; transition: all 0.25s;
 }
-.r3-count b { color: #e2e8f0; font-size: 14px; }
+.r3-count b { color: #e2e8f0; font-size: 1rem; }
 .r3-count.ok { border-color: rgba(16, 185, 129, 0.8); color: #6ee7b7; box-shadow: 0 0 12px rgba(16, 185, 129, 0.3); }
 .r3-count.ok b { color: #a7f3d0; }
 
@@ -56,11 +56,11 @@
 }
 
 /* ---- header: slanted plate + stacked title (no "//" separators) ---- */
-.r3 .r3-eyebrow { display: flex; align-items: center; gap: 10px; font-family: ui-monospace, 'Share Tech', monospace; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: #94a3b8; }
+.r3 .r3-eyebrow { display: flex; align-items: center; gap: 10px; font-family: ui-monospace, 'Share Tech', monospace; font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: #94a3b8; }
 .r3 .r3-phase { display: inline-flex; align-items: baseline; gap: 6px; padding: 3px 12px 3px 10px; background: #22d3ee; color: #03060f; font-weight: 700; letter-spacing: 0.18em; clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%); }
-.r3 .r3-phase b { font-size: 13px; letter-spacing: 0.04em; }
+.r3 .r3-phase b { font-size: 0.9rem; letter-spacing: 0.04em; }
 .r3 .r3-title { margin: 6px 0 0; display: flex; flex-direction: column; gap: 2px; }
 .r3 .r3-title-main { font-family: 'Super Sliced', 'Share Tech', sans-serif; font-size: clamp(22px, 3.4vw, 32px); font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: #67e8f9; line-height: 1.1; }
-.r3 .r3-title-sub { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; color: #f472b6; font-weight: 700; }
+.r3 .r3-title-sub { display: inline-flex; align-items: center; gap: 10px; font-size: 0.875rem; letter-spacing: 0.3em; text-transform: uppercase; color: #f472b6; font-weight: 700; }
 .r3 .r3-title-sub::before { content: ''; width: 4px; height: 14px; background: #f472b6; transform: skewX(-20deg); flex: none; }
 .r3 .r3-tag { padding: 2px 9px; border: 1px solid rgba(244, 114, 182, 0.7); color: #f9a8d4; letter-spacing: 0.2em; transform: skewX(-14deg); }

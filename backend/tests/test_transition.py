@@ -37,7 +37,7 @@ def reset_sheet():
         SHEET[zone] = {f"{zone.upper()}A": False, f"{zone.upper()}B": False}
 
 
-def fake_consume(zone, password):
+def fake_consume(zone, password, team_id=None, team_name=None):
     if SHEET_DOWN:
         raise PasswordServiceError("sheet down")
     used = SHEET[zone].get(password)

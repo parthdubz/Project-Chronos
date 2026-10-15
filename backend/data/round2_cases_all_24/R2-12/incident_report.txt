@@ -8,14 +8,12 @@ TIMELINE OF EVENTS
 20:08:18 | First abnormal reading: 457 anchor records missing from the index
 20:08:36 | Monitoring reports a sustained inconsistency
 20:09:14 | Automatic recovery fails to restore normal readings
-20:10:38 | Results across timelines leave the normal range
 
 WHERE IT STARTED
 The first abnormal reading cannot be traced to a single source. Possible terminals: Archive Vault AV-3 and Archive Vault AV-5.
 No change record could be matched to the reading with certainty.
 
 OTHER NOTES
-A mitigation hold was applied at Archive Vault AV-3 at 20:09:16; it did not restore normal readings.
 Readings before the incident were in their normal range.
 Operators on shift reported no scheduled maintenance for this system.
 

@@ -2,33 +2,20 @@ LOGIN AND BADGE RECORDS
 Case R2-16 | Covers 21:27:00 to 23:37:00
 
 What this is: who logged in, at which terminal, and with what access level.
-This file also holds the BADGE REGISTRY and the TERMINAL LIST used by the other files.
+Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
 B-2196 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
 B-7796 | Project Beta | Present Timeline | Lead: Commander V. Reyes
 B-1856 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
 
-TERMINAL LIST (terminal code | terminal name)
-T-1044 | Diagnostics Bay DB-4
-T-2379 | Transit Buffer TB-5
-T-3463 | Maintenance Console MC-4
-T-4613 | Operator Desk OD-2
-T-5834 | Terminal Node Iota-7
-T-9896 | Transit Buffer TB-2
-
-ACCESS LEVELS (lowest to highest): VIEW ONLY < TEST ONLY < FULL CONTROL
-Only FULL CONTROL can change a system setting.
-
 LOGIN RECORDS
 22:01:22 | Badge B-7796 | Terminal Node Iota-7 | LOGGED IN | VIEW ONLY
-22:30:03 | Badge B-1856 | Terminal Node Iota-7 | LOGGED IN | TEST ONLY
+22:23:00 | Badge B-7796 | Terminal Node Iota-7 | LOGGED IN | FULL CONTROL
 22:46:41 | Badge B-1856 | Maintenance Console MC-4 | LOGGED IN | TEST ONLY
 22:53:00 | Badge B-2196 | Maintenance Console MC-4 | LOGGED IN | VIEW ONLY
-23:18:50 | Badge B-1856 | Transit Buffer TB-2 | LOGGED IN | FULL CONTROL
-23:25:11 | Badge B-7796 | Transit Buffer TB-2 | REFUSED | FULL CONTROL (not allowed for this badge)
-23:26:06 | Badge B-1856 | Transit Buffer TB-5 | LOGGED IN | FULL CONTROL
+23:25:16 | Badge B-7796 | Transit Buffer TB-2 | REFUSED | FULL CONTROL (not allowed for this badge)
+23:26:01 | Badge B-1856 | Transit Buffer TB-5 | LOGGED IN | FULL CONTROL
 23:26:40 - 23:27:06 | RECORDS LOST | the log buffer overflowed and the records in this interval were not recovered
-23:27:48 | Badge B-7796 | Transit Buffer TB-2 | LOGGED IN | FULL CONTROL
 
 END OF RECORDS

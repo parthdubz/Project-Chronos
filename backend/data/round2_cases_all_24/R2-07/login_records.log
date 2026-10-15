@@ -2,33 +2,19 @@ LOGIN AND BADGE RECORDS
 Case R2-07 | Covers 16:26:46 to 18:35:46
 
 What this is: who logged in, at which terminal, and with what access level.
-This file also holds the BADGE REGISTRY and the TERMINAL LIST used by the other files.
+Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
 B-8335 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
 B-6916 | Project Beta | Present Timeline | Lead: Commander V. Reyes
 B-4450 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
 
-TERMINAL LIST (terminal code | terminal name)
-T-1325 | Sync Controller SG-4
-T-5139 | Maintenance Console MC-7
-T-5774 | Terminal Node Iota-1
-T-6277 | Diagnostics Bay DB-3
-T-8611 | Sync Controller SG-1
-T-9806 | Operator Desk OD-5
-
-ACCESS LEVELS (lowest to highest): VIEW ONLY < TEST ONLY < FULL CONTROL
-Only FULL CONTROL can change a system setting.
-
 LOGIN RECORDS
 16:47:08 | Badge B-4450 | Terminal Node Iota-1 | LOGGED IN | TEST ONLY
 17:22:46 | Badge B-8335 | Operator Desk OD-5 | LOGGED IN | TEST ONLY
-17:38:49 | Badge B-8335 | Diagnostics Bay DB-3 | LOGGED IN | TEST ONLY
 17:44:27 | Badge B-6916 | Operator Desk OD-5 | LOGGED IN | TEST ONLY
-18:18:55 | Badge B-6916 | Sync Controller SG-4 | LOGGED IN | FULL CONTROL
-18:25:00 | Badge B-4450 | Sync Controller SG-4 | REFUSED | FULL CONTROL (not allowed for this badge)
-18:25:49 | Badge B-6916 | Sync Controller SG-1 | LOGGED IN | FULL CONTROL
+18:25:25 | Badge B-4450 | Sync Controller SG-4 | REFUSED | FULL CONTROL (not allowed for this badge)
+18:25:39 | Badge B-6916 | Sync Controller SG-1 | LOGGED IN | FULL CONTROL
 18:26:37 | Badge B-8335 | Sync Controller SG-4 | LOGGED IN | FULL CONTROL
-18:27:45 | Badge B-4450 | Sync Controller SG-4 | LOGGED IN | FULL CONTROL
 
 END OF RECORDS

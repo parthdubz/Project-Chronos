@@ -485,3 +485,220 @@ def recent_logs(limit: int) -> list[dict[str, Any]]:
         return [dict(r) for r in rows]
     finally:
         connection.close()
+
+
+# ---------------------------------------------------------------- per-team activity feed
+# Read-only. Merges game_logs with the richer per-action tables (Round 1 answers, Round 2 AI
+# questions) into one readable timeline per team, so the host can see what a team is doing.
+
+_ROUND_OF_EVENT = {
+    "LOGIN": 0, "ROUND1_STARTED": 1, "ROUND1_COMPLETED": 1,
+    "TRANSITION_CLUE_ASSIGNED": 1.5, "TRANSITION_STARTED": 1.5, "TRANSITION_STOPPED": 1.5,
+    "TRANSITION_ATTEMPT": 1.5, "TRANSITION_COMPLETED": 1.5,
+    "ROUND_STARTED": 2, "HINT_USED": 2, "ANSWER_SUBMITTED": 2, "OMEGA_DISCOVERED": 2,
+    "ROUND_COMPLETED": 2, "TIMEOUT": 2, "R3_START": 3, "R3_SUBMIT": 3,
+}
+
+
+def _ts_key(value: Any) -> float:
+    """Sortable epoch seconds from the mixed timestamp formats in the database."""
+    if not value:
+        return 0.0
+    s = str(value).strip().replace(" ", "T")
+    if s.endswith("Z"):
+        s = s[:-1] + "+00:00"
+    try:
+        d = datetime.fromisoformat(s)
+    except ValueError:
+        return 0.0
+    if d.tzinfo is None:
+        d = d.replace(tzinfo=timezone.utc)
+    return d.timestamp()
+
+
+def _iso(value: Any) -> Optional[str]:
+    k = _ts_key(value)
+    return datetime.fromtimestamp(k, timezone.utc).isoformat() if k else None
+
+
+def _describe_event(event_type: str, data: dict[str, Any]) -> tuple[str, str, str]:
+    """(title, detail, tone) for a game_logs row. tone: good | bad | info | warn."""
+    t = event_type
+    if t == "LOGIN":
+        new = data.get("result") == "REGISTERED_NEW_TEAM"
+        return ("Registered and logged in" if new else "Logged in again", "", "info")
+    if t == "ROUND1_STARTED":
+        return ("Started Round 1", f"{data.get('items', '')} items", "info")
+    if t == "ROUND1_COMPLETED":
+        via = data.get("via")
+        detail = ""
+        if data.get("submitted_items") is not None:
+            detail = f"{data.get('submitted_items')}/{data.get('total_items')} items answered"
+        return ("Finished Round 1" + (" (time up)" if via == "TIME_UP" else ""), detail,
+                "warn" if via == "TIME_UP" else "good")
+    if t == "TRANSITION_CLUE_ASSIGNED":
+        return ("Transition clue assigned", f"clue #{data.get('clue_id')}", "info")
+    if t == "TRANSITION_STARTED":
+        return ("Transition stopwatch started", f"clue #{data.get('clue_id')}", "info")
+    if t == "TRANSITION_STOPPED":
+        ms = data.get("elapsed_ms")
+        return ("Reached the physical location", f"{round(ms / 1000)}s on the stopwatch" if ms else "", "info")
+    if t == "TRANSITION_ATTEMPT":
+        ok = bool(data.get("correct"))
+        delta = data.get("points_delta")
+        return (f"Password attempt {data.get('attempt', '')} - " + ("correct" if ok else "wrong"),
+                f"{delta:+g} pts" if isinstance(delta, (int, float)) else "",
+                "good" if ok else "bad")
+    if t == "TRANSITION_COMPLETED":
+        ok = data.get("result") == "CORRECT"
+        return ("Transition round " + ("passed" if ok else "locked out"), f"score {data.get('score')}",
+                "good" if ok else "bad")
+    if t == "ROUND_STARTED":
+        return (f"Started Round {data.get('round', '')}", f"case {data.get('case', '')}", "info")
+    if t == "HINT_USED":
+        return (f"Asked AI question {data.get('question')}", f"-{data.get('points_deducted', 0)} pts", "warn")
+    if t == "ANSWER_SUBMITTED":
+        ok = bool(data.get("correct"))
+        return (f"Named suspect: {data.get('suspect', '?')}", "correct" if ok else "wrong",
+                "good" if ok else "bad")
+    if t == "OMEGA_DISCOVERED":
+        return ("Discovered OMEGA", "", "good")
+    if t == "ROUND_COMPLETED":
+        return (f"Finished Round {data.get('round', '')}",
+                f"score {data['score']}" if "score" in data else "", "good")
+    if t == "TIMEOUT":
+        return (f"Round {data.get('round', '')} timed out", "", "bad")
+    if t == "R3_START":
+        return ("Started Round 3", f"case {data.get('case', '')}", "info")
+    if t == "R3_SUBMIT":
+        ok = bool(data.get("correct"))
+        return (f"Final accusation: {data.get('candidate', '?')}",
+                f"{data.get('evidence_count', 0)} evidence picked - " + ("correct" if ok else "wrong"),
+                "good" if ok else "bad")
+    if t == "ADMIN_KEYBLOCKER":
+        return ("Host " + ("LOCKED" if data.get("locked") else "UNLOCKED") + " the keys on all laptops", "", "info")
+    if t == "SECURITY_KEY_BLOCKED":
+        return ("Pressed a blocked key", data.get("detail", ""), "warn")
+    if t == "SECURITY_FOCUS_LOST":
+        return ("Left the game window", data.get("detail", "") or "another window / tab was in front", "bad")
+    if t == "SECURITY_LOCK_UNAVAILABLE":
+        return ("Browser cannot lock the keyboard", "Alt+Tab / Ctrl+W / Win key are NOT blocked here", "bad")
+    if t == "SECURITY_FULLSCREEN_EXIT":
+        return ("Left fullscreen", "", "bad")
+    if t in ("DEV_SKIP", "DEV_SKIP_SWITCH"):
+        return ("Tester skip used" if t == "DEV_SKIP" else "Skip shortcut switched",
+                f"skipped {data.get('skipped')}" if data.get("skipped") else "", "warn")
+    return (t.replace("_", " ").capitalize(), "", "info")
+
+
+def _event_data(raw: Any) -> dict[str, Any]:
+    try:
+        data = json.loads(raw or "{}")
+    except ValueError:
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
+def team_activity_summary() -> list[dict[str, Any]]:
+    """One row per team: where it is and what it did last."""
+    connection = get_connection()
+    try:
+        teams = connection.execute(
+            "SELECT id, team_name, current_state, updated_at FROM teams ORDER BY id"
+        ).fetchall()
+        logs = connection.execute(
+            "SELECT team_id, event_type, event_data, created_at FROM game_logs "
+            "WHERE team_id IS NOT NULL ORDER BY id"
+        ).fetchall()
+        last: dict[int, dict[str, Any]] = {}
+        counts: dict[int, int] = {}
+        for r in logs:
+            tid = r["team_id"]
+            counts[tid] = counts.get(tid, 0) + 1
+            title, detail, tone = _describe_event(r["event_type"], _event_data(r["event_data"]))
+            last[tid] = {"title": title, "detail": detail, "tone": tone, "at": _iso(r["created_at"])}
+        out = []
+        for t in teams:
+            ev = last.get(t["id"])
+            out.append({
+                "team_id": t["id"],
+                "team_name": t["team_name"],
+                "current_state": t["current_state"],
+                "events": counts.get(t["id"], 0),
+                "last_event": ev,
+                "last_seen": (ev or {}).get("at") or _iso(t["updated_at"]),
+            })
+        return out
+    finally:
+        connection.close()
+
+
+def team_activity(team_id: int, limit: int = 500) -> dict[str, Any]:
+    """Chronological timeline (oldest first) of everything one team did."""
+    connection = get_connection()
+    try:
+        team = connection.execute(
+            "SELECT id, team_name, current_state FROM teams WHERE id = ?", (team_id,)
+        ).fetchone()
+        if team is None:
+            raise HTTPException(status_code=404, detail="Team not found.")
+        existing = {
+            r[0] for r in connection.execute("SELECT name FROM sqlite_master WHERE type = 'table'").fetchall()
+        }
+        events: list[dict[str, Any]] = []
+
+        if "game_logs" in existing:
+            for r in connection.execute(
+                "SELECT event_type, event_data, created_at FROM game_logs WHERE team_id = ?", (team_id,)
+            ):
+                if r["event_type"] == "HINT_USED" and "round2_chat_messages" in existing:
+                    continue  # shown with the actual question below
+                title, detail, tone = _describe_event(r["event_type"], _event_data(r["event_data"]))
+                events.append({
+                    "at": _iso(r["created_at"]), "k": _ts_key(r["created_at"]),
+                    "round": _ROUND_OF_EVENT.get(r["event_type"], 0),
+                    "type": r["event_type"], "title": title, "detail": detail, "tone": tone,
+                })
+
+        if "round1_submissions" in existing and "round1_items" in existing:
+            for r in connection.execute(
+                "SELECT s.selected_era, s.is_correct, s.points_awarded, s.submitted_at, i.item_name, i.correct_era "
+                "FROM round1_submissions s LEFT JOIN round1_items i ON i.item_id = s.item_id "
+                "WHERE s.team_id = ?", (team_id,)
+            ):
+                ok = bool(r["is_correct"])
+                events.append({
+                    "at": _iso(r["submitted_at"]), "k": _ts_key(r["submitted_at"]), "round": 1,
+                    "type": "R1_ANSWER",
+                    "title": f"{r['item_name'] or 'Item'} -> {r['selected_era']}",
+                    "detail": ("correct" if ok else f"wrong (was {r['correct_era']})")
+                              + f", {r['points_awarded']:+g} pts",
+                    "tone": "good" if ok else "bad",
+                })
+
+        if "round2_chat_messages" in existing:
+            for r in connection.execute(
+                "SELECT question_number, user_prompt, ai_response, points_deducted, created_at "
+                "FROM round2_chat_messages WHERE team_id = ?", (str(team_id),)
+            ):
+                reply = (r["ai_response"] or "").strip()
+                shown = reply[:280] + ("..." if len(reply) > 280 else "")
+                events.append({
+                    "at": _iso(r["created_at"]), "k": _ts_key(r["created_at"]), "round": 2,
+                    "type": "R2_QUESTION",
+                    "title": f"AI question {r['question_number']}: {r['user_prompt']}",
+                    "detail": (f"AI: {shown} " if shown else "") + f"(-{r['points_deducted']} pts)",
+                    "tone": "warn",
+                })
+
+        events.sort(key=lambda e: e["k"])
+        total = len(events)
+        events = events[-limit:]
+        for e in events:
+            e.pop("k", None)
+        return {
+            "team_id": team["id"], "team_name": team["team_name"],
+            "current_state": team["current_state"], "total": total, "events": events,
+        }
+    finally:
+        connection.close()

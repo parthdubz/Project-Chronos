@@ -1,20 +1,17 @@
 SECURITY KEY LOG
-Case R2-17 | Covers 18:18:44 to 20:33:44 (master clock)
+Case R2-17 | Covers 18:18:44 to 20:33:44
 
-CLOCK NOTE: this log's clock runs 43 seconds FAST. Subtract 43 s from every time in this file before comparing it with the other files.
-
-How keys work: a security key has to be armed by a badge before it can be used, and an armed key
-stays valid for the time shown. A standing authorization is a general permission and is not tied
-to one badge. Badges are explained in login_records.log (BADGE REGISTRY); terminals are written as
-codes (see its TERMINAL LIST).
+What this is: a security key must be ARMED by a badge before it can be USED.
+- An armed key stays valid for the time shown.
+- A STANDING AUTHORIZATION is a general permission: it is not tied to one badge.
+- Badges are explained in login_records.log (BADGE REGISTRY).
 
 KEY EVENTS
-19:00:27 | Key ONYX-2051 | ARMED by badge B-2763 | valid 120 s | purpose: maintenance window
-19:02:02 | Key ONYX-2051 | DISARMED after use
-20:15:41 | Key ZENITH-6447 | ARMED by badge B-6468 | valid 120 s | never used
-20:17:41 | Key ZENITH-6447 | EXPIRED unused
-20:18:47 | Key PULSAR-8339 | ARMED by badge B-4312 | valid 120 s
-20:19:27 | Key PULSAR-8339 | USED at terminal T-3432 | Change #3225
-20:20:20 | Key HOLD-7790 | ARMED by badge B-6468 | valid 120 s
+18:59:44 | Key ONYX-2051 | ARMED by badge B-2763 | valid 120 s | purpose: maintenance window
+19:01:19 | Key ONYX-2051 | DISARMED after use
+20:14:58 | Key ZENITH-6447 | ARMED by badge B-6468 | valid 120 s | never used
+20:16:58 | Key ZENITH-6447 | EXPIRED unused
+20:18:04 | Key PULSAR-8339 | ARMED by badge B-4312 | valid 120 s
+20:18:44 | Key PULSAR-8339 | USED at Terminal Node Zeta-9 | Change #3225
 
 END OF LOG

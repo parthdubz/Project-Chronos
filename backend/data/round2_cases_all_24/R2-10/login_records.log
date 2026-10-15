@@ -2,33 +2,19 @@ LOGIN AND BADGE RECORDS
 Case R2-10 | Covers 19:03:13 to 21:15:13
 
 What this is: who logged in, at which terminal, and with what access level.
-This file also holds the BADGE REGISTRY and the TERMINAL LIST used by the other files.
+Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
 B-7613 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
 B-7836 | Project Beta | Present Timeline | Lead: Commander V. Reyes
 B-3328 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
 
-TERMINAL LIST (terminal code | terminal name)
-T-1373 | Terminal Node Iota-7
-T-2073 | Console SEC-14
-T-6161 | Diagnostics Bay DB-4
-T-6859 | Console SEC-01
-T-7107 | Maintenance Console MC-8
-T-8173 | Operator Desk OD-4
-
-ACCESS LEVELS (lowest to highest): VIEW ONLY < TEST ONLY < FULL CONTROL
-Only FULL CONTROL can change a system setting.
-
 LOGIN RECORDS
 19:18:54 | Badge B-7613 | Maintenance Console MC-8 | LOGGED IN | VIEW ONLY
 20:23:13 | Badge B-7613 | Operator Desk OD-4 | LOGGED IN | TEST ONLY
 20:30:35 | Badge B-3328 | Diagnostics Bay DB-4 | LOGGED IN | VIEW ONLY
-20:32:16 | Badge B-7613 | Diagnostics Bay DB-4 | LOGGED IN | VIEW ONLY
-20:55:31 | Badge B-3328 | Console SEC-01 | LOGGED IN | FULL CONTROL
-21:01:06 | Badge B-7836 | Console SEC-01 | REFUSED | FULL CONTROL (not allowed for this badge)
-21:02:30 | Badge B-3328 | Console SEC-14 | LOGGED IN | FULL CONTROL
+21:01:55 | Badge B-7836 | Console SEC-01 | REFUSED | FULL CONTROL (not allowed for this badge)
+21:02:33 | Badge B-3328 | Console SEC-14 | LOGGED IN | FULL CONTROL
 21:02:55 | Badge B-7613 | Console SEC-01 | LOGGED IN | FULL CONTROL
-21:04:15 | Badge B-7836 | Console SEC-01 | LOGGED IN | FULL CONTROL
 
 END OF RECORDS

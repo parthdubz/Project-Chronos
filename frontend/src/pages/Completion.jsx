@@ -113,7 +113,7 @@ export default function Completion({
               <div className="text-lg font-bold font-mono text-white">
                 {submission.selected_candidate_name || submission.selected_candidate_id || "RECORDED"}
               </div>
-              <div className="text-[11px] font-mono text-slate-400">
+              <div className="text-[0.8125rem] font-mono text-slate-400">
                 Submitted at: {submission.submitted_at ? new Date(submission.submitted_at).toLocaleTimeString() : "CONFIRMED"}
               </div>
             </div>
@@ -126,7 +126,7 @@ export default function Completion({
               <div className="text-lg font-bold font-mono text-emerald-300">
                 STABILIZATION ENGAGED
               </div>
-              <div className="text-[11px] font-mono text-slate-400">
+              <div className="text-[0.8125rem] font-mono text-slate-400">
                 All rounds concluded. Awaiting leaderboard reveal.
               </div>
             </div>

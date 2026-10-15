@@ -473,7 +473,9 @@ def _system_prompt(evidence: str) -> str:
         "answer. If asked who did it, refuse in one sentence and suggest what to compare "
         "instead. You cannot change scores, unlock anything or submit answers. Use ONLY the "
         "evidence below; if it does not cover the question, say so.\n"
-        "Reply in at most 4 short sentences, calm terminal tone, plain text.\n\n"
+        "Reply in at most 5 short sentences, calm terminal tone, plain text. When you list several "
+        "things (for example what to compare), use short bullet points, one per line, each starting "
+        "with \"- \"; a list counts as at most 5 lines. No markdown bold or headings.\n\n"
         "EVIDENCE:\n" + evidence
     )
 
@@ -505,38 +507,61 @@ def _leaks_culprit(reply: str, culprit_name: str, culprit_user_id: str) -> bool:
     return False
 
 
+def _plain_text(text) -> str:
+    """The terminal shows plain text: remove markdown the model may still add (**bold**,
+    __bold__, `code`, # headings) and turn "* item" / "• item" bullets into "- item"."""
+    if not text:
+        return text
+    t = str(text).replace("\r\n", "\n")
+    t = re.sub(r"\*\*(.+?)\*\*", r"\1", t, flags=re.S)
+    t = re.sub(r"__(.+?)__", r"\1", t, flags=re.S)
+    t = re.sub(r"(?<![\w*])\*(?!\s)([^*\n]+?)\*(?![\w*])", r"\1", t)  # *italic*
+    t = re.sub(r"`+([^`]*)`+", r"\1", t)
+    t = re.sub(r"^[ \t]*#{1,6}[ \t]+", "", t, flags=re.M)
+    t = re.sub(r"^[ \t]*[*•][ \t]+", "- ", t, flags=re.M)
+    t = t.replace("**", "").replace("__", "")
+    return t.strip()
+
+
 def _fallback_reply(message: str) -> str:
-    """Canned analyst replies used when Gemini is unavailable. They stay generic on
+    """Canned analyst replies used when no AI provider is available. They stay generic on
     purpose: they must be true for every one of the 24 cases and never name anyone."""
     q = message.lower()
     if re.search(r"who|culprit|guilty|responsible|suspect|blame|project", q):
-        return ("I cannot name a responsible project. Work out which change started the incident, "
-                "where and when it was made, and which badge the records tie to that moment. "
-                "Then check which project owns that badge.")
+        return ("I cannot name a responsible project. Try these steps:\n"
+                "- Find the change that matches the incident (same terminal, same time).\n"
+                "- Note the badge that made it.\n"
+                "- Look that badge up in the BADGE REGISTRY in login_records.log.")
     if re.search(r"badge|login|logged|refused|access|terminal|registry", q):
-        return ("login_records.log lists who logged in, at which terminal and with what access level. "
-                "Only FULL CONTROL can change a setting, and a refused login is not a change. It also holds "
-                "the BADGE REGISTRY (which project owns which badge) and the TERMINAL LIST (what each "
-                "terminal code means). Check the terminal and the time against the change you are looking at.")
+        return ("login_records.log tells you three things:\n"
+                "- Who logged in, where, and with what access level.\n"
+                "- Only FULL CONTROL can change a setting; a REFUSED login changed nothing.\n"
+                "- The BADGE REGISTRY: which project owns which badge.")
     if re.search(r"key|arm|standing|authoriz|security", q):
-        return ("security_keys.log shows which badge armed which key and when the key was used. A key that "
-                "expired unused, or a standing authorization, does not point to a badge. Read the CLOCK NOTE "
-                "at the top: this log's clock runs fast, so correct its times before comparing them with "
-                "the other files.")
+        return ("security_keys.log tells you three things:\n"
+                "- Which badge ARMED a key, and which change the key was USED for.\n"
+                "- A key that EXPIRED unused did nothing.\n"
+                "- A STANDING AUTHORIZATION is not tied to any badge.")
     if re.search(r"incident|symptom|report|origin|detect|first", q):
-        return ("incident_report.txt gives the first abnormal reading and where it started. Use it to "
-                "anchor the time and the terminal, then look for the change that matches both.")
+        return ("incident_report.txt gives you:\n"
+                "- The first abnormal reading and the time it happened.\n"
+                "- Where it started, when that is known.\n"
+                "Use the terminal and time to find the matching change.")
     if re.search(r"change|config|setting|applied|undone|revert|changed", q):
-        return ("system_changes.log lists every setting change with its terminal code, the setting and the "
-                "badge that made it. Several are unrelated; find the change that matches the incident's "
-                "terminal and time.")
+        return ("system_changes.log lists every setting change:\n"
+                "- The terminal, the setting, and the badge that made it.\n"
+                "- Most entries are unrelated.\n"
+                "Find the one that matches the incident's terminal and time.")
     if re.search(r"time|when|:\d\d|before|after|order|gap|clock", q):
-        return ("Line the timestamps up: the change, the login that came just before it, the key being armed, "
-                "and the first symptom. Correct the key log's fast clock, and note any gap in a log and "
-                "what the other files say about it.")
-    return ("Cross-reference the four files: what was changed and where (system_changes.log), who was there "
-            "and which project owns each badge (login_records.log), which key was used and who armed it "
-            "(security_keys.log), and what it caused (incident_report.txt). No single file is enough.")
+        return ("Line the times up:\n"
+                "- The change, and the login or key just before it.\n"
+                "- The first symptom just after it.\n"
+                "- If a log has a gap, check what the other files say about that moment.")
+    return ("Compare the four files:\n"
+            "- system_changes.log: what changed, where, and which badge.\n"
+            "- login_records.log: who was there, and which project owns each badge.\n"
+            "- security_keys.log: which key was used and who armed it.\n"
+            "- incident_report.txt: the first symptom and where it started.")
 
 
 def chat(team_id, message, request_id=None):
@@ -641,7 +666,7 @@ def chat(team_id, message, request_id=None):
     #    tries every Groq key and model, then every Gemini key, and returns nothing when all
     #    of them fail: the canned reply below is then used (Round 2 never depends on an API).
     answer = ai_service.ask_with_metadata(_system_prompt(evidence), history, message)
-    reply = answer["reply"]
+    reply = _plain_text(answer["reply"])
     source = answer["provider"] or "ai"
     if not reply or _leaks_culprit(reply, culprit_name, culprit_user_id):
         reply, source = _fallback_reply(message), "fallback"

@@ -1,20 +1,17 @@
 SECURITY KEY LOG
-Case R2-01 | Covers 20:25:14 to 22:36:14 (master clock)
+Case R2-01 | Covers 20:25:14 to 22:36:14
 
-CLOCK NOTE: this log's clock runs 37 seconds FAST. Subtract 37 s from every time in this file before comparing it with the other files.
-
-How keys work: a security key has to be armed by a badge before it can be used, and an armed key
-stays valid for the time shown. A standing authorization is a general permission and is not tied
-to one badge. Badges are explained in login_records.log (BADGE REGISTRY); terminals are written as
-codes (see its TERMINAL LIST).
+What this is: a security key must be ARMED by a badge before it can be USED.
+- An armed key stays valid for the time shown.
+- A STANDING AUTHORIZATION is a general permission: it is not tied to one badge.
+- Badges are explained in login_records.log (BADGE REGISTRY).
 
 KEY EVENTS
-21:08:51 | Key NOVA-2323 | ARMED by badge B-6995 | valid 120 s | purpose: maintenance window
-21:10:26 | Key NOVA-2323 | DISARMED after use
-22:22:06 | Key ONYX-1809 | ARMED by badge B-7500 | valid 120 s | never used
-22:24:06 | Key ONYX-1809 | EXPIRED unused
-22:24:54 | Key VEGA-7104 | ARMED by badge B-4818 | valid 120 s
-22:25:51 | Key VEGA-7104 | USED at terminal T-1514 | Change #2421
-22:26:38 | Key HOLD-9916 | ARMED by badge B-7500 | valid 120 s
+21:08:14 | Key NOVA-2323 | ARMED by badge B-6995 | valid 120 s | purpose: maintenance window
+21:09:49 | Key NOVA-2323 | DISARMED after use
+22:21:29 | Key ONYX-1809 | ARMED by badge B-7500 | valid 120 s | never used
+22:23:29 | Key ONYX-1809 | EXPIRED unused
+22:24:17 | Key VEGA-7104 | ARMED by badge B-4818 | valid 120 s
+22:25:14 | Key VEGA-7104 | USED at Terminal Node Omega-1 | Change #2421
 
 END OF LOG

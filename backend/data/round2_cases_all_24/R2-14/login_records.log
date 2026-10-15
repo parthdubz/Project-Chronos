@@ -2,33 +2,19 @@ LOGIN AND BADGE RECORDS
 Case R2-14 | Covers 20:59:31 to 23:10:31
 
 What this is: who logged in, at which terminal, and with what access level.
-This file also holds the BADGE REGISTRY and the TERMINAL LIST used by the other files.
+Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
 B-6856 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
 B-9621 | Project Beta | Present Timeline | Lead: Commander V. Reyes
 B-1311 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
 
-TERMINAL LIST (terminal code | terminal name)
-T-3190 | Filter Array PF-6
-T-5313 | Operator Desk OD-7
-T-5534 | Diagnostics Bay DB-5
-T-8202 | Terminal Node Iota-2
-T-9020 | Filter Array PF-6B
-T-9564 | Maintenance Console MC-8
-
-ACCESS LEVELS (lowest to highest): VIEW ONLY < TEST ONLY < FULL CONTROL
-Only FULL CONTROL can change a system setting.
-
 LOGIN RECORDS
 21:25:53 | Badge B-6856 | Diagnostics Bay DB-5 | LOGGED IN | TEST ONLY
 21:50:31 | Badge B-9621 | Maintenance Console MC-8 | LOGGED IN | TEST ONLY
-21:51:34 | Badge B-1311 | Terminal Node Iota-2 | LOGGED IN | TEST ONLY
 22:25:12 | Badge B-9621 | Maintenance Console MC-8 | LOGGED IN | TEST ONLY
-22:51:03 | Badge B-1311 | Filter Array PF-6 | LOGGED IN | FULL CONTROL
-22:57:40 | Badge B-6856 | Filter Array PF-6 | REFUSED | FULL CONTROL (not allowed for this badge)
-22:58:32 | Badge B-1311 | Filter Array PF-6B | LOGGED IN | FULL CONTROL
+22:57:36 | Badge B-6856 | Filter Array PF-6 | REFUSED | FULL CONTROL (not allowed for this badge)
+22:58:30 | Badge B-1311 | Filter Array PF-6B | LOGGED IN | FULL CONTROL
 22:59:12 | Badge B-9621 | Filter Array PF-6 | LOGGED IN | FULL CONTROL
-23:00:31 | Badge B-6856 | Filter Array PF-6 | LOGGED IN | FULL CONTROL
 
 END OF RECORDS

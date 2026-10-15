@@ -2,33 +2,19 @@ LOGIN AND BADGE RECORDS
 Case R2-01 | Covers 20:25:14 to 22:36:14
 
 What this is: who logged in, at which terminal, and with what access level.
-This file also holds the BADGE REGISTRY and the TERMINAL LIST used by the other files.
+Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
 B-4818 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
 B-6995 | Project Beta | Present Timeline | Lead: Commander V. Reyes
 B-7500 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
 
-TERMINAL LIST (terminal code | terminal name)
-T-1514 | Terminal Node Omega-1
-T-3405 | Terminal Node Iota-3
-T-6503 | Terminal Node Kappa-8
-T-6635 | Operator Desk OD-9
-T-8101 | Maintenance Console MC-6
-T-9848 | Diagnostics Bay DB-9
-
-ACCESS LEVELS (lowest to highest): VIEW ONLY < TEST ONLY < FULL CONTROL
-Only FULL CONTROL can change a system setting.
-
 LOGIN RECORDS
 21:08:14 | Badge B-6995 | Terminal Node Iota-3 | LOGGED IN | VIEW ONLY
-21:09:17 | Badge B-7500 | Diagnostics Bay DB-9 | LOGGED IN | TEST ONLY
 21:46:36 | Badge B-7500 | Terminal Node Iota-3 | LOGGED IN | VIEW ONLY
 21:55:55 | Badge B-4818 | Terminal Node Iota-3 | LOGGED IN | TEST ONLY
-22:19:00 | Badge B-6995 | Terminal Node Omega-1 | LOGGED IN | FULL CONTROL
-22:23:39 | Badge B-7500 | Terminal Node Omega-1 | REFUSED | FULL CONTROL (not allowed for this badge)
-22:24:04 | Badge B-6995 | Terminal Node Kappa-8 | LOGGED IN | FULL CONTROL
+22:23:11 | Badge B-7500 | Terminal Node Omega-1 | REFUSED | FULL CONTROL (not allowed for this badge)
+22:24:11 | Badge B-6995 | Terminal Node Kappa-8 | LOGGED IN | FULL CONTROL
 22:25:04 | Badge B-4818 | Terminal Node Omega-1 | LOGGED IN | FULL CONTROL
-22:25:55 | Badge B-7500 | Terminal Node Omega-1 | LOGGED IN | FULL CONTROL
 
 END OF RECORDS

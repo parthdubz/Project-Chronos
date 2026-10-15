@@ -1,42 +1,25 @@
 SYSTEM CHANGE LOG
 Case R2-06 | Covers 17:49:12 to 19:58:12
 
-What this is: every time someone changed a system setting, it was written down here.
-- Terminals are written as codes such as T-1234. login_records.log has the TERMINAL LIST that says
-  which terminal each code is.
-- Badge is the ID badge number of whoever made the change. This file does not say which project a
-  badge belongs to: login_records.log has the BADGE REGISTRY.
+What this is: every change to a system setting is written down here.
+- Badge = the ID badge number of whoever made the change.
+- This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
-18:26:12 | Change #6813 | Terminal T-5135
+CHANGES
+18:26:12 | Change #6813 | At: Maintenance Console MC-5
   Setting: retry rule (STANDARD -> LIMITED)
   Result: APPLIED | Badge: B-1651
 
-18:42:12 | Change #5470 | Terminal T-9389
+18:42:12 | Change #5470 | At: Terminal Node Iota-4
   Setting: archive cleanup schedule (NIGHTLY -> WEEKLY)
   Result: APPLIED | Badge: B-1651
 
-18:48:12 | Change #1672 | Terminal T-5135
+19:45:29 | Change #1672 | At: Filter Array PF-2
   Setting: retry rule (STANDARD -> LIMITED)
-  Result: APPLIED | Badge: B-6293
-
-19:00:12 | Change #2735 | Terminal T-4378
-  Setting: queue size limit (512 -> 1024)
-  Result: UNDONE | Badge: B-5445
-
-19:40:43 | Change #2261 | Terminal T-7693
-  Setting: log detail level (NORMAL -> DETAILED)
   Result: APPLIED | Badge: B-1651
 
-19:42:13 | Change #3959 | Terminal T-4378
-  Setting: cache lifetime (seconds) (300 -> 600)
-  Result: APPLIED | Badge: B-1651
-
-19:49:12 | Change #5964 | Terminal T-7693
+19:49:12 | Change #5964 | At: Filter Array PF-3
   Setting: paradox filter mode (ACTIVE -> BYPASSED)
   Result: APPLIED | Badge: B-6293
-
-19:50:04 | Change #1404 | Terminal T-7693
-  Setting: mitigation hold (NONE -> HOLD)
-  Result: APPLIED | Badge: B-5445
 
 END OF LOG

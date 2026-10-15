@@ -8,7 +8,6 @@ TIMELINE OF EVENTS
 22:59:43 | First abnormal reading: 61 unresolved cause-and-effect loops detected
 22:59:54 | Monitoring reports a sustained inconsistency
 23:00:32 | Automatic recovery fails to restore normal readings
-23:02:08 | Results across timelines leave the normal range
 
 WHERE IT STARTED
 The first abnormal reading came from Filter Array PF-6.
@@ -16,7 +15,6 @@ It lines up with Change #7350 made at 22:59:31 (bypass of the paradox filter).
 No other change in this period touched the paradox filter mode.
 
 OTHER NOTES
-A mitigation hold was applied at Filter Array PF-6 at 23:00:49; it did not restore normal readings.
 Readings before the incident were in their normal range.
 Operators on shift reported no scheduled maintenance for this system.
 

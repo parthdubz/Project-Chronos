@@ -14,6 +14,7 @@ import Round2 from './pages/Round2.jsx';
 import Round3 from './pages/Round3.jsx';
 import BinaryDissolve from './components/BinaryDissolve.jsx';
 import RealityShatter from './components/RealityShatter.jsx';
+import SecureModeGuard from './components/SecureModeGuard.jsx';
 import Completion from './pages/Completion.jsx';
 import AdminLogin from './admin/AdminLogin.jsx';
 import Leaderboard from './admin/Leaderboard.jsx';
@@ -40,6 +41,8 @@ import Leaderboard from './admin/Leaderboard.jsx';
 // It stays logged in until LOGOUT.
 
 const LOGGED_IN_VIEWS = ['resuming', 'prelobby', 'round1', 'round2lobby', 'transition', 'round2', 'round3', 'completion'];
+// Screens a playing team sees (secure mode applies here, never on the host console).
+const SECURE_VIEWS = ['prelobby', 'round1', 'round2lobby', 'transition', 'round2', 'round3', 'completion'];
 const PRE_ROUND_STATES = ['', 'READY', 'LOGGEDIN', 'REGISTERED'];
 const ROUND2_STATES = ['ROUND2ACTIVE', 'ROUND2COMPLETED', 'TIMEOUT'];
 const FINISHED_STATES = ['COMPLETED', 'DECISIONSUBMITTED', 'FINALREVEAL'];
@@ -438,6 +441,11 @@ function AppContent() {
         PROJECT CHRONOS // THE GLITCH • TECH FEST EVENT 2140
       </footer>
     </div>
+    <SecureModeGuard
+      active={Boolean(team) && SECURE_VIEWS.includes(currentView)}
+      inGame={Boolean(team) && (SECURE_VIEWS.includes(currentView) || currentView === 'resuming')}
+      teamId={team?.team_id}
+    />
     {shatter && (
       <RealityShatter
         appRootRef={appRootRef}

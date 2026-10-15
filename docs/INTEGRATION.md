@@ -65,11 +65,10 @@ duplicate submission, admin protection, the read-only leaderboard, and repeatabl
   sets (`backend/data/round2_cases_all_24/`) and the matching 24 Round 3 cases (`backend/app/data/round3_cases.json`)
   together, so the files a Round 3 evidence item cites are the files the team investigated. Each case has the
   four files `system_changes.log`, `login_records.log`, `security_keys.log`, `incident_report.txt` (plain
-  language: badges, terminal codes, VIEW ONLY < TEST ONLY < FULL CONTROL); the culprit is Project Alpha /
+  language: badges, terminals written by name, one clock, VIEW ONLY < TEST ONLY < FULL CONTROL); the culprit is Project Alpha /
   Beta / Gamma (8 each); three files support the accusation and one does not, and which one differs per
   case. **No single file is enough**: only `login_records.log` says which project owns a badge (BADGE
-  REGISTRY) and which terminal a code is (TERMINAL LIST); the change, key and incident files carry badges
-  and terminal codes only, and `security_keys.log` runs a few seconds fast. A team's Round 3 case is the one
+  REGISTRY); the change, key and incident files carry badges only. A team's Round 3 case is the one
   that matches its own Round 2 case. `python -m unittest backend.tests.test_cases` checks every case is
   solvable with a single answer and that no single file names or determines the culprit.
 - **Round 2 screen** is an editor-style layout: file explorer (left), tabbed read-only viewer with line

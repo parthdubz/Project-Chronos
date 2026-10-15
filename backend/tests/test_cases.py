@@ -53,32 +53,23 @@ def load_cases():
 
 def solve(files: dict) -> dict:
     """Return {project: number of independent files that point at it} using only the files,
-    the way a player has to: the badge registry (only in login_records.log), terminal codes via
-    the terminal list, the key log's fast clock corrected."""
+    the way a player has to: the badge registry (only in login_records.log), terminals by name,
+    one clock for every file."""
     logins, keys, changes = files[LOGINS], files[KEYS], files[CHANGES]
     to_project = {m.group(1): PROJECT_BY_NAME[m.group(2)]
                   for m in re.finditer(r"^(B-\d{4}) \| (Project \w+) \|", logins, re.M)}
     assert len(to_project) == 3, "badge registry missing"
-    code_to_name = {m.group(1): m.group(2).strip()
-                    for m in re.finditer(r"^(T-\d{4}) \| (.+)$", logins, re.M)}
-    assert len(code_to_name) >= 5, "terminal list missing"
-
-    om = re.search(r"^CLOCK NOTE: .*runs (\d+) seconds FAST", keys, re.M)
-    assert om, "clock offset not stated"
-    offset = int(om.group(1))
 
     # the incident change is the one a key was USED for
-    um = re.search(r"^(\d\d:\d\d:\d\d) \| Key (\S+) \| USED at terminal (T-\d{4}) \| Change #(\d{4})$",
-                   keys, re.M)
+    um = re.search(r"^(\d\d:\d\d:\d\d) \| Key (\S+) \| USED at (.+?) \| Change #(\d{4})$", keys, re.M)
     assert um, "key use not found"
-    t_change, key_name, node_code, chg = secs(um.group(1)) - offset, um.group(2), um.group(3), um.group(4)
-    node = code_to_name[node_code]
+    t_change, key_name, node, chg = secs(um.group(1)), um.group(2), um.group(3).strip(), um.group(4)
 
-    m = re.search(rf"^(\d\d:\d\d:\d\d) \| Change #{chg} \| Terminal (T-\d{{4}})\n.+\n  Result: APPLIED \| Badge: (.+)$",
+    m = re.search(rf"^(\d\d:\d\d:\d\d) \| Change #{chg} \| At: (.+)\n.+\n  Result: APPLIED \| Badge: (.+)$",
                   changes, re.M)
     assert m, "incident change not found"
-    assert secs(m.group(1)) == t_change, "key log clock offset does not line up with the change log"
-    assert m.group(2) == node_code
+    assert secs(m.group(1)) == t_change, "key log time does not line up with the change log"
+    assert m.group(2).strip() == node
 
     votes = Counter()
     # 1. the change log names the badge (unless it was run by a scheduled task)
@@ -159,21 +150,21 @@ class CaseDataTests(unittest.TestCase):
                 if p != culprit:
                     self.assertLess(n, 2, cid)
 
-    def test_extra_difficulty_layers_present(self):
+    def test_cases_are_simple_to_read(self):
+        """Easy version: terminals by name, one clock, only two decoys, short bullet-style files."""
         for cid, (data, files) in self.cases.items():
             logins, keys, changes = files[LOGINS], files[KEYS], files[CHANGES]
-            incident = files[INCIDENT]
-            # terminal codes in changes/keys, names in logins/incident, the terminal list maps them
-            self.assertRegex(changes, r"Terminal T-\d{4}", cid)
-            self.assertNotRegex(changes, r"Terminal (Node|Console|Archive|Frequency|Anchor|Filter|Sync|Transit)", cid)
-            self.assertIn("TERMINAL LIST", logins, cid)
-            self.assertRegex(keys, r"runs \d+ seconds FAST", cid)
-            # decoys: a later mitigation hold by another project and refused / extra FULL CONTROL logins
-            self.assertIn("mitigation hold", changes, cid)
-            self.assertIn("mitigation hold", incident, cid)
-            full = re.findall(r"\| LOGGED IN \| FULL CONTROL$", logins, re.M)
-            self.assertGreaterEqual(len(full), 3 if "RECORDS LOST" in logins else 4, cid)
+            for name, text in files.items():
+                self.assertNotRegex(text, r"T-\d{4}", f"{cid}/{name}: terminal code")
+                self.assertNotIn("TERMINAL LIST", text, cid)
+                self.assertNotRegex(text, r"CLOCK NOTE|runs \d+ seconds FAST", f"{cid}/{name}")
+                self.assertNotIn("mitigation hold", text, f"{cid}/{name}")
+                self.assertLess(len(text.splitlines()), 40, f"{cid}/{name} is too long")
+            self.assertRegex(changes, r"\| At: ", cid)
+            # decoys: a REFUSED login and a FULL CONTROL login by another project
             self.assertIn("REFUSED", logins, cid)
+            full = re.findall(r"\| LOGGED IN \| FULL CONTROL$", logins, re.M)
+            self.assertGreaterEqual(len(full), 2, cid)
 
     def test_no_single_file_is_enough(self):
         """The badge registry is the only place that links a badge to a project, so the

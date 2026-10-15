@@ -2,33 +2,19 @@ LOGIN AND BADGE RECORDS
 Case R2-21 | Covers 21:11:10 to 23:26:10
 
 What this is: who logged in, at which terminal, and with what access level.
-This file also holds the BADGE REGISTRY and the TERMINAL LIST used by the other files.
+Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
 B-2892 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
 B-3120 | Project Beta | Present Timeline | Lead: Commander V. Reyes
 B-2334 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
 
-TERMINAL LIST (terminal code | terminal name)
-T-1732 | Diagnostics Bay DB-4
-T-1899 | Anchor Relay AR-5
-T-5957 | Terminal Node Iota-5
-T-6153 | Operator Desk OD-4
-T-6665 | Maintenance Console MC-3
-T-8479 | Anchor Relay AR-5B
-
-ACCESS LEVELS (lowest to highest): VIEW ONLY < TEST ONLY < FULL CONTROL
-Only FULL CONTROL can change a system setting.
-
 LOGIN RECORDS
 21:41:51 | Badge B-2892 | Maintenance Console MC-3 | LOGGED IN | VIEW ONLY
 21:56:10 | Badge B-2334 | Maintenance Console MC-3 | LOGGED IN | VIEW ONLY
-22:15:13 | Badge B-3120 | Operator Desk OD-4 | LOGGED IN | TEST ONLY
 22:18:32 | Badge B-3120 | Diagnostics Bay DB-4 | LOGGED IN | VIEW ONLY
-23:04:31 | Badge B-2892 | Anchor Relay AR-5 | LOGGED IN | FULL CONTROL
-23:08:57 | Badge B-3120 | Anchor Relay AR-5 | REFUSED | FULL CONTROL (not allowed for this badge)
-23:10:07 | Badge B-2892 | Anchor Relay AR-5B | LOGGED IN | FULL CONTROL
+23:09:27 | Badge B-3120 | Anchor Relay AR-5 | REFUSED | FULL CONTROL (not allowed for this badge)
+23:10:16 | Badge B-2892 | Anchor Relay AR-5B | LOGGED IN | FULL CONTROL
 23:10:54 | Badge B-2334 | Anchor Relay AR-5 | LOGGED IN | FULL CONTROL
-23:11:50 | Badge B-3120 | Anchor Relay AR-5 | LOGGED IN | FULL CONTROL
 
 END OF RECORDS

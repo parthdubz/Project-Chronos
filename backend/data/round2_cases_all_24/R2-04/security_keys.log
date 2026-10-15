@@ -1,20 +1,17 @@
 SECURITY KEY LOG
-Case R2-04 | Covers 20:51:19 to 23:04:19 (master clock)
+Case R2-04 | Covers 20:51:19 to 23:04:19
 
-CLOCK NOTE: this log's clock runs 31 seconds FAST. Subtract 31 s from every time in this file before comparing it with the other files.
-
-How keys work: a security key has to be armed by a badge before it can be used, and an armed key
-stays valid for the time shown. A standing authorization is a general permission and is not tied
-to one badge. Badges are explained in login_records.log (BADGE REGISTRY); terminals are written as
-codes (see its TERMINAL LIST).
+What this is: a security key must be ARMED by a badge before it can be USED.
+- An armed key stays valid for the time shown.
+- A STANDING AUTHORIZATION is a general permission: it is not tied to one badge.
+- Badges are explained in login_records.log (BADGE REGISTRY).
 
 KEY EVENTS
-21:39:50 | Key ONYX-4731 | ARMED by badge B-2051 | valid 120 s | purpose: maintenance window
-21:41:25 | Key ONYX-4731 | DISARMED after use
-22:48:04 | Key LYRA-9831 | ARMED by badge B-1841 | valid 120 s | never used
-22:50:04 | Key LYRA-9831 | EXPIRED unused
-22:51:10 | Key HELIX-2553 | ARMED by badge B-2896 | valid 120 s
-22:51:50 | Key HELIX-2553 | USED at terminal T-6175 | Change #4802
-22:52:56 | Key HOLD-4051 | ARMED by badge B-1841 | valid 120 s
+21:39:19 | Key ONYX-4731 | ARMED by badge B-2051 | valid 120 s | purpose: maintenance window
+21:40:54 | Key ONYX-4731 | DISARMED after use
+22:47:33 | Key LYRA-9831 | ARMED by badge B-1841 | valid 120 s | never used
+22:49:33 | Key LYRA-9831 | EXPIRED unused
+22:50:39 | Key HELIX-2553 | ARMED by badge B-2896 | valid 120 s
+22:51:19 | Key HELIX-2553 | USED at Archive Vault AV-3 | Change #4802
 
 END OF LOG

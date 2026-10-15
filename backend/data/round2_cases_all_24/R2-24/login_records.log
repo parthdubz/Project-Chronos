@@ -2,33 +2,19 @@ LOGIN AND BADGE RECORDS
 Case R2-24 | Covers 16:45:11 to 18:56:11
 
 What this is: who logged in, at which terminal, and with what access level.
-This file also holds the BADGE REGISTRY and the TERMINAL LIST used by the other files.
+Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
 B-5376 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
 B-7343 | Project Beta | Present Timeline | Lead: Commander V. Reyes
 B-3792 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
 
-TERMINAL LIST (terminal code | terminal name)
-T-1887 | Transit Buffer TB-7
-T-5907 | Operator Desk OD-2
-T-6090 | Maintenance Console MC-7
-T-6168 | Terminal Node Iota-5
-T-8233 | Diagnostics Bay DB-1
-T-8834 | Transit Buffer TB-1
-
-ACCESS LEVELS (lowest to highest): VIEW ONLY < TEST ONLY < FULL CONTROL
-Only FULL CONTROL can change a system setting.
-
 LOGIN RECORDS
 17:02:33 | Badge B-5376 | Diagnostics Bay DB-1 | LOGGED IN | TEST ONLY
 17:06:11 | Badge B-7343 | Diagnostics Bay DB-1 | LOGGED IN | VIEW ONLY
 17:20:52 | Badge B-5376 | Diagnostics Bay DB-1 | LOGGED IN | TEST ONLY
-17:54:14 | Badge B-5376 | Diagnostics Bay DB-1 | LOGGED IN | VIEW ONLY
-18:36:21 | Badge B-7343 | Transit Buffer TB-1 | LOGGED IN | FULL CONTROL
-18:43:22 | Badge B-5376 | Transit Buffer TB-1 | REFUSED | FULL CONTROL (not allowed for this badge)
-18:44:11 | Badge B-7343 | Transit Buffer TB-7 | LOGGED IN | FULL CONTROL
+18:43:33 | Badge B-5376 | Transit Buffer TB-1 | REFUSED | FULL CONTROL (not allowed for this badge)
+18:44:28 | Badge B-7343 | Transit Buffer TB-7 | LOGGED IN | FULL CONTROL
 18:44:59 | Badge B-3792 | Transit Buffer TB-1 | LOGGED IN | FULL CONTROL
-18:45:52 | Badge B-5376 | Transit Buffer TB-1 | LOGGED IN | FULL CONTROL
 
 END OF RECORDS

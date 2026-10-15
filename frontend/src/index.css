@@ -18,6 +18,11 @@
   html { font-size: 22px; }
 }
 
+/* No text selection with the mouse anywhere in the game. Inputs stay editable, and the host
+   console (.lb) keeps normal selection so passwords / PRNs can be copied. */
+html, body { -webkit-user-select: none; user-select: none; }
+input, textarea, [contenteditable="true"], .lb, .lb * { -webkit-user-select: text; user-select: text; }
+
 @layer base {
   body {
     font-family: 'Share Tech', sans-serif;

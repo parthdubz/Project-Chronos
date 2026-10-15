@@ -243,7 +243,7 @@ export default function Round3({
                 <Cpu className="w-3.5 h-3.5 text-cyan-400" />
                 SELECT CORRUPTED CORE CANDIDATE (CHOOSE 1)
               </span>
-              <span className="text-[11px] font-mono text-pink-400">
+              <span className="text-[0.8125rem] font-mono text-pink-400">
                 {selectedCandidateId ? '1 CANDIDATE SELECTED' : 'SELECTION REQUIRED'}
               </span>
             </div>
@@ -287,7 +287,7 @@ export default function Round3({
                             <h3 className="font-tech text-lg sm:text-xl font-bold text-white tracking-wide">
                               {cand.name}
                             </h3>
-                            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-cyan-300 uppercase">
+                            <span className="text-[0.75rem] font-mono px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-cyan-300 uppercase">
                               {cand.timeline_sector}
                             </span>
                           </div>
@@ -313,7 +313,7 @@ export default function Round3({
                     {/* Dossier & Forensic Discrepancy */}
                     <div className="mt-3 text-xs font-mono text-slate-300 bg-black/50 p-3 rounded-xl border border-cyan-950 space-y-1.5">
                       <p className="leading-relaxed">{cand.dossier}</p>
-                      <div className="r3-disc text-[11px] text-pink-300/90 pt-1 mt-1 border-t border-cyan-950 flex items-start gap-1.5">
+                      <div className="r3-disc text-[0.8125rem] text-pink-300/90 pt-1 mt-1 border-t border-cyan-950 flex items-start gap-1.5">
                         <AlertTriangle className="w-3.5 h-3.5 text-pink-400 shrink-0 mt-0.5" />
                         <span><strong>Forensic Discrepancy:</strong> {cand.discrepancy}</span>
                       </div>
@@ -334,7 +334,7 @@ export default function Round3({
                     role="tab"
                     aria-selected={rightTab === 'evidence'}
                     onClick={() => setRightTab('evidence')}
-                    className={`px-2.5 py-1.5 rounded-lg border text-[11px] font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 cursor-pointer transition ${
+                    className={`px-2.5 py-1.5 rounded-lg border text-[0.8125rem] font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 cursor-pointer transition ${
                       rightTab === 'evidence'
                         ? 'border-cyan-500 bg-cyan-950/60 text-cyan-200'
                         : 'border-slate-700 bg-slate-900/50 text-slate-400 hover:text-slate-200'
@@ -348,7 +348,7 @@ export default function Round3({
                     role="tab"
                     aria-selected={rightTab === 'inquiries'}
                     onClick={() => setRightTab('inquiries')}
-                    className={`px-2.5 py-1.5 rounded-lg border text-[11px] font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 cursor-pointer transition ${
+                    className={`px-2.5 py-1.5 rounded-lg border text-[0.8125rem] font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 cursor-pointer transition ${
                       rightTab === 'inquiries'
                         ? 'border-pink-500 bg-pink-950/40 text-pink-200'
                         : 'border-slate-700 bg-slate-900/50 text-slate-400 hover:text-slate-200'
@@ -367,12 +367,12 @@ export default function Round3({
 
               {rightTab === 'inquiries' && (
                 <div className="space-y-2.5" role="tabpanel">
-                  <p className="px-1 flex items-center justify-between gap-2 text-[10px] font-mono uppercase tracking-widest text-slate-500">
+                  <p className="px-1 flex items-center justify-between gap-2 text-[0.75rem] font-mono uppercase tracking-widest text-slate-500">
                     <span>Round 2 analyst questions</span>
                     <span className="r3-tag">Review only</span>
                   </p>
                   {inquiries.length === 0 ? (
-                    <div className="p-4 rounded-xl border border-slate-800 bg-[#070c18]/80 text-[11px] font-mono text-slate-400">
+                    <div className="p-4 rounded-xl border border-slate-800 bg-[#070c18]/80 text-[0.8125rem] font-mono text-slate-400">
                       No AI questions were asked in Round 2.
                     </div>
                   ) : (
@@ -382,18 +382,18 @@ export default function Round3({
                         className="r3-card p-3.5 rounded-xl border border-cyan-900/40 bg-[#070c18]/80 space-y-2"
                       >
                         <div className="flex items-start gap-2">
-                          <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-cyan-300 shrink-0">
+                          <span className="text-[0.75rem] font-mono font-bold px-1.5 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-cyan-300 shrink-0">
                             Q{m.question_number}
                           </span>
-                          <p className="text-[12px] font-mono text-slate-200 leading-relaxed whitespace-pre-wrap">
+                          <p className="text-[0.875rem] font-mono text-slate-200 leading-relaxed whitespace-pre-wrap">
                             {m.user_prompt}
                           </p>
                         </div>
                         <div className="flex items-start gap-2 pl-0.5">
-                          <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-pink-950/60 border border-pink-900 text-pink-300 shrink-0">
+                          <span className="text-[0.75rem] font-mono font-bold px-1.5 py-0.5 rounded bg-pink-950/60 border border-pink-900 text-pink-300 shrink-0">
                             AI
                           </span>
-                          <p className="text-[11px] font-mono text-slate-400 leading-relaxed whitespace-pre-wrap">
+                          <p className="text-[0.8125rem] font-mono text-slate-400 leading-relaxed whitespace-pre-wrap">
                             {m.ai_response}
                           </p>
                         </div>
@@ -433,12 +433,12 @@ export default function Round3({
                             <span className="font-mono font-bold text-xs text-cyan-300">
                               {ev.label}
                             </span>
-                            <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-black/60 border border-cyan-900 text-slate-400 uppercase">
+                            <span className="text-[0.75rem] font-mono px-1.5 py-0.2 rounded bg-black/60 border border-cyan-900 text-slate-400 uppercase">
                               {ev.source_file}
                             </span>
                           </div>
-                          <p className="text-[11px] font-mono text-slate-400 mt-1 leading-relaxed">
-                            {ev.description}{ev.timestamp ? ` (${ev.timestamp})` : ''}
+                          <p className="text-[0.875rem] font-mono text-slate-300 mt-1 leading-relaxed whitespace-pre-line">
+                            {ev.description}{ev.timestamp ? `\n• Time: ${ev.timestamp}` : ''}
                           </p>
                         </div>
                       </div>
@@ -471,11 +471,11 @@ export default function Round3({
                 <ArrowRight className="w-5 h-5 text-current" />
               </button>
               {selectedCandidateId && selectedEvidenceIds.length < MIN_EVIDENCE && (
-                <p className="text-[11px] font-mono text-amber-400 text-center mt-2">
+                <p className="text-[0.8125rem] font-mono text-amber-400 text-center mt-2">
                   Select at least {MIN_EVIDENCE} supporting evidence items to lock in your accusation.
                 </p>
               )}
-              <p className="text-[11px] font-mono text-slate-500 text-center mt-2">
+              <p className="text-[0.8125rem] font-mono text-slate-500 text-center mt-2">
                 All decisions are permanent and recorded in the temporal ledger.
               </p>
             </div>

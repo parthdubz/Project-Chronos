@@ -1,0 +1,3 @@
+# Address of the Chronos server (the host laptop). One line, nothing else.
+# Copy this file to "server.txt" next to KeyBlocker.exe and put the real address in it.
+http://192.168.1.10:8000

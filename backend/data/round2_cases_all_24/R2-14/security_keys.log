@@ -1,20 +1,17 @@
 SECURITY KEY LOG
-Case R2-14 | Covers 20:59:31 to 23:10:31 (master clock)
+Case R2-14 | Covers 20:59:31 to 23:10:31
 
-CLOCK NOTE: this log's clock runs 31 seconds FAST. Subtract 31 s from every time in this file before comparing it with the other files.
-
-How keys work: a security key has to be armed by a badge before it can be used, and an armed key
-stays valid for the time shown. A standing authorization is a general permission and is not tied
-to one badge. Badges are explained in login_records.log (BADGE REGISTRY); terminals are written as
-codes (see its TERMINAL LIST).
+What this is: a security key must be ARMED by a badge before it can be USED.
+- An armed key stays valid for the time shown.
+- A STANDING AUTHORIZATION is a general permission: it is not tied to one badge.
+- Badges are explained in login_records.log (BADGE REGISTRY).
 
 KEY EVENTS
-21:20:02 | Key ATLAS-6954 | ARMED by badge B-1311 | valid 120 s | purpose: maintenance window
-21:21:37 | Key ATLAS-6954 | DISARMED after use
-22:56:21 | Key HELIX-7302 | ARMED by badge B-6856 | valid 120 s | never used
-22:58:21 | Key HELIX-7302 | EXPIRED unused
-22:59:11 | Key PULSAR-5055 | ARMED by badge B-9621 | valid 120 s
-23:00:02 | Key PULSAR-5055 | USED at terminal T-3190 | Change #7350
-23:01:14 | Key HOLD-9831 | ARMED by badge B-6856 | valid 120 s
+21:19:31 | Key ATLAS-6954 | ARMED by badge B-1311 | valid 120 s | purpose: maintenance window
+21:21:06 | Key ATLAS-6954 | DISARMED after use
+22:55:50 | Key HELIX-7302 | ARMED by badge B-6856 | valid 120 s | never used
+22:57:50 | Key HELIX-7302 | EXPIRED unused
+22:58:40 | Key PULSAR-5055 | ARMED by badge B-9621 | valid 120 s
+22:59:31 | Key PULSAR-5055 | USED at Filter Array PF-6 | Change #7350
 
 END OF LOG

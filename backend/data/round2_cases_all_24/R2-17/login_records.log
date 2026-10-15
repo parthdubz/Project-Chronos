@@ -2,33 +2,20 @@ LOGIN AND BADGE RECORDS
 Case R2-17 | Covers 18:18:44 to 20:33:44
 
 What this is: who logged in, at which terminal, and with what access level.
-This file also holds the BADGE REGISTRY and the TERMINAL LIST used by the other files.
+Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
 B-2763 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
 B-4312 | Project Beta | Present Timeline | Lead: Commander V. Reyes
 B-6468 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
 
-TERMINAL LIST (terminal code | terminal name)
-T-3122 | Terminal Node Omega-1
-T-3418 | Maintenance Console MC-3
-T-3432 | Terminal Node Zeta-9
-T-4854 | Operator Desk OD-6
-T-5760 | Terminal Node Iota-8
-T-7796 | Diagnostics Bay DB-5
-
-ACCESS LEVELS (lowest to highest): VIEW ONLY < TEST ONLY < FULL CONTROL
-Only FULL CONTROL can change a system setting.
-
 LOGIN RECORDS
-18:59:47 | Badge B-4312 | Maintenance Console MC-3 | LOGGED IN | TEST ONLY
 19:08:06 | Badge B-4312 | Operator Desk OD-6 | LOGGED IN | VIEW ONLY
+19:16:44 | Badge B-6468 | Diagnostics Bay DB-5 | LOGGED IN | FULL CONTROL
 19:25:25 | Badge B-2763 | Diagnostics Bay DB-5 | LOGGED IN | VIEW ONLY
 19:28:44 | Badge B-6468 | Maintenance Console MC-3 | LOGGED IN | TEST ONLY
-20:10:41 | Badge B-2763 | Terminal Node Zeta-9 | LOGGED IN | FULL CONTROL
-20:16:45 | Badge B-6468 | Terminal Node Zeta-9 | REFUSED | FULL CONTROL (not allowed for this badge)
-20:17:36 | Badge B-2763 | Terminal Node Omega-1 | LOGGED IN | FULL CONTROL
-20:18:29 - 20:18:52 | RECORDS LOST | the log buffer overflowed and the records in this interval were not recovered
-20:19:30 | Badge B-6468 | Terminal Node Zeta-9 | LOGGED IN | FULL CONTROL
+20:16:38 | Badge B-6468 | Terminal Node Zeta-9 | REFUSED | FULL CONTROL (not allowed for this badge)
+20:17:50 | Badge B-2763 | Terminal Node Omega-1 | LOGGED IN | FULL CONTROL
+20:18:26 - 20:18:52 | RECORDS LOST | the log buffer overflowed and the records in this interval were not recovered
 
 END OF RECORDS

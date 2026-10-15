@@ -567,19 +567,19 @@ export default function ChronosConclusion({ onComplete }) {
       />
 
       {/* HUD Telemetry Corners */}
-      <div className="absolute top-6 left-6 font-mono text-[11px] tracking-widest text-cyan-400/80 z-20 pointer-events-none drop-shadow-[0_0_8px_rgba(6,182,212,0.6)]">
+      <div className="absolute top-6 left-6 font-mono text-[0.8125rem] tracking-widest text-cyan-400/80 z-20 pointer-events-none drop-shadow-[0_0_8px_rgba(6,182,212,0.6)]">
         TEMPORAL MATRIX ◈ PROTOCOL 2140<br />
         SYS_STABILITY: CALIBRATING
       </div>
-      <div className="absolute top-6 right-6 font-mono text-[11px] tracking-widest text-cyan-400/80 text-right z-20 pointer-events-none drop-shadow-[0_0_8px_rgba(6,182,212,0.6)]">
+      <div className="absolute top-6 right-6 font-mono text-[0.8125rem] tracking-widest text-cyan-400/80 text-right z-20 pointer-events-none drop-shadow-[0_0_8px_rgba(6,182,212,0.6)]">
         DISPERSION DELTA: FRACTURED<br />
         PARADOX STATE: RESOLVING
       </div>
-      <div className="absolute bottom-6 left-6 font-mono text-[11px] tracking-widest text-cyan-400/80 z-20 pointer-events-none drop-shadow-[0_0_8px_rgba(6,182,212,0.6)]">
+      <div className="absolute bottom-6 left-6 font-mono text-[0.8125rem] tracking-widest text-cyan-400/80 z-20 pointer-events-none drop-shadow-[0_0_8px_rgba(6,182,212,0.6)]">
         QUANTUM COHERENCE: 3-STRAND FLUX<br />
         GRAVITATIONAL COUPLING: ACTIVE
       </div>
-      <div className="absolute bottom-6 right-6 font-mono text-[11px] tracking-widest text-cyan-400/80 text-right z-20 pointer-events-none drop-shadow-[0_0_8px_rgba(6,182,212,0.6)]">
+      <div className="absolute bottom-6 right-6 font-mono text-[0.8125rem] tracking-widest text-cyan-400/80 text-right z-20 pointer-events-none drop-shadow-[0_0_8px_rgba(6,182,212,0.6)]">
         UNIT CALLSIGN: ACTIVE ENGINEER<br />
         CHRONOS MAIN KERNEL ◈ SYNC
       </div>
@@ -607,13 +607,13 @@ export default function ChronosConclusion({ onComplete }) {
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-3 mt-6">
-          <span className="px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/50 text-cyan-200 font-mono text-[11px] tracking-wider shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+          <span className="px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/50 text-cyan-200 font-mono text-[0.8125rem] tracking-wider shadow-[0_0_15px_rgba(6,182,212,0.3)]">
             ALL 3 BROKEN STRANDS HARMONIZED
           </span>
-          <span className="px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/50 text-cyan-200 font-mono text-[11px] tracking-wider shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+          <span className="px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/50 text-cyan-200 font-mono text-[0.8125rem] tracking-wider shadow-[0_0_15px_rgba(6,182,212,0.3)]">
             PARADOX DECAY: 0.00%
           </span>
-          <span className="px-4 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 font-mono text-[11px] tracking-wider shadow-[0_0_15px_rgba(16,185,129,0.3)]">
+          <span className="px-4 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 font-mono text-[0.8125rem] tracking-wider shadow-[0_0_15px_rgba(16,185,129,0.3)]">
             CHRONOS STABILITY: 100%
           </span>
         </div>

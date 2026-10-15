@@ -1,42 +1,25 @@
 SYSTEM CHANGE LOG
 Case R2-19 | Covers 21:23:24 to 23:39:24
 
-What this is: every time someone changed a system setting, it was written down here.
-- Terminals are written as codes such as T-1234. login_records.log has the TERMINAL LIST that says
-  which terminal each code is.
-- Badge is the ID badge number of whoever made the change. This file does not say which project a
-  badge belongs to: login_records.log has the BADGE REGISTRY.
+What this is: every change to a system setting is written down here.
+- Badge = the ID badge number of whoever made the change.
+- This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
-21:57:24 | Change #8141 | Terminal T-1127
+CHANGES
+21:57:24 | Change #8141 | At: Maintenance Console MC-1
   Setting: archive cleanup schedule (NIGHTLY -> WEEKLY)
   Result: APPLIED | Badge: B-9092
 
-22:14:24 | Change #1704 | Terminal T-1127
+22:14:24 | Change #1704 | At: Maintenance Console MC-1
   Setting: cache lifetime (seconds) (300 -> 600)
   Result: APPLIED | Badge: B-7521
 
-22:25:24 | Change #6054 | Terminal T-2680
+23:18:10 | Change #6054 | At: Frequency Station CH-8
   Setting: health check interval (seconds) (30 -> 15)
-  Result: APPLIED | Badge: B-9092
-
-22:40:24 | Change #5735 | Terminal T-6067
-  Setting: cache lifetime (seconds) (300 -> 600)
-  Result: UNDONE | Badge: B-9092
-
-23:15:16 | Change #6062 | Terminal T-9336
-  Setting: queue size limit (512 -> 1024)
   Result: APPLIED | Badge: B-7521
 
-23:18:58 | Change #5287 | Terminal T-6067
-  Setting: retry rule (STANDARD -> LIMITED)
-  Result: APPLIED | Badge: B-7521
-
-23:23:24 | Change #7212 | Terminal T-9336
+23:23:24 | Change #7212 | At: Frequency Station CH-1
   Setting: sync frequency (NORMAL -> +335 MHz)
   Result: APPLIED | Badge: B-6312
-
-23:24:15 | Change #8322 | Terminal T-9336
-  Setting: mitigation hold (NONE -> HOLD)
-  Result: APPLIED | Badge: B-9092
 
 END OF LOG

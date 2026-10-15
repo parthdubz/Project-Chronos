@@ -2,33 +2,19 @@ LOGIN AND BADGE RECORDS
 Case R2-02 | Covers 19:56:28 to 22:08:28
 
 What this is: who logged in, at which terminal, and with what access level.
-This file also holds the BADGE REGISTRY and the TERMINAL LIST used by the other files.
+Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
 B-5306 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
 B-9375 | Project Beta | Present Timeline | Lead: Commander V. Reyes
 B-8259 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
 
-TERMINAL LIST (terminal code | terminal name)
-T-1197 | Maintenance Console MC-9
-T-2987 | Console SEC-11
-T-4259 | Diagnostics Bay DB-8
-T-4311 | Console SEC-01
-T-6477 | Operator Desk OD-2
-T-6674 | Terminal Node Iota-6
-
-ACCESS LEVELS (lowest to highest): VIEW ONLY < TEST ONLY < FULL CONTROL
-Only FULL CONTROL can change a system setting.
-
 LOGIN RECORDS
 20:28:09 | Badge B-5306 | Maintenance Console MC-9 | LOGGED IN | VIEW ONLY
-21:04:31 | Badge B-5306 | Diagnostics Bay DB-8 | LOGGED IN | VIEW ONLY
 21:09:50 | Badge B-5306 | Maintenance Console MC-9 | LOGGED IN | VIEW ONLY
 21:10:28 | Badge B-5306 | Diagnostics Bay DB-8 | LOGGED IN | VIEW ONLY
-21:47:43 | Badge B-8259 | Console SEC-01 | LOGGED IN | FULL CONTROL
-21:55:05 | Badge B-5306 | Console SEC-01 | REFUSED | FULL CONTROL (not allowed for this badge)
-21:55:35 | Badge B-8259 | Console SEC-11 | LOGGED IN | FULL CONTROL
+21:54:57 | Badge B-5306 | Console SEC-01 | REFUSED | FULL CONTROL (not allowed for this badge)
+21:55:22 | Badge B-8259 | Console SEC-11 | LOGGED IN | FULL CONTROL
 21:56:09 | Badge B-9375 | Console SEC-01 | LOGGED IN | FULL CONTROL
-21:57:19 | Badge B-5306 | Console SEC-01 | LOGGED IN | FULL CONTROL
 
 END OF RECORDS

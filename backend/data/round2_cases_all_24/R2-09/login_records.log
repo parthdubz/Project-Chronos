@@ -2,33 +2,19 @@ LOGIN AND BADGE RECORDS
 Case R2-09 | Covers 21:14:23 to 23:29:23
 
 What this is: who logged in, at which terminal, and with what access level.
-This file also holds the BADGE REGISTRY and the TERMINAL LIST used by the other files.
+Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
 B-9135 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
 B-7050 | Project Beta | Present Timeline | Lead: Commander V. Reyes
 B-2986 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
 
-TERMINAL LIST (terminal code | terminal name)
-T-2653 | Terminal Node Iota-5
-T-3718 | Terminal Node Delta-1
-T-4676 | Maintenance Console MC-4
-T-6289 | Terminal Node Omega-1
-T-8099 | Operator Desk OD-3
-T-8280 | Diagnostics Bay DB-6
-
-ACCESS LEVELS (lowest to highest): VIEW ONLY < TEST ONLY < FULL CONTROL
-Only FULL CONTROL can change a system setting.
-
 LOGIN RECORDS
 21:30:04 | Badge B-2986 | Maintenance Console MC-4 | LOGGED IN | VIEW ONLY
 21:44:45 | Badge B-2986 | Maintenance Console MC-4 | LOGGED IN | VIEW ONLY
 22:18:23 | Badge B-2986 | Diagnostics Bay DB-6 | LOGGED IN | VIEW ONLY
-22:39:26 | Badge B-7050 | Maintenance Console MC-4 | LOGGED IN | VIEW ONLY
-23:08:07 | Badge B-9135 | Terminal Node Delta-1 | LOGGED IN | FULL CONTROL
-23:13:08 | Badge B-7050 | Terminal Node Delta-1 | REFUSED | FULL CONTROL (not allowed for this badge)
-23:13:24 | Badge B-9135 | Terminal Node Omega-1 | LOGGED IN | FULL CONTROL
+23:13:01 | Badge B-7050 | Terminal Node Delta-1 | REFUSED | FULL CONTROL (not allowed for this badge)
+23:13:29 | Badge B-9135 | Terminal Node Omega-1 | LOGGED IN | FULL CONTROL
 23:14:13 | Badge B-2986 | Terminal Node Delta-1 | LOGGED IN | FULL CONTROL
-23:15:12 | Badge B-7050 | Terminal Node Delta-1 | LOGGED IN | FULL CONTROL
 
 END OF RECORDS

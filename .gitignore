@@ -3,3 +3,7 @@ __pycache__/
 *.db
 .env
 .venv/
+
+# KeyBlocker: built exe and the local server address stay out of git
+tools/KeyBlocker/*.exe
+tools/KeyBlocker/server.txt

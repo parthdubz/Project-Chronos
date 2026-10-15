@@ -2,33 +2,19 @@ LOGIN AND BADGE RECORDS
 Case R2-03 | Covers 21:05:11 to 23:19:11
 
 What this is: who logged in, at which terminal, and with what access level.
-This file also holds the BADGE REGISTRY and the TERMINAL LIST used by the other files.
+Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
 B-4012 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
 B-9357 | Project Beta | Present Timeline | Lead: Commander V. Reyes
 B-9301 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
 
-TERMINAL LIST (terminal code | terminal name)
-T-3108 | Operator Desk OD-9
-T-4017 | Frequency Station CH-5
-T-5441 | Frequency Station CH-8
-T-6250 | Diagnostics Bay DB-8
-T-7608 | Maintenance Console MC-9
-T-9020 | Terminal Node Iota-2
-
-ACCESS LEVELS (lowest to highest): VIEW ONLY < TEST ONLY < FULL CONTROL
-Only FULL CONTROL can change a system setting.
-
 LOGIN RECORDS
 21:52:52 | Badge B-9301 | Terminal Node Iota-2 | LOGGED IN | TEST ONLY
 22:27:11 | Badge B-9357 | Maintenance Console MC-9 | LOGGED IN | TEST ONLY
 22:31:33 | Badge B-9357 | Maintenance Console MC-9 | LOGGED IN | VIEW ONLY
-22:37:14 | Badge B-4012 | Terminal Node Iota-2 | LOGGED IN | TEST ONLY
-22:57:53 | Badge B-4012 | Frequency Station CH-5 | LOGGED IN | FULL CONTROL
-23:03:16 | Badge B-9357 | Frequency Station CH-5 | REFUSED | FULL CONTROL (not allowed for this badge)
-23:04:08 | Badge B-4012 | Frequency Station CH-8 | LOGGED IN | FULL CONTROL
+23:03:43 | Badge B-9357 | Frequency Station CH-5 | REFUSED | FULL CONTROL (not allowed for this badge)
+23:04:01 | Badge B-4012 | Frequency Station CH-8 | LOGGED IN | FULL CONTROL
 23:05:00 | Badge B-9301 | Frequency Station CH-5 | LOGGED IN | FULL CONTROL
-23:05:48 | Badge B-9357 | Frequency Station CH-5 | LOGGED IN | FULL CONTROL
 
 END OF RECORDS

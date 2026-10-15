@@ -1,20 +1,17 @@
 SECURITY KEY LOG
-Case R2-08 | Covers 19:12:30 to 21:27:30 (master clock)
+Case R2-08 | Covers 19:12:30 to 21:27:30
 
-CLOCK NOTE: this log's clock runs 40 seconds FAST. Subtract 40 s from every time in this file before comparing it with the other files.
-
-How keys work: a security key has to be armed by a badge before it can be used, and an armed key
-stays valid for the time shown. A standing authorization is a general permission and is not tied
-to one badge. Badges are explained in login_records.log (BADGE REGISTRY); terminals are written as
-codes (see its TERMINAL LIST).
+What this is: a security key must be ARMED by a badge before it can be USED.
+- An armed key stays valid for the time shown.
+- A STANDING AUTHORIZATION is a general permission: it is not tied to one badge.
+- Badges are explained in login_records.log (BADGE REGISTRY).
 
 KEY EVENTS
-20:00:10 | Key VEGA-4837 | ARMED by badge B-9847 | valid 120 s | purpose: maintenance window
-20:01:45 | Key VEGA-4837 | DISARMED after use
-21:10:02 | Key ZENITH-4215 | ARMED by badge B-6257 | valid 120 s | never used
-21:11:40 | Key HELIX-6450 | STANDING AUTHORIZATION | maintenance window MW-18 | not tied to any one badge
-21:12:02 | Key ZENITH-4215 | EXPIRED unused
-21:13:10 | Key HELIX-6450 | USED at terminal T-2862 | Change #5321
-21:14:08 | Key HOLD-5184 | ARMED by badge B-6257 | valid 120 s
+19:59:30 | Key VEGA-4837 | ARMED by badge B-9847 | valid 120 s | purpose: maintenance window
+20:01:05 | Key VEGA-4837 | DISARMED after use
+21:09:22 | Key ZENITH-4215 | ARMED by badge B-6257 | valid 120 s | never used
+21:11:00 | Key HELIX-6450 | STANDING AUTHORIZATION | maintenance window MW-18 | not tied to any one badge
+21:11:22 | Key ZENITH-4215 | EXPIRED unused
+21:12:30 | Key HELIX-6450 | USED at Transit Buffer TB-5 | Change #5321
 
 END OF LOG

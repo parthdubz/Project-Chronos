@@ -1,42 +1,25 @@
 SYSTEM CHANGE LOG
 Case R2-17 | Covers 18:18:44 to 20:33:44
 
-What this is: every time someone changed a system setting, it was written down here.
-- Terminals are written as codes such as T-1234. login_records.log has the TERMINAL LIST that says
-  which terminal each code is.
-- Badge is the ID badge number of whoever made the change. This file does not say which project a
-  badge belongs to: login_records.log has the BADGE REGISTRY.
+What this is: every change to a system setting is written down here.
+- Badge = the ID badge number of whoever made the change.
+- This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
-19:03:44 | Change #3809 | Terminal T-3418
+CHANGES
+19:03:44 | Change #3809 | At: Maintenance Console MC-3
   Setting: cache lifetime (seconds) (300 -> 600)
   Result: APPLIED | Badge: B-2763
 
-19:19:44 | Change #5969 | Terminal T-7796
+19:19:44 | Change #5969 | At: Diagnostics Bay DB-5
   Setting: cache lifetime (seconds) (300 -> 600)
   Result: APPLIED | Badge: B-6468
 
-19:29:44 | Change #2538 | Terminal T-4854
+20:14:10 | Change #6020 | At: Terminal Node Omega-1
   Setting: health check interval (seconds) (30 -> 15)
   Result: APPLIED | Badge: B-2763
 
-19:29:44 | Change #8876 | Terminal T-3122
-  Setting: cache lifetime (seconds) (300 -> 600)
-  Result: UNDONE | Badge: B-6468
-
-20:10:51 | Change #1636 | Terminal T-3432
-  Setting: cache lifetime (seconds) (300 -> 600)
-  Result: APPLIED | Badge: B-2763
-
-20:14:24 | Change #8507 | Terminal T-3122
-  Setting: retry rule (STANDARD -> LIMITED)
-  Result: APPLIED | Badge: B-2763
-
-20:18:44 | Change #3225 | Terminal T-3432
+20:18:44 | Change #3225 | At: Terminal Node Zeta-9
   Setting: safety limiter policy (ENFORCED -> DISABLED)
   Result: APPLIED | Badge: B-4312
-
-20:19:43 | Change #9109 | Terminal T-3432
-  Setting: mitigation hold (NONE -> HOLD)
-  Result: APPLIED | Badge: B-6468
 
 END OF LOG

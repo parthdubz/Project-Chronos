@@ -15,7 +15,7 @@ import {
  * confirms the team identity, plays the HUD interlude and then hands over via
  * `onStartRound1`. The team's Round 1 clock does not start until the Round 1 page loads.
  */
-const HUD_SECONDS = 18; // one full loop of the HUD animation, then Round 1 opens
+const HUD_SECONDS = 8; // one full loop of the HUD animation, then Round 1 opens
 
 export default function Round1PreLobby({ onStartRound1, onLogout }) {
   const { team, logoutTeam } = useAuth();
@@ -36,12 +36,22 @@ export default function Round1PreLobby({ onStartRound1, onLogout }) {
 
   useEffect(() => {
     if (!showHud) return undefined;
-    const timer = setTimeout(() => {
+    const handOver = () => {
       if (handedOverRef.current) return;
       handedOverRef.current = true;
       if (onStartRound1) onStartRound1(team);
-    }, HUD_SECONDS * 1000);
-    return () => clearTimeout(timer);
+    };
+    // The HUD posts this the moment its animation ends, so Round 1 opens right away.
+    const onMsg = (e) => {
+      if (e.data && e.data.type === 'chronos-hud-done') handOver();
+    };
+    window.addEventListener('message', onMsg);
+    // Fallback in case the message never arrives (audio init delays the HUD clock).
+    const timer = setTimeout(handOver, (HUD_SECONDS + 6) * 1000);
+    return () => {
+      window.removeEventListener('message', onMsg);
+      clearTimeout(timer);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showHud]);
 
@@ -103,7 +113,7 @@ export default function Round1PreLobby({ onStartRound1, onLogout }) {
                   <IdCard className="w-3.5 h-3.5" />
                   <span>Operator 1</span>
                 </span>
-                <span className="text-[11px] text-slate-500">PRIMARY</span>
+                <span className="text-[0.8125rem] text-slate-500">PRIMARY</span>
               </div>
               <span className="text-white font-bold font-mono text-base sm:text-lg block pt-0.5">
                 {team?.member_1_name || 'Member 1'}
@@ -119,7 +129,7 @@ export default function Round1PreLobby({ onStartRound1, onLogout }) {
                   <IdCard className="w-3.5 h-3.5" />
                   <span>Operator 2</span>
                 </span>
-                <span className="text-[11px] text-slate-500">CO-PILOT</span>
+                <span className="text-[0.8125rem] text-slate-500">CO-PILOT</span>
               </div>
               <span className="text-white font-bold font-mono text-base sm:text-lg block pt-0.5">
                 {team?.member_2_name || 'Member 2'}
@@ -137,7 +147,7 @@ export default function Round1PreLobby({ onStartRound1, onLogout }) {
               <span>Round 1 Briefing: Temporal Deconfliction</span>
             </div>
             <p className="text-slate-300 font-mono leading-relaxed text-xs sm:text-sm">
-              Upon engagement, the authoritative master clock begins recording your duration (<code className="text-cyan-300 font-semibold">r1_time_diff</code>). Locate anomalous timeline coordinates, eliminate historical contradictions, and submit fragments.
+              You have <span className="text-cyan-300 font-semibold">5 minutes</span> for this round. The clock starts the moment you begin. Locate anomalous timeline coordinates, eliminate historical contradictions, and submit fragments.
             </p>
           </div>
 

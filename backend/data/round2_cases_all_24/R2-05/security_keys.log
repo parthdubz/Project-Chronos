@@ -1,20 +1,17 @@
 SECURITY KEY LOG
-Case R2-05 | Covers 16:34:04 to 18:49:04 (master clock)
+Case R2-05 | Covers 16:34:04 to 18:49:04
 
-CLOCK NOTE: this log's clock runs 27 seconds FAST. Subtract 27 s from every time in this file before comparing it with the other files.
-
-How keys work: a security key has to be armed by a badge before it can be used, and an armed key
-stays valid for the time shown. A standing authorization is a general permission and is not tied
-to one badge. Badges are explained in login_records.log (BADGE REGISTRY); terminals are written as
-codes (see its TERMINAL LIST).
+What this is: a security key must be ARMED by a badge before it can be USED.
+- An armed key stays valid for the time shown.
+- A STANDING AUTHORIZATION is a general permission: it is not tied to one badge.
+- Badges are explained in login_records.log (BADGE REGISTRY).
 
 KEY EVENTS
-17:00:31 | Key VEGA-7484 | ARMED by badge B-7366 | valid 120 s | purpose: maintenance window
-17:02:06 | Key VEGA-7484 | DISARMED after use
-18:30:53 | Key LYRA-8896 | ARMED by badge B-3208 | valid 120 s | never used
-18:32:53 | Key LYRA-8896 | EXPIRED unused
-18:34:03 | Key VEGA-7120 | ARMED by badge B-8330 | valid 120 s
-18:34:31 | Key VEGA-7120 | USED at terminal T-9386 | Change #5232
-18:35:39 | Key HOLD-9418 | ARMED by badge B-3208 | valid 120 s
+17:00:04 | Key VEGA-7484 | ARMED by badge B-7366 | valid 120 s | purpose: maintenance window
+17:01:39 | Key VEGA-7484 | DISARMED after use
+18:30:26 | Key LYRA-8896 | ARMED by badge B-3208 | valid 120 s | never used
+18:32:26 | Key LYRA-8896 | EXPIRED unused
+18:33:36 | Key VEGA-7120 | ARMED by badge B-8330 | valid 120 s
+18:34:04 | Key VEGA-7120 | USED at Anchor Relay AR-9 | Change #5232
 
 END OF LOG

@@ -8,7 +8,6 @@ TIMELINE OF EVENTS
 23:27:10 | First abnormal reading: transit buffer overrun of 222 MB
 23:27:27 | Monitoring reports a sustained inconsistency
 23:28:05 | Automatic recovery fails to restore normal readings
-23:29:39 | Results across timelines leave the normal range
 
 WHERE IT STARTED
 The first abnormal reading came from Transit Buffer TB-2.
@@ -16,7 +15,6 @@ It lines up with Change #4915 made at 23:27:00 (forced flush of the transit buff
 No other change in this period touched the transit buffer content.
 
 OTHER NOTES
-A mitigation hold was applied at Transit Buffer TB-2 at 23:28:02; it did not restore normal readings.
 Readings before the incident were in their normal range.
 Operators on shift reported no scheduled maintenance for this system.
 

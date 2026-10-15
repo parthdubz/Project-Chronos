@@ -11,6 +11,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query, Request, Response
 from pydantic import BaseModel, Field
 
 from ..services import admin_service as svc
+from ..services import key_blocker
 
 router = APIRouter(prefix="/api/admin", tags=["Admin"])
 
@@ -107,6 +108,34 @@ def export_csv():
     )
 
 
+@router.get("/team-activity", dependencies=[Depends(svc.require_admin)])
+def get_team_activity_summary():
+    """Every team with its current stage and last action (host Team Logs tab)."""
+    return svc.team_activity_summary()
+
+
+@router.get("/team-activity/{team_id}", dependencies=[Depends(svc.require_admin)])
+def get_team_activity(team_id: int, limit: int = Query(500, ge=1, le=2000)):
+    """Readable chronological timeline of one team."""
+    return svc.team_activity(team_id, limit)
+
+
 @router.get("/logs", dependencies=[Depends(svc.require_admin)])
 def get_logs(limit: int = Query(100, ge=1, le=1000)):
     return svc.recent_logs(limit)
+
+
+class KeyBlockerBody(BaseModel):
+    locked: bool
+
+
+@router.get("/keyblocker", dependencies=[Depends(svc.require_admin)])
+def get_keyblocker():
+    """Switch state plus the laptops running KeyBlocker.exe (admin Key Blocker tab)."""
+    return {**key_blocker.get_state(), "clients": key_blocker.clients()}
+
+
+@router.post("/keyblocker", dependencies=[Depends(svc.require_admin)])
+def set_keyblocker(body: KeyBlockerBody):
+    state = key_blocker.set_locked(body.locked)
+    return {**state, "clients": key_blocker.clients()}

@@ -1,20 +1,17 @@
 SECURITY KEY LOG
-Case R2-12 | Covers 18:07:57 to 20:23:57 (master clock)
+Case R2-12 | Covers 18:07:57 to 20:23:57
 
-CLOCK NOTE: this log's clock runs 42 seconds FAST. Subtract 42 s from every time in this file before comparing it with the other files.
-
-How keys work: a security key has to be armed by a badge before it can be used, and an armed key
-stays valid for the time shown. A standing authorization is a general permission and is not tied
-to one badge. Badges are explained in login_records.log (BADGE REGISTRY); terminals are written as
-codes (see its TERMINAL LIST).
+What this is: a security key must be ARMED by a badge before it can be USED.
+- An armed key stays valid for the time shown.
+- A STANDING AUTHORIZATION is a general permission: it is not tied to one badge.
+- Badges are explained in login_records.log (BADGE REGISTRY).
 
 KEY EVENTS
-18:43:39 | Key PULSAR-6244 | ARMED by badge B-5545 | valid 120 s | purpose: maintenance window
-18:45:14 | Key PULSAR-6244 | DISARMED after use
-20:05:30 | Key NOVA-6169 | ARMED by badge B-9249 | valid 120 s | never used
-20:07:30 | Key NOVA-6169 | EXPIRED unused
-20:08:15 | Key LYRA-3700 | ARMED by badge B-6065 | valid 120 s
-20:08:39 | Key LYRA-3700 | USED at terminal T-1589 | Change #1130
-20:09:52 | Key HOLD-8082 | ARMED by badge B-9249 | valid 120 s
+18:42:57 | Key PULSAR-6244 | ARMED by badge B-5545 | valid 120 s | purpose: maintenance window
+18:44:32 | Key PULSAR-6244 | DISARMED after use
+20:04:48 | Key NOVA-6169 | ARMED by badge B-9249 | valid 120 s | never used
+20:06:48 | Key NOVA-6169 | EXPIRED unused
+20:07:33 | Key LYRA-3700 | ARMED by badge B-6065 | valid 120 s
+20:07:57 | Key LYRA-3700 | USED at Archive Vault AV-3 | Change #1130
 
 END OF LOG

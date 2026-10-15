@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useAuth } from '../context/AuthContext.jsx';
 import api from '../services/api.js';
+import { enterSecureMode } from '../utils/secureMode.js';
 import { soundFx } from '../utils/audio.js';
 import {
   AlertTriangle,
@@ -13,6 +14,12 @@ import {
 const PRN_PATTERN = /^(24|25|26|27)\d{9}$/;
 
 export default function Login({ onLoginSuccess, onBackToLanding }) {
+  const secureModeOn = useRef(true);
+  useEffect(() => {
+    api.getSecurityConfig().then((on) => {
+      secureModeOn.current = on;
+    });
+  }, []);
   const { loginTeamSession } = useAuth();
   const [formData, setFormData] = useState({
     team_name: '',
@@ -59,6 +66,11 @@ export default function Login({ onLoginSuccess, onBackToLanding }) {
       setErrorMsg('Each PRN must be exactly 11 digits and start with 24, 25, 26 or 27.');
       return;
     }
+
+    // Secure mode: fullscreen + keyboard lock, asked for straight from this click (a browser only
+    // allows it while the click is fresh). The host can switch it off with CHRONOS_SECURE_MODE=0;
+    // if the browser refuses, an overlay asks again after login.
+    if (secureModeOn.current) enterSecureMode();
 
     try {
       setIsSubmitting(true);

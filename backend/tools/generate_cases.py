@@ -18,30 +18,18 @@ Writes (deterministically, so the output is reviewable and repeatable):
 Player-facing language is plain (no kernel / credential-hash / scope jargon): people are
 "badges", terminals have a short code, access levels are VIEW ONLY < TEST ONLY < FULL CONTROL.
 
-Design (what makes a case solvable, and what stops a one-file answer):
+Design (kept deliberately easy: a team has about 20 minutes and two people):
 
   * Every case has one culprit project. Three of the four files each contain a fact that
-    points at the culprit (supporting files); the fourth is true but unhelpful or misleading
-    (the distractor file). Which file is the distractor differs from case to case.
-  * No single file names the culprit. The three files that talk about badges
-    (system_changes.log, security_keys.log, incident_report.txt) never say which project a
-    badge belongs to: that mapping exists ONLY in login_records.log (BADGE REGISTRY). So the
-    badge that made the change (system_changes.log / security_keys.log) must be looked up in
-    login_records.log, and the terminal and time must be matched across files.
-  * login_records.log on its own is ambiguous: several projects have FULL CONTROL logins and
-    it does not say which terminal or moment is the incident.
-  * Decoys: another project has FULL CONTROL at a *different* terminal near the incident, a
-    third project is REFUSED at the incident terminal, and unrelated changes / keys fill the logs.
-
-Extra layers (moderate difficulty, all stated in the files themselves):
-
-  * Terminal codes: system_changes.log and security_keys.log list terminals by code (T-xxxx);
-    login_records.log and incident_report.txt use names. The TERMINAL LIST in
-    login_records.log maps one to the other.
-  * Clock offset: security_keys.log runs a few seconds fast (the offset is printed at the top);
-    its times must be corrected before they are compared with the other files.
-  * More decoys: an earlier change at the incident terminal by another project, and a
-    mitigation hold by a third project right after the incident.
+    points at the culprit (supporting files); the fourth is true but unhelpful (the distractor
+    file). Which file is the distractor differs from case to case.
+  * No single file names the culprit. The files that talk about badges (system_changes.log,
+    security_keys.log, incident_report.txt) never say which project a badge belongs to: that
+    list (BADGE REGISTRY) exists ONLY in login_records.log.
+  * Everything is written in plain words: terminals are always written by name, all files use
+    the same clock, and there are only two decoys (another project with FULL CONTROL at a
+    different terminal, and a project that was REFUSED at the incident terminal).
+  * The solution path is three steps: find the change, find its badge, look the badge up.
 
 Balance: culprit alpha/beta/gamma 8 each; each file is the distractor 6 times.
 """
@@ -203,15 +191,8 @@ class Case:
         self._code_rng = random.Random(9000 + i * 7)
 
     def code(self, terminal: str) -> str:
-        """The terminal code used by the change log and the key log."""
-        if terminal not in self._codes:
-            used = set(self._codes.values())
-            while True:
-                candidate = f"T-{self._code_rng.randint(1000, 9999)}"
-                if candidate not in used:
-                    break
-            self._codes[terminal] = candidate
-        return self._codes[terminal]
+        """Terminals are written by name in every file (no codes to translate)."""
+        return terminal
 
     def bdg(self, p):
         return self.badge[p]
@@ -231,56 +212,36 @@ def badge_registry(c: Case) -> list[str]:
     return lines
 
 
-def terminal_list(c: Case) -> list[str]:
-    names = list(dict.fromkeys(c.bterms + [c.node, c.node2]))
-    lines = ["TERMINAL LIST (terminal code | terminal name)"]
-    for n in sorted(names, key=c.code):
-        lines.append(f"{c.code(n)} | {n}")
-    return lines
-
-
 def build_audit(c: Case) -> str:
     rng = random.Random(c.i * 17 + 5)
     rows = []  # (time, lines)
 
     def entry(tt, no, term_name, setting, change, result, badge):
-        return [f"{hms(tt)} | Change #{no} | Terminal {c.code(term_name)}",
+        return [f"{hms(tt)} | Change #{no} | At: {term_name}",
                 f"  Setting: {setting} ({change})",
                 f"  Result: {result} | Badge: {badge}"]
 
     base = c.T - rng.randint(70, 110) * 60
-    for k in range(3):
+    for k in range(2):
         s_, ch = rng.choice(BENIGN_SETTINGS)
         p = rng.choice(ORDER)
         tt = base + k * rng.randint(9, 17) * 60
         rows.append((tt, entry(tt, rng.randint(1000, 9999), rng.choice(c.bterms), s_, ch, "APPLIED", c.bdg(p))))
-    # D2: an old change that was undone
-    s_, ch = rng.choice(BENIGN_SETTINGS)
-    tr = c.T - rng.randint(35, 50) * 60
-    rows.append((tr, entry(tr, rng.randint(1000, 9999), c.node2, s_, ch, "UNDONE", c.bdg(c.d2))))
-    # D1: an unrelated change at the other terminal a few minutes before
+    # decoy: an unrelated change by another project at the other terminal a few minutes before
     s_, ch = rng.choice(BENIGN_SETTINGS)
     t1 = c.T - rng.randint(150, 420)
     rows.append((t1, entry(t1, rng.randint(1000, 9999), c.node2, s_, ch, "APPLIED", c.bdg(c.d1))))
-    # D1 again: an earlier, unrelated change at the incident terminal itself
-    s_, ch = rng.choice(BENIGN_SETTINGS)
-    te = c.T - c.dt_early
-    rows.append((te, entry(te, rng.randint(1000, 9999), c.node, s_, ch, "APPLIED", c.bdg(c.d1))))
     # the incident change (looks like any other entry: it is found through the other files)
     who = NOT_RECORDED if c.distractor == "audit" else c.bdg(c.culprit)
     rows.append((c.T, entry(c.T, c.chg, c.node, c.theme["setting"], c.change_text, "APPLIED", who)))
-    # D2 again: a mitigation hold right after the incident (looks involved, came too late)
-    tp = c.T + c.dt_post
-    rows.append((tp, entry(tp, rng.randint(1000, 9999), c.node, "mitigation hold", "NONE -> HOLD", "APPLIED",
-                           c.bdg(c.d2))))
     rows.sort(key=lambda r: r[0])
     out = ["SYSTEM CHANGE LOG",
            f"Case {c.id} | Covers {hms(c.log_start)} to {hms(c.log_end)}", "",
-           "What this is: every time someone changed a system setting, it was written down here.",
-           "- Terminals are written as codes such as T-1234. login_records.log has the TERMINAL LIST that says",
-           "  which terminal each code is.",
-           "- Badge is the ID badge number of whoever made the change. This file does not say which project a",
-           "  badge belongs to: login_records.log has the BADGE REGISTRY.", ""]
+           "What this is: every change to a system setting is written down here.",
+           "- Badge = the ID badge number of whoever made the change.",
+           "- This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.",
+           "",
+           "CHANGES"]
     for _, lines in rows:
         out.extend(lines)
         out.append("")
@@ -301,29 +262,27 @@ def build_access(c: Case) -> str:
             c.full_control.append((tt, badge, term))
         return f"{hms(tt)} | Badge {badge} | {term} | LOGGED IN | {level}"
 
-    for k in range(4):
+    for k in range(3):
         p = rng.choice(ORDER)
         tt = c.T - rng.randint(30, 105) * 60 + k * 41
         ev.append((tt, login(tt, c.bdg(p), rng.choice(terms), rng.choice(["VIEW ONLY", "TEST ONLY"]))))
-    # D1: FULL CONTROL at the *other* terminal close to the incident
+    # decoy 1: another project has FULL CONTROL at the *other* terminal close to the incident
     t1 = c.T - rng.randint(40, 70)
     ev.append((t1, login(t1, c.bdg(c.d1), c.node2, "FULL CONTROL")))
-    # D1 earlier: FULL CONTROL at the incident terminal minutes before (an unrelated change)
-    te = c.T - c.dt_early - rng.randint(8, 15)
-    ev.append((te, login(te, c.bdg(c.d1), c.node, "FULL CONTROL")))
-    # D2: refused at the incident terminal
+    # decoy 2: a third project was REFUSED at the incident terminal
     t2 = c.T - rng.randint(75, 140)
     c.refused.append((t2, c.bdg(c.d2), c.node))
     ev.append((t2, f"{hms(t2)} | Badge {c.bdg(c.d2)} | {c.node} | REFUSED | FULL CONTROL (not allowed for this badge)"))
-    # D2 after the incident: FULL CONTROL for the mitigation hold
-    tp = c.T + c.dt_post - rng.randint(10, 18)
-    ev.append((tp, login(tp, c.bdg(c.d2), c.node, "FULL CONTROL")))
     gap = None
     if c.distractor == "access":
         g0 = c.T - c.dt_access - rng.randint(4, 9)
         g1 = c.T + rng.randint(4, 9)
         gap = (g0, g1)
         c.gap = gap
+        # the login file alone must still not point at one project: the third project had
+        # FULL CONTROL at a quiet desk long before the incident
+        tq = c.T - rng.randint(50, 80) * 60
+        ev.append((tq, login(tq, c.bdg(c.d2), rng.choice(terms), "FULL CONTROL")))
     else:
         ts = c.T - c.dt_access
         ev.append((ts, login(ts, c.bdg(c.culprit), c.node, "FULL CONTROL")))
@@ -331,12 +290,9 @@ def build_access(c: Case) -> str:
     out = ["LOGIN AND BADGE RECORDS",
            f"Case {c.id} | Covers {hms(c.log_start)} to {hms(c.log_end)}", "",
            "What this is: who logged in, at which terminal, and with what access level.",
-           "This file also holds the BADGE REGISTRY and the TERMINAL LIST used by the other files.", ""]
+           "Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)", ""]
     out.extend(badge_registry(c))
-    out += [""]
-    out.extend(terminal_list(c))
-    out += ["", "ACCESS LEVELS (lowest to highest): VIEW ONLY < TEST ONLY < FULL CONTROL",
-            "Only FULL CONTROL can change a system setting.", "", "LOGIN RECORDS"]
+    out += ["", "LOGIN RECORDS"]
 
     def lost(a, b):
         return (f"{hms(a)} - {hms(b)} | RECORDS LOST | the log buffer overflowed and the records "
@@ -355,12 +311,10 @@ def build_access(c: Case) -> str:
 
 
 def build_auth(c: Case) -> str:
-    """Times in this log are printed on the key log's own clock: master time + c.skew."""
     rng = random.Random(c.i * 23 + 3)
-    K = c.skew
 
     def at(t):
-        return hms(t + K)
+        return hms(t)
 
     ev = []
     t_old = c.T - rng.randint(70, 100) * 60
@@ -376,18 +330,14 @@ def build_auth(c: Case) -> str:
     else:
         ta = c.T - c.dt_key
         ev.append((ta, f"{at(ta)} | Key {c.key} | ARMED by badge {c.bdg(c.culprit)} | valid 120 s"))
-    ev.append((c.T, f"{at(c.T)} | Key {c.key} | USED at terminal {c.code(c.node)} | Change #{c.chg}"))
-    tp = c.T + c.dt_post - 6
-    ev.append((tp, f"{at(tp)} | Key HOLD-{rng.randint(1000, 9999)} | ARMED by badge {c.bdg(c.d2)} | valid 120 s"))
+    ev.append((c.T, f"{at(c.T)} | Key {c.key} | USED at {c.node} | Change #{c.chg}"))
     ev.sort(key=lambda r: r[0])
     out = ["SECURITY KEY LOG",
-           f"Case {c.id} | Covers {hms(c.log_start)} to {hms(c.log_end)} (master clock)", "",
-           f"CLOCK NOTE: this log's clock runs {K} seconds FAST. Subtract {K} s from every time in this file "
-           f"before comparing it with the other files.", "",
-           "How keys work: a security key has to be armed by a badge before it can be used, and an armed key",
-           "stays valid for the time shown. A standing authorization is a general permission and is not tied",
-           "to one badge. Badges are explained in login_records.log (BADGE REGISTRY); terminals are written as",
-           "codes (see its TERMINAL LIST).", "", "KEY EVENTS"]
+           f"Case {c.id} | Covers {hms(c.log_start)} to {hms(c.log_end)}", "",
+           "What this is: a security key must be ARMED by a badge before it can be USED.",
+           "- An armed key stays valid for the time shown.",
+           "- A STANDING AUTHORIZATION is a general permission: it is not tied to one badge.",
+           "- Badges are explained in login_records.log (BADGE REGISTRY).", "", "KEY EVENTS"]
     out.extend(text for _, text in ev)
     out += ["", "END OF LOG"]
     return "\n".join(out) + "\n"
@@ -403,8 +353,7 @@ def build_incident(c: Case) -> str:
            "TIMELINE OF EVENTS",
            f"{hms(ts)} | First abnormal reading: {c.symptom}",
            f"{hms(ts + rng.randint(11, 24))} | Monitoring reports a sustained inconsistency",
-           f"{hms(ts + rng.randint(40, 70))} | Automatic recovery fails to restore normal readings",
-           f"{hms(ts + rng.randint(100, 150))} | Results across timelines leave the normal range", "",
+           f"{hms(ts + rng.randint(40, 70))} | Automatic recovery fails to restore normal readings", "",
            "WHERE IT STARTED"]
     if c.distractor == "incident":
         out += [f"The first abnormal reading cannot be traced to a single source. Possible terminals: "
@@ -415,7 +364,6 @@ def build_incident(c: Case) -> str:
                 f"It lines up with Change #{c.chg} made at {hms(c.T)} ({c.theme['action']}).",
                 f"No other change in this period touched the {c.theme['setting']}."]
     out += ["", "OTHER NOTES",
-            f"A mitigation hold was applied at {c.node} at {hms(c.T + c.dt_post)}; it did not restore normal readings.",
             "Readings before the incident were in their normal range.",
             "Operators on shift reported no scheduled maintenance for this system.", "",
             "END OF REPORT"]
@@ -429,46 +377,53 @@ def r3_case(c: Case) -> dict:
     cp = PROJECTS[c.culprit]
     ev_pool = []
 
-    # changes: the badge only (never the project)
+    # changes: the badge only (never the project). Short bullet points, one fact per line.
     if c.distractor == "audit":
-        a = (f"{cap(t['action'])} at {c.node} (terminal {c.code(c.node)}). The badge that made the change "
-             f"was not recorded (run by a scheduled task).")
+        a = (f"\u2022 What: {cap(t['action'])}\n"
+             f"\u2022 Where: {c.node}\n"
+             f"\u2022 Badge: not recorded (a scheduled task ran it)")
         a_label = f"Change #{c.chg} (badge not recorded)"
     else:
-        a = (f"{cap(t['action'])} at {c.node} (terminal {c.code(c.node)}) was made with badge "
-             f"{c.bdg(c.culprit)}.")
+        a = (f"\u2022 What: {cap(t['action'])}\n"
+             f"\u2022 Where: {c.node}\n"
+             f"\u2022 Badge: {c.bdg(c.culprit)}")
         a_label = f"Change #{c.chg}"
     ev_pool.append(("audit", a_label, hms(c.T), a))
 
     # logins: holds the only badge-to-project registry, plus FULL CONTROL logins near the change
-    registry = "; ".join(f"{c.bdg(p)} = {PROJECTS[p]['name']}" for p in ORDER)
-    fc = "; ".join(f"{hms(tt)} badge {b} at {n}" for tt, b, n in sorted(c.full_control))
-    rf = "; ".join(f"{hms(tt)} badge {b} at {n}" for tt, b, n in sorted(c.refused))
-    text = f"Badge registry: {registry}. FULL CONTROL logins: {fc}. Refused: {rf}."
+    registry = "\n".join(f"   - {c.bdg(p)} = {PROJECTS[p]['name']}" for p in ORDER)
+    fc = "\n".join(f"   - {hms(tt)}: badge {b} at {n}" for tt, b, n in sorted(c.full_control))
+    rf = "\n".join(f"   - {hms(tt)}: badge {b} at {n}" for tt, b, n in sorted(c.refused))
+    text = (f"\u2022 Badge registry (who owns which badge):\n{registry}\n"
+            f"\u2022 FULL CONTROL logins:\n{fc}\n"
+            f"\u2022 Refused logins:\n{rf}")
     if c.gap:
-        text += (f" Records between {hms(c.gap[0])} and {hms(c.gap[1])} were lost (log buffer overflow).")
+        text += f"\n\u2022 Records lost between {hms(c.gap[0])} and {hms(c.gap[1])}"
         ev_pool.append(("access", "Login records (gap)", hms(c.gap[0]), text))
     else:
         ev_pool.append(("access", "Login records and badge registry", hms(min(tt for tt, _, _ in c.full_control)),
                         text))
 
-    # keys: badge only, on the key log's own (fast) clock
+    # keys: badge only
     if c.distractor == "auth":
         ev_pool.append(("auth", f"Key {c.key} (standing authorization)", hms(c.T - 90),
-                        f"Key {c.key} was used under a standing maintenance authorization; no badge armed it "
-                        f"(this log's clock runs {c.skew} s fast)."))
+                        f"\u2022 Key {c.key} was used under a standing maintenance authorization\n"
+                        f"\u2022 No badge armed it"))
     else:
         ev_pool.append(("auth", f"Key {c.key} armed", hms(c.T - c.dt_key),
-                        f"Key {c.key} was armed by badge {c.bdg(c.culprit)} {c.dt_key} seconds before the change "
-                        f"and used at terminal {c.code(c.node)} (this log's clock runs {c.skew} s fast)."))
+                        f"\u2022 Key {c.key} armed by badge {c.bdg(c.culprit)}\n"
+                        f"\u2022 Armed {c.dt_key} seconds before the change\n"
+                        f"\u2022 Used at {c.node}"))
 
     if c.distractor == "incident":
         ev_pool.append(("incident", "Origin not narrowed down", hms(c.T + c.dt_sym),
-                        f"First abnormal reading ({c.symptom}); the source could not be narrowed beyond "
-                        f"{c.node} and {c.node2}."))
+                        f"\u2022 First abnormal reading: {c.symptom}\n"
+                        f"\u2022 Source unclear: {c.node} or {c.node2}"))
     else:
         ev_pool.append(("incident", f"Origin traced to {c.node}", hms(c.T + c.dt_sym),
-                        f"First abnormal reading ({c.symptom}) traced to {c.node} and Change #{c.chg}."))
+                        f"\u2022 First abnormal reading: {c.symptom}\n"
+                        f"\u2022 Traced to {c.node}\n"
+                        f"\u2022 Matches Change #{c.chg}"))
 
     pool = []
     for fid, label, ts, desc in ev_pool:
@@ -522,10 +477,10 @@ def case_json(c: Case) -> dict:
         "player_files": {fid: FILES[fid][0] for fid in FILES},
         "supporting_files": [FILES[f][0] for f in c.supporting],
         "intended_deduction": (
-            "Match the incident to its terminal (codes in the change and key logs, names elsewhere) and its time "
-            "(correct the key log's fast clock), find the badge that made or armed that change, then look the "
-            "badge up in the badge registry in login_records.log. Three files point at the responsible "
-            "project; one does not, and no single file is enough on its own."
+            "Find the incident change (the key log shows which change a key was used for), note the "
+            "badge that made or armed it, then look the badge up in the badge registry in "
+            "login_records.log. Three files point at the responsible project; one does not, and no "
+            "single file is enough on its own."
         ),
     }
 

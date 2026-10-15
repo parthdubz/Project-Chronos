@@ -1,20 +1,17 @@
 SECURITY KEY LOG
-Case R2-22 | Covers 20:16:09 to 22:28:09 (master clock)
+Case R2-22 | Covers 20:16:09 to 22:28:09
 
-CLOCK NOTE: this log's clock runs 21 seconds FAST. Subtract 21 s from every time in this file before comparing it with the other files.
-
-How keys work: a security key has to be armed by a badge before it can be used, and an armed key
-stays valid for the time shown. A standing authorization is a general permission and is not tied
-to one badge. Badges are explained in login_records.log (BADGE REGISTRY); terminals are written as
-codes (see its TERMINAL LIST).
+What this is: a security key must be ARMED by a badge before it can be USED.
+- An armed key stays valid for the time shown.
+- A STANDING AUTHORIZATION is a general permission: it is not tied to one badge.
+- Badges are explained in login_records.log (BADGE REGISTRY).
 
 KEY EVENTS
-21:01:30 | Key PULSAR-6548 | ARMED by badge B-7094 | valid 120 s | purpose: maintenance window
-21:03:05 | Key PULSAR-6548 | DISARMED after use
-22:13:38 | Key VEGA-4488 | ARMED by badge B-5441 | valid 120 s | never used
-22:15:38 | Key VEGA-4488 | EXPIRED unused
-22:15:57 | Key ZENITH-7292 | ARMED by badge B-4120 | valid 120 s
-22:16:30 | Key ZENITH-7292 | USED at terminal T-8188 | Change #7142
-22:17:32 | Key HOLD-9019 | ARMED by badge B-5441 | valid 120 s
+21:01:09 | Key PULSAR-6548 | ARMED by badge B-7094 | valid 120 s | purpose: maintenance window
+21:02:44 | Key PULSAR-6548 | DISARMED after use
+22:13:17 | Key VEGA-4488 | ARMED by badge B-5441 | valid 120 s | never used
+22:15:17 | Key VEGA-4488 | EXPIRED unused
+22:15:36 | Key ZENITH-7292 | ARMED by badge B-4120 | valid 120 s
+22:16:09 | Key ZENITH-7292 | USED at Filter Array PF-5 | Change #7142
 
 END OF LOG

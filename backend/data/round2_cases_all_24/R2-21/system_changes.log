@@ -1,42 +1,25 @@
 SYSTEM CHANGE LOG
 Case R2-21 | Covers 21:11:10 to 23:26:10
 
-What this is: every time someone changed a system setting, it was written down here.
-- Terminals are written as codes such as T-1234. login_records.log has the TERMINAL LIST that says
-  which terminal each code is.
-- Badge is the ID badge number of whoever made the change. This file does not say which project a
-  badge belongs to: login_records.log has the BADGE REGISTRY.
+What this is: every change to a system setting is written down here.
+- Badge = the ID badge number of whoever made the change.
+- This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
-21:43:10 | Change #2668 | Terminal T-1732
+CHANGES
+21:43:10 | Change #2668 | At: Diagnostics Bay DB-4
   Setting: log detail level (NORMAL -> DETAILED)
   Result: APPLIED | Badge: B-2892
 
-21:54:10 | Change #5609 | Terminal T-6665
+21:54:10 | Change #5609 | At: Maintenance Console MC-3
   Setting: queue size limit (512 -> 1024)
   Result: APPLIED | Badge: B-2334
 
-22:11:10 | Change #3357 | Terminal T-6153
+23:08:16 | Change #6603 | At: Anchor Relay AR-5B
   Setting: archive cleanup schedule (NIGHTLY -> WEEKLY)
   Result: APPLIED | Badge: B-2892
 
-22:36:10 | Change #6575 | Terminal T-8479
-  Setting: queue size limit (512 -> 1024)
-  Result: UNDONE | Badge: B-3120
-
-23:04:44 | Change #3055 | Terminal T-1899
-  Setting: snapshot keep-days (7 -> 14)
-  Result: APPLIED | Badge: B-2892
-
-23:06:05 | Change #9058 | Terminal T-8479
-  Setting: cache lifetime (seconds) (300 -> 600)
-  Result: APPLIED | Badge: B-2892
-
-23:11:10 | Change #6529 | Terminal T-1899
+23:11:10 | Change #6529 | At: Anchor Relay AR-5
   Setting: anchor offset table (0 -> 211 ms)
   Result: APPLIED | Badge: B-2334
-
-23:12:02 | Change #3849 | Terminal T-1899
-  Setting: mitigation hold (NONE -> HOLD)
-  Result: APPLIED | Badge: B-3120
 
 END OF LOG

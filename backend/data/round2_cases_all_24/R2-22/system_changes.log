@@ -1,42 +1,25 @@
 SYSTEM CHANGE LOG
 Case R2-22 | Covers 20:16:09 to 22:28:09
 
-What this is: every time someone changed a system setting, it was written down here.
-- Terminals are written as codes such as T-1234. login_records.log has the TERMINAL LIST that says
-  which terminal each code is.
-- Badge is the ID badge number of whoever made the change. This file does not say which project a
-  badge belongs to: login_records.log has the BADGE REGISTRY.
+What this is: every change to a system setting is written down here.
+- Badge = the ID badge number of whoever made the change.
+- This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
-20:33:09 | Change #6877 | Terminal T-1334
+CHANGES
+20:33:09 | Change #6877 | At: Terminal Node Iota-7
   Setting: queue size limit (512 -> 1024)
   Result: APPLIED | Badge: B-4120
 
-20:49:09 | Change #7111 | Terminal T-8131
+20:49:09 | Change #7111 | At: Diagnostics Bay DB-1
   Setting: queue size limit (512 -> 1024)
   Result: APPLIED | Badge: B-5441
 
-20:57:09 | Change #4493 | Terminal T-3192
+22:10:11 | Change #4653 | At: Filter Array PF-9
   Setting: health check interval (seconds) (30 -> 15)
-  Result: APPLIED | Badge: B-5441
-
-21:36:09 | Change #8976 | Terminal T-7484
-  Setting: log detail level (NORMAL -> DETAILED)
-  Result: UNDONE | Badge: B-5441
-
-22:09:05 | Change #5158 | Terminal T-8188
-  Setting: heartbeat timeout (seconds) (5 -> 8)
   Result: APPLIED | Badge: B-7094
 
-22:13:20 | Change #4736 | Terminal T-7484
-  Setting: log detail level (NORMAL -> DETAILED)
-  Result: APPLIED | Badge: B-7094
-
-22:16:09 | Change #7142 | Terminal T-8188
+22:16:09 | Change #7142 | At: Filter Array PF-5
   Setting: paradox filter mode (ACTIVE -> BYPASSED)
   Result: APPLIED | Badge: B-4120
-
-22:17:17 | Change #4921 | Terminal T-8188
-  Setting: mitigation hold (NONE -> HOLD)
-  Result: APPLIED | Badge: B-5441
 
 END OF LOG

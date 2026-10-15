@@ -16,6 +16,7 @@ from .routes.round3 import router as round3_router
 from .routes.transition import router as transition_router
 from .routes.dev import router as dev_router
 from .routes.admin import router as admin_router
+from .routes.security import router as security_router, team_router as security_team_router
 from .services.round2_service import init_round2
 from .services.round3_service import init_round3
 from .services.team_session import require_team
@@ -107,6 +108,10 @@ app.include_router(round3_router, dependencies=[Depends(require_team)])
 app.include_router(transition_router, dependencies=[Depends(require_team)])
 # Tester shortcut (Ctrl+Shift+Alt+K): 404 unless CHRONOS_ENABLE_SKIP=1.
 app.include_router(dev_router, dependencies=[Depends(require_team)])
+
+# Secure mode: public config + team-authenticated violation reports (shown in admin Team Logs).
+app.include_router(security_router)
+app.include_router(security_team_router, dependencies=[Depends(require_team)])
 
 # Host-only: every route except /login needs the admin bearer token.
 app.include_router(admin_router)

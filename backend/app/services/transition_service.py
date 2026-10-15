@@ -158,7 +158,7 @@ def _log_event(connection, team_id: int, event_type: str, data: Dict[str, Any]) 
 
 def _get_team(connection, team_id: int):
     team = connection.execute(
-        "SELECT id, current_state, transition_score, transition_clue_id, transition_completed_at, "
+        "SELECT id, team_name, current_state, transition_score, transition_clue_id, transition_completed_at, "
         "round1_score, round2_score, round3_score FROM teams WHERE id = ?",
         (team_id,),
     ).fetchone()
@@ -349,7 +349,10 @@ class TransitionService:
                 # password is marked used in the sheet by this very call. If the sheet cannot
                 # be reached nothing is recorded and the attempt is NOT counted.
                 try:
-                    correct = consume_password(zone_for_clue(clue_id), entered)
+                    correct = consume_password(
+                        zone_for_clue(clue_id), entered,
+                        team_id=team_id, team_name=team["team_name"],
+                    )
                 except PasswordServiceError as err:
                     raise TransitionError(
                         "The password service is unreachable right now. "

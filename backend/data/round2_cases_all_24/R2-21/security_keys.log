@@ -1,20 +1,17 @@
 SECURITY KEY LOG
-Case R2-21 | Covers 21:11:10 to 23:26:10 (master clock)
+Case R2-21 | Covers 21:11:10 to 23:26:10
 
-CLOCK NOTE: this log's clock runs 42 seconds FAST. Subtract 42 s from every time in this file before comparing it with the other files.
-
-How keys work: a security key has to be armed by a badge before it can be used, and an armed key
-stays valid for the time shown. A standing authorization is a general permission and is not tied
-to one badge. Badges are explained in login_records.log (BADGE REGISTRY); terminals are written as
-codes (see its TERMINAL LIST).
+What this is: a security key must be ARMED by a badge before it can be USED.
+- An armed key stays valid for the time shown.
+- A STANDING AUTHORIZATION is a general permission: it is not tied to one badge.
+- Badges are explained in login_records.log (BADGE REGISTRY).
 
 KEY EVENTS
-21:55:52 | Key QUASAR-6157 | ARMED by badge B-2892 | valid 120 s | purpose: maintenance window
-21:57:27 | Key QUASAR-6157 | DISARMED after use
-23:08:22 | Key LYRA-7833 | ARMED by badge B-3120 | valid 120 s | never used
-23:10:22 | Key LYRA-7833 | EXPIRED unused
-23:10:22 | Key ATLAS-6068 | STANDING AUTHORIZATION | maintenance window MW-31 | not tied to any one badge
-23:11:52 | Key ATLAS-6068 | USED at terminal T-1899 | Change #6529
-23:12:38 | Key HOLD-2347 | ARMED by badge B-3120 | valid 120 s
+21:55:10 | Key QUASAR-6157 | ARMED by badge B-2892 | valid 120 s | purpose: maintenance window
+21:56:45 | Key QUASAR-6157 | DISARMED after use
+23:07:40 | Key LYRA-7833 | ARMED by badge B-3120 | valid 120 s | never used
+23:09:40 | Key LYRA-7833 | EXPIRED unused
+23:09:40 | Key ATLAS-6068 | STANDING AUTHORIZATION | maintenance window MW-31 | not tied to any one badge
+23:11:10 | Key ATLAS-6068 | USED at Anchor Relay AR-5 | Change #6529
 
 END OF LOG

@@ -82,7 +82,7 @@ export default function Round2Lobby({ result, onStartRound2, onLogout }) {
                     <IdCard className="w-3.5 h-3.5" />
                     <span>{member.label}</span>
                   </span>
-                  <span className="text-[11px] text-slate-500">{member.role}</span>
+                  <span className="text-[0.8125rem] text-slate-500">{member.role}</span>
                 </div>
                 <span className="text-white font-bold font-mono text-base sm:text-lg block pt-0.5">{member.name}</span>
                 <span className="text-cyan-400/90 font-mono text-xs sm:text-sm block">PRN: {member.prn || 'N/A'}</span>

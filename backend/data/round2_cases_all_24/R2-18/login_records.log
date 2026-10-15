@@ -2,33 +2,20 @@ LOGIN AND BADGE RECORDS
 Case R2-18 | Covers 17:23:39 to 19:38:39
 
 What this is: who logged in, at which terminal, and with what access level.
-This file also holds the BADGE REGISTRY and the TERMINAL LIST used by the other files.
+Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
 B-8626 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
 B-5748 | Project Beta | Present Timeline | Lead: Commander V. Reyes
 B-1200 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
 
-TERMINAL LIST (terminal code | terminal name)
-T-4648 | Console SEC-05
-T-6100 | Terminal Node Iota-5
-T-6569 | Console SEC-19
-T-7348 | Operator Desk OD-6
-T-8618 | Maintenance Console MC-4
-T-9602 | Diagnostics Bay DB-6
-
-ACCESS LEVELS (lowest to highest): VIEW ONLY < TEST ONLY < FULL CONTROL
-Only FULL CONTROL can change a system setting.
-
 LOGIN RECORDS
-17:44:42 | Badge B-1200 | Diagnostics Bay DB-6 | LOGGED IN | TEST ONLY
 17:47:39 | Badge B-8626 | Maintenance Console MC-4 | LOGGED IN | TEST ONLY
+18:21:39 | Badge B-8626 | Operator Desk OD-6 | LOGGED IN | FULL CONTROL
 18:47:01 | Badge B-8626 | Diagnostics Bay DB-6 | LOGGED IN | VIEW ONLY
 18:54:20 | Badge B-8626 | Diagnostics Bay DB-6 | LOGGED IN | VIEW ONLY
-19:14:55 | Badge B-5748 | Console SEC-05 | LOGGED IN | FULL CONTROL
-19:21:58 | Badge B-8626 | Console SEC-05 | REFUSED | FULL CONTROL (not allowed for this badge)
-19:22:58 | Badge B-5748 | Console SEC-19 | LOGGED IN | FULL CONTROL
-19:23:20 - 19:23:48 | RECORDS LOST | the log buffer overflowed and the records in this interval were not recovered
-19:24:16 | Badge B-8626 | Console SEC-05 | LOGGED IN | FULL CONTROL
+19:22:08 | Badge B-8626 | Console SEC-05 | REFUSED | FULL CONTROL (not allowed for this badge)
+19:22:43 | Badge B-5748 | Console SEC-19 | LOGGED IN | FULL CONTROL
+19:23:21 - 19:23:47 | RECORDS LOST | the log buffer overflowed and the records in this interval were not recovered
 
 END OF RECORDS

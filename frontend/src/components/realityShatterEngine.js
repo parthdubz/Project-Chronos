@@ -29,7 +29,13 @@ const PERSPECTIVE = 900;
 // Performance: the original 7.45 s timeline is played SPEED times faster (~4.6 s), and the whole
 // effect is cut off after MAX_WALL_MS of real time even if a slow PC renders few frames.
 const SPEED = 1.6;
-const MAX_WALL_MS = 6000;
+const MAX_WALL_MS = 9000;
+// From the void onward (black hold, reconstruction, reveal) the clock runs this much faster, so the
+// ending no longer lingers: the whole tail takes ~0.8 s instead of ~1.8 s.
+const TAIL_SPEED = 2.2;
+// The event wants every team to see the cinematic, so the OS "reduce motion" setting (often on by
+// default on Windows with animations off) does not replace it with a plain fade.
+const HONOR_REDUCED_MOTION = false;
 
 const CUES = [
   { t: 0.05, src: '/sounds/glitch.mp3', vol: 0.22, rate: 0.7 }, // buildup: low electrical disturbance
@@ -196,7 +202,9 @@ export function runRealityShatter({ els, app, soundFx, onSwap, onDone }) {
   const firedCues = new Set();
 
   const reduced =
-    typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    HONOR_REDUCED_MOTION &&
+    typeof window.matchMedia === 'function' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const prevOverflow = document.body.style.overflow;
   document.body.style.overflow = 'hidden';
 
@@ -1219,19 +1227,23 @@ export function runRealityShatter({ els, app, soundFx, onSwap, onDone }) {
 
   const startedAt = performance.now();
   let frames = 0;
+  let warmAt = startedAt;
   function step(now) {
     if (now - startedAt > MAX_WALL_MS) {
       finish(); // slow device: skip what is left, the next round is swapped in by finish()
       return;
     }
-    // A machine that cannot hold ~20 fps would make the click feel dead for seconds: after a
-    // dozen frames, give up on the effect and go straight to the next round.
+    // A machine that really cannot render the effect (< ~8 fps once it is running) skips it. The
+    // first frames are excluded: they build the clones / shard layers and are always slow, which
+    // used to trip this check and silently skip the whole animation on normal PCs.
     frames += 1;
-    if (frames === 12 && (now - startedAt) / frames > 60) {
+    if (frames === 8) warmAt = now;
+    if (frames === 28 && (now - warmAt) / 20 > 130) {
+      console.warn('RealityShatter skipped: device too slow');
       finish();
       return;
     }
-    const dt = Math.min(0.25, Math.max(0, (now - last) / 1000)) * SPEED;
+    const dt = Math.min(0.25, Math.max(0, (now - last) / 1000)) * SPEED * (tl >= TL.voidAt ? TAIL_SPEED : 1);
     last = now;
     tl += dt;
     if (phase < 2) prewarmShards(2); // build the shatter layers ahead of time, a couple per frame

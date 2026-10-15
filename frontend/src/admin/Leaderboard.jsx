@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import api from '../services/api.js';
 import PasswordControl from './PasswordControl.jsx';
+import TeamLogs from './TeamLogs.jsx';
+import KeyBlockerPanel from './KeyBlockerPanel.jsx';
 import '../styles/leaderboard.css';
 
 /**
@@ -93,6 +95,7 @@ export default function Leaderboard({ onLogout }) {
   const [toDelete, setToDelete] = useState(null); // team being deleted (confirmation open)
   const [confirmName, setConfirmName] = useState('');
   const [deleting, setDeleting] = useState(false);
+  const [tab, setTab] = useState('board'); // 'board' | 'logs' | 'keys'
   const [skipOn, setSkipOn] = useState(null); // tester shortcut Ctrl+Shift+Alt+K (null = unknown)
   const busy = useRef(false);
 
@@ -295,6 +298,24 @@ export default function Leaderboard({ onLogout }) {
 
         {error && <div className="lb-error">{error}</div>}
 
+        {!projector && (
+          <div className="tl-tabs lb-sensitive">
+            <button className={`tl-tab ${tab === 'board' ? 'on' : ''}`} onClick={() => setTab('board')}>
+              🏆 Leaderboard
+            </button>
+            <button className={`tl-tab ${tab === 'logs' ? 'on' : ''}`} onClick={() => setTab('logs')}>
+              📜 Team Logs
+            </button>
+            <button className={`tl-tab ${tab === 'keys' ? 'on' : ''}`} onClick={() => setTab('keys')}>
+              ⌨ Key Blocker
+            </button>
+          </div>
+        )}
+
+        {tab === 'logs' && !projector && <TeamLogs />}
+        {tab === 'keys' && !projector && <KeyBlockerPanel />}
+
+        {(tab === 'board' || projector) && (<>
         <section className="lb-podium">
           <div className="lb-podium-title">
             <div className="line" />
@@ -482,6 +503,7 @@ export default function Leaderboard({ onLogout }) {
             </div>
           )}
         </section>
+        </>)}
       </main>
 
       {toDelete && role === 'master' && (

@@ -48,7 +48,7 @@
         "source_file": "system_changes.log",
         "label": "Change #2421 (badge not recorded)",
         "timestamp": "22:25:14 UTC",
-        "description": "Core configuration rewrite at Terminal Node Omega-1 (terminal T-1514). The badge that made the change was not recorded (run by a scheduled task)."
+        "description": "\u2022 What: Core configuration rewrite\n\u2022 Where: Terminal Node Omega-1\n\u2022 Badge: not recorded (a scheduled task ran it)"
       },
       {
         "id": "ev_logins",
@@ -56,8 +56,8 @@
         "category_code": "LOGIN_RECORDS",
         "source_file": "login_records.log",
         "label": "Login records and badge registry",
-        "timestamp": "22:19:00 UTC",
-        "description": "Badge registry: B-4818 = Project Alpha; B-6995 = Project Beta; B-7500 = Project Gamma. FULL CONTROL logins: 22:19:00 badge B-6995 at Terminal Node Omega-1; 22:24:04 badge B-6995 at Terminal Node Kappa-8; 22:25:04 badge B-4818 at Terminal Node Omega-1; 22:25:55 badge B-7500 at Terminal Node Omega-1. Refused: 22:23:39 badge B-7500 at Terminal Node Omega-1."
+        "timestamp": "22:24:11 UTC",
+        "description": "\u2022 Badge registry (who owns which badge):\n   - B-4818 = Project Alpha\n   - B-6995 = Project Beta\n   - B-7500 = Project Gamma\n\u2022 FULL CONTROL logins:\n   - 22:24:11: badge B-6995 at Terminal Node Kappa-8\n   - 22:25:04: badge B-4818 at Terminal Node Omega-1\n\u2022 Refused logins:\n   - 22:23:11: badge B-7500 at Terminal Node Omega-1"
       },
       {
         "id": "ev_keys",
@@ -66,7 +66,7 @@
         "source_file": "security_keys.log",
         "label": "Key VEGA-7104 armed",
         "timestamp": "22:24:17 UTC",
-        "description": "Key VEGA-7104 was armed by badge B-4818 57 seconds before the change and used at terminal T-1514 (this log's clock runs 37 s fast)."
+        "description": "\u2022 Key VEGA-7104 armed by badge B-4818\n\u2022 Armed 57 seconds before the change\n\u2022 Used at Terminal Node Omega-1"
       },
       {
         "id": "ev_incident",
@@ -75,7 +75,7 @@
         "source_file": "incident_report.txt",
         "label": "Origin traced to Terminal Node Omega-1",
         "timestamp": "22:25:27 UTC",
-        "description": "First abnormal reading (time-flux surge of 6112%) traced to Terminal Node Omega-1 and Change #2421."
+        "description": "\u2022 First abnormal reading: time-flux surge of 6112%\n\u2022 Traced to Terminal Node Omega-1\n\u2022 Matches Change #2421"
       }
     ],
     "culprit_candidate_id": "alpha",
@@ -135,7 +135,7 @@
         "source_file": "system_changes.log",
         "label": "Change #4334 (badge not recorded)",
         "timestamp": "21:56:28 UTC",
-        "description": "Forced disconnect of the time bridge at Console SEC-01 (terminal T-4311). The badge that made the change was not recorded (run by a scheduled task)."
+        "description": "\u2022 What: Forced disconnect of the time bridge\n\u2022 Where: Console SEC-01\n\u2022 Badge: not recorded (a scheduled task ran it)"
       },
       {
         "id": "ev_logins",
@@ -143,8 +143,8 @@
         "category_code": "LOGIN_RECORDS",
         "source_file": "login_records.log",
         "label": "Login records and badge registry",
-        "timestamp": "21:47:43 UTC",
-        "description": "Badge registry: B-5306 = Project Alpha; B-9375 = Project Beta; B-8259 = Project Gamma. FULL CONTROL logins: 21:47:43 badge B-8259 at Console SEC-01; 21:55:35 badge B-8259 at Console SEC-11; 21:56:09 badge B-9375 at Console SEC-01; 21:57:19 badge B-5306 at Console SEC-01. Refused: 21:55:05 badge B-5306 at Console SEC-01."
+        "timestamp": "21:55:22 UTC",
+        "description": "\u2022 Badge registry (who owns which badge):\n   - B-5306 = Project Alpha\n   - B-9375 = Project Beta\n   - B-8259 = Project Gamma\n\u2022 FULL CONTROL logins:\n   - 21:55:22: badge B-8259 at Console SEC-11\n   - 21:56:09: badge B-9375 at Console SEC-01\n\u2022 Refused logins:\n   - 21:54:57: badge B-5306 at Console SEC-01"
       },
       {
         "id": "ev_keys",
@@ -153,7 +153,7 @@
         "source_file": "security_keys.log",
         "label": "Key ONYX-1085 armed",
         "timestamp": "21:55:39 UTC",
-        "description": "Key ONYX-1085 was armed by badge B-9375 49 seconds before the change and used at terminal T-4311 (this log's clock runs 34 s fast)."
+        "description": "\u2022 Key ONYX-1085 armed by badge B-9375\n\u2022 Armed 49 seconds before the change\n\u2022 Used at Console SEC-01"
       },
       {
         "id": "ev_incident",
@@ -162,7 +162,7 @@
         "source_file": "incident_report.txt",
         "label": "Origin traced to Console SEC-01",
         "timestamp": "21:56:40 UTC",
-        "description": "First abnormal reading (9 transit buffers lost) traced to Console SEC-01 and Change #4334."
+        "description": "\u2022 First abnormal reading: 9 transit buffers lost\n\u2022 Traced to Console SEC-01\n\u2022 Matches Change #4334"
       }
     ],
     "culprit_candidate_id": "beta",
@@ -222,7 +222,7 @@
         "source_file": "system_changes.log",
         "label": "Change #2083 (badge not recorded)",
         "timestamp": "23:05:11 UTC",
-        "description": "Frequency modification script at Frequency Station CH-5 (terminal T-4017). The badge that made the change was not recorded (run by a scheduled task)."
+        "description": "\u2022 What: Frequency modification script\n\u2022 Where: Frequency Station CH-5\n\u2022 Badge: not recorded (a scheduled task ran it)"
       },
       {
         "id": "ev_logins",
@@ -230,8 +230,8 @@
         "category_code": "LOGIN_RECORDS",
         "source_file": "login_records.log",
         "label": "Login records and badge registry",
-        "timestamp": "22:57:53 UTC",
-        "description": "Badge registry: B-4012 = Project Alpha; B-9357 = Project Beta; B-9301 = Project Gamma. FULL CONTROL logins: 22:57:53 badge B-4012 at Frequency Station CH-5; 23:04:08 badge B-4012 at Frequency Station CH-8; 23:05:00 badge B-9301 at Frequency Station CH-5; 23:05:48 badge B-9357 at Frequency Station CH-5. Refused: 23:03:16 badge B-9357 at Frequency Station CH-5."
+        "timestamp": "23:04:01 UTC",
+        "description": "\u2022 Badge registry (who owns which badge):\n   - B-4012 = Project Alpha\n   - B-9357 = Project Beta\n   - B-9301 = Project Gamma\n\u2022 FULL CONTROL logins:\n   - 23:04:01: badge B-4012 at Frequency Station CH-8\n   - 23:05:00: badge B-9301 at Frequency Station CH-5\n\u2022 Refused logins:\n   - 23:03:43: badge B-9357 at Frequency Station CH-5"
       },
       {
         "id": "ev_keys",
@@ -240,7 +240,7 @@
         "source_file": "security_keys.log",
         "label": "Key ZENITH-6914 armed",
         "timestamp": "23:04:26 UTC",
-        "description": "Key ZENITH-6914 was armed by badge B-9301 45 seconds before the change and used at terminal T-4017 (this log's clock runs 20 s fast)."
+        "description": "\u2022 Key ZENITH-6914 armed by badge B-9301\n\u2022 Armed 45 seconds before the change\n\u2022 Used at Frequency Station CH-5"
       },
       {
         "id": "ev_incident",
@@ -249,7 +249,7 @@
         "source_file": "incident_report.txt",
         "label": "Origin traced to Frequency Station CH-5",
         "timestamp": "23:05:17 UTC",
-        "description": "First abnormal reading (boundary rupture at +535 MHz) traced to Frequency Station CH-5 and Change #2083."
+        "description": "\u2022 First abnormal reading: boundary rupture at +535 MHz\n\u2022 Traced to Frequency Station CH-5\n\u2022 Matches Change #2083"
       }
     ],
     "culprit_candidate_id": "gamma",
@@ -309,7 +309,7 @@
         "source_file": "system_changes.log",
         "label": "Change #4802",
         "timestamp": "22:51:19 UTC",
-        "description": "Bulk deletion of timeline anchor records at Archive Vault AV-3 (terminal T-6175) was made with badge B-2896."
+        "description": "\u2022 What: Bulk deletion of timeline anchor records\n\u2022 Where: Archive Vault AV-3\n\u2022 Badge: B-2896"
       },
       {
         "id": "ev_logins",
@@ -318,7 +318,7 @@
         "source_file": "login_records.log",
         "label": "Login records (gap)",
         "timestamp": "22:50:51 UTC",
-        "description": "Badge registry: B-2896 = Project Alpha; B-1841 = Project Beta; B-2051 = Project Gamma. FULL CONTROL logins: 22:42:31 badge B-2051 at Archive Vault AV-3; 22:50:16 badge B-2051 at Archive Vault AV-7; 22:52:14 badge B-1841 at Archive Vault AV-3. Refused: 22:49:12 badge B-1841 at Archive Vault AV-3. Records between 22:50:51 and 22:51:27 were lost (log buffer overflow)."
+        "description": "\u2022 Badge registry (who owns which badge):\n   - B-2896 = Project Alpha\n   - B-1841 = Project Beta\n   - B-2051 = Project Gamma\n\u2022 FULL CONTROL logins:\n   - 21:39:19: badge B-1841 at Terminal Node Iota-8\n   - 22:50:23: badge B-2051 at Archive Vault AV-7\n\u2022 Refused logins:\n   - 22:49:48: badge B-1841 at Archive Vault AV-3\n\u2022 Records lost between 22:50:51 and 22:51:23"
       },
       {
         "id": "ev_keys",
@@ -327,7 +327,7 @@
         "source_file": "security_keys.log",
         "label": "Key HELIX-2553 armed",
         "timestamp": "22:50:39 UTC",
-        "description": "Key HELIX-2553 was armed by badge B-2896 40 seconds before the change and used at terminal T-6175 (this log's clock runs 31 s fast)."
+        "description": "\u2022 Key HELIX-2553 armed by badge B-2896\n\u2022 Armed 40 seconds before the change\n\u2022 Used at Archive Vault AV-3"
       },
       {
         "id": "ev_incident",
@@ -336,7 +336,7 @@
         "source_file": "incident_report.txt",
         "label": "Origin traced to Archive Vault AV-3",
         "timestamp": "22:51:33 UTC",
-        "description": "First abnormal reading (551 anchor records missing from the index) traced to Archive Vault AV-3 and Change #4802."
+        "description": "\u2022 First abnormal reading: 551 anchor records missing from the index\n\u2022 Traced to Archive Vault AV-3\n\u2022 Matches Change #4802"
       }
     ],
     "culprit_candidate_id": "alpha",
@@ -396,7 +396,7 @@
         "source_file": "system_changes.log",
         "label": "Change #5232",
         "timestamp": "18:34:04 UTC",
-        "description": "Manual change of the anchor offsets at Anchor Relay AR-9 (terminal T-9386) was made with badge B-8330."
+        "description": "\u2022 What: Manual change of the anchor offsets\n\u2022 Where: Anchor Relay AR-9\n\u2022 Badge: B-8330"
       },
       {
         "id": "ev_logins",
@@ -404,8 +404,8 @@
         "category_code": "LOGIN_RECORDS",
         "source_file": "login_records.log",
         "label": "Login records (gap)",
-        "timestamp": "18:33:38 UTC",
-        "description": "Badge registry: B-7366 = Project Alpha; B-8330 = Project Beta; B-3208 = Project Gamma. FULL CONTROL logins: 18:25:19 badge B-7366 at Anchor Relay AR-9; 18:33:03 badge B-7366 at Anchor Relay AR-2; 18:35:01 badge B-3208 at Anchor Relay AR-9. Refused: 18:31:54 badge B-3208 at Anchor Relay AR-9. Records between 18:33:38 and 18:34:13 were lost (log buffer overflow)."
+        "timestamp": "18:33:42 UTC",
+        "description": "\u2022 Badge registry (who owns which badge):\n   - B-7366 = Project Alpha\n   - B-8330 = Project Beta\n   - B-3208 = Project Gamma\n\u2022 FULL CONTROL logins:\n   - 17:23:04: badge B-3208 at Operator Desk OD-9\n   - 18:33:05: badge B-7366 at Anchor Relay AR-2\n\u2022 Refused logins:\n   - 18:31:54: badge B-3208 at Anchor Relay AR-9\n\u2022 Records lost between 18:33:42 and 18:34:08"
       },
       {
         "id": "ev_keys",
@@ -414,7 +414,7 @@
         "source_file": "security_keys.log",
         "label": "Key VEGA-7120 armed",
         "timestamp": "18:33:36 UTC",
-        "description": "Key VEGA-7120 was armed by badge B-8330 28 seconds before the change and used at terminal T-9386 (this log's clock runs 27 s fast)."
+        "description": "\u2022 Key VEGA-7120 armed by badge B-8330\n\u2022 Armed 28 seconds before the change\n\u2022 Used at Anchor Relay AR-9"
       },
       {
         "id": "ev_incident",
@@ -423,7 +423,7 @@
         "source_file": "incident_report.txt",
         "label": "Origin traced to Anchor Relay AR-9",
         "timestamp": "18:34:16 UTC",
-        "description": "First abnormal reading (anchor drift of 346 ms along the relay chain) traced to Anchor Relay AR-9 and Change #5232."
+        "description": "\u2022 First abnormal reading: anchor drift of 346 ms along the relay chain\n\u2022 Traced to Anchor Relay AR-9\n\u2022 Matches Change #5232"
       }
     ],
     "culprit_candidate_id": "beta",
@@ -483,7 +483,7 @@
         "source_file": "system_changes.log",
         "label": "Change #5964",
         "timestamp": "19:49:12 UTC",
-        "description": "Bypass of the paradox filter at Filter Array PF-3 (terminal T-7693) was made with badge B-6293."
+        "description": "\u2022 What: Bypass of the paradox filter\n\u2022 Where: Filter Array PF-3\n\u2022 Badge: B-6293"
       },
       {
         "id": "ev_logins",
@@ -492,7 +492,7 @@
         "source_file": "login_records.log",
         "label": "Login records (gap)",
         "timestamp": "19:48:48 UTC",
-        "description": "Badge registry: B-5445 = Project Alpha; B-1651 = Project Beta; B-6293 = Project Gamma. FULL CONTROL logins: 19:40:32 badge B-1651 at Filter Array PF-3; 19:48:05 badge B-1651 at Filter Array PF-2; 19:49:48 badge B-5445 at Filter Array PF-3. Refused: 19:47:25 badge B-5445 at Filter Array PF-3. Records between 19:48:48 and 19:49:20 were lost (log buffer overflow)."
+        "description": "\u2022 Badge registry (who owns which badge):\n   - B-5445 = Project Alpha\n   - B-1651 = Project Beta\n   - B-6293 = Project Gamma\n\u2022 FULL CONTROL logins:\n   - 18:58:12: badge B-5445 at Diagnostics Bay DB-4\n   - 19:48:30: badge B-1651 at Filter Array PF-2\n\u2022 Refused logins:\n   - 19:47:15: badge B-5445 at Filter Array PF-3\n\u2022 Records lost between 19:48:48 and 19:49:21"
       },
       {
         "id": "ev_keys",
@@ -501,7 +501,7 @@
         "source_file": "security_keys.log",
         "label": "Key NOVA-4240 armed",
         "timestamp": "19:48:26 UTC",
-        "description": "Key NOVA-4240 was armed by badge B-6293 46 seconds before the change and used at terminal T-7693 (this log's clock runs 24 s fast)."
+        "description": "\u2022 Key NOVA-4240 armed by badge B-6293\n\u2022 Armed 46 seconds before the change\n\u2022 Used at Filter Array PF-3"
       },
       {
         "id": "ev_incident",
@@ -510,7 +510,7 @@
         "source_file": "incident_report.txt",
         "label": "Origin traced to Filter Array PF-3",
         "timestamp": "19:49:27 UTC",
-        "description": "First abnormal reading (55 unresolved cause-and-effect loops detected) traced to Filter Array PF-3 and Change #5964."
+        "description": "\u2022 First abnormal reading: 55 unresolved cause-and-effect loops detected\n\u2022 Traced to Filter Array PF-3\n\u2022 Matches Change #5964"
       }
     ],
     "culprit_candidate_id": "gamma",
@@ -570,7 +570,7 @@
         "source_file": "system_changes.log",
         "label": "Change #2537",
         "timestamp": "18:26:46 UTC",
-        "description": "Shutdown of the cross-timeline sync controller at Sync Controller SG-4 (terminal T-1325) was made with badge B-8335."
+        "description": "\u2022 What: Shutdown of the cross-timeline sync controller\n\u2022 Where: Sync Controller SG-4\n\u2022 Badge: B-8335"
       },
       {
         "id": "ev_logins",
@@ -578,8 +578,8 @@
         "category_code": "LOGIN_RECORDS",
         "source_file": "login_records.log",
         "label": "Login records and badge registry",
-        "timestamp": "18:18:55 UTC",
-        "description": "Badge registry: B-8335 = Project Alpha; B-6916 = Project Beta; B-4450 = Project Gamma. FULL CONTROL logins: 18:18:55 badge B-6916 at Sync Controller SG-4; 18:25:49 badge B-6916 at Sync Controller SG-1; 18:26:37 badge B-8335 at Sync Controller SG-4; 18:27:45 badge B-4450 at Sync Controller SG-4. Refused: 18:25:00 badge B-4450 at Sync Controller SG-4."
+        "timestamp": "18:25:39 UTC",
+        "description": "\u2022 Badge registry (who owns which badge):\n   - B-8335 = Project Alpha\n   - B-6916 = Project Beta\n   - B-4450 = Project Gamma\n\u2022 FULL CONTROL logins:\n   - 18:25:39: badge B-6916 at Sync Controller SG-1\n   - 18:26:37: badge B-8335 at Sync Controller SG-4\n\u2022 Refused logins:\n   - 18:25:25: badge B-4450 at Sync Controller SG-4"
       },
       {
         "id": "ev_keys",
@@ -588,7 +588,7 @@
         "source_file": "security_keys.log",
         "label": "Key NOVA-4730 (standing authorization)",
         "timestamp": "18:25:16 UTC",
-        "description": "Key NOVA-4730 was used under a standing maintenance authorization; no badge armed it (this log's clock runs 26 s fast)."
+        "description": "\u2022 Key NOVA-4730 was used under a standing maintenance authorization\n\u2022 No badge armed it"
       },
       {
         "id": "ev_incident",
@@ -597,7 +597,7 @@
         "source_file": "incident_report.txt",
         "label": "Origin traced to Sync Controller SG-4",
         "timestamp": "18:26:53 UTC",
-        "description": "First abnormal reading (3 timeline channels out of sync) traced to Sync Controller SG-4 and Change #2537."
+        "description": "\u2022 First abnormal reading: 3 timeline channels out of sync\n\u2022 Traced to Sync Controller SG-4\n\u2022 Matches Change #2537"
       }
     ],
     "culprit_candidate_id": "alpha",
@@ -657,7 +657,7 @@
         "source_file": "system_changes.log",
         "label": "Change #5321",
         "timestamp": "21:12:30 UTC",
-        "description": "Forced flush of the transit buffer at Transit Buffer TB-5 (terminal T-2862) was made with badge B-1531."
+        "description": "\u2022 What: Forced flush of the transit buffer\n\u2022 Where: Transit Buffer TB-5\n\u2022 Badge: B-1531"
       },
       {
         "id": "ev_logins",
@@ -665,8 +665,8 @@
         "category_code": "LOGIN_RECORDS",
         "source_file": "login_records.log",
         "label": "Login records and badge registry",
-        "timestamp": "21:03:32 UTC",
-        "description": "Badge registry: B-6257 = Project Alpha; B-1531 = Project Beta; B-9847 = Project Gamma. FULL CONTROL logins: 21:03:32 badge B-9847 at Transit Buffer TB-5; 21:11:35 badge B-9847 at Transit Buffer TB-8; 21:12:13 badge B-1531 at Transit Buffer TB-5; 21:13:19 badge B-6257 at Transit Buffer TB-5. Refused: 21:11:03 badge B-6257 at Transit Buffer TB-5."
+        "timestamp": "21:11:32 UTC",
+        "description": "\u2022 Badge registry (who owns which badge):\n   - B-6257 = Project Alpha\n   - B-1531 = Project Beta\n   - B-9847 = Project Gamma\n\u2022 FULL CONTROL logins:\n   - 21:11:32: badge B-9847 at Transit Buffer TB-8\n   - 21:12:13: badge B-1531 at Transit Buffer TB-5\n\u2022 Refused logins:\n   - 21:10:49: badge B-6257 at Transit Buffer TB-5"
       },
       {
         "id": "ev_keys",
@@ -675,7 +675,7 @@
         "source_file": "security_keys.log",
         "label": "Key HELIX-6450 (standing authorization)",
         "timestamp": "21:11:00 UTC",
-        "description": "Key HELIX-6450 was used under a standing maintenance authorization; no badge armed it (this log's clock runs 40 s fast)."
+        "description": "\u2022 Key HELIX-6450 was used under a standing maintenance authorization\n\u2022 No badge armed it"
       },
       {
         "id": "ev_incident",
@@ -684,7 +684,7 @@
         "source_file": "incident_report.txt",
         "label": "Origin traced to Transit Buffer TB-5",
         "timestamp": "21:12:40 UTC",
-        "description": "First abnormal reading (transit buffer overrun of 196 MB) traced to Transit Buffer TB-5 and Change #5321."
+        "description": "\u2022 First abnormal reading: transit buffer overrun of 196 MB\n\u2022 Traced to Transit Buffer TB-5\n\u2022 Matches Change #5321"
       }
     ],
     "culprit_candidate_id": "beta",
@@ -744,7 +744,7 @@
         "source_file": "system_changes.log",
         "label": "Change #4477",
         "timestamp": "23:14:23 UTC",
-        "description": "Core configuration rewrite at Terminal Node Delta-1 (terminal T-3718) was made with badge B-2986."
+        "description": "\u2022 What: Core configuration rewrite\n\u2022 Where: Terminal Node Delta-1\n\u2022 Badge: B-2986"
       },
       {
         "id": "ev_logins",
@@ -752,8 +752,8 @@
         "category_code": "LOGIN_RECORDS",
         "source_file": "login_records.log",
         "label": "Login records and badge registry",
-        "timestamp": "23:08:07 UTC",
-        "description": "Badge registry: B-9135 = Project Alpha; B-7050 = Project Beta; B-2986 = Project Gamma. FULL CONTROL logins: 23:08:07 badge B-9135 at Terminal Node Delta-1; 23:13:24 badge B-9135 at Terminal Node Omega-1; 23:14:13 badge B-2986 at Terminal Node Delta-1; 23:15:12 badge B-7050 at Terminal Node Delta-1. Refused: 23:13:08 badge B-7050 at Terminal Node Delta-1."
+        "timestamp": "23:13:29 UTC",
+        "description": "\u2022 Badge registry (who owns which badge):\n   - B-9135 = Project Alpha\n   - B-7050 = Project Beta\n   - B-2986 = Project Gamma\n\u2022 FULL CONTROL logins:\n   - 23:13:29: badge B-9135 at Terminal Node Omega-1\n   - 23:14:13: badge B-2986 at Terminal Node Delta-1\n\u2022 Refused logins:\n   - 23:13:01: badge B-7050 at Terminal Node Delta-1"
       },
       {
         "id": "ev_keys",
@@ -762,7 +762,7 @@
         "source_file": "security_keys.log",
         "label": "Key ORION-5533 (standing authorization)",
         "timestamp": "23:12:53 UTC",
-        "description": "Key ORION-5533 was used under a standing maintenance authorization; no badge armed it (this log's clock runs 47 s fast)."
+        "description": "\u2022 Key ORION-5533 was used under a standing maintenance authorization\n\u2022 No badge armed it"
       },
       {
         "id": "ev_incident",
@@ -771,7 +771,7 @@
         "source_file": "incident_report.txt",
         "label": "Origin traced to Terminal Node Delta-1",
         "timestamp": "23:14:38 UTC",
-        "description": "First abnormal reading (time-flux surge of 7657%) traced to Terminal Node Delta-1 and Change #4477."
+        "description": "\u2022 First abnormal reading: time-flux surge of 7657%\n\u2022 Traced to Terminal Node Delta-1\n\u2022 Matches Change #4477"
       }
     ],
     "culprit_candidate_id": "gamma",
@@ -831,7 +831,7 @@
         "source_file": "system_changes.log",
         "label": "Change #1357",
         "timestamp": "21:03:13 UTC",
-        "description": "Forced disconnect of the time bridge at Console SEC-01 (terminal T-6859) was made with badge B-7613."
+        "description": "\u2022 What: Forced disconnect of the time bridge\n\u2022 Where: Console SEC-01\n\u2022 Badge: B-7613"
       },
       {
         "id": "ev_logins",
@@ -839,8 +839,8 @@
         "category_code": "LOGIN_RECORDS",
         "source_file": "login_records.log",
         "label": "Login records and badge registry",
-        "timestamp": "20:55:31 UTC",
-        "description": "Badge registry: B-7613 = Project Alpha; B-7836 = Project Beta; B-3328 = Project Gamma. FULL CONTROL logins: 20:55:31 badge B-3328 at Console SEC-01; 21:02:30 badge B-3328 at Console SEC-14; 21:02:55 badge B-7613 at Console SEC-01; 21:04:15 badge B-7836 at Console SEC-01. Refused: 21:01:06 badge B-7836 at Console SEC-01."
+        "timestamp": "21:02:33 UTC",
+        "description": "\u2022 Badge registry (who owns which badge):\n   - B-7613 = Project Alpha\n   - B-7836 = Project Beta\n   - B-3328 = Project Gamma\n\u2022 FULL CONTROL logins:\n   - 21:02:33: badge B-3328 at Console SEC-14\n   - 21:02:55: badge B-7613 at Console SEC-01\n\u2022 Refused logins:\n   - 21:01:55: badge B-7836 at Console SEC-01"
       },
       {
         "id": "ev_keys",
@@ -849,7 +849,7 @@
         "source_file": "security_keys.log",
         "label": "Key VEGA-1513 armed",
         "timestamp": "21:02:44 UTC",
-        "description": "Key VEGA-1513 was armed by badge B-7613 29 seconds before the change and used at terminal T-6859 (this log's clock runs 28 s fast)."
+        "description": "\u2022 Key VEGA-1513 armed by badge B-7613\n\u2022 Armed 29 seconds before the change\n\u2022 Used at Console SEC-01"
       },
       {
         "id": "ev_incident",
@@ -858,7 +858,7 @@
         "source_file": "incident_report.txt",
         "label": "Origin not narrowed down",
         "timestamp": "21:03:29 UTC",
-        "description": "First abnormal reading (34 transit buffers lost); the source could not be narrowed beyond Console SEC-01 and Console SEC-14."
+        "description": "\u2022 First abnormal reading: 34 transit buffers lost\n\u2022 Source unclear: Console SEC-01 or Console SEC-14"
       }
     ],
     "culprit_candidate_id": "alpha",
@@ -918,7 +918,7 @@
         "source_file": "system_changes.log",
         "label": "Change #6717",
         "timestamp": "19:06:13 UTC",
-        "description": "Frequency modification script at Frequency Station CH-3 (terminal T-2457) was made with badge B-3786."
+        "description": "\u2022 What: Frequency modification script\n\u2022 Where: Frequency Station CH-3\n\u2022 Badge: B-3786"
       },
       {
         "id": "ev_logins",
@@ -926,8 +926,8 @@
         "category_code": "LOGIN_RECORDS",
         "source_file": "login_records.log",
         "label": "Login records and badge registry",
-        "timestamp": "18:59:20 UTC",
-        "description": "Badge registry: B-1610 = Project Alpha; B-3786 = Project Beta; B-8476 = Project Gamma. FULL CONTROL logins: 18:59:20 badge B-1610 at Frequency Station CH-3; 19:05:17 badge B-1610 at Frequency Station CH-2; 19:06:05 badge B-3786 at Frequency Station CH-3; 19:07:04 badge B-8476 at Frequency Station CH-3. Refused: 19:03:55 badge B-8476 at Frequency Station CH-3."
+        "timestamp": "19:05:33 UTC",
+        "description": "\u2022 Badge registry (who owns which badge):\n   - B-1610 = Project Alpha\n   - B-3786 = Project Beta\n   - B-8476 = Project Gamma\n\u2022 FULL CONTROL logins:\n   - 19:05:33: badge B-1610 at Frequency Station CH-2\n   - 19:06:05: badge B-3786 at Frequency Station CH-3\n\u2022 Refused logins:\n   - 19:04:08: badge B-8476 at Frequency Station CH-3"
       },
       {
         "id": "ev_keys",
@@ -936,7 +936,7 @@
         "source_file": "security_keys.log",
         "label": "Key ATLAS-3850 armed",
         "timestamp": "19:05:36 UTC",
-        "description": "Key ATLAS-3850 was armed by badge B-3786 37 seconds before the change and used at terminal T-2457 (this log's clock runs 41 s fast)."
+        "description": "\u2022 Key ATLAS-3850 armed by badge B-3786\n\u2022 Armed 37 seconds before the change\n\u2022 Used at Frequency Station CH-3"
       },
       {
         "id": "ev_incident",
@@ -945,7 +945,7 @@
         "source_file": "incident_report.txt",
         "label": "Origin not narrowed down",
         "timestamp": "19:06:22 UTC",
-        "description": "First abnormal reading (boundary rupture at +422 MHz); the source could not be narrowed beyond Frequency Station CH-3 and Frequency Station CH-2."
+        "description": "\u2022 First abnormal reading: boundary rupture at +422 MHz\n\u2022 Source unclear: Frequency Station CH-3 or Frequency Station CH-2"
       }
     ],
     "culprit_candidate_id": "beta",
@@ -1005,7 +1005,7 @@
         "source_file": "system_changes.log",
         "label": "Change #1130",
         "timestamp": "20:07:57 UTC",
-        "description": "Bulk deletion of timeline anchor records at Archive Vault AV-3 (terminal T-1589) was made with badge B-6065."
+        "description": "\u2022 What: Bulk deletion of timeline anchor records\n\u2022 Where: Archive Vault AV-3\n\u2022 Badge: B-6065"
       },
       {
         "id": "ev_logins",
@@ -1013,8 +1013,8 @@
         "category_code": "LOGIN_RECORDS",
         "source_file": "login_records.log",
         "label": "Login records and badge registry",
-        "timestamp": "20:00:38 UTC",
-        "description": "Badge registry: B-9249 = Project Alpha; B-5545 = Project Beta; B-6065 = Project Gamma. FULL CONTROL logins: 20:00:38 badge B-5545 at Archive Vault AV-3; 20:07:03 badge B-5545 at Archive Vault AV-5; 20:07:48 badge B-6065 at Archive Vault AV-3; 20:08:59 badge B-9249 at Archive Vault AV-3. Refused: 20:06:11 badge B-9249 at Archive Vault AV-3."
+        "timestamp": "20:06:59 UTC",
+        "description": "\u2022 Badge registry (who owns which badge):\n   - B-9249 = Project Alpha\n   - B-5545 = Project Beta\n   - B-6065 = Project Gamma\n\u2022 FULL CONTROL logins:\n   - 20:06:59: badge B-5545 at Archive Vault AV-5\n   - 20:07:48: badge B-6065 at Archive Vault AV-3\n\u2022 Refused logins:\n   - 20:06:11: badge B-9249 at Archive Vault AV-3"
       },
       {
         "id": "ev_keys",
@@ -1023,7 +1023,7 @@
         "source_file": "security_keys.log",
         "label": "Key LYRA-3700 armed",
         "timestamp": "20:07:33 UTC",
-        "description": "Key LYRA-3700 was armed by badge B-6065 24 seconds before the change and used at terminal T-1589 (this log's clock runs 42 s fast)."
+        "description": "\u2022 Key LYRA-3700 armed by badge B-6065\n\u2022 Armed 24 seconds before the change\n\u2022 Used at Archive Vault AV-3"
       },
       {
         "id": "ev_incident",
@@ -1032,7 +1032,7 @@
         "source_file": "incident_report.txt",
         "label": "Origin not narrowed down",
         "timestamp": "20:08:18 UTC",
-        "description": "First abnormal reading (457 anchor records missing from the index); the source could not be narrowed beyond Archive Vault AV-3 and Archive Vault AV-5."
+        "description": "\u2022 First abnormal reading: 457 anchor records missing from the index\n\u2022 Source unclear: Archive Vault AV-3 or Archive Vault AV-5"
       }
     ],
     "culprit_candidate_id": "gamma",
@@ -1092,7 +1092,7 @@
         "source_file": "system_changes.log",
         "label": "Change #4560 (badge not recorded)",
         "timestamp": "20:02:54 UTC",
-        "description": "Manual change of the anchor offsets at Anchor Relay AR-7 (terminal T-7151). The badge that made the change was not recorded (run by a scheduled task)."
+        "description": "\u2022 What: Manual change of the anchor offsets\n\u2022 Where: Anchor Relay AR-7\n\u2022 Badge: not recorded (a scheduled task ran it)"
       },
       {
         "id": "ev_logins",
@@ -1100,8 +1100,8 @@
         "category_code": "LOGIN_RECORDS",
         "source_file": "login_records.log",
         "label": "Login records and badge registry",
-        "timestamp": "19:54:30 UTC",
-        "description": "Badge registry: B-6559 = Project Alpha; B-3198 = Project Beta; B-3584 = Project Gamma. FULL CONTROL logins: 19:54:30 badge B-3198 at Anchor Relay AR-7; 20:02:06 badge B-3198 at Anchor Relay AR-5; 20:02:45 badge B-6559 at Anchor Relay AR-7; 20:03:36 badge B-3584 at Anchor Relay AR-7. Refused: 20:00:38 badge B-3584 at Anchor Relay AR-7."
+        "timestamp": "20:01:52 UTC",
+        "description": "\u2022 Badge registry (who owns which badge):\n   - B-6559 = Project Alpha\n   - B-3198 = Project Beta\n   - B-3584 = Project Gamma\n\u2022 FULL CONTROL logins:\n   - 20:01:52: badge B-3198 at Anchor Relay AR-5\n   - 20:02:45: badge B-6559 at Anchor Relay AR-7\n\u2022 Refused logins:\n   - 20:00:53: badge B-3584 at Anchor Relay AR-7"
       },
       {
         "id": "ev_keys",
@@ -1110,7 +1110,7 @@
         "source_file": "security_keys.log",
         "label": "Key ATLAS-8808 armed",
         "timestamp": "20:01:58 UTC",
-        "description": "Key ATLAS-8808 was armed by badge B-6559 56 seconds before the change and used at terminal T-7151 (this log's clock runs 46 s fast)."
+        "description": "\u2022 Key ATLAS-8808 armed by badge B-6559\n\u2022 Armed 56 seconds before the change\n\u2022 Used at Anchor Relay AR-7"
       },
       {
         "id": "ev_incident",
@@ -1119,7 +1119,7 @@
         "source_file": "incident_report.txt",
         "label": "Origin traced to Anchor Relay AR-7",
         "timestamp": "20:03:01 UTC",
-        "description": "First abnormal reading (anchor drift of 370 ms along the relay chain) traced to Anchor Relay AR-7 and Change #4560."
+        "description": "\u2022 First abnormal reading: anchor drift of 370 ms along the relay chain\n\u2022 Traced to Anchor Relay AR-7\n\u2022 Matches Change #4560"
       }
     ],
     "culprit_candidate_id": "alpha",
@@ -1179,7 +1179,7 @@
         "source_file": "system_changes.log",
         "label": "Change #7350 (badge not recorded)",
         "timestamp": "22:59:31 UTC",
-        "description": "Bypass of the paradox filter at Filter Array PF-6 (terminal T-3190). The badge that made the change was not recorded (run by a scheduled task)."
+        "description": "\u2022 What: Bypass of the paradox filter\n\u2022 Where: Filter Array PF-6\n\u2022 Badge: not recorded (a scheduled task ran it)"
       },
       {
         "id": "ev_logins",
@@ -1187,8 +1187,8 @@
         "category_code": "LOGIN_RECORDS",
         "source_file": "login_records.log",
         "label": "Login records and badge registry",
-        "timestamp": "22:51:03 UTC",
-        "description": "Badge registry: B-6856 = Project Alpha; B-9621 = Project Beta; B-1311 = Project Gamma. FULL CONTROL logins: 22:51:03 badge B-1311 at Filter Array PF-6; 22:58:32 badge B-1311 at Filter Array PF-6B; 22:59:12 badge B-9621 at Filter Array PF-6; 23:00:31 badge B-6856 at Filter Array PF-6. Refused: 22:57:40 badge B-6856 at Filter Array PF-6."
+        "timestamp": "22:58:30 UTC",
+        "description": "\u2022 Badge registry (who owns which badge):\n   - B-6856 = Project Alpha\n   - B-9621 = Project Beta\n   - B-1311 = Project Gamma\n\u2022 FULL CONTROL logins:\n   - 22:58:30: badge B-1311 at Filter Array PF-6B\n   - 22:59:12: badge B-9621 at Filter Array PF-6\n\u2022 Refused logins:\n   - 22:57:36: badge B-6856 at Filter Array PF-6"
       },
       {
         "id": "ev_keys",
@@ -1197,7 +1197,7 @@
         "source_file": "security_keys.log",
         "label": "Key PULSAR-5055 armed",
         "timestamp": "22:58:40 UTC",
-        "description": "Key PULSAR-5055 was armed by badge B-9621 51 seconds before the change and used at terminal T-3190 (this log's clock runs 31 s fast)."
+        "description": "\u2022 Key PULSAR-5055 armed by badge B-9621\n\u2022 Armed 51 seconds before the change\n\u2022 Used at Filter Array PF-6"
       },
       {
         "id": "ev_incident",
@@ -1206,7 +1206,7 @@
         "source_file": "incident_report.txt",
         "label": "Origin traced to Filter Array PF-6",
         "timestamp": "22:59:43 UTC",
-        "description": "First abnormal reading (61 unresolved cause-and-effect loops detected) traced to Filter Array PF-6 and Change #7350."
+        "description": "\u2022 First abnormal reading: 61 unresolved cause-and-effect loops detected\n\u2022 Traced to Filter Array PF-6\n\u2022 Matches Change #7350"
       }
     ],
     "culprit_candidate_id": "beta",
@@ -1266,7 +1266,7 @@
         "source_file": "system_changes.log",
         "label": "Change #2832 (badge not recorded)",
         "timestamp": "23:14:56 UTC",
-        "description": "Shutdown of the cross-timeline sync controller at Sync Controller SG-7 (terminal T-3305). The badge that made the change was not recorded (run by a scheduled task)."
+        "description": "\u2022 What: Shutdown of the cross-timeline sync controller\n\u2022 Where: Sync Controller SG-7\n\u2022 Badge: not recorded (a scheduled task ran it)"
       },
       {
         "id": "ev_logins",
@@ -1274,8 +1274,8 @@
         "category_code": "LOGIN_RECORDS",
         "source_file": "login_records.log",
         "label": "Login records and badge registry",
-        "timestamp": "23:08:06 UTC",
-        "description": "Badge registry: B-1698 = Project Alpha; B-8739 = Project Beta; B-5756 = Project Gamma. FULL CONTROL logins: 23:08:06 badge B-1698 at Sync Controller SG-7; 23:13:54 badge B-1698 at Sync Controller SG-5; 23:14:46 badge B-5756 at Sync Controller SG-7; 23:15:47 badge B-8739 at Sync Controller SG-7. Refused: 23:13:15 badge B-8739 at Sync Controller SG-7."
+        "timestamp": "23:14:02 UTC",
+        "description": "\u2022 Badge registry (who owns which badge):\n   - B-1698 = Project Alpha\n   - B-8739 = Project Beta\n   - B-5756 = Project Gamma\n\u2022 FULL CONTROL logins:\n   - 23:14:02: badge B-1698 at Sync Controller SG-5\n   - 23:14:46: badge B-5756 at Sync Controller SG-7\n\u2022 Refused logins:\n   - 23:12:46: badge B-8739 at Sync Controller SG-7"
       },
       {
         "id": "ev_keys",
@@ -1284,7 +1284,7 @@
         "source_file": "security_keys.log",
         "label": "Key QUASAR-2458 armed",
         "timestamp": "23:13:59 UTC",
-        "description": "Key QUASAR-2458 was armed by badge B-5756 57 seconds before the change and used at terminal T-3305 (this log's clock runs 45 s fast)."
+        "description": "\u2022 Key QUASAR-2458 armed by badge B-5756\n\u2022 Armed 57 seconds before the change\n\u2022 Used at Sync Controller SG-7"
       },
       {
         "id": "ev_incident",
@@ -1293,7 +1293,7 @@
         "source_file": "incident_report.txt",
         "label": "Origin traced to Sync Controller SG-7",
         "timestamp": "23:15:13 UTC",
-        "description": "First abnormal reading (10 timeline channels out of sync) traced to Sync Controller SG-7 and Change #2832."
+        "description": "\u2022 First abnormal reading: 10 timeline channels out of sync\n\u2022 Traced to Sync Controller SG-7\n\u2022 Matches Change #2832"
       }
     ],
     "culprit_candidate_id": "gamma",
@@ -1353,7 +1353,7 @@
         "source_file": "system_changes.log",
         "label": "Change #4915",
         "timestamp": "23:27:00 UTC",
-        "description": "Forced flush of the transit buffer at Transit Buffer TB-2 (terminal T-9896) was made with badge B-2196."
+        "description": "\u2022 What: Forced flush of the transit buffer\n\u2022 Where: Transit Buffer TB-2\n\u2022 Badge: B-2196"
       },
       {
         "id": "ev_logins",
@@ -1362,7 +1362,7 @@
         "source_file": "login_records.log",
         "label": "Login records (gap)",
         "timestamp": "23:26:40 UTC",
-        "description": "Badge registry: B-2196 = Project Alpha; B-7796 = Project Beta; B-1856 = Project Gamma. FULL CONTROL logins: 23:18:50 badge B-1856 at Transit Buffer TB-2; 23:26:06 badge B-1856 at Transit Buffer TB-5; 23:27:48 badge B-7796 at Transit Buffer TB-2. Refused: 23:25:11 badge B-7796 at Transit Buffer TB-2. Records between 23:26:40 and 23:27:06 were lost (log buffer overflow)."
+        "description": "\u2022 Badge registry (who owns which badge):\n   - B-2196 = Project Alpha\n   - B-7796 = Project Beta\n   - B-1856 = Project Gamma\n\u2022 FULL CONTROL logins:\n   - 22:23:00: badge B-7796 at Terminal Node Iota-7\n   - 23:26:01: badge B-1856 at Transit Buffer TB-5\n\u2022 Refused logins:\n   - 23:25:16: badge B-7796 at Transit Buffer TB-2\n\u2022 Records lost between 23:26:40 and 23:27:06"
       },
       {
         "id": "ev_keys",
@@ -1371,7 +1371,7 @@
         "source_file": "security_keys.log",
         "label": "Key ONYX-3798 armed",
         "timestamp": "23:26:10 UTC",
-        "description": "Key ONYX-3798 was armed by badge B-2196 50 seconds before the change and used at terminal T-9896 (this log's clock runs 39 s fast)."
+        "description": "\u2022 Key ONYX-3798 armed by badge B-2196\n\u2022 Armed 50 seconds before the change\n\u2022 Used at Transit Buffer TB-2"
       },
       {
         "id": "ev_incident",
@@ -1380,7 +1380,7 @@
         "source_file": "incident_report.txt",
         "label": "Origin traced to Transit Buffer TB-2",
         "timestamp": "23:27:10 UTC",
-        "description": "First abnormal reading (transit buffer overrun of 222 MB) traced to Transit Buffer TB-2 and Change #4915."
+        "description": "\u2022 First abnormal reading: transit buffer overrun of 222 MB\n\u2022 Traced to Transit Buffer TB-2\n\u2022 Matches Change #4915"
       }
     ],
     "culprit_candidate_id": "alpha",
@@ -1440,7 +1440,7 @@
         "source_file": "system_changes.log",
         "label": "Change #3225",
         "timestamp": "20:18:44 UTC",
-        "description": "Core configuration rewrite at Terminal Node Zeta-9 (terminal T-3432) was made with badge B-4312."
+        "description": "\u2022 What: Core configuration rewrite\n\u2022 Where: Terminal Node Zeta-9\n\u2022 Badge: B-4312"
       },
       {
         "id": "ev_logins",
@@ -1448,8 +1448,8 @@
         "category_code": "LOGIN_RECORDS",
         "source_file": "login_records.log",
         "label": "Login records (gap)",
-        "timestamp": "20:18:29 UTC",
-        "description": "Badge registry: B-2763 = Project Alpha; B-4312 = Project Beta; B-6468 = Project Gamma. FULL CONTROL logins: 20:10:41 badge B-2763 at Terminal Node Zeta-9; 20:17:36 badge B-2763 at Terminal Node Omega-1; 20:19:30 badge B-6468 at Terminal Node Zeta-9. Refused: 20:16:45 badge B-6468 at Terminal Node Zeta-9. Records between 20:18:29 and 20:18:52 were lost (log buffer overflow)."
+        "timestamp": "20:18:26 UTC",
+        "description": "\u2022 Badge registry (who owns which badge):\n   - B-2763 = Project Alpha\n   - B-4312 = Project Beta\n   - B-6468 = Project Gamma\n\u2022 FULL CONTROL logins:\n   - 19:16:44: badge B-6468 at Diagnostics Bay DB-5\n   - 20:17:50: badge B-2763 at Terminal Node Omega-1\n\u2022 Refused logins:\n   - 20:16:38: badge B-6468 at Terminal Node Zeta-9\n\u2022 Records lost between 20:18:26 and 20:18:52"
       },
       {
         "id": "ev_keys",
@@ -1458,7 +1458,7 @@
         "source_file": "security_keys.log",
         "label": "Key PULSAR-8339 armed",
         "timestamp": "20:18:04 UTC",
-        "description": "Key PULSAR-8339 was armed by badge B-4312 40 seconds before the change and used at terminal T-3432 (this log's clock runs 43 s fast)."
+        "description": "\u2022 Key PULSAR-8339 armed by badge B-4312\n\u2022 Armed 40 seconds before the change\n\u2022 Used at Terminal Node Zeta-9"
       },
       {
         "id": "ev_incident",
@@ -1467,7 +1467,7 @@
         "source_file": "incident_report.txt",
         "label": "Origin traced to Terminal Node Zeta-9",
         "timestamp": "20:19:02 UTC",
-        "description": "First abnormal reading (time-flux surge of 5958%) traced to Terminal Node Zeta-9 and Change #3225."
+        "description": "\u2022 First abnormal reading: time-flux surge of 5958%\n\u2022 Traced to Terminal Node Zeta-9\n\u2022 Matches Change #3225"
       }
     ],
     "culprit_candidate_id": "beta",
@@ -1527,7 +1527,7 @@
         "source_file": "system_changes.log",
         "label": "Change #6093",
         "timestamp": "19:23:39 UTC",
-        "description": "Forced disconnect of the time bridge at Console SEC-05 (terminal T-4648) was made with badge B-1200."
+        "description": "\u2022 What: Forced disconnect of the time bridge\n\u2022 Where: Console SEC-05\n\u2022 Badge: B-1200"
       },
       {
         "id": "ev_logins",
@@ -1535,8 +1535,8 @@
         "category_code": "LOGIN_RECORDS",
         "source_file": "login_records.log",
         "label": "Login records (gap)",
-        "timestamp": "19:23:20 UTC",
-        "description": "Badge registry: B-8626 = Project Alpha; B-5748 = Project Beta; B-1200 = Project Gamma. FULL CONTROL logins: 19:14:55 badge B-5748 at Console SEC-05; 19:22:58 badge B-5748 at Console SEC-19; 19:24:16 badge B-8626 at Console SEC-05. Refused: 19:21:58 badge B-8626 at Console SEC-05. Records between 19:23:20 and 19:23:48 were lost (log buffer overflow)."
+        "timestamp": "19:23:21 UTC",
+        "description": "\u2022 Badge registry (who owns which badge):\n   - B-8626 = Project Alpha\n   - B-5748 = Project Beta\n   - B-1200 = Project Gamma\n\u2022 FULL CONTROL logins:\n   - 18:21:39: badge B-8626 at Operator Desk OD-6\n   - 19:22:43: badge B-5748 at Console SEC-19\n\u2022 Refused logins:\n   - 19:22:08: badge B-8626 at Console SEC-05\n\u2022 Records lost between 19:23:21 and 19:23:47"
       },
       {
         "id": "ev_keys",
@@ -1545,7 +1545,7 @@
         "source_file": "security_keys.log",
         "label": "Key NOVA-8434 armed",
         "timestamp": "19:23:05 UTC",
-        "description": "Key NOVA-8434 was armed by badge B-1200 34 seconds before the change and used at terminal T-4648 (this log's clock runs 27 s fast)."
+        "description": "\u2022 Key NOVA-8434 armed by badge B-1200\n\u2022 Armed 34 seconds before the change\n\u2022 Used at Console SEC-05"
       },
       {
         "id": "ev_incident",
@@ -1554,7 +1554,7 @@
         "source_file": "incident_report.txt",
         "label": "Origin traced to Console SEC-05",
         "timestamp": "19:23:53 UTC",
-        "description": "First abnormal reading (40 transit buffers lost) traced to Console SEC-05 and Change #6093."
+        "description": "\u2022 First abnormal reading: 40 transit buffers lost\n\u2022 Traced to Console SEC-05\n\u2022 Matches Change #6093"
       }
     ],
     "culprit_candidate_id": "gamma",
@@ -1614,7 +1614,7 @@
         "source_file": "system_changes.log",
         "label": "Change #7212",
         "timestamp": "23:23:24 UTC",
-        "description": "Frequency modification script at Frequency Station CH-1 (terminal T-9336) was made with badge B-6312."
+        "description": "\u2022 What: Frequency modification script\n\u2022 Where: Frequency Station CH-1\n\u2022 Badge: B-6312"
       },
       {
         "id": "ev_logins",
@@ -1622,8 +1622,8 @@
         "category_code": "LOGIN_RECORDS",
         "source_file": "login_records.log",
         "label": "Login records and badge registry",
-        "timestamp": "23:15:04 UTC",
-        "description": "Badge registry: B-6312 = Project Alpha; B-7521 = Project Beta; B-9092 = Project Gamma. FULL CONTROL logins: 23:15:04 badge B-7521 at Frequency Station CH-1; 23:22:21 badge B-7521 at Frequency Station CH-8; 23:23:16 badge B-6312 at Frequency Station CH-1; 23:24:00 badge B-9092 at Frequency Station CH-1. Refused: 23:21:37 badge B-9092 at Frequency Station CH-1."
+        "timestamp": "23:22:32 UTC",
+        "description": "\u2022 Badge registry (who owns which badge):\n   - B-6312 = Project Alpha\n   - B-7521 = Project Beta\n   - B-9092 = Project Gamma\n\u2022 FULL CONTROL logins:\n   - 23:22:32: badge B-7521 at Frequency Station CH-8\n   - 23:23:16: badge B-6312 at Frequency Station CH-1\n\u2022 Refused logins:\n   - 23:21:10: badge B-9092 at Frequency Station CH-1"
       },
       {
         "id": "ev_keys",
@@ -1632,7 +1632,7 @@
         "source_file": "security_keys.log",
         "label": "Key VEGA-1657 (standing authorization)",
         "timestamp": "23:21:54 UTC",
-        "description": "Key VEGA-1657 was used under a standing maintenance authorization; no badge armed it (this log's clock runs 22 s fast)."
+        "description": "\u2022 Key VEGA-1657 was used under a standing maintenance authorization\n\u2022 No badge armed it"
       },
       {
         "id": "ev_incident",
@@ -1641,7 +1641,7 @@
         "source_file": "incident_report.txt",
         "label": "Origin traced to Frequency Station CH-1",
         "timestamp": "23:23:34 UTC",
-        "description": "First abnormal reading (boundary rupture at +335 MHz) traced to Frequency Station CH-1 and Change #7212."
+        "description": "\u2022 First abnormal reading: boundary rupture at +335 MHz\n\u2022 Traced to Frequency Station CH-1\n\u2022 Matches Change #7212"
       }
     ],
     "culprit_candidate_id": "alpha",
@@ -1701,7 +1701,7 @@
         "source_file": "system_changes.log",
         "label": "Change #4120",
         "timestamp": "21:32:37 UTC",
-        "description": "Bulk deletion of timeline anchor records at Archive Vault AV-2 (terminal T-3721) was made with badge B-4022."
+        "description": "\u2022 What: Bulk deletion of timeline anchor records\n\u2022 Where: Archive Vault AV-2\n\u2022 Badge: B-4022"
       },
       {
         "id": "ev_logins",
@@ -1709,8 +1709,8 @@
         "category_code": "LOGIN_RECORDS",
         "source_file": "login_records.log",
         "label": "Login records and badge registry",
-        "timestamp": "21:24:02 UTC",
-        "description": "Badge registry: B-6145 = Project Alpha; B-4022 = Project Beta; B-6889 = Project Gamma. FULL CONTROL logins: 21:24:02 badge B-6889 at Archive Vault AV-2; 21:31:45 badge B-6889 at Archive Vault AV-1; 21:32:18 badge B-4022 at Archive Vault AV-2; 21:33:31 badge B-6145 at Archive Vault AV-2. Refused: 21:30:54 badge B-6145 at Archive Vault AV-2."
+        "timestamp": "21:31:47 UTC",
+        "description": "\u2022 Badge registry (who owns which badge):\n   - B-6145 = Project Alpha\n   - B-4022 = Project Beta\n   - B-6889 = Project Gamma\n\u2022 FULL CONTROL logins:\n   - 21:31:47: badge B-6889 at Archive Vault AV-1\n   - 21:32:18: badge B-4022 at Archive Vault AV-2\n\u2022 Refused logins:\n   - 21:30:38: badge B-6145 at Archive Vault AV-2"
       },
       {
         "id": "ev_keys",
@@ -1719,7 +1719,7 @@
         "source_file": "security_keys.log",
         "label": "Key ONYX-4348 (standing authorization)",
         "timestamp": "21:31:07 UTC",
-        "description": "Key ONYX-4348 was used under a standing maintenance authorization; no badge armed it (this log's clock runs 40 s fast)."
+        "description": "\u2022 Key ONYX-4348 was used under a standing maintenance authorization\n\u2022 No badge armed it"
       },
       {
         "id": "ev_incident",
@@ -1728,7 +1728,7 @@
         "source_file": "incident_report.txt",
         "label": "Origin traced to Archive Vault AV-2",
         "timestamp": "21:32:44 UTC",
-        "description": "First abnormal reading (151 anchor records missing from the index) traced to Archive Vault AV-2 and Change #4120."
+        "description": "\u2022 First abnormal reading: 151 anchor records missing from the index\n\u2022 Traced to Archive Vault AV-2\n\u2022 Matches Change #4120"
       }
     ],
     "culprit_candidate_id": "beta",
@@ -1788,7 +1788,7 @@
         "source_file": "system_changes.log",
         "label": "Change #6529",
         "timestamp": "23:11:10 UTC",
-        "description": "Manual change of the anchor offsets at Anchor Relay AR-5 (terminal T-1899) was made with badge B-2334."
+        "description": "\u2022 What: Manual change of the anchor offsets\n\u2022 Where: Anchor Relay AR-5\n\u2022 Badge: B-2334"
       },
       {
         "id": "ev_logins",
@@ -1796,8 +1796,8 @@
         "category_code": "LOGIN_RECORDS",
         "source_file": "login_records.log",
         "label": "Login records and badge registry",
-        "timestamp": "23:04:31 UTC",
-        "description": "Badge registry: B-2892 = Project Alpha; B-3120 = Project Beta; B-2334 = Project Gamma. FULL CONTROL logins: 23:04:31 badge B-2892 at Anchor Relay AR-5; 23:10:07 badge B-2892 at Anchor Relay AR-5B; 23:10:54 badge B-2334 at Anchor Relay AR-5; 23:11:50 badge B-3120 at Anchor Relay AR-5. Refused: 23:08:57 badge B-3120 at Anchor Relay AR-5."
+        "timestamp": "23:10:16 UTC",
+        "description": "\u2022 Badge registry (who owns which badge):\n   - B-2892 = Project Alpha\n   - B-3120 = Project Beta\n   - B-2334 = Project Gamma\n\u2022 FULL CONTROL logins:\n   - 23:10:16: badge B-2892 at Anchor Relay AR-5B\n   - 23:10:54: badge B-2334 at Anchor Relay AR-5\n\u2022 Refused logins:\n   - 23:09:27: badge B-3120 at Anchor Relay AR-5"
       },
       {
         "id": "ev_keys",
@@ -1806,7 +1806,7 @@
         "source_file": "security_keys.log",
         "label": "Key ATLAS-6068 (standing authorization)",
         "timestamp": "23:09:40 UTC",
-        "description": "Key ATLAS-6068 was used under a standing maintenance authorization; no badge armed it (this log's clock runs 42 s fast)."
+        "description": "\u2022 Key ATLAS-6068 was used under a standing maintenance authorization\n\u2022 No badge armed it"
       },
       {
         "id": "ev_incident",
@@ -1815,7 +1815,7 @@
         "source_file": "incident_report.txt",
         "label": "Origin traced to Anchor Relay AR-5",
         "timestamp": "23:11:19 UTC",
-        "description": "First abnormal reading (anchor drift of 211 ms along the relay chain) traced to Anchor Relay AR-5 and Change #6529."
+        "description": "\u2022 First abnormal reading: anchor drift of 211 ms along the relay chain\n\u2022 Traced to Anchor Relay AR-5\n\u2022 Matches Change #6529"
       }
     ],
     "culprit_candidate_id": "gamma",
@@ -1875,7 +1875,7 @@
         "source_file": "system_changes.log",
         "label": "Change #7142",
         "timestamp": "22:16:09 UTC",
-        "description": "Bypass of the paradox filter at Filter Array PF-5 (terminal T-8188) was made with badge B-4120."
+        "description": "\u2022 What: Bypass of the paradox filter\n\u2022 Where: Filter Array PF-5\n\u2022 Badge: B-4120"
       },
       {
         "id": "ev_logins",
@@ -1883,8 +1883,8 @@
         "category_code": "LOGIN_RECORDS",
         "source_file": "login_records.log",
         "label": "Login records and badge registry",
-        "timestamp": "22:08:55 UTC",
-        "description": "Badge registry: B-4120 = Project Alpha; B-5441 = Project Beta; B-7094 = Project Gamma. FULL CONTROL logins: 22:08:55 badge B-7094 at Filter Array PF-5; 22:15:21 badge B-7094 at Filter Array PF-9; 22:15:57 badge B-4120 at Filter Array PF-5; 22:17:07 badge B-5441 at Filter Array PF-5. Refused: 22:14:35 badge B-5441 at Filter Array PF-5."
+        "timestamp": "22:15:13 UTC",
+        "description": "\u2022 Badge registry (who owns which badge):\n   - B-4120 = Project Alpha\n   - B-5441 = Project Beta\n   - B-7094 = Project Gamma\n\u2022 FULL CONTROL logins:\n   - 22:15:13: badge B-7094 at Filter Array PF-9\n   - 22:15:57: badge B-4120 at Filter Array PF-5\n\u2022 Refused logins:\n   - 22:14:41: badge B-5441 at Filter Array PF-5"
       },
       {
         "id": "ev_keys",
@@ -1893,7 +1893,7 @@
         "source_file": "security_keys.log",
         "label": "Key ZENITH-7292 armed",
         "timestamp": "22:15:36 UTC",
-        "description": "Key ZENITH-7292 was armed by badge B-4120 33 seconds before the change and used at terminal T-8188 (this log's clock runs 21 s fast)."
+        "description": "\u2022 Key ZENITH-7292 armed by badge B-4120\n\u2022 Armed 33 seconds before the change\n\u2022 Used at Filter Array PF-5"
       },
       {
         "id": "ev_incident",
@@ -1902,7 +1902,7 @@
         "source_file": "incident_report.txt",
         "label": "Origin not narrowed down",
         "timestamp": "22:16:16 UTC",
-        "description": "First abnormal reading (84 unresolved cause-and-effect loops detected); the source could not be narrowed beyond Filter Array PF-5 and Filter Array PF-9."
+        "description": "\u2022 First abnormal reading: 84 unresolved cause-and-effect loops detected\n\u2022 Source unclear: Filter Array PF-5 or Filter Array PF-9"
       }
     ],
     "culprit_candidate_id": "alpha",
@@ -1962,7 +1962,7 @@
         "source_file": "system_changes.log",
         "label": "Change #4274",
         "timestamp": "21:22:22 UTC",
-        "description": "Shutdown of the cross-timeline sync controller at Sync Controller SG-2 (terminal T-3069) was made with badge B-8735."
+        "description": "\u2022 What: Shutdown of the cross-timeline sync controller\n\u2022 Where: Sync Controller SG-2\n\u2022 Badge: B-8735"
       },
       {
         "id": "ev_logins",
@@ -1970,8 +1970,8 @@
         "category_code": "LOGIN_RECORDS",
         "source_file": "login_records.log",
         "label": "Login records and badge registry",
-        "timestamp": "21:15:26 UTC",
-        "description": "Badge registry: B-6973 = Project Alpha; B-8735 = Project Beta; B-2090 = Project Gamma. FULL CONTROL logins: 21:15:26 badge B-6973 at Sync Controller SG-2; 21:21:23 badge B-6973 at Sync Controller SG-5; 21:22:05 badge B-8735 at Sync Controller SG-2; 21:23:00 badge B-2090 at Sync Controller SG-2. Refused: 21:20:27 badge B-2090 at Sync Controller SG-2."
+        "timestamp": "21:21:20 UTC",
+        "description": "\u2022 Badge registry (who owns which badge):\n   - B-6973 = Project Alpha\n   - B-8735 = Project Beta\n   - B-2090 = Project Gamma\n\u2022 FULL CONTROL logins:\n   - 21:21:20: badge B-6973 at Sync Controller SG-5\n   - 21:22:05: badge B-8735 at Sync Controller SG-2\n\u2022 Refused logins:\n   - 21:20:27: badge B-2090 at Sync Controller SG-2"
       },
       {
         "id": "ev_keys",
@@ -1980,7 +1980,7 @@
         "source_file": "security_keys.log",
         "label": "Key NOVA-1841 armed",
         "timestamp": "21:21:42 UTC",
-        "description": "Key NOVA-1841 was armed by badge B-8735 40 seconds before the change and used at terminal T-3069 (this log's clock runs 38 s fast)."
+        "description": "\u2022 Key NOVA-1841 armed by badge B-8735\n\u2022 Armed 40 seconds before the change\n\u2022 Used at Sync Controller SG-2"
       },
       {
         "id": "ev_incident",
@@ -1989,7 +1989,7 @@
         "source_file": "incident_report.txt",
         "label": "Origin not narrowed down",
         "timestamp": "21:22:31 UTC",
-        "description": "First abnormal reading (10 timeline channels out of sync); the source could not be narrowed beyond Sync Controller SG-2 and Sync Controller SG-5."
+        "description": "\u2022 First abnormal reading: 10 timeline channels out of sync\n\u2022 Source unclear: Sync Controller SG-2 or Sync Controller SG-5"
       }
     ],
     "culprit_candidate_id": "beta",
@@ -2049,7 +2049,7 @@
         "source_file": "system_changes.log",
         "label": "Change #5781",
         "timestamp": "18:45:11 UTC",
-        "description": "Forced flush of the transit buffer at Transit Buffer TB-1 (terminal T-8834) was made with badge B-3792."
+        "description": "\u2022 What: Forced flush of the transit buffer\n\u2022 Where: Transit Buffer TB-1\n\u2022 Badge: B-3792"
       },
       {
         "id": "ev_logins",
@@ -2057,8 +2057,8 @@
         "category_code": "LOGIN_RECORDS",
         "source_file": "login_records.log",
         "label": "Login records and badge registry",
-        "timestamp": "18:36:21 UTC",
-        "description": "Badge registry: B-5376 = Project Alpha; B-7343 = Project Beta; B-3792 = Project Gamma. FULL CONTROL logins: 18:36:21 badge B-7343 at Transit Buffer TB-1; 18:44:11 badge B-7343 at Transit Buffer TB-7; 18:44:59 badge B-3792 at Transit Buffer TB-1; 18:45:52 badge B-5376 at Transit Buffer TB-1. Refused: 18:43:22 badge B-5376 at Transit Buffer TB-1."
+        "timestamp": "18:44:28 UTC",
+        "description": "\u2022 Badge registry (who owns which badge):\n   - B-5376 = Project Alpha\n   - B-7343 = Project Beta\n   - B-3792 = Project Gamma\n\u2022 FULL CONTROL logins:\n   - 18:44:28: badge B-7343 at Transit Buffer TB-7\n   - 18:44:59: badge B-3792 at Transit Buffer TB-1\n\u2022 Refused logins:\n   - 18:43:33: badge B-5376 at Transit Buffer TB-1"
       },
       {
         "id": "ev_keys",
@@ -2067,7 +2067,7 @@
         "source_file": "security_keys.log",
         "label": "Key ONYX-4108 armed",
         "timestamp": "18:44:37 UTC",
-        "description": "Key ONYX-4108 was armed by badge B-3792 34 seconds before the change and used at terminal T-8834 (this log's clock runs 40 s fast)."
+        "description": "\u2022 Key ONYX-4108 armed by badge B-3792\n\u2022 Armed 34 seconds before the change\n\u2022 Used at Transit Buffer TB-1"
       },
       {
         "id": "ev_incident",
@@ -2076,7 +2076,7 @@
         "source_file": "incident_report.txt",
         "label": "Origin not narrowed down",
         "timestamp": "18:45:31 UTC",
-        "description": "First abnormal reading (transit buffer overrun of 328 MB); the source could not be narrowed beyond Transit Buffer TB-1 and Transit Buffer TB-7."
+        "description": "\u2022 First abnormal reading: transit buffer overrun of 328 MB\n\u2022 Source unclear: Transit Buffer TB-1 or Transit Buffer TB-7"
       }
     ],
     "culprit_candidate_id": "gamma",

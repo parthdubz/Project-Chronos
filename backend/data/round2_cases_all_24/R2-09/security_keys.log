@@ -1,20 +1,17 @@
 SECURITY KEY LOG
-Case R2-09 | Covers 21:14:23 to 23:29:23 (master clock)
+Case R2-09 | Covers 21:14:23 to 23:29:23
 
-CLOCK NOTE: this log's clock runs 47 seconds FAST. Subtract 47 s from every time in this file before comparing it with the other files.
-
-How keys work: a security key has to be armed by a badge before it can be used, and an armed key
-stays valid for the time shown. A standing authorization is a general permission and is not tied
-to one badge. Badges are explained in login_records.log (BADGE REGISTRY); terminals are written as
-codes (see its TERMINAL LIST).
+What this is: a security key must be ARMED by a badge before it can be USED.
+- An armed key stays valid for the time shown.
+- A STANDING AUTHORIZATION is a general permission: it is not tied to one badge.
+- Badges are explained in login_records.log (BADGE REGISTRY).
 
 KEY EVENTS
-21:54:10 | Key NOVA-1847 | ARMED by badge B-9135 | valid 120 s | purpose: maintenance window
-21:55:45 | Key NOVA-1847 | DISARMED after use
-23:11:40 | Key NOVA-8075 | ARMED by badge B-7050 | valid 120 s | never used
-23:13:40 | Key NOVA-8075 | EXPIRED unused
-23:13:40 | Key ORION-5533 | STANDING AUTHORIZATION | maintenance window MW-19 | not tied to any one badge
-23:15:10 | Key ORION-5533 | USED at terminal T-3718 | Change #4477
-23:16:03 | Key HOLD-3513 | ARMED by badge B-7050 | valid 120 s
+21:53:23 | Key NOVA-1847 | ARMED by badge B-9135 | valid 120 s | purpose: maintenance window
+21:54:58 | Key NOVA-1847 | DISARMED after use
+23:10:53 | Key NOVA-8075 | ARMED by badge B-7050 | valid 120 s | never used
+23:12:53 | Key NOVA-8075 | EXPIRED unused
+23:12:53 | Key ORION-5533 | STANDING AUTHORIZATION | maintenance window MW-19 | not tied to any one badge
+23:14:23 | Key ORION-5533 | USED at Terminal Node Delta-1 | Change #4477
 
 END OF LOG

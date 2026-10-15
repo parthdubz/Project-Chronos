@@ -1,20 +1,17 @@
 SECURITY KEY LOG
-Case R2-06 | Covers 17:49:12 to 19:58:12 (master clock)
+Case R2-06 | Covers 17:49:12 to 19:58:12
 
-CLOCK NOTE: this log's clock runs 24 seconds FAST. Subtract 24 s from every time in this file before comparing it with the other files.
-
-How keys work: a security key has to be armed by a badge before it can be used, and an armed key
-stays valid for the time shown. A standing authorization is a general permission and is not tied
-to one badge. Badges are explained in login_records.log (BADGE REGISTRY); terminals are written as
-codes (see its TERMINAL LIST).
+What this is: a security key must be ARMED by a badge before it can be USED.
+- An armed key stays valid for the time shown.
+- A STANDING AUTHORIZATION is a general permission: it is not tied to one badge.
+- Badges are explained in login_records.log (BADGE REGISTRY).
 
 KEY EVENTS
-18:17:36 | Key PULSAR-5986 | ARMED by badge B-1651 | valid 120 s | purpose: maintenance window
-18:19:11 | Key PULSAR-5986 | DISARMED after use
-19:45:46 | Key ONYX-7632 | ARMED by badge B-5445 | valid 120 s | never used
-19:47:46 | Key ONYX-7632 | EXPIRED unused
-19:48:50 | Key NOVA-4240 | ARMED by badge B-6293 | valid 120 s
-19:49:36 | Key NOVA-4240 | USED at terminal T-7693 | Change #5964
-19:50:22 | Key HOLD-3990 | ARMED by badge B-5445 | valid 120 s
+18:17:12 | Key PULSAR-5986 | ARMED by badge B-1651 | valid 120 s | purpose: maintenance window
+18:18:47 | Key PULSAR-5986 | DISARMED after use
+19:45:22 | Key ONYX-7632 | ARMED by badge B-5445 | valid 120 s | never used
+19:47:22 | Key ONYX-7632 | EXPIRED unused
+19:48:26 | Key NOVA-4240 | ARMED by badge B-6293 | valid 120 s
+19:49:12 | Key NOVA-4240 | USED at Filter Array PF-3 | Change #5964
 
 END OF LOG

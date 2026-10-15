@@ -1,20 +1,17 @@
 SECURITY KEY LOG
-Case R2-20 | Covers 19:32:37 to 21:43:37 (master clock)
+Case R2-20 | Covers 19:32:37 to 21:43:37
 
-CLOCK NOTE: this log's clock runs 40 seconds FAST. Subtract 40 s from every time in this file before comparing it with the other files.
-
-How keys work: a security key has to be armed by a badge before it can be used, and an armed key
-stays valid for the time shown. A standing authorization is a general permission and is not tied
-to one badge. Badges are explained in login_records.log (BADGE REGISTRY); terminals are written as
-codes (see its TERMINAL LIST).
+What this is: a security key must be ARMED by a badge before it can be USED.
+- An armed key stays valid for the time shown.
+- A STANDING AUTHORIZATION is a general permission: it is not tied to one badge.
+- Badges are explained in login_records.log (BADGE REGISTRY).
 
 KEY EVENTS
-20:20:17 | Key NOVA-1284 | ARMED by badge B-6889 | valid 120 s | purpose: maintenance window
-20:21:52 | Key NOVA-1284 | DISARMED after use
-21:30:37 | Key QUASAR-3750 | ARMED by badge B-6145 | valid 120 s | never used
-21:31:47 | Key ONYX-4348 | STANDING AUTHORIZATION | maintenance window MW-30 | not tied to any one badge
-21:32:37 | Key QUASAR-3750 | EXPIRED unused
-21:33:17 | Key ONYX-4348 | USED at terminal T-3721 | Change #4120
-21:34:16 | Key HOLD-5935 | ARMED by badge B-6145 | valid 120 s
+20:19:37 | Key NOVA-1284 | ARMED by badge B-6889 | valid 120 s | purpose: maintenance window
+20:21:12 | Key NOVA-1284 | DISARMED after use
+21:29:57 | Key QUASAR-3750 | ARMED by badge B-6145 | valid 120 s | never used
+21:31:07 | Key ONYX-4348 | STANDING AUTHORIZATION | maintenance window MW-30 | not tied to any one badge
+21:31:57 | Key QUASAR-3750 | EXPIRED unused
+21:32:37 | Key ONYX-4348 | USED at Archive Vault AV-2 | Change #4120
 
 END OF LOG

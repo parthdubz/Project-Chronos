@@ -8,7 +8,6 @@ TIMELINE OF EVENTS
 23:05:17 | First abnormal reading: boundary rupture at +535 MHz
 23:05:31 | Monitoring reports a sustained inconsistency
 23:05:59 | Automatic recovery fails to restore normal readings
-23:07:38 | Results across timelines leave the normal range
 
 WHERE IT STARTED
 The first abnormal reading came from Frequency Station CH-5.
@@ -16,7 +15,6 @@ It lines up with Change #2083 made at 23:05:11 (frequency modification script).
 No other change in this period touched the sync frequency.
 
 OTHER NOTES
-A mitigation hold was applied at Frequency Station CH-5 at 23:06:04; it did not restore normal readings.
 Readings before the incident were in their normal range.
 Operators on shift reported no scheduled maintenance for this system.
 

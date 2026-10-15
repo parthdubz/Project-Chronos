@@ -1,42 +1,25 @@
 SYSTEM CHANGE LOG
 Case R2-02 | Covers 19:56:28 to 22:08:28
 
-What this is: every time someone changed a system setting, it was written down here.
-- Terminals are written as codes such as T-1234. login_records.log has the TERMINAL LIST that says
-  which terminal each code is.
-- Badge is the ID badge number of whoever made the change. This file does not say which project a
-  badge belongs to: login_records.log has the BADGE REGISTRY.
+What this is: every change to a system setting is written down here.
+- Badge = the ID badge number of whoever made the change.
+- This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
-20:38:28 | Change #4018 | Terminal T-6477
+CHANGES
+20:38:28 | Change #4018 | At: Operator Desk OD-2
   Setting: health check interval (seconds) (30 -> 15)
   Result: APPLIED | Badge: B-5306
 
-20:50:28 | Change #5411 | Terminal T-6477
+20:50:28 | Change #5411 | At: Operator Desk OD-2
   Setting: queue size limit (512 -> 1024)
   Result: APPLIED | Badge: B-5306
 
-21:00:28 | Change #8045 | Terminal T-6477
+21:52:27 | Change #8045 | At: Console SEC-11
   Setting: queue size limit (512 -> 1024)
   Result: APPLIED | Badge: B-8259
 
-21:13:28 | Change #6090 | Terminal T-2987
-  Setting: log detail level (NORMAL -> DETAILED)
-  Result: UNDONE | Badge: B-5306
-
-21:47:54 | Change #9697 | Terminal T-4311
-  Setting: retry rule (STANDARD -> LIMITED)
-  Result: APPLIED | Badge: B-8259
-
-21:52:21 | Change #3957 | Terminal T-2987
-  Setting: heartbeat timeout (seconds) (5 -> 8)
-  Result: APPLIED | Badge: B-8259
-
-21:56:28 | Change #4334 | Terminal T-4311
+21:56:28 | Change #4334 | At: Console SEC-01
   Setting: time bridge link (CONNECTED -> FORCED OFF)
   Result: APPLIED | Badge: not recorded (run by a scheduled task)
-
-21:57:30 | Change #2002 | Terminal T-4311
-  Setting: mitigation hold (NONE -> HOLD)
-  Result: APPLIED | Badge: B-5306
 
 END OF LOG

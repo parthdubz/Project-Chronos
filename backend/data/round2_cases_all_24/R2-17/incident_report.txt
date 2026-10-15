@@ -8,7 +8,6 @@ TIMELINE OF EVENTS
 20:19:02 | First abnormal reading: time-flux surge of 5958%
 20:19:16 | Monitoring reports a sustained inconsistency
 20:20:12 | Automatic recovery fails to restore normal readings
-20:20:56 | Results across timelines leave the normal range
 
 WHERE IT STARTED
 The first abnormal reading came from Terminal Node Zeta-9.
@@ -16,7 +15,6 @@ It lines up with Change #3225 made at 20:18:44 (core configuration rewrite).
 No other change in this period touched the safety limiter policy.
 
 OTHER NOTES
-A mitigation hold was applied at Terminal Node Zeta-9 at 20:19:43; it did not restore normal readings.
 Readings before the incident were in their normal range.
 Operators on shift reported no scheduled maintenance for this system.
 

@@ -1,42 +1,25 @@
 SYSTEM CHANGE LOG
 Case R2-18 | Covers 17:23:39 to 19:38:39
 
-What this is: every time someone changed a system setting, it was written down here.
-- Terminals are written as codes such as T-1234. login_records.log has the TERMINAL LIST that says
-  which terminal each code is.
-- Badge is the ID badge number of whoever made the change. This file does not say which project a
-  badge belongs to: login_records.log has the BADGE REGISTRY.
+What this is: every change to a system setting is written down here.
+- Badge = the ID badge number of whoever made the change.
+- This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
-18:02:39 | Change #2489 | Terminal T-8618
+CHANGES
+18:02:39 | Change #2489 | At: Maintenance Console MC-4
   Setting: log detail level (NORMAL -> DETAILED)
   Result: APPLIED | Badge: B-5748
 
-18:18:39 | Change #6057 | Terminal T-9602
+18:18:39 | Change #6057 | At: Diagnostics Bay DB-6
   Setting: heartbeat timeout (seconds) (5 -> 8)
   Result: APPLIED | Badge: B-5748
 
-18:28:39 | Change #8574 | Terminal T-6100
+19:18:08 | Change #6004 | At: Console SEC-19
   Setting: health check interval (seconds) (30 -> 15)
   Result: APPLIED | Badge: B-5748
 
-18:40:39 | Change #5236 | Terminal T-6569
-  Setting: archive cleanup schedule (NIGHTLY -> WEEKLY)
-  Result: UNDONE | Badge: B-8626
-
-19:15:10 | Change #3753 | Terminal T-4648
-  Setting: cache lifetime (seconds) (300 -> 600)
-  Result: APPLIED | Badge: B-5748
-
-19:17:16 | Change #8391 | Terminal T-6569
-  Setting: queue size limit (512 -> 1024)
-  Result: APPLIED | Badge: B-5748
-
-19:23:39 | Change #6093 | Terminal T-4648
+19:23:39 | Change #6093 | At: Console SEC-05
   Setting: time bridge link (CONNECTED -> FORCED OFF)
   Result: APPLIED | Badge: B-1200
-
-19:24:31 | Change #4709 | Terminal T-4648
-  Setting: mitigation hold (NONE -> HOLD)
-  Result: APPLIED | Badge: B-8626
 
 END OF LOG

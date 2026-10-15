@@ -1,20 +1,17 @@
 SECURITY KEY LOG
-Case R2-13 | Covers 18:02:54 to 20:13:54 (master clock)
+Case R2-13 | Covers 18:02:54 to 20:13:54
 
-CLOCK NOTE: this log's clock runs 46 seconds FAST. Subtract 46 s from every time in this file before comparing it with the other files.
-
-How keys work: a security key has to be armed by a badge before it can be used, and an armed key
-stays valid for the time shown. A standing authorization is a general permission and is not tied
-to one badge. Badges are explained in login_records.log (BADGE REGISTRY); terminals are written as
-codes (see its TERMINAL LIST).
+What this is: a security key must be ARMED by a badge before it can be USED.
+- An armed key stays valid for the time shown.
+- A STANDING AUTHORIZATION is a general permission: it is not tied to one badge.
+- Badges are explained in login_records.log (BADGE REGISTRY).
 
 KEY EVENTS
-18:40:40 | Key ZENITH-3659 | ARMED by badge B-3198 | valid 120 s | purpose: maintenance window
-18:42:15 | Key ZENITH-3659 | DISARMED after use
-20:00:25 | Key LYRA-5375 | ARMED by badge B-3584 | valid 120 s | never used
-20:02:25 | Key LYRA-5375 | EXPIRED unused
-20:02:44 | Key ATLAS-8808 | ARMED by badge B-6559 | valid 120 s
-20:03:40 | Key ATLAS-8808 | USED at terminal T-7151 | Change #4560
-20:04:33 | Key HOLD-1854 | ARMED by badge B-3584 | valid 120 s
+18:39:54 | Key ZENITH-3659 | ARMED by badge B-3198 | valid 120 s | purpose: maintenance window
+18:41:29 | Key ZENITH-3659 | DISARMED after use
+19:59:39 | Key LYRA-5375 | ARMED by badge B-3584 | valid 120 s | never used
+20:01:39 | Key LYRA-5375 | EXPIRED unused
+20:01:58 | Key ATLAS-8808 | ARMED by badge B-6559 | valid 120 s
+20:02:54 | Key ATLAS-8808 | USED at Anchor Relay AR-7 | Change #4560
 
 END OF LOG

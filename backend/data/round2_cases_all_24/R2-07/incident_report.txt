@@ -8,7 +8,6 @@ TIMELINE OF EVENTS
 18:26:53 | First abnormal reading: 3 timeline channels out of sync
 18:27:11 | Monitoring reports a sustained inconsistency
 18:27:40 | Automatic recovery fails to restore normal readings
-18:28:36 | Results across timelines leave the normal range
 
 WHERE IT STARTED
 The first abnormal reading came from Sync Controller SG-4.
@@ -16,7 +15,6 @@ It lines up with Change #2537 made at 18:26:46 (shutdown of the cross-timeline s
 No other change in this period touched the sync controller state.
 
 OTHER NOTES
-A mitigation hold was applied at Sync Controller SG-4 at 18:27:57; it did not restore normal readings.
 Readings before the incident were in their normal range.
 Operators on shift reported no scheduled maintenance for this system.
 

@@ -1,42 +1,25 @@
 SYSTEM CHANGE LOG
 Case R2-09 | Covers 21:14:23 to 23:29:23
 
-What this is: every time someone changed a system setting, it was written down here.
-- Terminals are written as codes such as T-1234. login_records.log has the TERMINAL LIST that says
-  which terminal each code is.
-- Badge is the ID badge number of whoever made the change. This file does not say which project a
-  badge belongs to: login_records.log has the BADGE REGISTRY.
+What this is: every change to a system setting is written down here.
+- Badge = the ID badge number of whoever made the change.
+- This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
-21:31:23 | Change #3905 | Terminal T-4676
+CHANGES
+21:31:23 | Change #3905 | At: Maintenance Console MC-4
   Setting: log detail level (NORMAL -> DETAILED)
   Result: APPLIED | Badge: B-2986
 
-21:48:23 | Change #1205 | Terminal T-2653
+21:48:23 | Change #1205 | At: Terminal Node Iota-5
   Setting: log detail level (NORMAL -> DETAILED)
   Result: APPLIED | Badge: B-7050
 
-21:57:23 | Change #9444 | Terminal T-2653
+23:09:51 | Change #5399 | At: Terminal Node Omega-1
   Setting: heartbeat timeout (seconds) (5 -> 8)
   Result: APPLIED | Badge: B-9135
 
-22:34:23 | Change #3577 | Terminal T-6289
-  Setting: snapshot keep-days (7 -> 14)
-  Result: UNDONE | Badge: B-7050
-
-23:08:22 | Change #8774 | Terminal T-3718
-  Setting: archive cleanup schedule (NIGHTLY -> WEEKLY)
-  Result: APPLIED | Badge: B-9135
-
-23:08:49 | Change #4675 | Terminal T-6289
-  Setting: queue size limit (512 -> 1024)
-  Result: APPLIED | Badge: B-9135
-
-23:14:23 | Change #4477 | Terminal T-3718
+23:14:23 | Change #4477 | At: Terminal Node Delta-1
   Setting: safety limiter policy (ENFORCED -> DISABLED)
   Result: APPLIED | Badge: B-2986
-
-23:15:22 | Change #9854 | Terminal T-3718
-  Setting: mitigation hold (NONE -> HOLD)
-  Result: APPLIED | Badge: B-7050
 
 END OF LOG

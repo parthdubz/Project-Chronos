@@ -116,6 +116,23 @@ export const api = {
     }, 'none');
   },
 
+  // --- Secure mode: public switch, and violation reports (fire-and-forget) ---
+  async getSecurityConfig() {
+    try {
+      const data = await apiRequest('/api/security/config', {}, 'none');
+      return Boolean(data?.secure_mode);
+    } catch {
+      return true; // cannot reach the server: stay strict
+    }
+  },
+
+  reportSecurityEvent(teamId, kind, detail = '') {
+    return apiRequest('/api/security/event', {
+      method: 'POST',
+      body: JSON.stringify({ team_id: teamId, kind, detail }),
+    }).catch(() => null);
+  },
+
   // --- Auth: GET /api/auth/session (validates a stored session after a page reload) ---
   async getSession(teamId) {
     try {
@@ -307,6 +324,27 @@ export const api = {
 
   getAdminLogs(limit = 100) {
     return apiRequest(`/api/admin/logs?limit=${encodeURIComponent(limit)}`, {}, 'admin');
+  },
+
+  getAdminKeyBlocker() {
+    return apiRequest('/api/admin/keyblocker', {}, 'admin');
+  },
+
+  setAdminKeyBlocker(locked) {
+    return apiRequest('/api/admin/keyblocker', {
+      method: 'POST',
+      body: JSON.stringify({ locked }),
+    }, 'admin');
+  },
+
+  getAdminTeamActivity() {
+    return apiRequest('/api/admin/team-activity', {}, 'admin');
+  },
+
+  getAdminTeamTimeline(teamId, limit = 500) {
+    return apiRequest(
+      `/api/admin/team-activity/${encodeURIComponent(teamId)}?limit=${encodeURIComponent(limit)}`, {}, 'admin',
+    );
   },
 
   // The CSV needs the Authorization header, so it is fetched and saved as a blob.

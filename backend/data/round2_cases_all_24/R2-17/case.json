@@ -31,5 +31,5 @@
     "security_keys.log",
     "incident_report.txt"
   ],
-  "intended_deduction": "Match the incident to its terminal (codes in the change and key logs, names elsewhere) and its time (correct the key log's fast clock), find the badge that made or armed that change, then look the badge up in the badge registry in login_records.log. Three files point at the responsible project; one does not, and no single file is enough on its own."
+  "intended_deduction": "Find the incident change (the key log shows which change a key was used for), note the badge that made or armed it, then look the badge up in the badge registry in login_records.log. Three files point at the responsible project; one does not, and no single file is enough on its own."
 }

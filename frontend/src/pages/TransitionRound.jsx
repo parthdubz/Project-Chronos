@@ -68,7 +68,7 @@ function Stepper({ stage }) {
           <li
             key={step.id}
             aria-current={state === 'active' ? 'step' : undefined}
-            className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md border text-[11px] sm:text-xs font-mono uppercase tracking-wider ${
+            className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md border text-[0.8125rem] sm:text-xs font-mono uppercase tracking-wider ${
               state === 'active'
                 ? 'border-cyan-400 bg-cyan-950/70 text-cyan-200 shadow-[0_0_14px_rgba(6,182,212,0.35)]'
                 : state === 'done'
@@ -88,7 +88,7 @@ function Stepper({ stage }) {
 function ClueCard({ teamName, clue }) {
   return (
     <article className="rounded-xl border border-cyan-900/60 bg-[#03060f]/90 p-4 sm:p-6 text-left space-y-3">
-      <header className="flex flex-wrap items-center justify-between gap-2 border-b border-cyan-950 pb-2.5 font-mono text-[11px] sm:text-xs uppercase tracking-widest">
+      <header className="flex flex-wrap items-center justify-between gap-2 border-b border-cyan-950 pb-2.5 font-mono text-[0.8125rem] sm:text-xs uppercase tracking-widest">
         <span className="text-cyan-300 font-bold text-sm">{teamName}</span>
         <span className="text-pink-300">Your clue</span>
       </header>
@@ -303,7 +303,7 @@ export default function TransitionRound({ teamId, teamName, onProceedToRound2, o
         >
           {stopwatch.display}
         </div>
-        <div className="font-mono text-[11px] uppercase tracking-widest text-slate-500">HH : MM : SS</div>
+        <div className="font-mono text-[0.8125rem] uppercase tracking-widest text-slate-500">HH : MM : SS</div>
       </div>
       {clue && <ClueCard teamName={callsign} clue={clue} />}
       <PhysicalNotice>
@@ -346,22 +346,29 @@ export default function TransitionRound({ teamId, teamName, onProceedToRound2, o
       </div>
       <form onSubmit={verifyPassword} className="space-y-4" noValidate>
         <label className="block space-y-1.5" htmlFor={`${uid}-password`}>
-          <span className="font-mono text-[11px] uppercase tracking-widest text-slate-400">Password</span>
+          <span className="font-mono text-[0.8125rem] uppercase tracking-widest text-slate-400">Password</span>
           <div className="relative">
             <input
               id={`${uid}-password`}
               type={showPassword ? 'text' : 'password'}
-              className={`${fieldCls} pr-11 text-center tracking-[0.25em] ${passwordError ? 'border-rose-500 focus:border-rose-400 focus:ring-rose-400' : ''}`}
+              className={`${fieldCls} pr-11 text-center tracking-[0.25em] uppercase ${passwordError ? 'border-rose-500 focus:border-rose-400 focus:ring-rose-400' : ''}`}
               value={password}
               autoComplete="off"
-              autoCapitalize="none"
+              autoCapitalize="characters"
               spellCheck={false}
               autoFocus
               aria-invalid={Boolean(passwordError)}
               aria-describedby={passwordError ? `${uid}-password-error` : undefined}
               onChange={(e) => {
-                setPassword(e.target.value);
+                // Letters are always capitals, digits stay as typed. The caret is put back so
+                // typing in the middle of the password does not jump to the end.
+                const input = e.target;
+                const caret = input.selectionStart;
+                setPassword(input.value.toUpperCase());
                 if (passwordError) setPasswordError('');
+                requestAnimationFrame(() => {
+                  try { input.setSelectionRange(caret, caret); } catch { /* password type: ignore */ }
+                });
               }}
             />
             <button
@@ -383,7 +390,7 @@ export default function TransitionRound({ teamId, teamName, onProceedToRound2, o
           )}
         </div>
         {attempts > 0 && passwordError && (
-          <p className="text-center font-mono text-[11px] uppercase tracking-widest text-slate-500">
+          <p className="text-center font-mono text-[0.8125rem] uppercase tracking-widest text-slate-500">
             Failed attempts: {attempts}
           </p>
         )}
@@ -413,7 +420,7 @@ export default function TransitionRound({ teamId, teamName, onProceedToRound2, o
       </div>
       {finalDisplay && (
       <div className="rounded-xl border border-emerald-900/70 bg-[#03060f]/90 p-4 inline-block min-w-[16rem]">
-        <div className="font-mono text-[11px] uppercase tracking-widest text-slate-400 flex items-center justify-center gap-1.5">
+        <div className="font-mono text-[0.8125rem] uppercase tracking-widest text-slate-400 flex items-center justify-center gap-1.5">
           <Clock className="w-3.5 h-3.5 text-emerald-400" /> Recorded duration
         </div>
         <div className="font-mono font-bold text-4xl sm:text-5xl text-emerald-200 tabular-nums tracking-widest mt-1">

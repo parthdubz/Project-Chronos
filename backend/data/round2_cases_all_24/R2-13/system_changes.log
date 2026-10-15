@@ -1,42 +1,25 @@
 SYSTEM CHANGE LOG
 Case R2-13 | Covers 18:02:54 to 20:13:54
 
-What this is: every time someone changed a system setting, it was written down here.
-- Terminals are written as codes such as T-1234. login_records.log has the TERMINAL LIST that says
-  which terminal each code is.
-- Badge is the ID badge number of whoever made the change. This file does not say which project a
-  badge belongs to: login_records.log has the BADGE REGISTRY.
+What this is: every change to a system setting is written down here.
+- Badge = the ID badge number of whoever made the change.
+- This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
-18:17:54 | Change #2496 | Terminal T-5044
+CHANGES
+18:17:54 | Change #2496 | At: Diagnostics Bay DB-2
   Setting: log detail level (NORMAL -> DETAILED)
   Result: APPLIED | Badge: B-6559
 
-18:28:54 | Change #4677 | Terminal T-1454
+18:28:54 | Change #4677 | At: Maintenance Console MC-4
   Setting: retry rule (STANDARD -> LIMITED)
   Result: APPLIED | Badge: B-3198
 
-18:41:54 | Change #5631 | Terminal T-3436
+19:58:56 | Change #4322 | At: Anchor Relay AR-5
   Setting: queue size limit (512 -> 1024)
-  Result: APPLIED | Badge: B-6559
-
-19:12:54 | Change #6254 | Terminal T-8248
-  Setting: heartbeat timeout (seconds) (5 -> 8)
-  Result: UNDONE | Badge: B-3584
-
-19:54:39 | Change #8253 | Terminal T-7151
-  Setting: health check interval (seconds) (30 -> 15)
   Result: APPLIED | Badge: B-3198
 
-20:00:10 | Change #3205 | Terminal T-8248
-  Setting: retry rule (STANDARD -> LIMITED)
-  Result: APPLIED | Badge: B-3198
-
-20:02:54 | Change #4560 | Terminal T-7151
+20:02:54 | Change #4560 | At: Anchor Relay AR-7
   Setting: anchor offset table (0 -> 370 ms)
   Result: APPLIED | Badge: not recorded (run by a scheduled task)
-
-20:03:53 | Change #6335 | Terminal T-7151
-  Setting: mitigation hold (NONE -> HOLD)
-  Result: APPLIED | Badge: B-3584
 
 END OF LOG

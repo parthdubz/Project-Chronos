@@ -280,6 +280,8 @@ def _call_gemini(key: str, model: str, system_prompt: str, history: list, user_m
 
 def _trim_to_sentence(text: str) -> str:
     """A reply cut by the token limit ends at its last complete sentence."""
+    if "\n- " in text or "\n• " in text or text.lstrip().startswith(("- ", "• ")):
+        return text  # a bullet list has no sentence ends to cut at
     cut = max(text.rfind(". "), text.rfind("! "), text.rfind("? "), text.rfind(".\n"))
     if text.endswith((".", "!", "?")):
         return text

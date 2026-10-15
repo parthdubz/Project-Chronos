@@ -77,16 +77,16 @@ function tick(){if(!soundOn||!BUF.keys)return;const s=AC.createBufferSource(),g=
 function audioTick(T,now){if(T<prevT){prevT=-1;lastTyped=0}
 EV.forEach(([at,k,v,,d])=>{if(prevT<at&&T>=at)play(k,v,0,d)});
 if(typed>lastTyped&&now-lastTick>55){tick();lastTick=now}lastTyped=typed;prevT=T}
-const LOOP=17.5;
+const LOOP=12.4,DONE_AT=12.1,SPEED=1.5; /* animation runs 1.5x faster: ~8 s instead of ~12 s */
 let start=performance.now();
 const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
 initAudio().then(()=>{soundOn=true;start=performance.now();prevT=-1}).catch(()=>{});
 
 function draw(now){
-const T=still?14:Math.min((now-start)/1000,LOOP), t=T;
+const T=still?14:Math.min((now-start)/1000*SPEED,LOOP), t=T;
 typed=0;ctx.setTransform(cv.width/W,0,0,cv.height/H,0,0);
 ctx.shadowBlur=0;ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);
-const fade=1-pr(t,16.8,.6);ctx.globalAlpha=1;
+const fade=1-pr(t,11.8,.35);ctx.globalAlpha=1;
 ctx.save();ctx.globalAlpha=fade;
 ctx.shadowColor='rgba(20,130,255,.85)';ctx.shadowBlur=10;
 ctx.lineJoin='round';
@@ -154,6 +154,8 @@ const vg=ctx.createRadialGradient(W/2,H/2,W*.25,W/2,H/2,W*.62);vg.addColorStop(0
 ctx.fillStyle=`rgba(30,140,255,${.012+.012*Math.random()})`;ctx.fillRect(0,0,W,H);
 const sy=(now/7)%(H+200)-100;const sg=ctx.createLinearGradient(0,sy-60,0,sy);sg.addColorStop(0,'rgba(40,150,255,0)');sg.addColorStop(1,'rgba(40,150,255,.04)');ctx.fillStyle=sg;ctx.fillRect(0,sy-60,W,60);
 audioTick(T,now);
+/* hand over to Round 1 the moment the last line has finished: no hold on the final frame */
+if(!window.__hudDone&&(still?T>0:T>=DONE_AT)){window.__hudDone=true;try{parent.postMessage({type:'chronos-hud-done'},'*')}catch(e){}}
 if(!still&&T<LOOP)requestAnimationFrame(draw);
 }
 (document.fonts?document.fonts.load('26px VT323').catch(()=>{}):Promise.resolve()).then(()=>requestAnimationFrame(draw));

@@ -2,33 +2,20 @@ LOGIN AND BADGE RECORDS
 Case R2-06 | Covers 17:49:12 to 19:58:12
 
 What this is: who logged in, at which terminal, and with what access level.
-This file also holds the BADGE REGISTRY and the TERMINAL LIST used by the other files.
+Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
 B-5445 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
 B-1651 | Project Beta | Present Timeline | Lead: Commander V. Reyes
 B-6293 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
 
-TERMINAL LIST (terminal code | terminal name)
-T-2605 | Diagnostics Bay DB-4
-T-4378 | Filter Array PF-2
-T-5135 | Maintenance Console MC-5
-T-6873 | Operator Desk OD-7
-T-7693 | Filter Array PF-3
-T-9389 | Terminal Node Iota-4
-
-ACCESS LEVELS (lowest to highest): VIEW ONLY < TEST ONLY < FULL CONTROL
-Only FULL CONTROL can change a system setting.
-
 LOGIN RECORDS
-18:39:15 | Badge B-5445 | Terminal Node Iota-4 | LOGGED IN | VIEW ONLY
 18:54:12 | Badge B-5445 | Diagnostics Bay DB-4 | LOGGED IN | TEST ONLY
+18:58:12 | Badge B-5445 | Diagnostics Bay DB-4 | LOGGED IN | FULL CONTROL
 19:07:34 | Badge B-5445 | Diagnostics Bay DB-4 | LOGGED IN | VIEW ONLY
 19:19:53 | Badge B-1651 | Diagnostics Bay DB-4 | LOGGED IN | VIEW ONLY
-19:40:32 | Badge B-1651 | Filter Array PF-3 | LOGGED IN | FULL CONTROL
-19:47:25 | Badge B-5445 | Filter Array PF-3 | REFUSED | FULL CONTROL (not allowed for this badge)
-19:48:05 | Badge B-1651 | Filter Array PF-2 | LOGGED IN | FULL CONTROL
-19:48:48 - 19:49:20 | RECORDS LOST | the log buffer overflowed and the records in this interval were not recovered
-19:49:48 | Badge B-5445 | Filter Array PF-3 | LOGGED IN | FULL CONTROL
+19:47:15 | Badge B-5445 | Filter Array PF-3 | REFUSED | FULL CONTROL (not allowed for this badge)
+19:48:30 | Badge B-1651 | Filter Array PF-2 | LOGGED IN | FULL CONTROL
+19:48:48 - 19:49:21 | RECORDS LOST | the log buffer overflowed and the records in this interval were not recovered
 
 END OF RECORDS

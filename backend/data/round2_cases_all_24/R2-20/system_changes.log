@@ -1,42 +1,25 @@
 SYSTEM CHANGE LOG
 Case R2-20 | Covers 19:32:37 to 21:43:37
 
-What this is: every time someone changed a system setting, it was written down here.
-- Terminals are written as codes such as T-1234. login_records.log has the TERMINAL LIST that says
-  which terminal each code is.
-- Badge is the ID badge number of whoever made the change. This file does not say which project a
-  badge belongs to: login_records.log has the BADGE REGISTRY.
+What this is: every change to a system setting is written down here.
+- Badge = the ID badge number of whoever made the change.
+- This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
-19:50:37 | Change #2303 | Terminal T-6376
+CHANGES
+19:50:37 | Change #2303 | At: Maintenance Console MC-2
   Setting: queue size limit (512 -> 1024)
   Result: APPLIED | Badge: B-4022
 
-20:05:37 | Change #4102 | Terminal T-7743
+20:05:37 | Change #4102 | At: Terminal Node Iota-1
   Setting: snapshot keep-days (7 -> 14)
   Result: APPLIED | Badge: B-6889
 
-20:18:37 | Change #5465 | Terminal T-2020
-  Setting: queue size limit (512 -> 1024)
-  Result: APPLIED | Badge: B-4022
-
-20:51:37 | Change #3028 | Terminal T-9614
-  Setting: heartbeat timeout (seconds) (5 -> 8)
-  Result: UNDONE | Badge: B-6145
-
-21:24:14 | Change #4227 | Terminal T-3721
-  Setting: cache lifetime (seconds) (300 -> 600)
-  Result: APPLIED | Badge: B-6889
-
-21:25:51 | Change #4002 | Terminal T-9614
+21:27:57 | Change #6215 | At: Archive Vault AV-1
   Setting: queue size limit (512 -> 1024)
   Result: APPLIED | Badge: B-6889
 
-21:32:37 | Change #4120 | Terminal T-3721
+21:32:37 | Change #4120 | At: Archive Vault AV-2
   Setting: anchor record store (KEPT -> DELETED (151 records))
   Result: APPLIED | Badge: B-4022
-
-21:33:42 | Change #2839 | Terminal T-3721
-  Setting: mitigation hold (NONE -> HOLD)
-  Result: APPLIED | Badge: B-6145
 
 END OF LOG

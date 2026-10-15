@@ -2,33 +2,19 @@ LOGIN AND BADGE RECORDS
 Case R2-20 | Covers 19:32:37 to 21:43:37
 
 What this is: who logged in, at which terminal, and with what access level.
-This file also holds the BADGE REGISTRY and the TERMINAL LIST used by the other files.
+Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
 B-6145 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
 B-4022 | Project Beta | Present Timeline | Lead: Commander V. Reyes
 B-6889 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
 
-TERMINAL LIST (terminal code | terminal name)
-T-2020 | Diagnostics Bay DB-6
-T-3310 | Operator Desk OD-5
-T-3721 | Archive Vault AV-2
-T-6376 | Maintenance Console MC-2
-T-7743 | Terminal Node Iota-1
-T-9614 | Archive Vault AV-1
-
-ACCESS LEVELS (lowest to highest): VIEW ONLY < TEST ONLY < FULL CONTROL
-Only FULL CONTROL can change a system setting.
-
 LOGIN RECORDS
-20:20:40 | Badge B-4022 | Operator Desk OD-5 | LOGGED IN | TEST ONLY
 20:22:59 | Badge B-6145 | Terminal Node Iota-1 | LOGGED IN | VIEW ONLY
 20:26:37 | Badge B-6145 | Terminal Node Iota-1 | LOGGED IN | VIEW ONLY
 20:45:18 | Badge B-4022 | Operator Desk OD-5 | LOGGED IN | TEST ONLY
-21:24:02 | Badge B-6889 | Archive Vault AV-2 | LOGGED IN | FULL CONTROL
-21:30:54 | Badge B-6145 | Archive Vault AV-2 | REFUSED | FULL CONTROL (not allowed for this badge)
-21:31:45 | Badge B-6889 | Archive Vault AV-1 | LOGGED IN | FULL CONTROL
+21:30:38 | Badge B-6145 | Archive Vault AV-2 | REFUSED | FULL CONTROL (not allowed for this badge)
+21:31:47 | Badge B-6889 | Archive Vault AV-1 | LOGGED IN | FULL CONTROL
 21:32:18 | Badge B-4022 | Archive Vault AV-2 | LOGGED IN | FULL CONTROL
-21:33:31 | Badge B-6145 | Archive Vault AV-2 | LOGGED IN | FULL CONTROL
 
 END OF RECORDS

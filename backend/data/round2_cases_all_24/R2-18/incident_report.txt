@@ -8,7 +8,6 @@ TIMELINE OF EVENTS
 19:23:53 | First abnormal reading: 40 transit buffers lost
 19:24:14 | Monitoring reports a sustained inconsistency
 19:24:52 | Automatic recovery fails to restore normal readings
-19:26:17 | Results across timelines leave the normal range
 
 WHERE IT STARTED
 The first abnormal reading came from Console SEC-05.
@@ -16,7 +15,6 @@ It lines up with Change #6093 made at 19:23:39 (forced disconnect of the time br
 No other change in this period touched the time bridge link.
 
 OTHER NOTES
-A mitigation hold was applied at Console SEC-05 at 19:24:31; it did not restore normal readings.
 Readings before the incident were in their normal range.
 Operators on shift reported no scheduled maintenance for this system.
 

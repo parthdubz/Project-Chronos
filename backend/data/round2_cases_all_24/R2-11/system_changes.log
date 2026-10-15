@@ -1,42 +1,25 @@
 SYSTEM CHANGE LOG
 Case R2-11 | Covers 17:06:13 to 19:17:13
 
-What this is: every time someone changed a system setting, it was written down here.
-- Terminals are written as codes such as T-1234. login_records.log has the TERMINAL LIST that says
-  which terminal each code is.
-- Badge is the ID badge number of whoever made the change. This file does not say which project a
-  badge belongs to: login_records.log has the BADGE REGISTRY.
+What this is: every change to a system setting is written down here.
+- Badge = the ID badge number of whoever made the change.
+- This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
-17:28:13 | Change #4196 | Terminal T-7512
+CHANGES
+17:28:13 | Change #4196 | At: Terminal Node Iota-6
   Setting: health check interval (seconds) (30 -> 15)
   Result: APPLIED | Badge: B-1610
 
-17:45:13 | Change #8948 | Terminal T-1790
+17:45:13 | Change #8948 | At: Maintenance Console MC-9
   Setting: retry rule (STANDARD -> LIMITED)
   Result: APPLIED | Badge: B-3786
 
-17:50:13 | Change #9955 | Terminal T-7512
+19:01:23 | Change #3967 | At: Frequency Station CH-2
   Setting: log detail level (NORMAL -> DETAILED)
-  Result: APPLIED | Badge: B-3786
-
-18:16:13 | Change #8650 | Terminal T-7266
-  Setting: cache lifetime (seconds) (300 -> 600)
-  Result: UNDONE | Badge: B-8476
-
-18:59:31 | Change #6651 | Terminal T-2457
-  Setting: snapshot keep-days (7 -> 14)
   Result: APPLIED | Badge: B-1610
 
-19:00:44 | Change #4395 | Terminal T-7266
-  Setting: snapshot keep-days (7 -> 14)
-  Result: APPLIED | Badge: B-1610
-
-19:06:13 | Change #6717 | Terminal T-2457
+19:06:13 | Change #6717 | At: Frequency Station CH-3
   Setting: sync frequency (NORMAL -> +422 MHz)
   Result: APPLIED | Badge: B-3786
-
-19:07:16 | Change #6689 | Terminal T-2457
-  Setting: mitigation hold (NONE -> HOLD)
-  Result: APPLIED | Badge: B-8476
 
 END OF LOG

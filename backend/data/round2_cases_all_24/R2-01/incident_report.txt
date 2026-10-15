@@ -8,7 +8,6 @@ TIMELINE OF EVENTS
 22:25:27 | First abnormal reading: time-flux surge of 6112%
 22:25:40 | Monitoring reports a sustained inconsistency
 22:26:25 | Automatic recovery fails to restore normal readings
-22:27:55 | Results across timelines leave the normal range
 
 WHERE IT STARTED
 The first abnormal reading came from Terminal Node Omega-1.
@@ -16,7 +15,6 @@ It lines up with Change #2421 made at 22:25:14 (core configuration rewrite).
 No other change in this period touched the safety limiter policy.
 
 OTHER NOTES
-A mitigation hold was applied at Terminal Node Omega-1 at 22:26:07; it did not restore normal readings.
 Readings before the incident were in their normal range.
 Operators on shift reported no scheduled maintenance for this system.
 

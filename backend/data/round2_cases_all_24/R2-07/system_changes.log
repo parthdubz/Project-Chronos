@@ -1,42 +1,25 @@
 SYSTEM CHANGE LOG
 Case R2-07 | Covers 16:26:46 to 18:35:46
 
-What this is: every time someone changed a system setting, it was written down here.
-- Terminals are written as codes such as T-1234. login_records.log has the TERMINAL LIST that says
-  which terminal each code is.
-- Badge is the ID badge number of whoever made the change. This file does not say which project a
-  badge belongs to: login_records.log has the BADGE REGISTRY.
+What this is: every change to a system setting is written down here.
+- Badge = the ID badge number of whoever made the change.
+- This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
-17:01:46 | Change #3257 | Terminal T-5139
+CHANGES
+17:01:46 | Change #3257 | At: Maintenance Console MC-7
   Setting: heartbeat timeout (seconds) (5 -> 8)
   Result: APPLIED | Badge: B-6916
 
-17:14:46 | Change #1569 | Terminal T-5774
+17:14:46 | Change #1569 | At: Terminal Node Iota-1
   Setting: retry rule (STANDARD -> LIMITED)
   Result: APPLIED | Badge: B-6916
 
-17:23:46 | Change #4172 | Terminal T-6277
+18:22:39 | Change #4068 | At: Sync Controller SG-1
   Setting: queue size limit (512 -> 1024)
-  Result: APPLIED | Badge: B-8335
-
-17:44:46 | Change #7096 | Terminal T-8611
-  Setting: cache lifetime (seconds) (300 -> 600)
-  Result: UNDONE | Badge: B-4450
-
-18:19:08 | Change #9077 | Terminal T-1325
-  Setting: retry rule (STANDARD -> LIMITED)
   Result: APPLIED | Badge: B-6916
 
-18:23:37 | Change #3636 | Terminal T-8611
-  Setting: retry rule (STANDARD -> LIMITED)
-  Result: APPLIED | Badge: B-6916
-
-18:26:46 | Change #2537 | Terminal T-1325
+18:26:46 | Change #2537 | At: Sync Controller SG-4
   Setting: sync controller state (RUNNING -> STOPPED)
   Result: APPLIED | Badge: B-8335
-
-18:27:57 | Change #4074 | Terminal T-1325
-  Setting: mitigation hold (NONE -> HOLD)
-  Result: APPLIED | Badge: B-4450
 
 END OF LOG
