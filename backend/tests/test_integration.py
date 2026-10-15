@@ -174,6 +174,16 @@ class IntegrationTests(unittest.TestCase):
         self.assertEqual({f['filename'] for f in files},
                          {'system_changes.log', 'login_records.log', 'security_keys.log',
                           'incident_report.txt', 'README.md'})
+
+        prog = start.json()
+        self.assertEqual(len(prog["chat_suggestions"]), 3)
+        self.assertEqual(len(set(prog["chat_suggestions"])), 3)  # no duplicate picks
+        for q in prog["chat_suggestions"]:
+            self.assertNotRegex(q.lower(), r"project (alpha|beta|gamma)|culprit|responsible project|guilty")
+        # same case -> same suggestions on a later poll (deterministic, not re-rolled)
+        again = p.get("/api/round2/progress").json()
+        self.assertEqual(again["chat_suggestions"], prog["chat_suggestions"])
+
         opened = p.get(f"/api/round2/files/{files[0]['file_id']}")
         self.assertEqual(opened.status_code, 200)
         self.assertTrue(opened.json()["content_text"])

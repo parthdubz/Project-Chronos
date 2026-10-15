@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import json
 import os
+import random
 import re
 import sqlite3
 from datetime import datetime, timedelta, timezone
@@ -37,6 +38,31 @@ AI_DEDUCTIONS = (5, 5, 10)            # question 1, 2, 3
 AI_BUDGET = sum(AI_DEDUCTIONS)        # 20 points, 0 left after question 3
 CULPRIT_POINTS = 0                    # Round 2 awards no culprit points (investigation only)
 MAX_ROUND2_SCORE = AI_BUDGET          # 20: the AI budget is the whole Round 2 score
+
+# Generic, case-safe starter questions for the AI analyst chat. None of these mention a
+# project, a badge, or any case-specific fact - they are templates about *how to read the
+# evidence*, not about what the evidence says - so they need no per-case leak checking beyond
+# what test_no_file_names_the_culprit_outright already enforces on every player-facing string.
+CHAT_SUGGESTION_POOL = (
+    "Summarize what each of the four files tells us.",
+    "Which file doesn't point anywhere useful on its own?",
+    "Walk me through how the change, the key, and the badge connect.",
+    "What's unusual about the incident timeline?",
+    "Explain how the badge registry works.",
+    "What's the difference between a key being ARMED and being USED?",
+    "Which login in login_records.log looks suspicious, and why?",
+    "What does FULL CONTROL mean compared to VIEW ONLY or TEST ONLY?",
+    "Are there any gaps or missing records in the logs?",
+    "What should I compare first to narrow this down?",
+)
+
+
+def _chat_suggestions(case_id: str) -> list:
+    """3 starter questions, deterministically picked from CHAT_SUGGESTION_POOL using the
+    case id as the random seed: the same case always gets the same 3 (stable across
+    reloads and across teams who get the same case), and different cases get different
+    sets, without needing any per-case generation or storage."""
+    return random.Random(case_id).sample(CHAT_SUGGESTION_POOL, 3)
 
 # The PRD does not give a Round 2 duration. 20 minutes is a placeholder until
 # the final event specification exists; override with ROUND2_DURATION_SECONDS.
@@ -313,6 +339,7 @@ def _progress(connection, team) -> dict:
     used, lost = rows["n"], rows["lost"]
     sub = connection.execute("SELECT * FROM round2_submissions WHERE team_id = ?", (tid,)).fetchone()
     started = team["round2_started_at"]
+    case = _case(connection, team)
 
     return {
         "team_id": team["id"],
@@ -326,6 +353,9 @@ def _progress(connection, team) -> dict:
             "next_cost": AI_DEDUCTIONS[used] if used < MAX_AI_QUESTIONS else 0,
             "deductions": list(AI_DEDUCTIONS),
         },
+        # Shown by the frontend only while ai.used == 0 ("first use"); not re-computed
+        # per question, just always present here so the frontend never needs a second call.
+        "chat_suggestions": _chat_suggestions(case["case_id"]),
         # Players never see whether they were right or what they scored. The score
         # is stored in the database for the admin leaderboard only; no player
         # endpoint returns it.

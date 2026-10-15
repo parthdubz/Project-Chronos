@@ -53,7 +53,11 @@ header{display:flex;align-items:center;gap:22px;padding:0 14px;border-bottom:1px
 .tab.on{background:#05070c;color:var(--cyan);border-top-color:var(--ink)}
 .tab .x{color:var(--faint);padding:0 3px}.tab .x:hover{color:var(--alert)}
 #crumb{padding:3px 14px;font-size:16px;color:var(--faint);border-bottom:1px solid rgba(21,94,117,.5);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:24px}
-#code{flex:1;overflow:auto;padding:8px 0;font-size:21px;line-height:1.32}
+#code{flex:1;overflow:auto;padding:8px 0;font-size:21px;line-height:1.32;scrollbar-width:thin;scrollbar-color:var(--ink) var(--panel)}
+#code::-webkit-scrollbar{width:10px;height:10px}
+#code::-webkit-scrollbar-track{background:var(--panel)}
+#code::-webkit-scrollbar-thumb{background:var(--dim);border-radius:5px;border:2px solid var(--panel)}
+#code::-webkit-scrollbar-thumb:hover{background:var(--ink)}
 .row{display:flex;white-space:pre-wrap}
 .row:hover{background:rgba(34,211,238,.06)}
 .no{flex:0 0 52px;text-align:right;padding-right:16px;color:var(--faint)}
@@ -63,11 +67,29 @@ header{display:flex;align-items:center;gap:22px;padding:0 14px;border-bottom:1px
 .k-title{display:block;width:100%;text-align:center;font-size:1.8em;font-weight:700;letter-spacing:.06em;color:var(--cyan);text-shadow:0 0 10px rgba(34,211,238,.5)}
 .welcome{padding:60px 40px;color:var(--dim);font-size:22px;line-height:1.5}
 .welcome b{color:var(--cyan);font-weight:400;letter-spacing:.14em}
+/* real tables for the .log files: cells never wrap, the wrapper scrolls sideways instead.
+   Left margin matches .no's rendered width (52px flex-basis, border-box so padding-right is
+   already inside it) so the table lines up with where the text starts in the lines around it. */
+.dtable-wrap{overflow-x:auto;max-width:calc(100% - 52px);margin:2px 0 10px 52px;
+ scrollbar-width:thin;scrollbar-color:var(--ink) var(--panel)}
+.dtable-wrap::-webkit-scrollbar{height:10px}
+.dtable-wrap::-webkit-scrollbar-track{background:var(--panel);border-top:1px solid var(--line)}
+.dtable-wrap::-webkit-scrollbar-thumb{background:var(--dim);border-radius:5px;border:2px solid var(--panel)}
+.dtable-wrap::-webkit-scrollbar-thumb:hover{background:var(--ink)}
+.dtable{border-collapse:collapse;width:max-content;min-width:100%;font-size:19px}
+.dtable th,.dtable td{padding:3px 18px 3px 8px;text-align:left;white-space:nowrap}
+.dtable td{border-bottom:1px solid rgba(21,94,117,.35)}
+.dtable thead th{color:var(--dim);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--line);position:sticky;top:0;background:#05070c}
+.dtable tbody tr:hover{background:rgba(34,211,238,.08)}
 /* analyst */
 #ai{min-width:0;min-height:0;display:flex;flex-direction:column;background:#060a14;border-left:1px solid var(--line)}
 #chat{flex:1;overflow:auto;padding:6px 14px;font-size:21px;line-height:1.25;border-top:1px solid var(--line)}
 .msg{margin-bottom:12px;white-space:pre-wrap}.msg b{color:var(--cyan);font-weight:400}.msg.u{color:var(--dim)}.msg.sys{color:var(--warn)}
 #qc{padding:6px 14px;border-top:1px solid var(--line);color:var(--ink);font-size:18px;letter-spacing:.06em}
+#sugg{display:flex;flex-wrap:wrap;gap:6px;margin:0 10px 8px;padding:8px;border:1px dashed var(--line);background:rgba(34,211,238,.04)}
+#sugg .sl{width:100%;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.sugg-chip{border:1px solid var(--dim);color:var(--cyan);padding:4px 10px;font-size:17px;text-align:left;cursor:pointer;background:rgba(34,211,238,.05)}
+.sugg-chip:hover{border-color:var(--ink);background:rgba(34,211,238,.15);color:#fff}
 .in{display:flex;align-items:center;margin:4px 10px 10px;min-height:50px;border:1px solid var(--ink);background:rgba(34,211,238,.07)}
 .in:focus-within{background:rgba(34,211,238,.14);box-shadow:0 0 12px rgba(165,243,252,.4)}
 .in span{padding:0 0 0 12px;font-size:28px;line-height:1;color:var(--cyan)}
@@ -124,6 +146,7 @@ footer{border-top:1px solid var(--line);display:flex;align-items:center;justify-
 <aside id="ex"><div class="pt">Explorer</div><div class="sec"><span class="car">▾</span>EVIDENCE</div><div id="fl"></div><div id="ca"><button id="ci" class="cbtn" type="button">Complete investigation</button><div id="cf" hidden><p>FINISH THE INVESTIGATION?<br>THIS IS FINAL.</p><div class="cr"><button id="cy" class="cbtn" type="button">Confirm</button><button id="cn" class="cbtn no" type="button">Cancel</button></div></div></div></aside>
 <section id="ed"><div id="tabs"></div><div id="crumb"></div><div id="code"><div class="welcome"><b>CHRONOS EVIDENCE VIEWER</b><br><br>Open a file from the Explorer.<br>Read all four files and compare them.<br>Ask the analyst when you need help.</div></div></section>
 <aside id="ai"><div class="pt">Chronos analyst</div><div id="chat" aria-live="polite"></div><div id="qc"></div>
+<div id="sugg" hidden></div>
 <div class="in"><span>&gt;</span><input id="qi" placeholder="ask about the evidence" autocomplete="off" maxlength="300"></div></aside>
 </div>
 <footer><span id="sl">CHRONOS · evidence</span><span id="sr2">READ-ONLY</span></footer>
@@ -181,12 +204,27 @@ addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#cin').onclick)$('#cin').
 function sync(p){S.prog=p;S.state=p.state;S.welcome=p.welcome;S.dl=p.seconds_left!=null?Date.now()+p.seconds_left*1000:0;meter();aiUi();completeUi()}
 function meter(){const a=S.prog.ai;$('#ms').innerHTML='';for(let i=1;i<=a.max_questions;i++)$('#ms').append(el('span',i<=a.remaining?'on':''));
  $('#ml').textContent=`AI ${a.points_remaining} PTS · ${a.remaining} Q LEFT`}
+function renderSuggestions(a){const s=$('#sugg');
+ const show=a.used===0&&Array.isArray(S.prog.chat_suggestions)&&S.prog.chat_suggestions.length>0;
+ s.hidden=!show;
+ if(!show){s.innerHTML='';return}
+ if(s.childElementCount)return; // already built for this poll; avoid re-render flicker
+ s.innerHTML='';
+ s.append(el('span','sl','Try asking'));
+ S.prog.chat_suggestions.forEach(q=>{
+  const b=el('button','sugg-chip',q);
+  b.type='button';
+  b.onclick=()=>{const i=$('#qi');i.value=q;i.focus()};
+  s.append(b);
+ });
+}
 function aiUi(){const a=S.prog.ai,i=$('#qi'),qc=$('#qc');
- if(S.prog.submitted||S.prog.completed){i.disabled=true;i.placeholder='Investigation filed';qc.textContent='ROUND 2 CLOSED';return}
- if(!live()){i.disabled=true;i.placeholder='Round 2 is closed';qc.textContent='ROUND 2 CLOSED';return}
+ renderSuggestions(a);
+ if(S.prog.submitted||S.prog.completed){i.disabled=true;i.placeholder='Investigation filed';qc.textContent='ROUND 2 CLOSED';$('#sugg').hidden=true;return}
+ if(!live()){i.disabled=true;i.placeholder='Round 2 is closed';qc.textContent='ROUND 2 CLOSED';$('#sugg').hidden=true;return}
  if(a.remaining<=0){i.disabled=true;i.placeholder='No AI questions remaining';qc.textContent='NO QUESTIONS LEFT · AI POINTS: '+a.points_remaining;return}
  i.disabled=false;i.placeholder='Ask the analyst...';
- qc.textContent=`QUESTION ${a.used+1}/${a.max_questions} · COSTS -${a.next_cost} PTS · ENTER`}
+ qc.textContent=`QUESTION ${a.used}/${a.max_questions} · COSTS -${a.next_cost} PTS · ENTER`}
 
 /* ---------- explorer, tabs and editor ---------- */
 async function loadFiles(){S.files=(await api('/files')).sort((a,b)=>{
@@ -219,12 +257,61 @@ function highlight(line){const out=document.createDocumentFragment();
  while((m=TOK.exec(line))){if(m.index>last)out.append(document.createTextNode(line.slice(last,m.index)));
   let g=1;while(g<TCLS.length&&m[g]===undefined)g++;out.append(el('span',TCLS[g]||'',m[0]));last=m.index+m[0].length}
  if(last<line.length)out.append(document.createTextNode(line.slice(last)));return out}
+/* Real <table> rendering for the three .log files: the generator already lays these out as
+   "header | rule-of-dashes | row | row" text blocks (see _table() in generate_cases.py).
+   Detect those blocks and render actual <table> markup (overflow-x: auto, cells that never
+   wrap) instead of pre-wrapped text, so a long row scrolls the table sideways rather than
+   breaking column alignment. Everything outside a detected block (intro text, section
+   headers, END OF LOG) still renders as plain highlighted lines, same as before. */
+const TABLE_FILE_IDS=['audit','access','auth']; // system_changes.log, login_records.log, security_keys.log
+const isRule=s=>/^-+(\+-+)+$/.test(s.trim());
+function parseSegments(lines){
+ const segs=[];let i=0,buf=[];
+ const flushText=()=>{if(buf.length){segs.push({kind:'text',lines:buf});buf=[]}};
+ while(i<lines.length){
+  if(i+1<lines.length&&lines[i].includes(' | ')&&isRule(lines[i+1])){
+   const headers=lines[i].split(' | ').map(s=>s.trim());
+   const rows=[];let j=i+2;
+   while(j<lines.length&&lines[j].trim()!==''){
+    const cells=lines[j].split(' | ');
+    if(cells.length!==headers.length)break;
+    rows.push(cells.map(s=>s.trim()));j++;
+   }
+   flushText();segs.push({kind:'table',headers,rows});i=j;continue;
+  }
+  buf.push(lines[i]);i++;
+ }
+ flushText();return segs;
+}
+function tableNode(seg){
+ const wrap=el('div','dtable-wrap'),table=document.createElement('table');table.className='dtable';
+ const thead=document.createElement('thead'),htr=document.createElement('tr');
+ seg.headers.forEach(h=>{const th=document.createElement('th');th.append(highlight(h));htr.append(th)});
+ thead.append(htr);table.append(thead);
+ const tbody=document.createElement('tbody');
+ seg.rows.forEach(r=>{const tr=document.createElement('tr');
+  r.forEach(c=>{const td=document.createElement('td');td.append(highlight(c));tr.append(td)});
+  tbody.append(tr)});
+ table.append(tbody);wrap.append(table);return wrap;
+}
+function renderSegments(lines){
+ const frag=document.createDocumentFragment();let ln=1;
+ parseSegments(lines).forEach(seg=>{
+  if(seg.kind==='table'){frag.append(tableNode(seg));ln+=2+seg.rows.length}
+  else seg.lines.forEach(t=>{const r=el('div','row');r.append(el('span','no',String(ln++)),(()=>{const s=el('span','tx');s.append(highlight(t));return s})());frag.append(r)});
+ });
+ return frag;
+}
 function renderCode(){const C=$('#code'),d=S.open?S.cache[S.open]:null;
  if(!d){C.innerHTML='';const w=el('div','welcome');w.innerHTML='<b>CHRONOS EVIDENCE VIEWER</b><br><br>Open a file from the Explorer.<br>Read all four files and compare them.<br>Ask the analyst when you need help.';C.append(w);
   $('#crumb').textContent='';$('#sl').textContent='CHRONOS · evidence';$('#sr2').textContent='READ-ONLY';return}
- const lines=d.content_text.replace(/\n$/,'').split('\n'),frag=document.createDocumentFragment();
- lines.forEach((t,i)=>{const r=el('div','row');r.append(el('span','no',String(i+1)),(()=>{const s=el('span','tx');s.append(highlight(t));return s})());frag.append(r)});
- C.innerHTML='';C.append(frag);C.scrollTop=0;
+ const lines=d.content_text.replace(/\n$/,'').split('\n');
+ C.innerHTML='';
+ if(TABLE_FILE_IDS.includes(d.file_id))C.append(renderSegments(lines));
+ else{const frag=document.createDocumentFragment();
+  lines.forEach((t,i)=>{const r=el('div','row');r.append(el('span','no',String(i+1)),(()=>{const s=el('span','tx');s.append(highlight(t));return s})());frag.append(r)});
+  C.append(frag);}
+ C.scrollTop=0;
  $('#crumb').textContent='evidence › '+d.filename;$('#sl').textContent='CHRONOS · '+d.filename;$('#sr2').textContent=`${lines.length} lines · READ-ONLY`}
 
 /* ---------- investigation end (Round 2 is investigation-only: nobody is accused) ---------- */
