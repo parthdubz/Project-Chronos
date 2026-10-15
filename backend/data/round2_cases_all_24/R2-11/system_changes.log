@@ -13,7 +13,4 @@ TIME     | CHANGE       | TERMINAL                 | SETTING CHANGE             
 19:01:23 | Change #3967 | Frequency Station CH-2   | log detail level (NORMAL -> DETAILED)      | APPLIED | B-1610
 19:06:13 | Change #6717 | Frequency Station CH-3   | sync frequency (NORMAL -> +422 MHz)        | APPLIED | B-3786
 
-CHANGE FLOW
-  17:28:13 Change #4196 -> 17:45:13 Change #8948 -> 19:01:23 Change #3967 -> 19:06:13 Change #6717
-
 END OF LOG

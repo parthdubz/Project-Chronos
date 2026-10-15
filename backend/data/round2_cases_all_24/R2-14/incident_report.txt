@@ -11,9 +11,6 @@ TIME     | EVENT
 22:59:54 | Monitoring reports a sustained inconsistency
 23:00:32 | Automatic recovery fails to restore normal readings
 
-INCIDENT FLOW
-  22:59:43 First abnormal reading: 61 unresolved cause-and-effect loops detected -> 22:59:54 Monitoring reports a sustained inconsistency -> 23:00:32 Automatic recovery fails to restore normal readings
-
 WHERE IT STARTED
 The first abnormal reading came from Filter Array PF-6.
 It lines up with Change #7350 made at 22:59:31 (bypass of the paradox filter).

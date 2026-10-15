@@ -11,9 +11,6 @@ TIME     | EVENT
 19:24:14 | Monitoring reports a sustained inconsistency
 19:24:52 | Automatic recovery fails to restore normal readings
 
-INCIDENT FLOW
-  19:23:53 First abnormal reading: 40 transit buffers lost -> 19:24:14 Monitoring reports a sustained inconsistency -> 19:24:52 Automatic recovery fails to restore normal readings
-
 WHERE IT STARTED
 The first abnormal reading came from Console SEC-05.
 It lines up with Change #6093 made at 19:23:39 (forced disconnect of the time bridge).

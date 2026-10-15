@@ -13,7 +13,4 @@ TIME     | CHANGE       | TERMINAL                 | SETTING CHANGE             
 19:18:08 | Change #6004 | Console SEC-19           | health check interval (seconds) (30 -> 15) | APPLIED | B-5748
 19:23:39 | Change #6093 | Console SEC-05           | time bridge link (CONNECTED -> FORCED OFF) | APPLIED | B-1200
 
-CHANGE FLOW
-  18:02:39 Change #2489 -> 18:18:39 Change #6057 -> 19:18:08 Change #6004 -> 19:23:39 Change #6093
-
 END OF LOG

@@ -13,7 +13,4 @@ TIME     | CHANGE       | TERMINAL           | SETTING CHANGE                   
 21:52:27 | Change #8045 | Console SEC-11     | queue size limit (512 -> 1024)             | APPLIED | B-8259
 21:56:28 | Change #4334 | Console SEC-01     | time bridge link (CONNECTED -> FORCED OFF) | APPLIED | not recorded (run by a scheduled task)
 
-CHANGE FLOW
-  20:38:28 Change #4018 -> 20:50:28 Change #5411 -> 21:52:27 Change #8045 -> 21:56:28 Change #4334
-
 END OF LOG

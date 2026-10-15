@@ -16,7 +16,4 @@ TIME     | KEY             | EVENT                  | DETAIL
 18:26:13 | Key PULSAR-6146 | EXPIRED                | unused
 18:26:46 | Key NOVA-4730   | USED                   | at Sync Controller SG-4, Change #2537
 
-KEY FLOW
-  17:00:46 Key ZENITH-8995 ARMED -> 17:02:21 Key ZENITH-8995 DISARMED -> 18:24:13 Key PULSAR-6146 ARMED -> 18:25:16 Key NOVA-4730 STANDING AUTHORIZATION -> 18:26:13 Key PULSAR-6146 EXPIRED -> 18:26:46 Key NOVA-4730 USED
-
 END OF LOG

@@ -13,7 +13,4 @@ TIME     | CHANGE       | TERMINAL                 | SETTING CHANGE             
 23:09:51 | Change #5399 | Terminal Node Omega-1    | heartbeat timeout (seconds) (5 -> 8)         | APPLIED | B-9135
 23:14:23 | Change #4477 | Terminal Node Delta-1    | safety limiter policy (ENFORCED -> DISABLED) | APPLIED | B-2986
 
-CHANGE FLOW
-  21:31:23 Change #3905 -> 21:48:23 Change #1205 -> 23:09:51 Change #5399 -> 23:14:23 Change #4477
-
 END OF LOG

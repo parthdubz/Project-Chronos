@@ -13,7 +13,4 @@ TIME     | CHANGE       | TERMINAL                 | SETTING CHANGE             
 22:56:16 | Change #6790 | Filter Array PF-6B       | queue size limit (512 -> 1024)           | APPLIED | B-1311
 22:59:31 | Change #7350 | Filter Array PF-6        | paradox filter mode (ACTIVE -> BYPASSED) | APPLIED | not recorded (run by a scheduled task)
 
-CHANGE FLOW
-  21:19:31 Change #1820 -> 21:34:31 Change #9962 -> 22:56:16 Change #6790 -> 22:59:31 Change #7350
-
 END OF LOG

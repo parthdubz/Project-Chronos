@@ -13,7 +13,4 @@ TIME     | CHANGE       | TERMINAL                 | SETTING CHANGE             
 21:06:25 | Change #1356 | Transit Buffer TB-8      | archive cleanup schedule (NIGHTLY -> WEEKLY)      | APPLIED | B-9847
 21:12:30 | Change #5321 | Transit Buffer TB-5      | transit buffer content (HELD -> FLUSHED (196 MB)) | APPLIED | B-1531
 
-CHANGE FLOW
-  19:45:30 Change #7818 -> 19:59:30 Change #3711 -> 21:06:25 Change #1356 -> 21:12:30 Change #5321
-
 END OF LOG

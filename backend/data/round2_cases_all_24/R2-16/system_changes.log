@@ -13,7 +13,4 @@ TIME     | CHANGE       | TERMINAL            | SETTING CHANGE                  
 23:24:05 | Change #2702 | Transit Buffer TB-5 | health check interval (seconds) (30 -> 15)        | APPLIED | B-1856
 23:27:00 | Change #4915 | Transit Buffer TB-2 | transit buffer content (HELD -> FLUSHED (222 MB)) | APPLIED | B-2196
 
-CHANGE FLOW
-  22:04:00 Change #4464 -> 22:14:00 Change #5337 -> 23:24:05 Change #2702 -> 23:27:00 Change #4915
-
 END OF LOG

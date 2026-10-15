@@ -13,7 +13,4 @@ TIME     | CHANGE       | TERMINAL               | SETTING CHANGE               
 23:02:28 | Change #5816 | Frequency Station CH-8 | cache lifetime (seconds) (300 -> 600)        | APPLIED | B-4012
 23:05:11 | Change #2083 | Frequency Station CH-5 | sync frequency (NORMAL -> +535 MHz)          | APPLIED | not recorded (run by a scheduled task)
 
-CHANGE FLOW
-  21:42:11 Change #4195 -> 21:51:11 Change #5172 -> 23:02:28 Change #5816 -> 23:05:11 Change #2083
-
 END OF LOG

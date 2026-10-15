@@ -16,7 +16,4 @@ TIME     | KEY            | EVENT                  | DETAIL
 23:12:53 | Key ORION-5533 | STANDING AUTHORIZATION | maintenance window MW-19, not tied to any one badge
 23:14:23 | Key ORION-5533 | USED                   | at Terminal Node Delta-1, Change #4477
 
-KEY FLOW
-  21:53:23 Key NOVA-1847 ARMED -> 21:54:58 Key NOVA-1847 DISARMED -> 23:10:53 Key NOVA-8075 ARMED -> 23:12:53 Key NOVA-8075 EXPIRED -> 23:12:53 Key ORION-5533 STANDING AUTHORIZATION -> 23:14:23 Key ORION-5533 USED
-
 END OF LOG

@@ -11,9 +11,6 @@ TIME     | EVENT
 21:03:45 | Monitoring reports a sustained inconsistency
 21:04:33 | Automatic recovery fails to restore normal readings
 
-INCIDENT FLOW
-  21:03:29 First abnormal reading: 34 transit buffers lost -> 21:03:45 Monitoring reports a sustained inconsistency -> 21:04:33 Automatic recovery fails to restore normal readings
-
 WHERE IT STARTED
 The first abnormal reading cannot be traced to a single source. Possible terminals: Console SEC-01 and Console SEC-14.
 No change record could be matched to the reading with certainty.

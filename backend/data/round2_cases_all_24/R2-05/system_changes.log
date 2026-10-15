@@ -13,7 +13,4 @@ TIME     | CHANGE       | TERMINAL                 | SETTING CHANGE             
 18:27:44 | Change #2808 | Anchor Relay AR-2        | health check interval (seconds) (30 -> 15)   | APPLIED | B-7366
 18:34:04 | Change #5232 | Anchor Relay AR-9        | anchor offset table (0 -> 346 ms)            | APPLIED | B-8330
 
-CHANGE FLOW
-  17:07:04 Change #4000 -> 17:17:04 Change #8982 -> 18:27:44 Change #2808 -> 18:34:04 Change #5232
-
 END OF LOG

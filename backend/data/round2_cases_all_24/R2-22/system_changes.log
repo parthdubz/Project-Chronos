@@ -13,7 +13,4 @@ TIME     | CHANGE       | TERMINAL             | SETTING CHANGE                 
 22:10:11 | Change #4653 | Filter Array PF-9    | health check interval (seconds) (30 -> 15) | APPLIED | B-7094
 22:16:09 | Change #7142 | Filter Array PF-5    | paradox filter mode (ACTIVE -> BYPASSED)   | APPLIED | B-4120
 
-CHANGE FLOW
-  20:33:09 Change #6877 -> 20:49:09 Change #7111 -> 22:10:11 Change #4653 -> 22:16:09 Change #7142
-
 END OF LOG

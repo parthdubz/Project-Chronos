@@ -11,9 +11,6 @@ TIME     | EVENT
 21:32:55 | Monitoring reports a sustained inconsistency
 21:33:47 | Automatic recovery fails to restore normal readings
 
-INCIDENT FLOW
-  21:32:44 First abnormal reading: 151 anchor records missing from the index -> 21:32:55 Monitoring reports a sustained inconsistency -> 21:33:47 Automatic recovery fails to restore normal readings
-
 WHERE IT STARTED
 The first abnormal reading came from Archive Vault AV-2.
 It lines up with Change #4120 made at 21:32:37 (bulk deletion of timeline anchor records).

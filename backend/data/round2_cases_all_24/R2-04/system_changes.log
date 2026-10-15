@@ -13,7 +13,4 @@ TIME     | CHANGE       | TERMINAL                 | SETTING CHANGE             
 22:47:03 | Change #1366 | Archive Vault AV-7       | archive cleanup schedule (NIGHTLY -> WEEKLY)        | APPLIED | B-2051
 22:51:19 | Change #4802 | Archive Vault AV-3       | anchor record store (KEPT -> DELETED (551 records)) | APPLIED | B-2896
 
-CHANGE FLOW
-  21:06:19 Change #5933 -> 21:20:19 Change #2109 -> 22:47:03 Change #1366 -> 22:51:19 Change #4802
-
 END OF LOG

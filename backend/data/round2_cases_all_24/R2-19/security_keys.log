@@ -16,7 +16,4 @@ TIME     | KEY            | EVENT                  | DETAIL
 23:21:54 | Key VEGA-1657  | STANDING AUTHORIZATION | maintenance window MW-29, not tied to any one badge
 23:23:24 | Key VEGA-1657  | USED                   | at Frequency Station CH-1, Change #7212
 
-KEY FLOW
-  21:44:24 Key ORION-1940 ARMED -> 21:45:59 Key ORION-1940 DISARMED -> 23:19:38 Key NOVA-2478 ARMED -> 23:21:38 Key NOVA-2478 EXPIRED -> 23:21:54 Key VEGA-1657 STANDING AUTHORIZATION -> 23:23:24 Key VEGA-1657 USED
-
 END OF LOG

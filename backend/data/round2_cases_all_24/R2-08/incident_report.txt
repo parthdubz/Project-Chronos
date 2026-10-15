@@ -11,9 +11,6 @@ TIME     | EVENT
 21:12:57 | Monitoring reports a sustained inconsistency
 21:13:47 | Automatic recovery fails to restore normal readings
 
-INCIDENT FLOW
-  21:12:40 First abnormal reading: transit buffer overrun of 196 MB -> 21:12:57 Monitoring reports a sustained inconsistency -> 21:13:47 Automatic recovery fails to restore normal readings
-
 WHERE IT STARTED
 The first abnormal reading came from Transit Buffer TB-5.
 It lines up with Change #5321 made at 21:12:30 (forced flush of the transit buffer).

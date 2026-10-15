@@ -22,7 +22,4 @@ TIME     | BADGE  | TERMINAL                 | STATUS    | LEVEL
 20:17:50 | B-2763 | Terminal Node Omega-1    | LOGGED IN | FULL CONTROL
 20:18:26 - 20:18:52 | RECORDS LOST | the log buffer overflowed and the records in this interval were not recovered
 
-LOGIN FLOW
-  19:08:06 B-4312 LOGGED IN -> 19:16:44 B-6468 LOGGED IN -> 19:25:25 B-2763 LOGGED IN -> 19:28:44 B-6468 LOGGED IN -> 20:16:38 B-6468 REFUSED -> 20:17:50 B-2763 LOGGED IN -> RECORDS LOST
-
 END OF RECORDS

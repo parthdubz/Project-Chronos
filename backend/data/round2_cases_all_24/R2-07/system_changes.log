@@ -13,7 +13,4 @@ TIME     | CHANGE       | TERMINAL                 | SETTING CHANGE             
 18:22:39 | Change #4068 | Sync Controller SG-1     | queue size limit (512 -> 1024)             | APPLIED | B-6916
 18:26:46 | Change #2537 | Sync Controller SG-4     | sync controller state (RUNNING -> STOPPED) | APPLIED | B-8335
 
-CHANGE FLOW
-  17:01:46 Change #3257 -> 17:14:46 Change #1569 -> 18:22:39 Change #4068 -> 18:26:46 Change #2537
-
 END OF LOG

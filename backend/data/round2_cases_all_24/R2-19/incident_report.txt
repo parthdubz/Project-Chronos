@@ -11,9 +11,6 @@ TIME     | EVENT
 23:23:55 | Monitoring reports a sustained inconsistency
 23:24:35 | Automatic recovery fails to restore normal readings
 
-INCIDENT FLOW
-  23:23:34 First abnormal reading: boundary rupture at +335 MHz -> 23:23:55 Monitoring reports a sustained inconsistency -> 23:24:35 Automatic recovery fails to restore normal readings
-
 WHERE IT STARTED
 The first abnormal reading came from Frequency Station CH-1.
 It lines up with Change #7212 made at 23:23:24 (frequency modification script).

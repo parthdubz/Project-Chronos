@@ -13,7 +13,4 @@ TIME     | CHANGE       | TERMINAL                 | SETTING CHANGE             
 20:04:23 | Change #7508 | Archive Vault AV-5       | cache lifetime (seconds) (300 -> 600)               | APPLIED | B-5545
 20:07:57 | Change #1130 | Archive Vault AV-3       | anchor record store (KEPT -> DELETED (457 records)) | APPLIED | B-6065
 
-CHANGE FLOW
-  18:34:57 Change #6030 -> 18:47:57 Change #4834 -> 20:04:23 Change #7508 -> 20:07:57 Change #1130
-
 END OF LOG

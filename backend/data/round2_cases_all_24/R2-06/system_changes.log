@@ -13,7 +13,4 @@ TIME     | CHANGE       | TERMINAL                 | SETTING CHANGE             
 19:45:29 | Change #1672 | Filter Array PF-2        | retry rule (STANDARD -> LIMITED)             | APPLIED | B-1651
 19:49:12 | Change #5964 | Filter Array PF-3        | paradox filter mode (ACTIVE -> BYPASSED)     | APPLIED | B-6293
 
-CHANGE FLOW
-  18:26:12 Change #6813 -> 18:42:12 Change #5470 -> 19:45:29 Change #1672 -> 19:49:12 Change #5964
-
 END OF LOG

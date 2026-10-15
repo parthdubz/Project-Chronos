@@ -22,7 +22,4 @@ TIME     | BADGE  | TERMINAL                 | STATUS    | LEVEL
 22:50:23 | B-2051 | Archive Vault AV-7       | LOGGED IN | FULL CONTROL
 22:50:51 - 22:51:23 | RECORDS LOST | the log buffer overflowed and the records in this interval were not recovered
 
-LOGIN FLOW
-  21:19:41 B-2051 LOGGED IN -> 21:39:19 B-1841 LOGGED IN -> 21:42:19 B-2896 LOGGED IN -> 21:45:00 B-1841 LOGGED IN -> 22:49:48 B-1841 REFUSED -> 22:50:23 B-2051 LOGGED IN -> RECORDS LOST
-
 END OF RECORDS

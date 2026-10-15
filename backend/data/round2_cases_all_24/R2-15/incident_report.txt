@@ -11,9 +11,6 @@ TIME     | EVENT
 23:15:34 | Monitoring reports a sustained inconsistency
 23:16:19 | Automatic recovery fails to restore normal readings
 
-INCIDENT FLOW
-  23:15:13 First abnormal reading: 10 timeline channels out of sync -> 23:15:34 Monitoring reports a sustained inconsistency -> 23:16:19 Automatic recovery fails to restore normal readings
-
 WHERE IT STARTED
 The first abnormal reading came from Sync Controller SG-7.
 It lines up with Change #2832 made at 23:14:56 (shutdown of the cross-timeline sync controller).

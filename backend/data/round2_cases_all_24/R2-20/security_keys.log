@@ -16,7 +16,4 @@ TIME     | KEY             | EVENT                  | DETAIL
 21:31:57 | Key QUASAR-3750 | EXPIRED                | unused
 21:32:37 | Key ONYX-4348   | USED                   | at Archive Vault AV-2, Change #4120
 
-KEY FLOW
-  20:19:37 Key NOVA-1284 ARMED -> 20:21:12 Key NOVA-1284 DISARMED -> 21:29:57 Key QUASAR-3750 ARMED -> 21:31:07 Key ONYX-4348 STANDING AUTHORIZATION -> 21:31:57 Key QUASAR-3750 EXPIRED -> 21:32:37 Key ONYX-4348 USED
-
 END OF LOG

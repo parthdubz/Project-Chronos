@@ -22,7 +22,4 @@ TIME     | BADGE  | TERMINAL                 | STATUS    | LEVEL
 19:22:43 | B-5748 | Console SEC-19           | LOGGED IN | FULL CONTROL
 19:23:21 - 19:23:47 | RECORDS LOST | the log buffer overflowed and the records in this interval were not recovered
 
-LOGIN FLOW
-  17:47:39 B-8626 LOGGED IN -> 18:21:39 B-8626 LOGGED IN -> 18:47:01 B-8626 LOGGED IN -> 18:54:20 B-8626 LOGGED IN -> 19:22:08 B-8626 REFUSED -> 19:22:43 B-5748 LOGGED IN -> RECORDS LOST
-
 END OF RECORDS

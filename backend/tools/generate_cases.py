@@ -157,16 +157,6 @@ def _table(headers: list, rows: list) -> list:
     return [line(headers), rule] + [line(r) for r in rows]
 
 
-def _flow(steps: list) -> list:
-    """The same facts as the table above, redrawn as a single arrow chain (time + step,
-    connected by '->', the same convention already used for a setting's old -> new value)
-    so the sequence can be read left to right at a glance instead of scanned column by
-    column. `steps` is a list of (time, label) pairs, already in time order. One line, so a
-    file with a flow section never grows much longer than the table it summarises."""
-    parts = [f"{t} {label}" if t else label for t, label in steps]
-    return ["  " + " -> ".join(parts)]
-
-
 class Case:
     """All facts of one case, derived deterministically from its index."""
 
@@ -296,8 +286,6 @@ def build_audit(c: Case) -> str:
            "",
            "CHANGES"]
     out.extend(_table(["TIME", "CHANGE", "TERMINAL", "SETTING CHANGE", "RESULT", "BADGE"], [r[1] for r in rows]))
-    out += ["", "CHANGE FLOW"]
-    out.extend(_flow([(r[1][0], r[1][1]) for r in rows]))
     out += ["", "END OF LOG"]
     return "\n".join(out) + "\n"
 
@@ -355,15 +343,10 @@ def build_access(c: Case) -> str:
 
     table = _table(["TIME", "BADGE", "TERMINAL", "STATUS", "LEVEL"], [r[1] for r in ev])
     body = table[2:]  # header + rule, then one line per row in ev's (already time-sorted) order
-    insert_at = next((i for i, (tt, _) in enumerate(ev) if tt > gap[0]), len(body)) if gap else None
     if gap:
+        insert_at = next((i for i, (tt, _) in enumerate(ev) if tt > gap[0]), len(body))
         body = body[:insert_at] + [lost(*gap)] + body[insert_at:]
     out += [table[0], table[1]] + body
-    out += ["", "LOGIN FLOW"]
-    steps = [(r[1][0], f"{r[1][1]} {r[1][3]}") for r in ev]  # time, "badge STATUS"
-    if gap:
-        steps = steps[:insert_at] + [("", "RECORDS LOST")] + steps[insert_at:]
-    out.extend(_flow(steps))
     out += ["", "END OF RECORDS"]
     return "\n".join(out) + "\n"
 
@@ -396,8 +379,6 @@ def build_auth(c: Case) -> str:
            "- A STANDING AUTHORIZATION is a general permission: it is not tied to one badge.",
            "- Badges are explained in login_records.log (BADGE REGISTRY).", "", "KEY EVENTS"]
     out.extend(_table(["TIME", "KEY", "EVENT", "DETAIL"], [r[1] for r in ev]))
-    out += ["", "KEY FLOW"]
-    out.extend(_flow([(r[1][0], f"{r[1][1]} {r[1][2]}") for r in ev]))
     out += ["", "END OF LOG"]
     return "\n".join(out) + "\n"
 
@@ -410,14 +391,11 @@ def build_incident(c: Case) -> str:
            "WHAT HAPPENED",
            f"{cap(c.theme['what'])}. The effect spread across the timeline network.", "",
            "TIMELINE OF EVENTS"]
-    timeline = [
-        (hms(ts), f"First abnormal reading: {c.symptom}"),
-        (hms(ts + rng.randint(11, 24)), "Monitoring reports a sustained inconsistency"),
-        (hms(ts + rng.randint(40, 70)), "Automatic recovery fails to restore normal readings"),
-    ]
-    out.extend(_table(["TIME", "EVENT"], [list(row) for row in timeline]))
-    out += ["", "INCIDENT FLOW"]
-    out.extend(_flow(timeline))
+    out.extend(_table(["TIME", "EVENT"], [
+        [hms(ts), f"First abnormal reading: {c.symptom}"],
+        [hms(ts + rng.randint(11, 24)), "Monitoring reports a sustained inconsistency"],
+        [hms(ts + rng.randint(40, 70)), "Automatic recovery fails to restore normal readings"],
+    ]))
     out += ["", "WHERE IT STARTED"]
     if c.distractor == "incident":
         out += [f"The first abnormal reading cannot be traced to a single source. Possible terminals: "

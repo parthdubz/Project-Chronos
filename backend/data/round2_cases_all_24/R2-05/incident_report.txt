@@ -11,9 +11,6 @@ TIME     | EVENT
 18:34:30 | Monitoring reports a sustained inconsistency
 18:35:01 | Automatic recovery fails to restore normal readings
 
-INCIDENT FLOW
-  18:34:16 First abnormal reading: anchor drift of 346 ms along the relay chain -> 18:34:30 Monitoring reports a sustained inconsistency -> 18:35:01 Automatic recovery fails to restore normal readings
-
 WHERE IT STARTED
 The first abnormal reading came from Anchor Relay AR-9.
 It lines up with Change #5232 made at 18:34:04 (manual change of the anchor offsets).

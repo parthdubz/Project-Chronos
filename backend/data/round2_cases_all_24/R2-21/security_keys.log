@@ -16,7 +16,4 @@ TIME     | KEY             | EVENT                  | DETAIL
 23:09:40 | Key ATLAS-6068  | STANDING AUTHORIZATION | maintenance window MW-31, not tied to any one badge
 23:11:10 | Key ATLAS-6068  | USED                   | at Anchor Relay AR-5, Change #6529
 
-KEY FLOW
-  21:55:10 Key QUASAR-6157 ARMED -> 21:56:45 Key QUASAR-6157 DISARMED -> 23:07:40 Key LYRA-7833 ARMED -> 23:09:40 Key LYRA-7833 EXPIRED -> 23:09:40 Key ATLAS-6068 STANDING AUTHORIZATION -> 23:11:10 Key ATLAS-6068 USED
-
 END OF LOG

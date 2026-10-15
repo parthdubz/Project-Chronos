@@ -13,7 +13,4 @@ TIME     | CHANGE       | TERMINAL              | SETTING CHANGE                
 22:18:44 | Change #5039 | Terminal Node Kappa-8 | queue size limit (512 -> 1024)               | APPLIED | B-6995
 22:25:14 | Change #2421 | Terminal Node Omega-1 | safety limiter policy (ENFORCED -> DISABLED) | APPLIED | not recorded (run by a scheduled task)
 
-CHANGE FLOW
-  20:36:14 Change #9684 -> 20:45:14 Change #3569 -> 22:18:44 Change #5039 -> 22:25:14 Change #2421
-
 END OF LOG

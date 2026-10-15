@@ -13,7 +13,4 @@ TIME     | CHANGE       | TERMINAL             | SETTING CHANGE                 
 18:41:56 | Change #7813 | Transit Buffer TB-7  | heartbeat timeout (seconds) (5 -> 8)              | APPLIED | B-7343
 18:45:11 | Change #5781 | Transit Buffer TB-1  | transit buffer content (HELD -> FLUSHED (328 MB)) | APPLIED | B-3792
 
-CHANGE FLOW
-  17:32:11 Change #3345 -> 17:46:11 Change #9347 -> 18:41:56 Change #7813 -> 18:45:11 Change #5781
-
 END OF LOG

@@ -13,7 +13,4 @@ TIME     | CHANGE       | TERMINAL                 | SETTING CHANGE             
 21:00:14 | Change #2335 | Console SEC-14           | log detail level (NORMAL -> DETAILED)      | APPLIED | B-3328
 21:03:13 | Change #1357 | Console SEC-01           | time bridge link (CONNECTED -> FORCED OFF) | APPLIED | B-7613
 
-CHANGE FLOW
-  19:39:13 Change #6398 -> 19:49:13 Change #1086 -> 21:00:14 Change #2335 -> 21:03:13 Change #1357
-
 END OF LOG

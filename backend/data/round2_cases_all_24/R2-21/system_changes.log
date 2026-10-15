@@ -13,7 +13,4 @@ TIME     | CHANGE       | TERMINAL                 | SETTING CHANGE             
 23:08:16 | Change #6603 | Anchor Relay AR-5B       | archive cleanup schedule (NIGHTLY -> WEEKLY) | APPLIED | B-2892
 23:11:10 | Change #6529 | Anchor Relay AR-5        | anchor offset table (0 -> 211 ms)            | APPLIED | B-2334
 
-CHANGE FLOW
-  21:43:10 Change #2668 -> 21:54:10 Change #5609 -> 23:08:16 Change #6603 -> 23:11:10 Change #6529
-
 END OF LOG

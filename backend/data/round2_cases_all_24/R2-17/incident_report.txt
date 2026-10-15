@@ -11,9 +11,6 @@ TIME     | EVENT
 20:19:16 | Monitoring reports a sustained inconsistency
 20:20:12 | Automatic recovery fails to restore normal readings
 
-INCIDENT FLOW
-  20:19:02 First abnormal reading: time-flux surge of 5958% -> 20:19:16 Monitoring reports a sustained inconsistency -> 20:20:12 Automatic recovery fails to restore normal readings
-
 WHERE IT STARTED
 The first abnormal reading came from Terminal Node Zeta-9.
 It lines up with Change #3225 made at 20:18:44 (core configuration rewrite).

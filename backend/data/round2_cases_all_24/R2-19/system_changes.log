@@ -13,7 +13,4 @@ TIME     | CHANGE       | TERMINAL                 | SETTING CHANGE             
 23:18:10 | Change #6054 | Frequency Station CH-8   | health check interval (seconds) (30 -> 15)   | APPLIED | B-7521
 23:23:24 | Change #7212 | Frequency Station CH-1   | sync frequency (NORMAL -> +335 MHz)          | APPLIED | B-6312
 
-CHANGE FLOW
-  21:57:24 Change #8141 -> 22:14:24 Change #1704 -> 23:18:10 Change #6054 -> 23:23:24 Change #7212
-
 END OF LOG
