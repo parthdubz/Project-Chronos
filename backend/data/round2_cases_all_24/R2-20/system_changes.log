@@ -2,24 +2,18 @@ SYSTEM CHANGE LOG
 Case R2-20 | Covers 19:32:37 to 21:43:37
 
 What this is: every change to a system setting is written down here.
-- Badge = the ID badge number of whoever made the change.
+- BADGE is the ID badge number of whoever made the change.
 - This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
 CHANGES
-19:50:37 | Change #2303 | At: Maintenance Console MC-2
-  Setting: queue size limit (512 -> 1024)
-  Result: APPLIED | Badge: B-4022
+TIME     | CHANGE       | TERMINAL                 | SETTING CHANGE                                      | RESULT  | BADGE
+---------+--------------+--------------------------+-----------------------------------------------------+---------+-------
+19:50:37 | Change #2303 | Maintenance Console MC-2 | queue size limit (512 -> 1024)                      | APPLIED | B-4022
+20:05:37 | Change #4102 | Terminal Node Iota-1     | snapshot keep-days (7 -> 14)                        | APPLIED | B-6889
+21:27:57 | Change #6215 | Archive Vault AV-1       | queue size limit (512 -> 1024)                      | APPLIED | B-6889
+21:32:37 | Change #4120 | Archive Vault AV-2       | anchor record store (KEPT -> DELETED (151 records)) | APPLIED | B-4022
 
-20:05:37 | Change #4102 | At: Terminal Node Iota-1
-  Setting: snapshot keep-days (7 -> 14)
-  Result: APPLIED | Badge: B-6889
-
-21:27:57 | Change #6215 | At: Archive Vault AV-1
-  Setting: queue size limit (512 -> 1024)
-  Result: APPLIED | Badge: B-6889
-
-21:32:37 | Change #4120 | At: Archive Vault AV-2
-  Setting: anchor record store (KEPT -> DELETED (151 records))
-  Result: APPLIED | Badge: B-4022
+CHANGE FLOW
+  19:50:37 Change #2303 -> 20:05:37 Change #4102 -> 21:27:57 Change #6215 -> 21:32:37 Change #4120
 
 END OF LOG

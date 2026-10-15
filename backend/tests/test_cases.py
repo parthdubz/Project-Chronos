@@ -22,7 +22,9 @@ CASES_DIR = ROOT / "backend" / "data" / "round2_cases_all_24"
 R3_FILE = ROOT / "backend" / "app" / "data" / "round3_cases.json"
 
 CHANGES, LOGINS, KEYS, INCIDENT = "system_changes.log", "login_records.log", "security_keys.log", "incident_report.txt"
+READ_ME = "README.md"
 FILE_NAMES = {CHANGES, LOGINS, KEYS, INCIDENT}
+ALL_FILE_NAMES = FILE_NAMES | {READ_ME}
 PROJECT_BY_NAME = {"Project Alpha": "alpha", "Project Beta": "beta", "Project Gamma": "gamma"}
 EV_BY_FILE = {
     CHANGES: "ev_changes",
@@ -57,15 +59,15 @@ def solve(files: dict) -> dict:
     one clock for every file."""
     logins, keys, changes = files[LOGINS], files[KEYS], files[CHANGES]
     to_project = {m.group(1): PROJECT_BY_NAME[m.group(2)]
-                  for m in re.finditer(r"^(B-\d{4}) \| (Project \w+) \|", logins, re.M)}
+                  for m in re.finditer(r"^(B-\d{4}) \| (Project \w+)\s*\|", logins, re.M)}
     assert len(to_project) == 3, "badge registry missing"
 
     # the incident change is the one a key was USED for
-    um = re.search(r"^(\d\d:\d\d:\d\d) \| Key (\S+) \| USED at (.+?) \| Change #(\d{4})$", keys, re.M)
+    um = re.search(r"^(\d\d:\d\d:\d\d) \| Key (\S+)\s*\| USED\s*\| at (.+?), Change #(\d{4})\s*$", keys, re.M)
     assert um, "key use not found"
     t_change, key_name, node, chg = secs(um.group(1)), um.group(2), um.group(3).strip(), um.group(4)
 
-    m = re.search(rf"^(\d\d:\d\d:\d\d) \| Change #{chg} \| At: (.+)\n.+\n  Result: APPLIED \| Badge: (.+)$",
+    m = re.search(rf"^(\d\d:\d\d:\d\d) \| Change #{chg} \| (.+?) \|.+\| APPLIED \| (.+?)\s*$",
                   changes, re.M)
     assert m, "incident change not found"
     assert secs(m.group(1)) == t_change, "key log time does not line up with the change log"
@@ -77,12 +79,12 @@ def solve(files: dict) -> dict:
     if b:
         votes[to_project[b.group(0)]] += 1
     # 2. a FULL CONTROL login at that terminal in the minute before the change
-    for sm in re.finditer(r"^(\d\d:\d\d:\d\d) \| Badge (B-\d{4}) \| (.+?) \| LOGGED IN \| FULL CONTROL$",
+    for sm in re.finditer(r"^(\d\d:\d\d:\d\d) \| (B-\d{4}) \| (.+?) \| LOGGED IN \| FULL CONTROL$",
                           logins, re.M):
         if sm.group(3).strip() == node and 0 < t_change - secs(sm.group(1)) <= 60:
             votes[to_project[sm.group(2)]] += 1
     # 3. the key used for that change was armed by a badge (not a standing authorization)
-    am = re.search(rf"^\d\d:\d\d:\d\d \| Key {re.escape(key_name)} \| ARMED by badge (B-\d{{4}}) ", keys, re.M)
+    am = re.search(rf"^\d\d:\d\d:\d\d \| Key {re.escape(key_name)}\s*\| ARMED\s*\| by badge (B-\d{{4}})", keys, re.M)
     if am:
         votes[to_project[am.group(1)]] += 1
     return votes
@@ -98,8 +100,8 @@ class CaseDataTests(unittest.TestCase):
         self.assertEqual(len(self.cases), 24)
         self.assertEqual(len(self.r3), 24)
         for cid, (data, files) in self.cases.items():
-            self.assertEqual(set(files), FILE_NAMES, f"{cid}: only the four Round 3 files may exist")
-            self.assertEqual(set(data["player_files"].values()), FILE_NAMES, cid)
+            self.assertEqual(set(files), ALL_FILE_NAMES, f"{cid}: only the four evidence files plus README.md may exist")
+            self.assertEqual(set(data["player_files"].values()), ALL_FILE_NAMES, cid)
             self.assertIn(data["culprit"], PROJECT_BY_NAME, cid)
             self.assertEqual({c["name"] for c in data["candidates"]}, set(PROJECT_BY_NAME), cid)
             for name, text in files.items():
@@ -160,7 +162,7 @@ class CaseDataTests(unittest.TestCase):
                 self.assertNotRegex(text, r"CLOCK NOTE|runs \d+ seconds FAST", f"{cid}/{name}")
                 self.assertNotIn("mitigation hold", text, f"{cid}/{name}")
                 self.assertLess(len(text.splitlines()), 40, f"{cid}/{name} is too long")
-            self.assertRegex(changes, r"\| At: ", cid)
+            self.assertIn("TERMINAL", changes, cid)
             # decoys: a REFUSED login and a FULL CONTROL login by another project
             self.assertIn("REFUSED", logins, cid)
             full = re.findall(r"\| LOGGED IN \| FULL CONTROL$", logins, re.M)
@@ -177,9 +179,9 @@ class CaseDataTests(unittest.TestCase):
             self.assertIn("BADGE REGISTRY", files[LOGINS], cid)
             # login_records alone: at least two different projects have FULL CONTROL logins
             registry = {m.group(1): m.group(2) for m in
-                        re.finditer(r"^(B-\d{4}) \| (Project \w+) \|", files[LOGINS], re.M)}
+                        re.finditer(r"^(B-\d{4}) \| (Project \w+)\s*\|", files[LOGINS], re.M)}
             holders = {registry[m.group(1)] for m in
-                       re.finditer(r"Badge (B-\d{4}) \|.*\| LOGGED IN \| FULL CONTROL$", files[LOGINS], re.M)}
+                       re.finditer(r"(B-\d{4}) \|.*\| LOGGED IN \| FULL CONTROL$", files[LOGINS], re.M)}
             self.assertGreaterEqual(len(holders), 2, f"{cid}: login_records alone points at one project")
             # and Round 3 evidence is split the same way: only the logins item has the registry
             c3 = next(c for c in self.r3 if c["r2_case_id"] == cid)

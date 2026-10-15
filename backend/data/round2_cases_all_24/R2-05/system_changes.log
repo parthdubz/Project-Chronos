@@ -2,24 +2,18 @@ SYSTEM CHANGE LOG
 Case R2-05 | Covers 16:34:04 to 18:49:04
 
 What this is: every change to a system setting is written down here.
-- Badge = the ID badge number of whoever made the change.
+- BADGE is the ID badge number of whoever made the change.
 - This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
 CHANGES
-17:07:04 | Change #4000 | At: Maintenance Console MC-8
-  Setting: retry rule (STANDARD -> LIMITED)
-  Result: APPLIED | Badge: B-3208
+TIME     | CHANGE       | TERMINAL                 | SETTING CHANGE                               | RESULT  | BADGE
+---------+--------------+--------------------------+----------------------------------------------+---------+-------
+17:07:04 | Change #4000 | Maintenance Console MC-8 | retry rule (STANDARD -> LIMITED)             | APPLIED | B-3208
+17:17:04 | Change #8982 | Maintenance Console MC-8 | archive cleanup schedule (NIGHTLY -> WEEKLY) | APPLIED | B-3208
+18:27:44 | Change #2808 | Anchor Relay AR-2        | health check interval (seconds) (30 -> 15)   | APPLIED | B-7366
+18:34:04 | Change #5232 | Anchor Relay AR-9        | anchor offset table (0 -> 346 ms)            | APPLIED | B-8330
 
-17:17:04 | Change #8982 | At: Maintenance Console MC-8
-  Setting: archive cleanup schedule (NIGHTLY -> WEEKLY)
-  Result: APPLIED | Badge: B-3208
-
-18:27:44 | Change #2808 | At: Anchor Relay AR-2
-  Setting: health check interval (seconds) (30 -> 15)
-  Result: APPLIED | Badge: B-7366
-
-18:34:04 | Change #5232 | At: Anchor Relay AR-9
-  Setting: anchor offset table (0 -> 346 ms)
-  Result: APPLIED | Badge: B-8330
+CHANGE FLOW
+  17:07:04 Change #4000 -> 17:17:04 Change #8982 -> 18:27:44 Change #2808 -> 18:34:04 Change #5232
 
 END OF LOG

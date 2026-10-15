@@ -7,11 +7,16 @@ What this is: a security key must be ARMED by a badge before it can be USED.
 - Badges are explained in login_records.log (BADGE REGISTRY).
 
 KEY EVENTS
-21:39:19 | Key ONYX-4731 | ARMED by badge B-2051 | valid 120 s | purpose: maintenance window
-21:40:54 | Key ONYX-4731 | DISARMED after use
-22:47:33 | Key LYRA-9831 | ARMED by badge B-1841 | valid 120 s | never used
-22:49:33 | Key LYRA-9831 | EXPIRED unused
-22:50:39 | Key HELIX-2553 | ARMED by badge B-2896 | valid 120 s
-22:51:19 | Key HELIX-2553 | USED at Archive Vault AV-3 | Change #4802
+TIME     | KEY            | EVENT    | DETAIL
+---------+----------------+----------+----------------------------------------------------------
+21:39:19 | Key ONYX-4731  | ARMED    | by badge B-2051, valid 120 s, purpose: maintenance window
+21:40:54 | Key ONYX-4731  | DISARMED | after use
+22:47:33 | Key LYRA-9831  | ARMED    | by badge B-1841, valid 120 s, never used
+22:49:33 | Key LYRA-9831  | EXPIRED  | unused
+22:50:39 | Key HELIX-2553 | ARMED    | by badge B-2896, valid 120 s
+22:51:19 | Key HELIX-2553 | USED     | at Archive Vault AV-3, Change #4802
+
+KEY FLOW
+  21:39:19 Key ONYX-4731 ARMED -> 21:40:54 Key ONYX-4731 DISARMED -> 22:47:33 Key LYRA-9831 ARMED -> 22:49:33 Key LYRA-9831 EXPIRED -> 22:50:39 Key HELIX-2553 ARMED -> 22:51:19 Key HELIX-2553 USED
 
 END OF LOG

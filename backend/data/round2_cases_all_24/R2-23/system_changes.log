@@ -2,24 +2,18 @@ SYSTEM CHANGE LOG
 Case R2-23 | Covers 19:22:22 to 21:34:22
 
 What this is: every change to a system setting is written down here.
-- Badge = the ID badge number of whoever made the change.
+- BADGE is the ID badge number of whoever made the change.
 - This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
 CHANGES
-20:11:22 | Change #6390 | At: Terminal Node Iota-5
-  Setting: health check interval (seconds) (30 -> 15)
-  Result: APPLIED | Badge: B-2090
+TIME     | CHANGE       | TERMINAL             | SETTING CHANGE                             | RESULT  | BADGE
+---------+--------------+----------------------+--------------------------------------------+---------+-------
+20:11:22 | Change #6390 | Terminal Node Iota-5 | health check interval (seconds) (30 -> 15) | APPLIED | B-2090
+20:25:22 | Change #8975 | Operator Desk OD-9   | snapshot keep-days (7 -> 14)               | APPLIED | B-2090
+21:18:33 | Change #9955 | Sync Controller SG-5 | heartbeat timeout (seconds) (5 -> 8)       | APPLIED | B-6973
+21:22:22 | Change #4274 | Sync Controller SG-2 | sync controller state (RUNNING -> STOPPED) | APPLIED | B-8735
 
-20:25:22 | Change #8975 | At: Operator Desk OD-9
-  Setting: snapshot keep-days (7 -> 14)
-  Result: APPLIED | Badge: B-2090
-
-21:18:33 | Change #9955 | At: Sync Controller SG-5
-  Setting: heartbeat timeout (seconds) (5 -> 8)
-  Result: APPLIED | Badge: B-6973
-
-21:22:22 | Change #4274 | At: Sync Controller SG-2
-  Setting: sync controller state (RUNNING -> STOPPED)
-  Result: APPLIED | Badge: B-8735
+CHANGE FLOW
+  20:11:22 Change #6390 -> 20:25:22 Change #8975 -> 21:18:33 Change #9955 -> 21:22:22 Change #4274
 
 END OF LOG

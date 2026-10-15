@@ -7,11 +7,16 @@ What this is: a security key must be ARMED by a badge before it can be USED.
 - Badges are explained in login_records.log (BADGE REGISTRY).
 
 KEY EVENTS
-21:19:31 | Key ATLAS-6954 | ARMED by badge B-1311 | valid 120 s | purpose: maintenance window
-21:21:06 | Key ATLAS-6954 | DISARMED after use
-22:55:50 | Key HELIX-7302 | ARMED by badge B-6856 | valid 120 s | never used
-22:57:50 | Key HELIX-7302 | EXPIRED unused
-22:58:40 | Key PULSAR-5055 | ARMED by badge B-9621 | valid 120 s
-22:59:31 | Key PULSAR-5055 | USED at Filter Array PF-6 | Change #7350
+TIME     | KEY             | EVENT    | DETAIL
+---------+-----------------+----------+----------------------------------------------------------
+21:19:31 | Key ATLAS-6954  | ARMED    | by badge B-1311, valid 120 s, purpose: maintenance window
+21:21:06 | Key ATLAS-6954  | DISARMED | after use
+22:55:50 | Key HELIX-7302  | ARMED    | by badge B-6856, valid 120 s, never used
+22:57:50 | Key HELIX-7302  | EXPIRED  | unused
+22:58:40 | Key PULSAR-5055 | ARMED    | by badge B-9621, valid 120 s
+22:59:31 | Key PULSAR-5055 | USED     | at Filter Array PF-6, Change #7350
+
+KEY FLOW
+  21:19:31 Key ATLAS-6954 ARMED -> 21:21:06 Key ATLAS-6954 DISARMED -> 22:55:50 Key HELIX-7302 ARMED -> 22:57:50 Key HELIX-7302 EXPIRED -> 22:58:40 Key PULSAR-5055 ARMED -> 22:59:31 Key PULSAR-5055 USED
 
 END OF LOG

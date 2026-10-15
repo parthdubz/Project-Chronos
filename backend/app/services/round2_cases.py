@@ -1,11 +1,12 @@
 """
 Round 2 cases: 24 different investigations, one assigned per team per game.
 
-Case data lives in `backend/data/round2_cases_all_24/R2-01 ... R2-24/` (case.json plus the four
-evidence files Round 3 refers to: system_changes.log, login_records.log,
-security_keys.log, incident_report.txt). The culprit of every case is one of
-Project Alpha / Beta / Gamma. The files are produced by backend/tools/generate_cases.py. This module loads those folders into the
-database on first use and decides which case a team plays.
+Case data lives in `backend/data/round2_cases_all_24/R2-01 ... R2-24/` (case.json, the four
+evidence files Round 3 refers to - system_changes.log, login_records.log, security_keys.log,
+incident_report.txt - plus README.md, an instructional briefing that is identical in every case
+and never reaches the AI prompt or the Round 3 evidence pool). The culprit of every case is one
+of Project Alpha / Beta / Gamma. The files are produced by backend/tools/generate_cases.py. This
+module loads those folders into the database on first use and decides which case a team plays.
 
 Tables (names match the shared seed script `seed_round2_cases.py`):
   round2_cases          one row per case, holds the hidden culprit
@@ -32,8 +33,9 @@ CASES_DIR = Path(__file__).resolve().parents[2] / "data" / "round2_cases_all_24"
 _seeded = set()   # database files already loaded by this process
 # file id (key of player_files in case.json) -> display name / tag
 _PROJECT_NAMES = {"audit": "System changes", "access": "Login records",
-                  "auth": "Security keys", "incident": "Incident report"}
-_TIMELINE_TAGS = {"audit": "changes", "access": "logins", "auth": "keys", "incident": "incident"}
+                  "auth": "Security keys", "incident": "Incident report", "readme": "Briefing"}
+_TIMELINE_TAGS = {"audit": "changes", "access": "logins", "auth": "keys", "incident": "incident",
+                  "readme": "readme"}
 
 
 def ensure_case_tables(connection) -> None:

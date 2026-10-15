@@ -2,24 +2,18 @@ SYSTEM CHANGE LOG
 Case R2-21 | Covers 21:11:10 to 23:26:10
 
 What this is: every change to a system setting is written down here.
-- Badge = the ID badge number of whoever made the change.
+- BADGE is the ID badge number of whoever made the change.
 - This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
 CHANGES
-21:43:10 | Change #2668 | At: Diagnostics Bay DB-4
-  Setting: log detail level (NORMAL -> DETAILED)
-  Result: APPLIED | Badge: B-2892
+TIME     | CHANGE       | TERMINAL                 | SETTING CHANGE                               | RESULT  | BADGE
+---------+--------------+--------------------------+----------------------------------------------+---------+-------
+21:43:10 | Change #2668 | Diagnostics Bay DB-4     | log detail level (NORMAL -> DETAILED)        | APPLIED | B-2892
+21:54:10 | Change #5609 | Maintenance Console MC-3 | queue size limit (512 -> 1024)               | APPLIED | B-2334
+23:08:16 | Change #6603 | Anchor Relay AR-5B       | archive cleanup schedule (NIGHTLY -> WEEKLY) | APPLIED | B-2892
+23:11:10 | Change #6529 | Anchor Relay AR-5        | anchor offset table (0 -> 211 ms)            | APPLIED | B-2334
 
-21:54:10 | Change #5609 | At: Maintenance Console MC-3
-  Setting: queue size limit (512 -> 1024)
-  Result: APPLIED | Badge: B-2334
-
-23:08:16 | Change #6603 | At: Anchor Relay AR-5B
-  Setting: archive cleanup schedule (NIGHTLY -> WEEKLY)
-  Result: APPLIED | Badge: B-2892
-
-23:11:10 | Change #6529 | At: Anchor Relay AR-5
-  Setting: anchor offset table (0 -> 211 ms)
-  Result: APPLIED | Badge: B-2334
+CHANGE FLOW
+  21:43:10 Change #2668 -> 21:54:10 Change #5609 -> 23:08:16 Change #6603 -> 23:11:10 Change #6529
 
 END OF LOG

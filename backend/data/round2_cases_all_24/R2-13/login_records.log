@@ -5,16 +5,23 @@ What this is: who logged in, at which terminal, and with what access level.
 Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
-B-6559 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
-B-3198 | Project Beta | Present Timeline | Lead: Commander V. Reyes
-B-3584 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
+BADGE  | PROJECT       | SECTOR           | LEAD
+-------+---------------+------------------+----------------------
+B-6559 | Project Alpha | Future Timeline  | Dr. Aris Thorne
+B-3198 | Project Beta  | Present Timeline | Commander V. Reyes
+B-3584 | Project Gamma | Past Timeline    | Chief Eng. Sarah Chen
 
 LOGIN RECORDS
-18:29:54 | Badge B-3584 | Diagnostics Bay DB-2 | LOGGED IN | VIEW ONLY
-19:26:35 | Badge B-3198 | Diagnostics Bay DB-2 | LOGGED IN | TEST ONLY
-19:33:16 | Badge B-3584 | Maintenance Console MC-4 | LOGGED IN | VIEW ONLY
-20:00:53 | Badge B-3584 | Anchor Relay AR-7 | REFUSED | FULL CONTROL (not allowed for this badge)
-20:01:52 | Badge B-3198 | Anchor Relay AR-5 | LOGGED IN | FULL CONTROL
-20:02:45 | Badge B-6559 | Anchor Relay AR-7 | LOGGED IN | FULL CONTROL
+TIME     | BADGE  | TERMINAL                 | STATUS    | LEVEL
+---------+--------+--------------------------+-----------+------------------------------------------
+18:29:54 | B-3584 | Diagnostics Bay DB-2     | LOGGED IN | VIEW ONLY
+19:26:35 | B-3198 | Diagnostics Bay DB-2     | LOGGED IN | TEST ONLY
+19:33:16 | B-3584 | Maintenance Console MC-4 | LOGGED IN | VIEW ONLY
+20:00:53 | B-3584 | Anchor Relay AR-7        | REFUSED   | FULL CONTROL (not allowed for this badge)
+20:01:52 | B-3198 | Anchor Relay AR-5        | LOGGED IN | FULL CONTROL
+20:02:45 | B-6559 | Anchor Relay AR-7        | LOGGED IN | FULL CONTROL
+
+LOGIN FLOW
+  18:29:54 B-3584 LOGGED IN -> 19:26:35 B-3198 LOGGED IN -> 19:33:16 B-3584 LOGGED IN -> 20:00:53 B-3584 REFUSED -> 20:01:52 B-3198 LOGGED IN -> 20:02:45 B-6559 LOGGED IN
 
 END OF RECORDS

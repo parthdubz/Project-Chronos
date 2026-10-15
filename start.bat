@@ -89,14 +89,20 @@ echo.
 echo Starting CHRONOS on port %PORT% ...
 start "CHRONOS Server" /D "%ROOT%backend" cmd /k %PY% -m uvicorn app.main:app --host 0.0.0.0 --port %PORT%
 
+rem ---- The one LAN address other PCs should use (the outgoing interface, never a VPN or
+rem      virtual adapter that a plain ipconfig listing could also show). ----
+set "LAN_IP="
+for /f "delims=" %%i in ('%PY% -c "import socket; s=socket.socket(socket.AF_INET, socket.SOCK_DGRAM); s.settimeout(0.5); s.connect(('10.255.255.255', 1)); print(s.getsockname()[0]); s.close()" 2^>nul') do set "LAN_IP=%%i"
+
 echo.
 echo ================================================================
 echo  CHRONOS is starting.
 echo.
-echo  On this PC:               http://127.0.0.1:%PORT%/
-echo  Other PCs ^(same network^), open one of:
-for /f "tokens=2 delims=:" %%a in ('ipconfig ^| findstr /c:"IPv4"') do (
-  for /f "tokens=* delims= " %%b in ("%%a") do echo      http://%%b:%PORT%/
+echo  On this PC:                          http://127.0.0.1:%PORT%/
+if defined LAN_IP (
+  echo  LAN Party ^(other PCs, same network^):  http://%LAN_IP%:%PORT%/
+) else (
+  echo  LAN Party ^(other PCs, same network^): could not detect your LAN IP; check ipconfig.
 )
 echo.
 echo  If another PC cannot connect: click "Allow access" if Windows asks, or

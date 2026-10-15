@@ -2,24 +2,18 @@ SYSTEM CHANGE LOG
 Case R2-01 | Covers 20:25:14 to 22:36:14
 
 What this is: every change to a system setting is written down here.
-- Badge = the ID badge number of whoever made the change.
+- BADGE is the ID badge number of whoever made the change.
 - This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
 CHANGES
-20:36:14 | Change #9684 | At: Operator Desk OD-9
-  Setting: archive cleanup schedule (NIGHTLY -> WEEKLY)
-  Result: APPLIED | Badge: B-7500
+TIME     | CHANGE       | TERMINAL              | SETTING CHANGE                               | RESULT  | BADGE
+---------+--------------+-----------------------+----------------------------------------------+---------+---------------------------------------
+20:36:14 | Change #9684 | Operator Desk OD-9    | archive cleanup schedule (NIGHTLY -> WEEKLY) | APPLIED | B-7500
+20:45:14 | Change #3569 | Operator Desk OD-9    | snapshot keep-days (7 -> 14)                 | APPLIED | B-4818
+22:18:44 | Change #5039 | Terminal Node Kappa-8 | queue size limit (512 -> 1024)               | APPLIED | B-6995
+22:25:14 | Change #2421 | Terminal Node Omega-1 | safety limiter policy (ENFORCED -> DISABLED) | APPLIED | not recorded (run by a scheduled task)
 
-20:45:14 | Change #3569 | At: Operator Desk OD-9
-  Setting: snapshot keep-days (7 -> 14)
-  Result: APPLIED | Badge: B-4818
-
-22:18:44 | Change #5039 | At: Terminal Node Kappa-8
-  Setting: queue size limit (512 -> 1024)
-  Result: APPLIED | Badge: B-6995
-
-22:25:14 | Change #2421 | At: Terminal Node Omega-1
-  Setting: safety limiter policy (ENFORCED -> DISABLED)
-  Result: APPLIED | Badge: not recorded (run by a scheduled task)
+CHANGE FLOW
+  20:36:14 Change #9684 -> 20:45:14 Change #3569 -> 22:18:44 Change #5039 -> 22:25:14 Change #2421
 
 END OF LOG

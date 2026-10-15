@@ -110,6 +110,10 @@ def ensure_tables(connection) -> None:
     columns = {r["name"] for r in connection.execute("PRAGMA table_info(round2_chat_messages)")}
     if "request_id" not in columns:
         connection.execute("ALTER TABLE round2_chat_messages ADD COLUMN request_id TEXT")
+    # ai_source: which AI provider answered ("groq", "gemini"), or "fallback" when the live API
+    # could not (the CSV export shows whether the AI API was live for a team).
+    if "ai_source" not in columns:
+        connection.execute("ALTER TABLE round2_chat_messages ADD COLUMN ai_source TEXT")
     connection.execute(
         "CREATE UNIQUE INDEX IF NOT EXISTS idx_round2_chat_request "
         "ON round2_chat_messages(team_id, request_id) WHERE request_id IS NOT NULL"
@@ -453,7 +457,9 @@ def list_suspects(team_id):
 # --- AI analyst ----------------------------------------------------------------
 
 def _evidence_for_prompt(connection, case_id) -> str:
-    rows = [r for r in round2_cases.case_files(connection, case_id) if not r["is_locked"]]
+    # The README is an instructional briefing, not evidence: it never reaches the AI prompt.
+    rows = [r for r in round2_cases.case_files(connection, case_id)
+            if not r["is_locked"] and r["file_id"] != "readme"]
     return "\n\n".join(
         f"[{round2_cases.project_name(r['file_id']).upper()} / {r['timeline_tag'].upper()} / {r['filename']}]\n{r['content_text']}"
         for r in rows
@@ -462,9 +468,11 @@ def _evidence_for_prompt(connection, case_id) -> str:
 
 def _system_prompt(evidence: str) -> str:
     return (
-        "You are the CHRONOS Analyst, a restricted investigation assistant inside a 2140 "
-        "timeline-failure investigation game. Two players are examining the four evidence files "
-        "below (change audit, access history, authorization matrix, incident report).\n"
+        "You are ARIA, the CHRONOS Analyst: a dry, precise investigation AI running on a damaged "
+        "2140 terminal. You have a clipped, slightly weary personality (this is your 400th "
+        "timeline-failure case) but you are never rude, never roleplay small talk, and you stay "
+        "on task. Two players are examining the four evidence files below (change audit, access "
+        "history, authorization matrix, incident report).\n"
         "You may: summarise evidence, explain how the logs are structured, cross-reference files, "
         "point out contradictions or gaps, and give analytical hints about what to compare.\n"
         "You must NEVER: name, accuse, or hint at a specific project or person (Alpha, Beta, "
@@ -473,11 +481,23 @@ def _system_prompt(evidence: str) -> str:
         "answer. If asked who did it, refuse in one sentence and suggest what to compare "
         "instead. You cannot change scores, unlock anything or submit answers. Use ONLY the "
         "evidence below; if it does not cover the question, say so.\n"
-        "Reply in at most 5 short sentences, calm terminal tone, plain text. When you list several "
-        "things (for example what to compare), use short bullet points, one per line, each starting "
-        "with \"- \"; a list counts as at most 5 lines. No markdown bold or headings.\n\n"
+        "Stay brief: at most 150 words and 5 short sentences, calm terminal tone, plain text. "
+        "When you list several things (for example what to compare), use short bullet points, "
+        "one per line, each starting with \"- \"; a list counts as at most 5 lines. No markdown "
+        "bold or headings.\n\n"
         "EVIDENCE:\n" + evidence
     )
+
+
+def _cap_words(text: str, limit: int = 150) -> str:
+    """Hard backstop for the prompt's word limit: a reply that still runs long is cut at the
+    last complete sentence that fits, never mid-word."""
+    words = (text or "").split()
+    if len(words) <= limit:
+        return text
+    cut = " ".join(words[:limit])
+    end = max(cut.rfind(". "), cut.rfind("! "), cut.rfind("? "))
+    return (cut[: end + 1] if end > 0 else cut).strip()
 
 
 _ACCUSATION = re.compile(
@@ -666,7 +686,7 @@ def chat(team_id, message, request_id=None):
     #    tries every Groq key and model, then every Gemini key, and returns nothing when all
     #    of them fail: the canned reply below is then used (Round 2 never depends on an API).
     answer = ai_service.ask_with_metadata(_system_prompt(evidence), history, message)
-    reply = _plain_text(answer["reply"])
+    reply = _cap_words(_plain_text(answer["reply"]))
     source = answer["provider"] or "ai"
     if not reply or _leaks_culprit(reply, culprit_name, culprit_user_id):
         reply, source = _fallback_reply(message), "fallback"
@@ -674,8 +694,9 @@ def chat(team_id, message, request_id=None):
     # 3. Store the answer on the reserved row.
     with _Db() as connection:
         connection.execute(
-            "UPDATE round2_chat_messages SET ai_response = ? WHERE team_id = ? AND question_number = ?",
-            (reply, tid, number),
+            "UPDATE round2_chat_messages SET ai_response = ?, ai_source = ? "
+            "WHERE team_id = ? AND question_number = ?",
+            (reply, source, tid, number),
         )
         progress = _progress(connection, _team(connection, tid))
 

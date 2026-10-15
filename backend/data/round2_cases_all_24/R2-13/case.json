@@ -24,7 +24,8 @@
     "audit": "system_changes.log",
     "access": "login_records.log",
     "auth": "security_keys.log",
-    "incident": "incident_report.txt"
+    "incident": "incident_report.txt",
+    "readme": "README.md"
   },
   "supporting_files": [
     "login_records.log",

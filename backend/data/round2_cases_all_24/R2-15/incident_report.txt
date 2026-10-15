@@ -5,9 +5,14 @@ WHAT HAPPENED
 The cross-timeline sync controller was stopped. The effect spread across the timeline network.
 
 TIMELINE OF EVENTS
+TIME     | EVENT
+---------+---------------------------------------------------------
 23:15:13 | First abnormal reading: 10 timeline channels out of sync
 23:15:34 | Monitoring reports a sustained inconsistency
 23:16:19 | Automatic recovery fails to restore normal readings
+
+INCIDENT FLOW
+  23:15:13 First abnormal reading: 10 timeline channels out of sync -> 23:15:34 Monitoring reports a sustained inconsistency -> 23:16:19 Automatic recovery fails to restore normal readings
 
 WHERE IT STARTED
 The first abnormal reading came from Sync Controller SG-7.

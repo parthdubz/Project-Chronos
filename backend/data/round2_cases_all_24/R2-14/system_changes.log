@@ -2,24 +2,18 @@ SYSTEM CHANGE LOG
 Case R2-14 | Covers 20:59:31 to 23:10:31
 
 What this is: every change to a system setting is written down here.
-- Badge = the ID badge number of whoever made the change.
+- BADGE is the ID badge number of whoever made the change.
 - This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
 CHANGES
-21:19:31 | Change #1820 | At: Diagnostics Bay DB-5
-  Setting: log detail level (NORMAL -> DETAILED)
-  Result: APPLIED | Badge: B-1311
+TIME     | CHANGE       | TERMINAL                 | SETTING CHANGE                           | RESULT  | BADGE
+---------+--------------+--------------------------+------------------------------------------+---------+---------------------------------------
+21:19:31 | Change #1820 | Diagnostics Bay DB-5     | log detail level (NORMAL -> DETAILED)    | APPLIED | B-1311
+21:34:31 | Change #9962 | Maintenance Console MC-8 | queue size limit (512 -> 1024)           | APPLIED | B-9621
+22:56:16 | Change #6790 | Filter Array PF-6B       | queue size limit (512 -> 1024)           | APPLIED | B-1311
+22:59:31 | Change #7350 | Filter Array PF-6        | paradox filter mode (ACTIVE -> BYPASSED) | APPLIED | not recorded (run by a scheduled task)
 
-21:34:31 | Change #9962 | At: Maintenance Console MC-8
-  Setting: queue size limit (512 -> 1024)
-  Result: APPLIED | Badge: B-9621
-
-22:56:16 | Change #6790 | At: Filter Array PF-6B
-  Setting: queue size limit (512 -> 1024)
-  Result: APPLIED | Badge: B-1311
-
-22:59:31 | Change #7350 | At: Filter Array PF-6
-  Setting: paradox filter mode (ACTIVE -> BYPASSED)
-  Result: APPLIED | Badge: not recorded (run by a scheduled task)
+CHANGE FLOW
+  21:19:31 Change #1820 -> 21:34:31 Change #9962 -> 22:56:16 Change #6790 -> 22:59:31 Change #7350
 
 END OF LOG

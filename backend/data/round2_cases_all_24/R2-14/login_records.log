@@ -5,16 +5,23 @@ What this is: who logged in, at which terminal, and with what access level.
 Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
-B-6856 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
-B-9621 | Project Beta | Present Timeline | Lead: Commander V. Reyes
-B-1311 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
+BADGE  | PROJECT       | SECTOR           | LEAD
+-------+---------------+------------------+----------------------
+B-6856 | Project Alpha | Future Timeline  | Dr. Aris Thorne
+B-9621 | Project Beta  | Present Timeline | Commander V. Reyes
+B-1311 | Project Gamma | Past Timeline    | Chief Eng. Sarah Chen
 
 LOGIN RECORDS
-21:25:53 | Badge B-6856 | Diagnostics Bay DB-5 | LOGGED IN | TEST ONLY
-21:50:31 | Badge B-9621 | Maintenance Console MC-8 | LOGGED IN | TEST ONLY
-22:25:12 | Badge B-9621 | Maintenance Console MC-8 | LOGGED IN | TEST ONLY
-22:57:36 | Badge B-6856 | Filter Array PF-6 | REFUSED | FULL CONTROL (not allowed for this badge)
-22:58:30 | Badge B-1311 | Filter Array PF-6B | LOGGED IN | FULL CONTROL
-22:59:12 | Badge B-9621 | Filter Array PF-6 | LOGGED IN | FULL CONTROL
+TIME     | BADGE  | TERMINAL                 | STATUS    | LEVEL
+---------+--------+--------------------------+-----------+------------------------------------------
+21:25:53 | B-6856 | Diagnostics Bay DB-5     | LOGGED IN | TEST ONLY
+21:50:31 | B-9621 | Maintenance Console MC-8 | LOGGED IN | TEST ONLY
+22:25:12 | B-9621 | Maintenance Console MC-8 | LOGGED IN | TEST ONLY
+22:57:36 | B-6856 | Filter Array PF-6        | REFUSED   | FULL CONTROL (not allowed for this badge)
+22:58:30 | B-1311 | Filter Array PF-6B       | LOGGED IN | FULL CONTROL
+22:59:12 | B-9621 | Filter Array PF-6        | LOGGED IN | FULL CONTROL
+
+LOGIN FLOW
+  21:25:53 B-6856 LOGGED IN -> 21:50:31 B-9621 LOGGED IN -> 22:25:12 B-9621 LOGGED IN -> 22:57:36 B-6856 REFUSED -> 22:58:30 B-1311 LOGGED IN -> 22:59:12 B-9621 LOGGED IN
 
 END OF RECORDS

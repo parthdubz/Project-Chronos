@@ -5,9 +5,14 @@ WHAT HAPPENED
 The transit buffer was flushed outside its maintenance window. The effect spread across the timeline network.
 
 TIMELINE OF EVENTS
+TIME     | EVENT
+---------+---------------------------------------------------------
 23:27:10 | First abnormal reading: transit buffer overrun of 222 MB
 23:27:27 | Monitoring reports a sustained inconsistency
 23:28:05 | Automatic recovery fails to restore normal readings
+
+INCIDENT FLOW
+  23:27:10 First abnormal reading: transit buffer overrun of 222 MB -> 23:27:27 Monitoring reports a sustained inconsistency -> 23:28:05 Automatic recovery fails to restore normal readings
 
 WHERE IT STARTED
 The first abnormal reading came from Transit Buffer TB-2.

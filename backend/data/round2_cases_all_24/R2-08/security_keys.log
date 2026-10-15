@@ -7,11 +7,16 @@ What this is: a security key must be ARMED by a badge before it can be USED.
 - Badges are explained in login_records.log (BADGE REGISTRY).
 
 KEY EVENTS
-19:59:30 | Key VEGA-4837 | ARMED by badge B-9847 | valid 120 s | purpose: maintenance window
-20:01:05 | Key VEGA-4837 | DISARMED after use
-21:09:22 | Key ZENITH-4215 | ARMED by badge B-6257 | valid 120 s | never used
-21:11:00 | Key HELIX-6450 | STANDING AUTHORIZATION | maintenance window MW-18 | not tied to any one badge
-21:11:22 | Key ZENITH-4215 | EXPIRED unused
-21:12:30 | Key HELIX-6450 | USED at Transit Buffer TB-5 | Change #5321
+TIME     | KEY             | EVENT                  | DETAIL
+---------+-----------------+------------------------+----------------------------------------------------------
+19:59:30 | Key VEGA-4837   | ARMED                  | by badge B-9847, valid 120 s, purpose: maintenance window
+20:01:05 | Key VEGA-4837   | DISARMED               | after use
+21:09:22 | Key ZENITH-4215 | ARMED                  | by badge B-6257, valid 120 s, never used
+21:11:00 | Key HELIX-6450  | STANDING AUTHORIZATION | maintenance window MW-18, not tied to any one badge
+21:11:22 | Key ZENITH-4215 | EXPIRED                | unused
+21:12:30 | Key HELIX-6450  | USED                   | at Transit Buffer TB-5, Change #5321
+
+KEY FLOW
+  19:59:30 Key VEGA-4837 ARMED -> 20:01:05 Key VEGA-4837 DISARMED -> 21:09:22 Key ZENITH-4215 ARMED -> 21:11:00 Key HELIX-6450 STANDING AUTHORIZATION -> 21:11:22 Key ZENITH-4215 EXPIRED -> 21:12:30 Key HELIX-6450 USED
 
 END OF LOG

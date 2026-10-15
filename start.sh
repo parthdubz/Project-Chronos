@@ -87,9 +87,9 @@ echo
 echo "================================================================"
 echo " CHRONOS is starting."
 echo
-echo " On this computer:        http://localhost:$PORT/"
+echo " On this computer:                     http://localhost:$PORT/"
 if [ -n "$LAN_IP" ]; then
-  echo " Other devices (same Wi-Fi/network):  http://$LAN_IP:$PORT/"
+  echo " LAN Party (other devices, same network):  http://$LAN_IP:$PORT/"
 fi
 echo
 echo " If another device cannot connect: allow incoming connections when macOS asks,"

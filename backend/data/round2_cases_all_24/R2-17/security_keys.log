@@ -7,11 +7,16 @@ What this is: a security key must be ARMED by a badge before it can be USED.
 - Badges are explained in login_records.log (BADGE REGISTRY).
 
 KEY EVENTS
-18:59:44 | Key ONYX-2051 | ARMED by badge B-2763 | valid 120 s | purpose: maintenance window
-19:01:19 | Key ONYX-2051 | DISARMED after use
-20:14:58 | Key ZENITH-6447 | ARMED by badge B-6468 | valid 120 s | never used
-20:16:58 | Key ZENITH-6447 | EXPIRED unused
-20:18:04 | Key PULSAR-8339 | ARMED by badge B-4312 | valid 120 s
-20:18:44 | Key PULSAR-8339 | USED at Terminal Node Zeta-9 | Change #3225
+TIME     | KEY             | EVENT    | DETAIL
+---------+-----------------+----------+----------------------------------------------------------
+18:59:44 | Key ONYX-2051   | ARMED    | by badge B-2763, valid 120 s, purpose: maintenance window
+19:01:19 | Key ONYX-2051   | DISARMED | after use
+20:14:58 | Key ZENITH-6447 | ARMED    | by badge B-6468, valid 120 s, never used
+20:16:58 | Key ZENITH-6447 | EXPIRED  | unused
+20:18:04 | Key PULSAR-8339 | ARMED    | by badge B-4312, valid 120 s
+20:18:44 | Key PULSAR-8339 | USED     | at Terminal Node Zeta-9, Change #3225
+
+KEY FLOW
+  18:59:44 Key ONYX-2051 ARMED -> 19:01:19 Key ONYX-2051 DISARMED -> 20:14:58 Key ZENITH-6447 ARMED -> 20:16:58 Key ZENITH-6447 EXPIRED -> 20:18:04 Key PULSAR-8339 ARMED -> 20:18:44 Key PULSAR-8339 USED
 
 END OF LOG

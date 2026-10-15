@@ -5,16 +5,23 @@ What this is: who logged in, at which terminal, and with what access level.
 Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
-B-6312 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
-B-7521 | Project Beta | Present Timeline | Lead: Commander V. Reyes
-B-9092 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
+BADGE  | PROJECT       | SECTOR           | LEAD
+-------+---------------+------------------+----------------------
+B-6312 | Project Alpha | Future Timeline  | Dr. Aris Thorne
+B-7521 | Project Beta  | Present Timeline | Commander V. Reyes
+B-9092 | Project Gamma | Past Timeline    | Chief Eng. Sarah Chen
 
 LOGIN RECORDS
-21:40:24 | Badge B-9092 | Terminal Node Iota-3 | LOGGED IN | TEST ONLY
-21:56:46 | Badge B-9092 | Maintenance Console MC-1 | LOGGED IN | VIEW ONLY
-22:20:05 | Badge B-9092 | Terminal Node Iota-3 | LOGGED IN | TEST ONLY
-23:21:10 | Badge B-9092 | Frequency Station CH-1 | REFUSED | FULL CONTROL (not allowed for this badge)
-23:22:32 | Badge B-7521 | Frequency Station CH-8 | LOGGED IN | FULL CONTROL
-23:23:16 | Badge B-6312 | Frequency Station CH-1 | LOGGED IN | FULL CONTROL
+TIME     | BADGE  | TERMINAL                 | STATUS    | LEVEL
+---------+--------+--------------------------+-----------+------------------------------------------
+21:40:24 | B-9092 | Terminal Node Iota-3     | LOGGED IN | TEST ONLY
+21:56:46 | B-9092 | Maintenance Console MC-1 | LOGGED IN | VIEW ONLY
+22:20:05 | B-9092 | Terminal Node Iota-3     | LOGGED IN | TEST ONLY
+23:21:10 | B-9092 | Frequency Station CH-1   | REFUSED   | FULL CONTROL (not allowed for this badge)
+23:22:32 | B-7521 | Frequency Station CH-8   | LOGGED IN | FULL CONTROL
+23:23:16 | B-6312 | Frequency Station CH-1   | LOGGED IN | FULL CONTROL
+
+LOGIN FLOW
+  21:40:24 B-9092 LOGGED IN -> 21:56:46 B-9092 LOGGED IN -> 22:20:05 B-9092 LOGGED IN -> 23:21:10 B-9092 REFUSED -> 23:22:32 B-7521 LOGGED IN -> 23:23:16 B-6312 LOGGED IN
 
 END OF RECORDS

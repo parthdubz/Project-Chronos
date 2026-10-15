@@ -5,9 +5,14 @@ WHAT HAPPENED
 Timeline anchor records were deleted in bulk. The effect spread across the timeline network.
 
 TIMELINE OF EVENTS
+TIME     | EVENT
+---------+------------------------------------------------------------------
 22:51:33 | First abnormal reading: 551 anchor records missing from the index
 22:51:50 | Monitoring reports a sustained inconsistency
 22:52:19 | Automatic recovery fails to restore normal readings
+
+INCIDENT FLOW
+  22:51:33 First abnormal reading: 551 anchor records missing from the index -> 22:51:50 Monitoring reports a sustained inconsistency -> 22:52:19 Automatic recovery fails to restore normal readings
 
 WHERE IT STARTED
 The first abnormal reading came from Archive Vault AV-3.

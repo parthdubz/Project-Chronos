@@ -457,7 +457,7 @@ function FragmentCard({ fragment, index, selected, dragging, onSelect, onPointer
   const handleMouseEnter = () => {
     if (dragging) return;
     window.clearTimeout(hoverTimerRef.current);
-    hoverTimerRef.current = window.setTimeout(() => setPreviewOpen(true), 2000);
+    hoverTimerRef.current = window.setTimeout(() => setPreviewOpen(true), 500);
   };
 
   const handleMouseLeave = () => {
@@ -483,7 +483,7 @@ function FragmentCard({ fragment, index, selected, dragging, onSelect, onPointer
         onPointerDown={onPointerDown}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        title="Drag to a temporal sector, or select then click a sector. Hover for 2 seconds to inspect."
+        title="Drag to a temporal sector, or select then click a sector. Hover for half a second to inspect."
       >
         <div className="fragment-corner">◈ {fragment.fragmentCode}</div>
         <div className="fragment-image-wrap"><img src={fragment.image} alt="Recovered technology fragment" draggable={false} /><div className="scan-line" /><div className="image-noise" /></div>

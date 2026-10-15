@@ -2,24 +2,18 @@ SYSTEM CHANGE LOG
 Case R2-06 | Covers 17:49:12 to 19:58:12
 
 What this is: every change to a system setting is written down here.
-- Badge = the ID badge number of whoever made the change.
+- BADGE is the ID badge number of whoever made the change.
 - This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
 CHANGES
-18:26:12 | Change #6813 | At: Maintenance Console MC-5
-  Setting: retry rule (STANDARD -> LIMITED)
-  Result: APPLIED | Badge: B-1651
+TIME     | CHANGE       | TERMINAL                 | SETTING CHANGE                               | RESULT  | BADGE
+---------+--------------+--------------------------+----------------------------------------------+---------+-------
+18:26:12 | Change #6813 | Maintenance Console MC-5 | retry rule (STANDARD -> LIMITED)             | APPLIED | B-1651
+18:42:12 | Change #5470 | Terminal Node Iota-4     | archive cleanup schedule (NIGHTLY -> WEEKLY) | APPLIED | B-1651
+19:45:29 | Change #1672 | Filter Array PF-2        | retry rule (STANDARD -> LIMITED)             | APPLIED | B-1651
+19:49:12 | Change #5964 | Filter Array PF-3        | paradox filter mode (ACTIVE -> BYPASSED)     | APPLIED | B-6293
 
-18:42:12 | Change #5470 | At: Terminal Node Iota-4
-  Setting: archive cleanup schedule (NIGHTLY -> WEEKLY)
-  Result: APPLIED | Badge: B-1651
-
-19:45:29 | Change #1672 | At: Filter Array PF-2
-  Setting: retry rule (STANDARD -> LIMITED)
-  Result: APPLIED | Badge: B-1651
-
-19:49:12 | Change #5964 | At: Filter Array PF-3
-  Setting: paradox filter mode (ACTIVE -> BYPASSED)
-  Result: APPLIED | Badge: B-6293
+CHANGE FLOW
+  18:26:12 Change #6813 -> 18:42:12 Change #5470 -> 19:45:29 Change #1672 -> 19:49:12 Change #5964
 
 END OF LOG

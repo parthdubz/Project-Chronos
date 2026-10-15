@@ -5,17 +5,24 @@ What this is: who logged in, at which terminal, and with what access level.
 Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
-B-5445 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
-B-1651 | Project Beta | Present Timeline | Lead: Commander V. Reyes
-B-6293 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
+BADGE  | PROJECT       | SECTOR           | LEAD
+-------+---------------+------------------+----------------------
+B-5445 | Project Alpha | Future Timeline  | Dr. Aris Thorne
+B-1651 | Project Beta  | Present Timeline | Commander V. Reyes
+B-6293 | Project Gamma | Past Timeline    | Chief Eng. Sarah Chen
 
 LOGIN RECORDS
-18:54:12 | Badge B-5445 | Diagnostics Bay DB-4 | LOGGED IN | TEST ONLY
-18:58:12 | Badge B-5445 | Diagnostics Bay DB-4 | LOGGED IN | FULL CONTROL
-19:07:34 | Badge B-5445 | Diagnostics Bay DB-4 | LOGGED IN | VIEW ONLY
-19:19:53 | Badge B-1651 | Diagnostics Bay DB-4 | LOGGED IN | VIEW ONLY
-19:47:15 | Badge B-5445 | Filter Array PF-3 | REFUSED | FULL CONTROL (not allowed for this badge)
-19:48:30 | Badge B-1651 | Filter Array PF-2 | LOGGED IN | FULL CONTROL
+TIME     | BADGE  | TERMINAL             | STATUS    | LEVEL
+---------+--------+----------------------+-----------+------------------------------------------
+18:54:12 | B-5445 | Diagnostics Bay DB-4 | LOGGED IN | TEST ONLY
+18:58:12 | B-5445 | Diagnostics Bay DB-4 | LOGGED IN | FULL CONTROL
+19:07:34 | B-5445 | Diagnostics Bay DB-4 | LOGGED IN | VIEW ONLY
+19:19:53 | B-1651 | Diagnostics Bay DB-4 | LOGGED IN | VIEW ONLY
+19:47:15 | B-5445 | Filter Array PF-3    | REFUSED   | FULL CONTROL (not allowed for this badge)
+19:48:30 | B-1651 | Filter Array PF-2    | LOGGED IN | FULL CONTROL
 19:48:48 - 19:49:21 | RECORDS LOST | the log buffer overflowed and the records in this interval were not recovered
+
+LOGIN FLOW
+  18:54:12 B-5445 LOGGED IN -> 18:58:12 B-5445 LOGGED IN -> 19:07:34 B-5445 LOGGED IN -> 19:19:53 B-1651 LOGGED IN -> 19:47:15 B-5445 REFUSED -> 19:48:30 B-1651 LOGGED IN -> RECORDS LOST
 
 END OF RECORDS

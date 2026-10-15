@@ -2,24 +2,18 @@ SYSTEM CHANGE LOG
 Case R2-13 | Covers 18:02:54 to 20:13:54
 
 What this is: every change to a system setting is written down here.
-- Badge = the ID badge number of whoever made the change.
+- BADGE is the ID badge number of whoever made the change.
 - This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
 CHANGES
-18:17:54 | Change #2496 | At: Diagnostics Bay DB-2
-  Setting: log detail level (NORMAL -> DETAILED)
-  Result: APPLIED | Badge: B-6559
+TIME     | CHANGE       | TERMINAL                 | SETTING CHANGE                        | RESULT  | BADGE
+---------+--------------+--------------------------+---------------------------------------+---------+---------------------------------------
+18:17:54 | Change #2496 | Diagnostics Bay DB-2     | log detail level (NORMAL -> DETAILED) | APPLIED | B-6559
+18:28:54 | Change #4677 | Maintenance Console MC-4 | retry rule (STANDARD -> LIMITED)      | APPLIED | B-3198
+19:58:56 | Change #4322 | Anchor Relay AR-5        | queue size limit (512 -> 1024)        | APPLIED | B-3198
+20:02:54 | Change #4560 | Anchor Relay AR-7        | anchor offset table (0 -> 370 ms)     | APPLIED | not recorded (run by a scheduled task)
 
-18:28:54 | Change #4677 | At: Maintenance Console MC-4
-  Setting: retry rule (STANDARD -> LIMITED)
-  Result: APPLIED | Badge: B-3198
-
-19:58:56 | Change #4322 | At: Anchor Relay AR-5
-  Setting: queue size limit (512 -> 1024)
-  Result: APPLIED | Badge: B-3198
-
-20:02:54 | Change #4560 | At: Anchor Relay AR-7
-  Setting: anchor offset table (0 -> 370 ms)
-  Result: APPLIED | Badge: not recorded (run by a scheduled task)
+CHANGE FLOW
+  18:17:54 Change #2496 -> 18:28:54 Change #4677 -> 19:58:56 Change #4322 -> 20:02:54 Change #4560
 
 END OF LOG

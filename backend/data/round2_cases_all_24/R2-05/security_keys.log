@@ -7,11 +7,16 @@ What this is: a security key must be ARMED by a badge before it can be USED.
 - Badges are explained in login_records.log (BADGE REGISTRY).
 
 KEY EVENTS
-17:00:04 | Key VEGA-7484 | ARMED by badge B-7366 | valid 120 s | purpose: maintenance window
-17:01:39 | Key VEGA-7484 | DISARMED after use
-18:30:26 | Key LYRA-8896 | ARMED by badge B-3208 | valid 120 s | never used
-18:32:26 | Key LYRA-8896 | EXPIRED unused
-18:33:36 | Key VEGA-7120 | ARMED by badge B-8330 | valid 120 s
-18:34:04 | Key VEGA-7120 | USED at Anchor Relay AR-9 | Change #5232
+TIME     | KEY           | EVENT    | DETAIL
+---------+---------------+----------+----------------------------------------------------------
+17:00:04 | Key VEGA-7484 | ARMED    | by badge B-7366, valid 120 s, purpose: maintenance window
+17:01:39 | Key VEGA-7484 | DISARMED | after use
+18:30:26 | Key LYRA-8896 | ARMED    | by badge B-3208, valid 120 s, never used
+18:32:26 | Key LYRA-8896 | EXPIRED  | unused
+18:33:36 | Key VEGA-7120 | ARMED    | by badge B-8330, valid 120 s
+18:34:04 | Key VEGA-7120 | USED     | at Anchor Relay AR-9, Change #5232
+
+KEY FLOW
+  17:00:04 Key VEGA-7484 ARMED -> 17:01:39 Key VEGA-7484 DISARMED -> 18:30:26 Key LYRA-8896 ARMED -> 18:32:26 Key LYRA-8896 EXPIRED -> 18:33:36 Key VEGA-7120 ARMED -> 18:34:04 Key VEGA-7120 USED
 
 END OF LOG

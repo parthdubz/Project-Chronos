@@ -7,11 +7,16 @@ What this is: a security key must be ARMED by a badge before it can be USED.
 - Badges are explained in login_records.log (BADGE REGISTRY).
 
 KEY EVENTS
-21:53:11 | Key LYRA-9737 | ARMED by badge B-4012 | valid 120 s | purpose: maintenance window
-21:54:46 | Key LYRA-9737 | DISARMED after use
-23:01:57 | Key PULSAR-5469 | ARMED by badge B-9357 | valid 120 s | never used
-23:03:57 | Key PULSAR-5469 | EXPIRED unused
-23:04:26 | Key ZENITH-6914 | ARMED by badge B-9301 | valid 120 s
-23:05:11 | Key ZENITH-6914 | USED at Frequency Station CH-5 | Change #2083
+TIME     | KEY             | EVENT    | DETAIL
+---------+-----------------+----------+----------------------------------------------------------
+21:53:11 | Key LYRA-9737   | ARMED    | by badge B-4012, valid 120 s, purpose: maintenance window
+21:54:46 | Key LYRA-9737   | DISARMED | after use
+23:01:57 | Key PULSAR-5469 | ARMED    | by badge B-9357, valid 120 s, never used
+23:03:57 | Key PULSAR-5469 | EXPIRED  | unused
+23:04:26 | Key ZENITH-6914 | ARMED    | by badge B-9301, valid 120 s
+23:05:11 | Key ZENITH-6914 | USED     | at Frequency Station CH-5, Change #2083
+
+KEY FLOW
+  21:53:11 Key LYRA-9737 ARMED -> 21:54:46 Key LYRA-9737 DISARMED -> 23:01:57 Key PULSAR-5469 ARMED -> 23:03:57 Key PULSAR-5469 EXPIRED -> 23:04:26 Key ZENITH-6914 ARMED -> 23:05:11 Key ZENITH-6914 USED
 
 END OF LOG

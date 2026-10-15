@@ -2,24 +2,18 @@ SYSTEM CHANGE LOG
 Case R2-15 | Covers 21:14:56 to 23:29:56
 
 What this is: every change to a system setting is written down here.
-- Badge = the ID badge number of whoever made the change.
+- BADGE is the ID badge number of whoever made the change.
 - This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
 CHANGES
-21:31:56 | Change #8385 | At: Terminal Node Iota-1
-  Setting: queue size limit (512 -> 1024)
-  Result: APPLIED | Badge: B-8739
+TIME     | CHANGE       | TERMINAL             | SETTING CHANGE                             | RESULT  | BADGE
+---------+--------------+----------------------+--------------------------------------------+---------+---------------------------------------
+21:31:56 | Change #8385 | Terminal Node Iota-1 | queue size limit (512 -> 1024)             | APPLIED | B-8739
+21:41:56 | Change #1060 | Operator Desk OD-8   | cache lifetime (seconds) (300 -> 600)      | APPLIED | B-8739
+23:09:46 | Change #4464 | Sync Controller SG-5 | queue size limit (512 -> 1024)             | APPLIED | B-1698
+23:14:56 | Change #2832 | Sync Controller SG-7 | sync controller state (RUNNING -> STOPPED) | APPLIED | not recorded (run by a scheduled task)
 
-21:41:56 | Change #1060 | At: Operator Desk OD-8
-  Setting: cache lifetime (seconds) (300 -> 600)
-  Result: APPLIED | Badge: B-8739
-
-23:09:46 | Change #4464 | At: Sync Controller SG-5
-  Setting: queue size limit (512 -> 1024)
-  Result: APPLIED | Badge: B-1698
-
-23:14:56 | Change #2832 | At: Sync Controller SG-7
-  Setting: sync controller state (RUNNING -> STOPPED)
-  Result: APPLIED | Badge: not recorded (run by a scheduled task)
+CHANGE FLOW
+  21:31:56 Change #8385 -> 21:41:56 Change #1060 -> 23:09:46 Change #4464 -> 23:14:56 Change #2832
 
 END OF LOG

@@ -5,16 +5,23 @@ What this is: who logged in, at which terminal, and with what access level.
 Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
-B-9135 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
-B-7050 | Project Beta | Present Timeline | Lead: Commander V. Reyes
-B-2986 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
+BADGE  | PROJECT       | SECTOR           | LEAD
+-------+---------------+------------------+----------------------
+B-9135 | Project Alpha | Future Timeline  | Dr. Aris Thorne
+B-7050 | Project Beta  | Present Timeline | Commander V. Reyes
+B-2986 | Project Gamma | Past Timeline    | Chief Eng. Sarah Chen
 
 LOGIN RECORDS
-21:30:04 | Badge B-2986 | Maintenance Console MC-4 | LOGGED IN | VIEW ONLY
-21:44:45 | Badge B-2986 | Maintenance Console MC-4 | LOGGED IN | VIEW ONLY
-22:18:23 | Badge B-2986 | Diagnostics Bay DB-6 | LOGGED IN | VIEW ONLY
-23:13:01 | Badge B-7050 | Terminal Node Delta-1 | REFUSED | FULL CONTROL (not allowed for this badge)
-23:13:29 | Badge B-9135 | Terminal Node Omega-1 | LOGGED IN | FULL CONTROL
-23:14:13 | Badge B-2986 | Terminal Node Delta-1 | LOGGED IN | FULL CONTROL
+TIME     | BADGE  | TERMINAL                 | STATUS    | LEVEL
+---------+--------+--------------------------+-----------+------------------------------------------
+21:30:04 | B-2986 | Maintenance Console MC-4 | LOGGED IN | VIEW ONLY
+21:44:45 | B-2986 | Maintenance Console MC-4 | LOGGED IN | VIEW ONLY
+22:18:23 | B-2986 | Diagnostics Bay DB-6     | LOGGED IN | VIEW ONLY
+23:13:01 | B-7050 | Terminal Node Delta-1    | REFUSED   | FULL CONTROL (not allowed for this badge)
+23:13:29 | B-9135 | Terminal Node Omega-1    | LOGGED IN | FULL CONTROL
+23:14:13 | B-2986 | Terminal Node Delta-1    | LOGGED IN | FULL CONTROL
+
+LOGIN FLOW
+  21:30:04 B-2986 LOGGED IN -> 21:44:45 B-2986 LOGGED IN -> 22:18:23 B-2986 LOGGED IN -> 23:13:01 B-7050 REFUSED -> 23:13:29 B-9135 LOGGED IN -> 23:14:13 B-2986 LOGGED IN
 
 END OF RECORDS

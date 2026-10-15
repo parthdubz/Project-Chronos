@@ -2,24 +2,18 @@ SYSTEM CHANGE LOG
 Case R2-16 | Covers 21:27:00 to 23:37:00
 
 What this is: every change to a system setting is written down here.
-- Badge = the ID badge number of whoever made the change.
+- BADGE is the ID badge number of whoever made the change.
 - This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
 CHANGES
-22:04:00 | Change #4464 | At: Operator Desk OD-2
-  Setting: retry rule (STANDARD -> LIMITED)
-  Result: APPLIED | Badge: B-7796
+TIME     | CHANGE       | TERMINAL            | SETTING CHANGE                                    | RESULT  | BADGE
+---------+--------------+---------------------+---------------------------------------------------+---------+-------
+22:04:00 | Change #4464 | Operator Desk OD-2  | retry rule (STANDARD -> LIMITED)                  | APPLIED | B-7796
+22:14:00 | Change #5337 | Operator Desk OD-2  | archive cleanup schedule (NIGHTLY -> WEEKLY)      | APPLIED | B-7796
+23:24:05 | Change #2702 | Transit Buffer TB-5 | health check interval (seconds) (30 -> 15)        | APPLIED | B-1856
+23:27:00 | Change #4915 | Transit Buffer TB-2 | transit buffer content (HELD -> FLUSHED (222 MB)) | APPLIED | B-2196
 
-22:14:00 | Change #5337 | At: Operator Desk OD-2
-  Setting: archive cleanup schedule (NIGHTLY -> WEEKLY)
-  Result: APPLIED | Badge: B-7796
-
-23:24:05 | Change #2702 | At: Transit Buffer TB-5
-  Setting: health check interval (seconds) (30 -> 15)
-  Result: APPLIED | Badge: B-1856
-
-23:27:00 | Change #4915 | At: Transit Buffer TB-2
-  Setting: transit buffer content (HELD -> FLUSHED (222 MB))
-  Result: APPLIED | Badge: B-2196
+CHANGE FLOW
+  22:04:00 Change #4464 -> 22:14:00 Change #5337 -> 23:24:05 Change #2702 -> 23:27:00 Change #4915
 
 END OF LOG

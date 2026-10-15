@@ -7,11 +7,16 @@ What this is: a security key must be ARMED by a badge before it can be USED.
 - Badges are explained in login_records.log (BADGE REGISTRY).
 
 KEY EVENTS
-21:47:56 | Key ONYX-6486 | ARMED by badge B-1698 | valid 120 s | purpose: maintenance window
-21:49:31 | Key ONYX-6486 | DISARMED after use
-23:12:10 | Key NOVA-2743 | ARMED by badge B-8739 | valid 120 s | never used
-23:13:59 | Key QUASAR-2458 | ARMED by badge B-5756 | valid 120 s
-23:14:10 | Key NOVA-2743 | EXPIRED unused
-23:14:56 | Key QUASAR-2458 | USED at Sync Controller SG-7 | Change #2832
+TIME     | KEY             | EVENT    | DETAIL
+---------+-----------------+----------+----------------------------------------------------------
+21:47:56 | Key ONYX-6486   | ARMED    | by badge B-1698, valid 120 s, purpose: maintenance window
+21:49:31 | Key ONYX-6486   | DISARMED | after use
+23:12:10 | Key NOVA-2743   | ARMED    | by badge B-8739, valid 120 s, never used
+23:13:59 | Key QUASAR-2458 | ARMED    | by badge B-5756, valid 120 s
+23:14:10 | Key NOVA-2743   | EXPIRED  | unused
+23:14:56 | Key QUASAR-2458 | USED     | at Sync Controller SG-7, Change #2832
+
+KEY FLOW
+  21:47:56 Key ONYX-6486 ARMED -> 21:49:31 Key ONYX-6486 DISARMED -> 23:12:10 Key NOVA-2743 ARMED -> 23:13:59 Key QUASAR-2458 ARMED -> 23:14:10 Key NOVA-2743 EXPIRED -> 23:14:56 Key QUASAR-2458 USED
 
 END OF LOG

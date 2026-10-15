@@ -5,16 +5,23 @@ What this is: who logged in, at which terminal, and with what access level.
 Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
-B-1698 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
-B-8739 | Project Beta | Present Timeline | Lead: Commander V. Reyes
-B-5756 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
+BADGE  | PROJECT       | SECTOR           | LEAD
+-------+---------------+------------------+----------------------
+B-1698 | Project Alpha | Future Timeline  | Dr. Aris Thorne
+B-8739 | Project Beta  | Present Timeline | Commander V. Reyes
+B-5756 | Project Gamma | Past Timeline    | Chief Eng. Sarah Chen
 
 LOGIN RECORDS
-21:31:56 | Badge B-1698 | Terminal Node Iota-1 | LOGGED IN | TEST ONLY
-22:01:18 | Badge B-5756 | Terminal Node Iota-1 | LOGGED IN | TEST ONLY
-22:23:37 | Badge B-8739 | Terminal Node Iota-1 | LOGGED IN | VIEW ONLY
-23:12:46 | Badge B-8739 | Sync Controller SG-7 | REFUSED | FULL CONTROL (not allowed for this badge)
-23:14:02 | Badge B-1698 | Sync Controller SG-5 | LOGGED IN | FULL CONTROL
-23:14:46 | Badge B-5756 | Sync Controller SG-7 | LOGGED IN | FULL CONTROL
+TIME     | BADGE  | TERMINAL             | STATUS    | LEVEL
+---------+--------+----------------------+-----------+------------------------------------------
+21:31:56 | B-1698 | Terminal Node Iota-1 | LOGGED IN | TEST ONLY
+22:01:18 | B-5756 | Terminal Node Iota-1 | LOGGED IN | TEST ONLY
+22:23:37 | B-8739 | Terminal Node Iota-1 | LOGGED IN | VIEW ONLY
+23:12:46 | B-8739 | Sync Controller SG-7 | REFUSED   | FULL CONTROL (not allowed for this badge)
+23:14:02 | B-1698 | Sync Controller SG-5 | LOGGED IN | FULL CONTROL
+23:14:46 | B-5756 | Sync Controller SG-7 | LOGGED IN | FULL CONTROL
+
+LOGIN FLOW
+  21:31:56 B-1698 LOGGED IN -> 22:01:18 B-5756 LOGGED IN -> 22:23:37 B-8739 LOGGED IN -> 23:12:46 B-8739 REFUSED -> 23:14:02 B-1698 LOGGED IN -> 23:14:46 B-5756 LOGGED IN
 
 END OF RECORDS

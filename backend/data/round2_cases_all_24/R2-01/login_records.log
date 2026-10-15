@@ -5,16 +5,23 @@ What this is: who logged in, at which terminal, and with what access level.
 Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
-B-4818 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
-B-6995 | Project Beta | Present Timeline | Lead: Commander V. Reyes
-B-7500 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
+BADGE  | PROJECT       | SECTOR           | LEAD
+-------+---------------+------------------+----------------------
+B-4818 | Project Alpha | Future Timeline  | Dr. Aris Thorne
+B-6995 | Project Beta  | Present Timeline | Commander V. Reyes
+B-7500 | Project Gamma | Past Timeline    | Chief Eng. Sarah Chen
 
 LOGIN RECORDS
-21:08:14 | Badge B-6995 | Terminal Node Iota-3 | LOGGED IN | VIEW ONLY
-21:46:36 | Badge B-7500 | Terminal Node Iota-3 | LOGGED IN | VIEW ONLY
-21:55:55 | Badge B-4818 | Terminal Node Iota-3 | LOGGED IN | TEST ONLY
-22:23:11 | Badge B-7500 | Terminal Node Omega-1 | REFUSED | FULL CONTROL (not allowed for this badge)
-22:24:11 | Badge B-6995 | Terminal Node Kappa-8 | LOGGED IN | FULL CONTROL
-22:25:04 | Badge B-4818 | Terminal Node Omega-1 | LOGGED IN | FULL CONTROL
+TIME     | BADGE  | TERMINAL              | STATUS    | LEVEL
+---------+--------+-----------------------+-----------+------------------------------------------
+21:08:14 | B-6995 | Terminal Node Iota-3  | LOGGED IN | VIEW ONLY
+21:46:36 | B-7500 | Terminal Node Iota-3  | LOGGED IN | VIEW ONLY
+21:55:55 | B-4818 | Terminal Node Iota-3  | LOGGED IN | TEST ONLY
+22:23:11 | B-7500 | Terminal Node Omega-1 | REFUSED   | FULL CONTROL (not allowed for this badge)
+22:24:11 | B-6995 | Terminal Node Kappa-8 | LOGGED IN | FULL CONTROL
+22:25:04 | B-4818 | Terminal Node Omega-1 | LOGGED IN | FULL CONTROL
+
+LOGIN FLOW
+  21:08:14 B-6995 LOGGED IN -> 21:46:36 B-7500 LOGGED IN -> 21:55:55 B-4818 LOGGED IN -> 22:23:11 B-7500 REFUSED -> 22:24:11 B-6995 LOGGED IN -> 22:25:04 B-4818 LOGGED IN
 
 END OF RECORDS

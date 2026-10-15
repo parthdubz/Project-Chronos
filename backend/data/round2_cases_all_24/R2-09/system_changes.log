@@ -2,24 +2,18 @@ SYSTEM CHANGE LOG
 Case R2-09 | Covers 21:14:23 to 23:29:23
 
 What this is: every change to a system setting is written down here.
-- Badge = the ID badge number of whoever made the change.
+- BADGE is the ID badge number of whoever made the change.
 - This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
 CHANGES
-21:31:23 | Change #3905 | At: Maintenance Console MC-4
-  Setting: log detail level (NORMAL -> DETAILED)
-  Result: APPLIED | Badge: B-2986
+TIME     | CHANGE       | TERMINAL                 | SETTING CHANGE                               | RESULT  | BADGE
+---------+--------------+--------------------------+----------------------------------------------+---------+-------
+21:31:23 | Change #3905 | Maintenance Console MC-4 | log detail level (NORMAL -> DETAILED)        | APPLIED | B-2986
+21:48:23 | Change #1205 | Terminal Node Iota-5     | log detail level (NORMAL -> DETAILED)        | APPLIED | B-7050
+23:09:51 | Change #5399 | Terminal Node Omega-1    | heartbeat timeout (seconds) (5 -> 8)         | APPLIED | B-9135
+23:14:23 | Change #4477 | Terminal Node Delta-1    | safety limiter policy (ENFORCED -> DISABLED) | APPLIED | B-2986
 
-21:48:23 | Change #1205 | At: Terminal Node Iota-5
-  Setting: log detail level (NORMAL -> DETAILED)
-  Result: APPLIED | Badge: B-7050
-
-23:09:51 | Change #5399 | At: Terminal Node Omega-1
-  Setting: heartbeat timeout (seconds) (5 -> 8)
-  Result: APPLIED | Badge: B-9135
-
-23:14:23 | Change #4477 | At: Terminal Node Delta-1
-  Setting: safety limiter policy (ENFORCED -> DISABLED)
-  Result: APPLIED | Badge: B-2986
+CHANGE FLOW
+  21:31:23 Change #3905 -> 21:48:23 Change #1205 -> 23:09:51 Change #5399 -> 23:14:23 Change #4477
 
 END OF LOG

@@ -5,9 +5,14 @@ WHAT HAPPENED
 The paradox filter array was switched to bypass. The effect spread across the timeline network.
 
 TIMELINE OF EVENTS
+TIME     | EVENT
+---------+----------------------------------------------------------------------
 19:49:27 | First abnormal reading: 55 unresolved cause-and-effect loops detected
 19:49:40 | Monitoring reports a sustained inconsistency
 19:50:11 | Automatic recovery fails to restore normal readings
+
+INCIDENT FLOW
+  19:49:27 First abnormal reading: 55 unresolved cause-and-effect loops detected -> 19:49:40 Monitoring reports a sustained inconsistency -> 19:50:11 Automatic recovery fails to restore normal readings
 
 WHERE IT STARTED
 The first abnormal reading came from Filter Array PF-3.

@@ -60,6 +60,7 @@ header{display:flex;align-items:center;gap:22px;padding:0 14px;border-bottom:1px
 .tx{color:#cfeff7;padding-right:20px;flex:1;min-width:0;overflow-wrap:anywhere}
 .k-time{color:var(--cyan)}.k-cred{color:var(--pink)}.k-id{color:var(--gold)}.k-ok{color:var(--ok)}.k-bad{color:var(--alert)}
 .k-scope{color:var(--violet)}.k-proj{color:#93c5fd}.k-key{color:var(--dim)}.k-h1{color:var(--cyan);font-weight:700}.k-h2{color:var(--ink)}
+.k-title{display:block;width:100%;text-align:center;font-size:1.8em;font-weight:700;letter-spacing:.06em;color:var(--cyan);text-shadow:0 0 10px rgba(34,211,238,.5)}
 .welcome{padding:60px 40px;color:var(--dim);font-size:22px;line-height:1.5}
 .welcome b{color:var(--cyan);font-weight:400;letter-spacing:.14em}
 /* analyst */
@@ -188,7 +189,9 @@ function aiUi(){const a=S.prog.ai,i=$('#qi'),qc=$('#qc');
  qc.textContent=`QUESTION ${a.used+1}/${a.max_questions} · COSTS -${a.next_cost} PTS · ENTER`}
 
 /* ---------- explorer, tabs and editor ---------- */
-async function loadFiles(){S.files=(await api('/files')).sort((a,b)=>a.filename.localeCompare(b.filename));renderExplorer()}
+async function loadFiles(){S.files=(await api('/files')).sort((a,b)=>{
+ if(a.file_id==='readme')return -1;if(b.file_id==='readme')return 1;
+ return a.filename.localeCompare(b.filename)});renderExplorer()}
 function renderExplorer(){const L=$('#fl');L.innerHTML='';S.files.forEach(F=>{
  const b=el('button','fi'+(F.is_locked?' lk':'')+(S.open===F.file_id?' on':''));b.title=F.filename;
  b.append(el('span','ic',F.filename.endsWith('.txt')?'¶':'≡'),el('span','',F.filename));
@@ -209,6 +212,7 @@ async function openFile(F){S.last=Date.now();
 const TOK=/(\b\d{2}:\d{2}:\d{2}\b)|(\bB-\d{4}\b)|(\bChange #\d{4}\b|\bKey [A-Z]+-\d{4}\b|\bT-\d{4}\b|\bMW-\d+\b)|\b(LOGGED IN|APPLIED|ARMED|USED)\b|\b(REFUSED|EXPIRED|UNDONE|DISARMED|RECORDS LOST|STOPPED|DELETED|DISABLED|BYPASSED|FLUSHED|FORCED OFF)\b|\b(FULL CONTROL|TEST ONLY|VIEW ONLY)\b|(Project (?:Alpha|Beta|Gamma))|(\b[A-Z][A-Z_ ]{2,}:)/g;
 const TCLS=[null,'k-time','k-cred','k-id','k-ok','k-bad','k-scope','k-proj','k-key'];
 function highlight(line){const out=document.createDocumentFragment();
+ if(line.trim()==="DON'T PANIC"){out.append(el('span','k-title',line));return out}
  if(/^CHRONOS \/\//.test(line)){out.append(el('span','k-h1',line));return out}
  if(/^[A-Z][A-Z ]{3,}$/.test(line.trim())&&line.trim()===line){out.append(el('span','k-h2',line));return out}
  let last=0,m;TOK.lastIndex=0;
@@ -300,7 +304,7 @@ function runBoot(){const BL=['CHRONOS Standard Electronics','Temporal Computer M
 
 /* ---------- sound effects (folder: CHRONOS_SFX) ---------- */
 (function(){const D='CHRONOS_SFX/',mk=n=>{const a=new Audio(D+n+'.mp3');a.preload='auto';return a};
- const A={intro:mk('intro'),hv:mk('hover_available'),hl:mk('hover_locked'),ck:mk('click')};
+ const A={intro:mk('intro'),ck:mk('click')};
  function play(a,vol){try{const c=a===A.intro?a:a.cloneNode();c.volume=vol;c.currentTime=0;const p=c.play();p&&p.catch(()=>{})}catch(e){}}
  let started=0;const go=()=>{if(started)return;started=1;rm();$('#gate').style.display='none';runBoot()};
  const rm=()=>['pointerdown','keydown'].forEach(e=>removeEventListener(e,onGesture,true));
@@ -311,10 +315,7 @@ function runBoot(){const BL=['CHRONOS Standard Electronics','Temporal Computer M
  if(QS.get('boot')==='0'){started=1;rm();$('#boot').remove();S.last=Date.now();document.body.classList.add('rdy');INIT.then(()=>{if(!S.convo&&S.welcome&&S.prog&&!$('#lobby').classList.contains('s'))say(S.welcome)})}
  else{A.intro.volume=.9;const ap=A.intro.play();
  if(ap)ap.then(go).catch(()=>{$('#gate').style.display='flex';['pointerdown','keydown'].forEach(e=>addEventListener(e,onGesture,true))});else go()}
- const SEL='button,.fi,.tab';let last=null;
- addEventListener('mouseover',e=>{const t=e.target.closest&&e.target.closest(SEL);if(t===last)return;last=t;if(!t||document.getElementById('boot'))return;
-  play(t.classList.contains('lk')?A.hl:A.hv,.5)},true);
- addEventListener('mouseout',e=>{if(!e.relatedTarget)last=null},true);
+ const SEL='button,.fi,.tab';
  addEventListener('pointerdown',e=>{if(document.getElementById('boot'))return;const t=e.target.closest&&e.target.closest(SEL+',#cin');if(t)play(A.ck,.7)},true);
  addEventListener('keydown',e=>{if(e.key==='Enter'&&/^BUTTON$/.test(e.target.tagName)&&!document.getElementById('boot'))play(A.ck,.7)},true);
 })();

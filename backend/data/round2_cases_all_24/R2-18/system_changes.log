@@ -2,24 +2,18 @@ SYSTEM CHANGE LOG
 Case R2-18 | Covers 17:23:39 to 19:38:39
 
 What this is: every change to a system setting is written down here.
-- Badge = the ID badge number of whoever made the change.
+- BADGE is the ID badge number of whoever made the change.
 - This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
 CHANGES
-18:02:39 | Change #2489 | At: Maintenance Console MC-4
-  Setting: log detail level (NORMAL -> DETAILED)
-  Result: APPLIED | Badge: B-5748
+TIME     | CHANGE       | TERMINAL                 | SETTING CHANGE                             | RESULT  | BADGE
+---------+--------------+--------------------------+--------------------------------------------+---------+-------
+18:02:39 | Change #2489 | Maintenance Console MC-4 | log detail level (NORMAL -> DETAILED)      | APPLIED | B-5748
+18:18:39 | Change #6057 | Diagnostics Bay DB-6     | heartbeat timeout (seconds) (5 -> 8)       | APPLIED | B-5748
+19:18:08 | Change #6004 | Console SEC-19           | health check interval (seconds) (30 -> 15) | APPLIED | B-5748
+19:23:39 | Change #6093 | Console SEC-05           | time bridge link (CONNECTED -> FORCED OFF) | APPLIED | B-1200
 
-18:18:39 | Change #6057 | At: Diagnostics Bay DB-6
-  Setting: heartbeat timeout (seconds) (5 -> 8)
-  Result: APPLIED | Badge: B-5748
-
-19:18:08 | Change #6004 | At: Console SEC-19
-  Setting: health check interval (seconds) (30 -> 15)
-  Result: APPLIED | Badge: B-5748
-
-19:23:39 | Change #6093 | At: Console SEC-05
-  Setting: time bridge link (CONNECTED -> FORCED OFF)
-  Result: APPLIED | Badge: B-1200
+CHANGE FLOW
+  18:02:39 Change #2489 -> 18:18:39 Change #6057 -> 19:18:08 Change #6004 -> 19:23:39 Change #6093
 
 END OF LOG

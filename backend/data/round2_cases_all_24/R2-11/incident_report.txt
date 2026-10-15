@@ -5,9 +5,14 @@ WHAT HAPPENED
 A script pushed the sync grid into a destructive frequency range. The effect spread across the timeline network.
 
 TIMELINE OF EVENTS
+TIME     | EVENT
+---------+-----------------------------------------------------
 19:06:22 | First abnormal reading: boundary rupture at +422 MHz
 19:06:43 | Monitoring reports a sustained inconsistency
 19:07:17 | Automatic recovery fails to restore normal readings
+
+INCIDENT FLOW
+  19:06:22 First abnormal reading: boundary rupture at +422 MHz -> 19:06:43 Monitoring reports a sustained inconsistency -> 19:07:17 Automatic recovery fails to restore normal readings
 
 WHERE IT STARTED
 The first abnormal reading cannot be traced to a single source. Possible terminals: Frequency Station CH-3 and Frequency Station CH-2.

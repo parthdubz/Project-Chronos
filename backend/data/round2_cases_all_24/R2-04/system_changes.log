@@ -2,24 +2,18 @@ SYSTEM CHANGE LOG
 Case R2-04 | Covers 20:51:19 to 23:04:19
 
 What this is: every change to a system setting is written down here.
-- Badge = the ID badge number of whoever made the change.
+- BADGE is the ID badge number of whoever made the change.
 - This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
 CHANGES
-21:06:19 | Change #5933 | At: Maintenance Console MC-5
-  Setting: log detail level (NORMAL -> DETAILED)
-  Result: APPLIED | Badge: B-1841
+TIME     | CHANGE       | TERMINAL                 | SETTING CHANGE                                      | RESULT  | BADGE
+---------+--------------+--------------------------+-----------------------------------------------------+---------+-------
+21:06:19 | Change #5933 | Maintenance Console MC-5 | log detail level (NORMAL -> DETAILED)               | APPLIED | B-1841
+21:20:19 | Change #2109 | Terminal Node Iota-8     | health check interval (seconds) (30 -> 15)          | APPLIED | B-2896
+22:47:03 | Change #1366 | Archive Vault AV-7       | archive cleanup schedule (NIGHTLY -> WEEKLY)        | APPLIED | B-2051
+22:51:19 | Change #4802 | Archive Vault AV-3       | anchor record store (KEPT -> DELETED (551 records)) | APPLIED | B-2896
 
-21:20:19 | Change #2109 | At: Terminal Node Iota-8
-  Setting: health check interval (seconds) (30 -> 15)
-  Result: APPLIED | Badge: B-2896
-
-22:47:03 | Change #1366 | At: Archive Vault AV-7
-  Setting: archive cleanup schedule (NIGHTLY -> WEEKLY)
-  Result: APPLIED | Badge: B-2051
-
-22:51:19 | Change #4802 | At: Archive Vault AV-3
-  Setting: anchor record store (KEPT -> DELETED (551 records))
-  Result: APPLIED | Badge: B-2896
+CHANGE FLOW
+  21:06:19 Change #5933 -> 21:20:19 Change #2109 -> 22:47:03 Change #1366 -> 22:51:19 Change #4802
 
 END OF LOG

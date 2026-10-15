@@ -2,24 +2,18 @@ SYSTEM CHANGE LOG
 Case R2-22 | Covers 20:16:09 to 22:28:09
 
 What this is: every change to a system setting is written down here.
-- Badge = the ID badge number of whoever made the change.
+- BADGE is the ID badge number of whoever made the change.
 - This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
 CHANGES
-20:33:09 | Change #6877 | At: Terminal Node Iota-7
-  Setting: queue size limit (512 -> 1024)
-  Result: APPLIED | Badge: B-4120
+TIME     | CHANGE       | TERMINAL             | SETTING CHANGE                             | RESULT  | BADGE
+---------+--------------+----------------------+--------------------------------------------+---------+-------
+20:33:09 | Change #6877 | Terminal Node Iota-7 | queue size limit (512 -> 1024)             | APPLIED | B-4120
+20:49:09 | Change #7111 | Diagnostics Bay DB-1 | queue size limit (512 -> 1024)             | APPLIED | B-5441
+22:10:11 | Change #4653 | Filter Array PF-9    | health check interval (seconds) (30 -> 15) | APPLIED | B-7094
+22:16:09 | Change #7142 | Filter Array PF-5    | paradox filter mode (ACTIVE -> BYPASSED)   | APPLIED | B-4120
 
-20:49:09 | Change #7111 | At: Diagnostics Bay DB-1
-  Setting: queue size limit (512 -> 1024)
-  Result: APPLIED | Badge: B-5441
-
-22:10:11 | Change #4653 | At: Filter Array PF-9
-  Setting: health check interval (seconds) (30 -> 15)
-  Result: APPLIED | Badge: B-7094
-
-22:16:09 | Change #7142 | At: Filter Array PF-5
-  Setting: paradox filter mode (ACTIVE -> BYPASSED)
-  Result: APPLIED | Badge: B-4120
+CHANGE FLOW
+  20:33:09 Change #6877 -> 20:49:09 Change #7111 -> 22:10:11 Change #4653 -> 22:16:09 Change #7142
 
 END OF LOG

@@ -125,7 +125,7 @@ class IntegrationTests(unittest.TestCase):
 
         wrong = self.client.post("/api/auth/login", json={
             "team_name": p.login["team_name"], "member_1_name": "x", "member_2_name": "y",
-            "member_1_prn": "26000000001", "member_2_prn": "27000000002",
+            "member_1_prn": "26000000001", "member_2_prn": "23000000002",
         })
         self.assertEqual(wrong.status_code, 409)
 
@@ -170,9 +170,10 @@ class IntegrationTests(unittest.TestCase):
         self.assertEqual(start.json()["state"], "ROUND_2_ACTIVE")
 
         files = p.get("/api/round2/files").json()
-        self.assertEqual(len(files), 4)
+        self.assertEqual(len(files), 5)
         self.assertEqual({f['filename'] for f in files},
-                         {'system_changes.log', 'login_records.log', 'security_keys.log', 'incident_report.txt'})
+                         {'system_changes.log', 'login_records.log', 'security_keys.log',
+                          'incident_report.txt', 'README.md'})
         opened = p.get(f"/api/round2/files/{files[0]['file_id']}")
         self.assertEqual(opened.status_code, 200)
         self.assertTrue(opened.json()["content_text"])

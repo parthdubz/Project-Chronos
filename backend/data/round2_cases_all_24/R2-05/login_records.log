@@ -5,17 +5,24 @@ What this is: who logged in, at which terminal, and with what access level.
 Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
-B-7366 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
-B-8330 | Project Beta | Present Timeline | Lead: Commander V. Reyes
-B-3208 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
+BADGE  | PROJECT       | SECTOR           | LEAD
+-------+---------------+------------------+----------------------
+B-7366 | Project Alpha | Future Timeline  | Dr. Aris Thorne
+B-8330 | Project Beta  | Present Timeline | Commander V. Reyes
+B-3208 | Project Gamma | Past Timeline    | Chief Eng. Sarah Chen
 
 LOGIN RECORDS
-17:05:45 | Badge B-7366 | Terminal Node Iota-7 | LOGGED IN | VIEW ONLY
-17:17:26 | Badge B-3208 | Diagnostics Bay DB-3 | LOGGED IN | TEST ONLY
-17:23:04 | Badge B-3208 | Operator Desk OD-9 | LOGGED IN | FULL CONTROL
-17:51:04 | Badge B-7366 | Terminal Node Iota-7 | LOGGED IN | VIEW ONLY
-18:31:54 | Badge B-3208 | Anchor Relay AR-9 | REFUSED | FULL CONTROL (not allowed for this badge)
-18:33:05 | Badge B-7366 | Anchor Relay AR-2 | LOGGED IN | FULL CONTROL
+TIME     | BADGE  | TERMINAL             | STATUS    | LEVEL
+---------+--------+----------------------+-----------+------------------------------------------
+17:05:45 | B-7366 | Terminal Node Iota-7 | LOGGED IN | VIEW ONLY
+17:17:26 | B-3208 | Diagnostics Bay DB-3 | LOGGED IN | TEST ONLY
+17:23:04 | B-3208 | Operator Desk OD-9   | LOGGED IN | FULL CONTROL
+17:51:04 | B-7366 | Terminal Node Iota-7 | LOGGED IN | VIEW ONLY
+18:31:54 | B-3208 | Anchor Relay AR-9    | REFUSED   | FULL CONTROL (not allowed for this badge)
+18:33:05 | B-7366 | Anchor Relay AR-2    | LOGGED IN | FULL CONTROL
 18:33:42 - 18:34:08 | RECORDS LOST | the log buffer overflowed and the records in this interval were not recovered
+
+LOGIN FLOW
+  17:05:45 B-7366 LOGGED IN -> 17:17:26 B-3208 LOGGED IN -> 17:23:04 B-3208 LOGGED IN -> 17:51:04 B-7366 LOGGED IN -> 18:31:54 B-3208 REFUSED -> 18:33:05 B-7366 LOGGED IN -> RECORDS LOST
 
 END OF RECORDS

@@ -5,16 +5,23 @@ What this is: who logged in, at which terminal, and with what access level.
 Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
-B-1610 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
-B-3786 | Project Beta | Present Timeline | Lead: Commander V. Reyes
-B-8476 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
+BADGE  | PROJECT       | SECTOR           | LEAD
+-------+---------------+------------------+----------------------
+B-1610 | Project Alpha | Future Timeline  | Dr. Aris Thorne
+B-3786 | Project Beta  | Present Timeline | Commander V. Reyes
+B-8476 | Project Gamma | Past Timeline    | Chief Eng. Sarah Chen
 
 LOGIN RECORDS
-17:24:35 | Badge B-1610 | Terminal Node Iota-6 | LOGGED IN | TEST ONLY
-17:35:54 | Badge B-1610 | Terminal Node Iota-6 | LOGGED IN | TEST ONLY
-17:46:13 | Badge B-3786 | Terminal Node Iota-6 | LOGGED IN | TEST ONLY
-19:04:08 | Badge B-8476 | Frequency Station CH-3 | REFUSED | FULL CONTROL (not allowed for this badge)
-19:05:33 | Badge B-1610 | Frequency Station CH-2 | LOGGED IN | FULL CONTROL
-19:06:05 | Badge B-3786 | Frequency Station CH-3 | LOGGED IN | FULL CONTROL
+TIME     | BADGE  | TERMINAL               | STATUS    | LEVEL
+---------+--------+------------------------+-----------+------------------------------------------
+17:24:35 | B-1610 | Terminal Node Iota-6   | LOGGED IN | TEST ONLY
+17:35:54 | B-1610 | Terminal Node Iota-6   | LOGGED IN | TEST ONLY
+17:46:13 | B-3786 | Terminal Node Iota-6   | LOGGED IN | TEST ONLY
+19:04:08 | B-8476 | Frequency Station CH-3 | REFUSED   | FULL CONTROL (not allowed for this badge)
+19:05:33 | B-1610 | Frequency Station CH-2 | LOGGED IN | FULL CONTROL
+19:06:05 | B-3786 | Frequency Station CH-3 | LOGGED IN | FULL CONTROL
+
+LOGIN FLOW
+  17:24:35 B-1610 LOGGED IN -> 17:35:54 B-1610 LOGGED IN -> 17:46:13 B-3786 LOGGED IN -> 19:04:08 B-8476 REFUSED -> 19:05:33 B-1610 LOGGED IN -> 19:06:05 B-3786 LOGGED IN
 
 END OF RECORDS

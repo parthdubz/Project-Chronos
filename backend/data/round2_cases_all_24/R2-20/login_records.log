@@ -5,16 +5,23 @@ What this is: who logged in, at which terminal, and with what access level.
 Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
-B-6145 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
-B-4022 | Project Beta | Present Timeline | Lead: Commander V. Reyes
-B-6889 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
+BADGE  | PROJECT       | SECTOR           | LEAD
+-------+---------------+------------------+----------------------
+B-6145 | Project Alpha | Future Timeline  | Dr. Aris Thorne
+B-4022 | Project Beta  | Present Timeline | Commander V. Reyes
+B-6889 | Project Gamma | Past Timeline    | Chief Eng. Sarah Chen
 
 LOGIN RECORDS
-20:22:59 | Badge B-6145 | Terminal Node Iota-1 | LOGGED IN | VIEW ONLY
-20:26:37 | Badge B-6145 | Terminal Node Iota-1 | LOGGED IN | VIEW ONLY
-20:45:18 | Badge B-4022 | Operator Desk OD-5 | LOGGED IN | TEST ONLY
-21:30:38 | Badge B-6145 | Archive Vault AV-2 | REFUSED | FULL CONTROL (not allowed for this badge)
-21:31:47 | Badge B-6889 | Archive Vault AV-1 | LOGGED IN | FULL CONTROL
-21:32:18 | Badge B-4022 | Archive Vault AV-2 | LOGGED IN | FULL CONTROL
+TIME     | BADGE  | TERMINAL             | STATUS    | LEVEL
+---------+--------+----------------------+-----------+------------------------------------------
+20:22:59 | B-6145 | Terminal Node Iota-1 | LOGGED IN | VIEW ONLY
+20:26:37 | B-6145 | Terminal Node Iota-1 | LOGGED IN | VIEW ONLY
+20:45:18 | B-4022 | Operator Desk OD-5   | LOGGED IN | TEST ONLY
+21:30:38 | B-6145 | Archive Vault AV-2   | REFUSED   | FULL CONTROL (not allowed for this badge)
+21:31:47 | B-6889 | Archive Vault AV-1   | LOGGED IN | FULL CONTROL
+21:32:18 | B-4022 | Archive Vault AV-2   | LOGGED IN | FULL CONTROL
+
+LOGIN FLOW
+  20:22:59 B-6145 LOGGED IN -> 20:26:37 B-6145 LOGGED IN -> 20:45:18 B-4022 LOGGED IN -> 21:30:38 B-6145 REFUSED -> 21:31:47 B-6889 LOGGED IN -> 21:32:18 B-4022 LOGGED IN
 
 END OF RECORDS

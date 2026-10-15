@@ -5,9 +5,14 @@ WHAT HAPPENED
 The anchor offsets were changed by hand. The effect spread across the timeline network.
 
 TIMELINE OF EVENTS
+TIME     | EVENT
+---------+---------------------------------------------------------------------
 23:11:19 | First abnormal reading: anchor drift of 211 ms along the relay chain
 23:11:41 | Monitoring reports a sustained inconsistency
 23:11:59 | Automatic recovery fails to restore normal readings
+
+INCIDENT FLOW
+  23:11:19 First abnormal reading: anchor drift of 211 ms along the relay chain -> 23:11:41 Monitoring reports a sustained inconsistency -> 23:11:59 Automatic recovery fails to restore normal readings
 
 WHERE IT STARTED
 The first abnormal reading came from Anchor Relay AR-5.

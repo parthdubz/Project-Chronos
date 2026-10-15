@@ -2,24 +2,18 @@ SYSTEM CHANGE LOG
 Case R2-10 | Covers 19:03:13 to 21:15:13
 
 What this is: every change to a system setting is written down here.
-- Badge = the ID badge number of whoever made the change.
+- BADGE is the ID badge number of whoever made the change.
 - This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
 CHANGES
-19:39:13 | Change #6398 | At: Maintenance Console MC-8
-  Setting: retry rule (STANDARD -> LIMITED)
-  Result: APPLIED | Badge: B-7613
+TIME     | CHANGE       | TERMINAL                 | SETTING CHANGE                             | RESULT  | BADGE
+---------+--------------+--------------------------+--------------------------------------------+---------+-------
+19:39:13 | Change #6398 | Maintenance Console MC-8 | retry rule (STANDARD -> LIMITED)           | APPLIED | B-7613
+19:49:13 | Change #1086 | Terminal Node Iota-7     | log detail level (NORMAL -> DETAILED)      | APPLIED | B-7613
+21:00:14 | Change #2335 | Console SEC-14           | log detail level (NORMAL -> DETAILED)      | APPLIED | B-3328
+21:03:13 | Change #1357 | Console SEC-01           | time bridge link (CONNECTED -> FORCED OFF) | APPLIED | B-7613
 
-19:49:13 | Change #1086 | At: Terminal Node Iota-7
-  Setting: log detail level (NORMAL -> DETAILED)
-  Result: APPLIED | Badge: B-7613
-
-21:00:14 | Change #2335 | At: Console SEC-14
-  Setting: log detail level (NORMAL -> DETAILED)
-  Result: APPLIED | Badge: B-3328
-
-21:03:13 | Change #1357 | At: Console SEC-01
-  Setting: time bridge link (CONNECTED -> FORCED OFF)
-  Result: APPLIED | Badge: B-7613
+CHANGE FLOW
+  19:39:13 Change #6398 -> 19:49:13 Change #1086 -> 21:00:14 Change #2335 -> 21:03:13 Change #1357
 
 END OF LOG

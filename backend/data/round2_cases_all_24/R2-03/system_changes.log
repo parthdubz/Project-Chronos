@@ -2,24 +2,18 @@ SYSTEM CHANGE LOG
 Case R2-03 | Covers 21:05:11 to 23:19:11
 
 What this is: every change to a system setting is written down here.
-- Badge = the ID badge number of whoever made the change.
+- BADGE is the ID badge number of whoever made the change.
 - This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
 CHANGES
-21:42:11 | Change #4195 | At: Diagnostics Bay DB-8
-  Setting: archive cleanup schedule (NIGHTLY -> WEEKLY)
-  Result: APPLIED | Badge: B-9357
+TIME     | CHANGE       | TERMINAL               | SETTING CHANGE                               | RESULT  | BADGE
+---------+--------------+------------------------+----------------------------------------------+---------+---------------------------------------
+21:42:11 | Change #4195 | Diagnostics Bay DB-8   | archive cleanup schedule (NIGHTLY -> WEEKLY) | APPLIED | B-9357
+21:51:11 | Change #5172 | Terminal Node Iota-2   | heartbeat timeout (seconds) (5 -> 8)         | APPLIED | B-9301
+23:02:28 | Change #5816 | Frequency Station CH-8 | cache lifetime (seconds) (300 -> 600)        | APPLIED | B-4012
+23:05:11 | Change #2083 | Frequency Station CH-5 | sync frequency (NORMAL -> +535 MHz)          | APPLIED | not recorded (run by a scheduled task)
 
-21:51:11 | Change #5172 | At: Terminal Node Iota-2
-  Setting: heartbeat timeout (seconds) (5 -> 8)
-  Result: APPLIED | Badge: B-9301
-
-23:02:28 | Change #5816 | At: Frequency Station CH-8
-  Setting: cache lifetime (seconds) (300 -> 600)
-  Result: APPLIED | Badge: B-4012
-
-23:05:11 | Change #2083 | At: Frequency Station CH-5
-  Setting: sync frequency (NORMAL -> +535 MHz)
-  Result: APPLIED | Badge: not recorded (run by a scheduled task)
+CHANGE FLOW
+  21:42:11 Change #4195 -> 21:51:11 Change #5172 -> 23:02:28 Change #5816 -> 23:05:11 Change #2083
 
 END OF LOG

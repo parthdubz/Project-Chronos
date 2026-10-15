@@ -5,17 +5,24 @@ What this is: who logged in, at which terminal, and with what access level.
 Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
-B-8626 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
-B-5748 | Project Beta | Present Timeline | Lead: Commander V. Reyes
-B-1200 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
+BADGE  | PROJECT       | SECTOR           | LEAD
+-------+---------------+------------------+----------------------
+B-8626 | Project Alpha | Future Timeline  | Dr. Aris Thorne
+B-5748 | Project Beta  | Present Timeline | Commander V. Reyes
+B-1200 | Project Gamma | Past Timeline    | Chief Eng. Sarah Chen
 
 LOGIN RECORDS
-17:47:39 | Badge B-8626 | Maintenance Console MC-4 | LOGGED IN | TEST ONLY
-18:21:39 | Badge B-8626 | Operator Desk OD-6 | LOGGED IN | FULL CONTROL
-18:47:01 | Badge B-8626 | Diagnostics Bay DB-6 | LOGGED IN | VIEW ONLY
-18:54:20 | Badge B-8626 | Diagnostics Bay DB-6 | LOGGED IN | VIEW ONLY
-19:22:08 | Badge B-8626 | Console SEC-05 | REFUSED | FULL CONTROL (not allowed for this badge)
-19:22:43 | Badge B-5748 | Console SEC-19 | LOGGED IN | FULL CONTROL
+TIME     | BADGE  | TERMINAL                 | STATUS    | LEVEL
+---------+--------+--------------------------+-----------+------------------------------------------
+17:47:39 | B-8626 | Maintenance Console MC-4 | LOGGED IN | TEST ONLY
+18:21:39 | B-8626 | Operator Desk OD-6       | LOGGED IN | FULL CONTROL
+18:47:01 | B-8626 | Diagnostics Bay DB-6     | LOGGED IN | VIEW ONLY
+18:54:20 | B-8626 | Diagnostics Bay DB-6     | LOGGED IN | VIEW ONLY
+19:22:08 | B-8626 | Console SEC-05           | REFUSED   | FULL CONTROL (not allowed for this badge)
+19:22:43 | B-5748 | Console SEC-19           | LOGGED IN | FULL CONTROL
 19:23:21 - 19:23:47 | RECORDS LOST | the log buffer overflowed and the records in this interval were not recovered
+
+LOGIN FLOW
+  17:47:39 B-8626 LOGGED IN -> 18:21:39 B-8626 LOGGED IN -> 18:47:01 B-8626 LOGGED IN -> 18:54:20 B-8626 LOGGED IN -> 19:22:08 B-8626 REFUSED -> 19:22:43 B-5748 LOGGED IN -> RECORDS LOST
 
 END OF RECORDS

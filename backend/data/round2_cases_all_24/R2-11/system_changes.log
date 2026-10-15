@@ -2,24 +2,18 @@ SYSTEM CHANGE LOG
 Case R2-11 | Covers 17:06:13 to 19:17:13
 
 What this is: every change to a system setting is written down here.
-- Badge = the ID badge number of whoever made the change.
+- BADGE is the ID badge number of whoever made the change.
 - This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
 CHANGES
-17:28:13 | Change #4196 | At: Terminal Node Iota-6
-  Setting: health check interval (seconds) (30 -> 15)
-  Result: APPLIED | Badge: B-1610
+TIME     | CHANGE       | TERMINAL                 | SETTING CHANGE                             | RESULT  | BADGE
+---------+--------------+--------------------------+--------------------------------------------+---------+-------
+17:28:13 | Change #4196 | Terminal Node Iota-6     | health check interval (seconds) (30 -> 15) | APPLIED | B-1610
+17:45:13 | Change #8948 | Maintenance Console MC-9 | retry rule (STANDARD -> LIMITED)           | APPLIED | B-3786
+19:01:23 | Change #3967 | Frequency Station CH-2   | log detail level (NORMAL -> DETAILED)      | APPLIED | B-1610
+19:06:13 | Change #6717 | Frequency Station CH-3   | sync frequency (NORMAL -> +422 MHz)        | APPLIED | B-3786
 
-17:45:13 | Change #8948 | At: Maintenance Console MC-9
-  Setting: retry rule (STANDARD -> LIMITED)
-  Result: APPLIED | Badge: B-3786
-
-19:01:23 | Change #3967 | At: Frequency Station CH-2
-  Setting: log detail level (NORMAL -> DETAILED)
-  Result: APPLIED | Badge: B-1610
-
-19:06:13 | Change #6717 | At: Frequency Station CH-3
-  Setting: sync frequency (NORMAL -> +422 MHz)
-  Result: APPLIED | Badge: B-3786
+CHANGE FLOW
+  17:28:13 Change #4196 -> 17:45:13 Change #8948 -> 19:01:23 Change #3967 -> 19:06:13 Change #6717
 
 END OF LOG

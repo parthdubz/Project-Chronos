@@ -5,16 +5,23 @@ What this is: who logged in, at which terminal, and with what access level.
 Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
-B-5306 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
-B-9375 | Project Beta | Present Timeline | Lead: Commander V. Reyes
-B-8259 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
+BADGE  | PROJECT       | SECTOR           | LEAD
+-------+---------------+------------------+----------------------
+B-5306 | Project Alpha | Future Timeline  | Dr. Aris Thorne
+B-9375 | Project Beta  | Present Timeline | Commander V. Reyes
+B-8259 | Project Gamma | Past Timeline    | Chief Eng. Sarah Chen
 
 LOGIN RECORDS
-20:28:09 | Badge B-5306 | Maintenance Console MC-9 | LOGGED IN | VIEW ONLY
-21:09:50 | Badge B-5306 | Maintenance Console MC-9 | LOGGED IN | VIEW ONLY
-21:10:28 | Badge B-5306 | Diagnostics Bay DB-8 | LOGGED IN | VIEW ONLY
-21:54:57 | Badge B-5306 | Console SEC-01 | REFUSED | FULL CONTROL (not allowed for this badge)
-21:55:22 | Badge B-8259 | Console SEC-11 | LOGGED IN | FULL CONTROL
-21:56:09 | Badge B-9375 | Console SEC-01 | LOGGED IN | FULL CONTROL
+TIME     | BADGE  | TERMINAL                 | STATUS    | LEVEL
+---------+--------+--------------------------+-----------+------------------------------------------
+20:28:09 | B-5306 | Maintenance Console MC-9 | LOGGED IN | VIEW ONLY
+21:09:50 | B-5306 | Maintenance Console MC-9 | LOGGED IN | VIEW ONLY
+21:10:28 | B-5306 | Diagnostics Bay DB-8     | LOGGED IN | VIEW ONLY
+21:54:57 | B-5306 | Console SEC-01           | REFUSED   | FULL CONTROL (not allowed for this badge)
+21:55:22 | B-8259 | Console SEC-11           | LOGGED IN | FULL CONTROL
+21:56:09 | B-9375 | Console SEC-01           | LOGGED IN | FULL CONTROL
+
+LOGIN FLOW
+  20:28:09 B-5306 LOGGED IN -> 21:09:50 B-5306 LOGGED IN -> 21:10:28 B-5306 LOGGED IN -> 21:54:57 B-5306 REFUSED -> 21:55:22 B-8259 LOGGED IN -> 21:56:09 B-9375 LOGGED IN
 
 END OF RECORDS

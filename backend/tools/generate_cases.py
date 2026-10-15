@@ -81,6 +81,11 @@ FILES = {
 }
 DISTRACTOR_CYCLE = ["audit", "access", "auth", "incident"]
 
+# A fifth, non-evidence file: instructions only, identical in every case, never part of the
+# Round 3 evidence pool or the AI prompt (see round2_service._evidence_for_prompt).
+READ_ME_ID = "readme"
+READ_ME_FILENAME = "README.md"
+
 GREEK = ["Delta", "Epsilon", "Zeta", "Theta", "Kappa", "Lambda", "Sigma", "Tau", "Rho", "Omega"]
 KEY_WORDS = ["ORION", "VEGA", "HELIX", "ZENITH", "QUASAR", "NOVA", "PULSAR", "ONYX", "LYRA", "ATLAS"]
 BENIGN_SETTINGS = [
@@ -135,6 +140,31 @@ def hms(sec: int) -> str:
 
 def cap(text: str) -> str:
     return text[0].upper() + text[1:]
+
+
+def _table(headers: list, rows: list) -> list:
+    """Render rows as a column-aligned table: a header line, a dashed rule, then one line
+    per row. The last column is left unpadded so trailing text never gets stray spaces."""
+    cols = list(zip(headers, *rows)) if rows else [(h,) for h in headers]
+    widths = [max(len(str(cell)) for cell in col) for col in cols]
+
+    def line(cells):
+        parts = [str(cell).ljust(w) for cell, w in zip(cells[:-1], widths[:-1])]
+        parts.append(str(cells[-1]))
+        return " | ".join(parts)
+
+    rule = "-+-".join("-" * w for w in widths)
+    return [line(headers), rule] + [line(r) for r in rows]
+
+
+def _flow(steps: list) -> list:
+    """The same facts as the table above, redrawn as a single arrow chain (time + step,
+    connected by '->', the same convention already used for a setting's old -> new value)
+    so the sequence can be read left to right at a glance instead of scanned column by
+    column. `steps` is a list of (time, label) pairs, already in time order. One line, so a
+    file with a flow section never grows much longer than the table it summarises."""
+    parts = [f"{t} {label}" if t else label for t, label in steps]
+    return ["  " + " -> ".join(parts)]
 
 
 class Case:
@@ -204,22 +234,45 @@ class Case:
 
 # ----------------------------------------------------------------------------- files
 
-def badge_registry(c: Case) -> list[str]:
-    lines = ["BADGE REGISTRY (which project owns which badge)"]
-    for p in ORDER:
-        d = PROJECTS[p]
-        lines.append(f"{c.bdg(p)} | {d['name']} | {d['sector']} | Lead: {d['lead']}")
-    return lines
+def build_readme() -> str:
+    """Static briefing, identical in every case folder: what the files are, never what is
+    inside them."""
+    lines = [
+        "DON'T PANIC",
+        "",
+        "FILES IN THIS FOLDER",
+        "",
+        "system_changes.log",
+        "This file lists every setting that was changed in the system around the time of the",
+        "incident. For each change it shows the time it happened, the terminal it was made at,",
+        "what was changed, and whether it was successfully applied.",
+        "",
+        "login_records.log",
+        "This file shows who logged in, when, from which terminal, and with what level of",
+        "access. It also has a registry that tells you which badge number belongs to which",
+        "project, so you can work out who a badge belongs to.",
+        "",
+        "security_keys.log",
+        "This file tracks the security keys used in the system. A key has to be armed by someone",
+        "before it can be used, and this file shows who armed each key and what it was later",
+        "used for.",
+        "",
+        "incident_report.txt",
+        "This file describes what actually went wrong: the first signs that something was off,",
+        "when they were noticed, and where the problem seems to have started.",
+        "",
+        "Read all four files carefully, compare the times and details between them, and ask the",
+        "on-screen analyst if you get stuck.",
+    ]
+    return "\n".join(lines) + "\n"
 
 
 def build_audit(c: Case) -> str:
     rng = random.Random(c.i * 17 + 5)
-    rows = []  # (time, lines)
+    rows = []  # (time, row)
 
     def entry(tt, no, term_name, setting, change, result, badge):
-        return [f"{hms(tt)} | Change #{no} | At: {term_name}",
-                f"  Setting: {setting} ({change})",
-                f"  Result: {result} | Badge: {badge}"]
+        return [hms(tt), f"Change #{no}", term_name, f"{setting} ({change})", result, badge]
 
     base = c.T - rng.randint(70, 110) * 60
     for k in range(2):
@@ -238,41 +291,41 @@ def build_audit(c: Case) -> str:
     out = ["SYSTEM CHANGE LOG",
            f"Case {c.id} | Covers {hms(c.log_start)} to {hms(c.log_end)}", "",
            "What this is: every change to a system setting is written down here.",
-           "- Badge = the ID badge number of whoever made the change.",
+           "- BADGE is the ID badge number of whoever made the change.",
            "- This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.",
            "",
            "CHANGES"]
-    for _, lines in rows:
-        out.extend(lines)
-        out.append("")
-    out.append("END OF LOG")
+    out.extend(_table(["TIME", "CHANGE", "TERMINAL", "SETTING CHANGE", "RESULT", "BADGE"], [r[1] for r in rows]))
+    out += ["", "CHANGE FLOW"]
+    out.extend(_flow([(r[1][0], r[1][1]) for r in rows]))
+    out += ["", "END OF LOG"]
     return "\n".join(out) + "\n"
 
 
 def build_access(c: Case) -> str:
     rng = random.Random(c.i * 19 + 9)
-    ev = []  # (time, text)
+    ev = []  # (time, row)
     terms = c.bterms
     c.full_control = []   # (time, badge, terminal): reused by the Round 3 evidence text
     c.refused = []
     c.gap = None
 
-    def login(tt, badge, term, level):
-        if level == "FULL CONTROL":
+    def login(tt, badge, term, status, level):
+        if status == "LOGGED IN" and level == "FULL CONTROL":
             c.full_control.append((tt, badge, term))
-        return f"{hms(tt)} | Badge {badge} | {term} | LOGGED IN | {level}"
+        return (tt, [hms(tt), badge, term, status, level])
 
     for k in range(3):
         p = rng.choice(ORDER)
         tt = c.T - rng.randint(30, 105) * 60 + k * 41
-        ev.append((tt, login(tt, c.bdg(p), rng.choice(terms), rng.choice(["VIEW ONLY", "TEST ONLY"]))))
+        ev.append(login(tt, c.bdg(p), rng.choice(terms), "LOGGED IN", rng.choice(["VIEW ONLY", "TEST ONLY"])))
     # decoy 1: another project has FULL CONTROL at the *other* terminal close to the incident
     t1 = c.T - rng.randint(40, 70)
-    ev.append((t1, login(t1, c.bdg(c.d1), c.node2, "FULL CONTROL")))
+    ev.append(login(t1, c.bdg(c.d1), c.node2, "LOGGED IN", "FULL CONTROL"))
     # decoy 2: a third project was REFUSED at the incident terminal
     t2 = c.T - rng.randint(75, 140)
     c.refused.append((t2, c.bdg(c.d2), c.node))
-    ev.append((t2, f"{hms(t2)} | Badge {c.bdg(c.d2)} | {c.node} | REFUSED | FULL CONTROL (not allowed for this badge)"))
+    ev.append(login(t2, c.bdg(c.d2), c.node, "REFUSED", "FULL CONTROL (not allowed for this badge)"))
     gap = None
     if c.distractor == "access":
         g0 = c.T - c.dt_access - rng.randint(4, 9)
@@ -282,55 +335,59 @@ def build_access(c: Case) -> str:
         # the login file alone must still not point at one project: the third project had
         # FULL CONTROL at a quiet desk long before the incident
         tq = c.T - rng.randint(50, 80) * 60
-        ev.append((tq, login(tq, c.bdg(c.d2), rng.choice(terms), "FULL CONTROL")))
+        ev.append(login(tq, c.bdg(c.d2), rng.choice(terms), "LOGGED IN", "FULL CONTROL"))
     else:
         ts = c.T - c.dt_access
-        ev.append((ts, login(ts, c.bdg(c.culprit), c.node, "FULL CONTROL")))
+        ev.append(login(ts, c.bdg(c.culprit), c.node, "LOGGED IN", "FULL CONTROL"))
     ev.sort(key=lambda r: r[0])
     out = ["LOGIN AND BADGE RECORDS",
            f"Case {c.id} | Covers {hms(c.log_start)} to {hms(c.log_end)}", "",
            "What this is: who logged in, at which terminal, and with what access level.",
-           "Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)", ""]
-    out.extend(badge_registry(c))
+           "Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)", "",
+           "BADGE REGISTRY (which project owns which badge)"]
+    out.extend(_table(["BADGE", "PROJECT", "SECTOR", "LEAD"],
+                       [[c.bdg(p), PROJECTS[p]["name"], PROJECTS[p]["sector"], PROJECTS[p]["lead"]] for p in ORDER]))
     out += ["", "LOGIN RECORDS"]
 
     def lost(a, b):
         return (f"{hms(a)} - {hms(b)} | RECORDS LOST | the log buffer overflowed and the records "
                 f"in this interval were not recovered")
 
-    placed = False
-    for tt, text in ev:
-        if gap and not placed and tt > gap[0]:
-            out.append(lost(*gap))
-            placed = True
-        out.append(text)
-    if gap and not placed:
-        out.append(lost(*gap))
+    table = _table(["TIME", "BADGE", "TERMINAL", "STATUS", "LEVEL"], [r[1] for r in ev])
+    body = table[2:]  # header + rule, then one line per row in ev's (already time-sorted) order
+    insert_at = next((i for i, (tt, _) in enumerate(ev) if tt > gap[0]), len(body)) if gap else None
+    if gap:
+        body = body[:insert_at] + [lost(*gap)] + body[insert_at:]
+    out += [table[0], table[1]] + body
+    out += ["", "LOGIN FLOW"]
+    steps = [(r[1][0], f"{r[1][1]} {r[1][3]}") for r in ev]  # time, "badge STATUS"
+    if gap:
+        steps = steps[:insert_at] + [("", "RECORDS LOST")] + steps[insert_at:]
+    out.extend(_flow(steps))
     out += ["", "END OF RECORDS"]
     return "\n".join(out) + "\n"
 
 
 def build_auth(c: Case) -> str:
     rng = random.Random(c.i * 23 + 3)
+    ev = []  # (time, row)
 
-    def at(t):
-        return hms(t)
+    def key_row(tt, key, event, detail):
+        return (tt, [hms(tt), f"Key {key}", event, detail])
 
-    ev = []
     t_old = c.T - rng.randint(70, 100) * 60
-    ev.append((t_old, f"{at(t_old)} | Key {c.key_old} | ARMED by badge {c.bdg(c.d1)} | valid 120 s | "
-                      f"purpose: maintenance window"))
-    ev.append((t_old + 95, f"{at(t_old + 95)} | Key {c.key_old} | DISARMED after use"))
+    ev.append(key_row(t_old, c.key_old, "ARMED", f"by badge {c.bdg(c.d1)}, valid 120 s, purpose: maintenance window"))
+    ev.append(key_row(t_old + 95, c.key_old, "DISARMED", "after use"))
     t_dec = c.T - rng.randint(150, 240)
-    ev.append((t_dec, f"{at(t_dec)} | Key {c.key_dec} | ARMED by badge {c.bdg(c.d2)} | valid 120 s | never used"))
-    ev.append((t_dec + 120, f"{at(t_dec + 120)} | Key {c.key_dec} | EXPIRED unused"))
+    ev.append(key_row(t_dec, c.key_dec, "ARMED", f"by badge {c.bdg(c.d2)}, valid 120 s, never used"))
+    ev.append(key_row(t_dec + 120, c.key_dec, "EXPIRED", "unused"))
     if c.distractor == "auth":
-        ev.append((c.T - 90, f"{at(c.T - 90)} | Key {c.key} | STANDING AUTHORIZATION | maintenance window "
-                             f"MW-{c.i + 11} | not tied to any one badge"))
+        ev.append(key_row(c.T - 90, c.key, "STANDING AUTHORIZATION",
+                           f"maintenance window MW-{c.i + 11}, not tied to any one badge"))
     else:
         ta = c.T - c.dt_key
-        ev.append((ta, f"{at(ta)} | Key {c.key} | ARMED by badge {c.bdg(c.culprit)} | valid 120 s"))
-    ev.append((c.T, f"{at(c.T)} | Key {c.key} | USED at {c.node} | Change #{c.chg}"))
+        ev.append(key_row(ta, c.key, "ARMED", f"by badge {c.bdg(c.culprit)}, valid 120 s"))
+    ev.append(key_row(c.T, c.key, "USED", f"at {c.node}, Change #{c.chg}"))
     ev.sort(key=lambda r: r[0])
     out = ["SECURITY KEY LOG",
            f"Case {c.id} | Covers {hms(c.log_start)} to {hms(c.log_end)}", "",
@@ -338,7 +395,9 @@ def build_auth(c: Case) -> str:
            "- An armed key stays valid for the time shown.",
            "- A STANDING AUTHORIZATION is a general permission: it is not tied to one badge.",
            "- Badges are explained in login_records.log (BADGE REGISTRY).", "", "KEY EVENTS"]
-    out.extend(text for _, text in ev)
+    out.extend(_table(["TIME", "KEY", "EVENT", "DETAIL"], [r[1] for r in ev]))
+    out += ["", "KEY FLOW"]
+    out.extend(_flow([(r[1][0], f"{r[1][1]} {r[1][2]}") for r in ev]))
     out += ["", "END OF LOG"]
     return "\n".join(out) + "\n"
 
@@ -350,11 +409,16 @@ def build_incident(c: Case) -> str:
            f"Case {c.id} | Incident: {c.title}", "",
            "WHAT HAPPENED",
            f"{cap(c.theme['what'])}. The effect spread across the timeline network.", "",
-           "TIMELINE OF EVENTS",
-           f"{hms(ts)} | First abnormal reading: {c.symptom}",
-           f"{hms(ts + rng.randint(11, 24))} | Monitoring reports a sustained inconsistency",
-           f"{hms(ts + rng.randint(40, 70))} | Automatic recovery fails to restore normal readings", "",
-           "WHERE IT STARTED"]
+           "TIMELINE OF EVENTS"]
+    timeline = [
+        (hms(ts), f"First abnormal reading: {c.symptom}"),
+        (hms(ts + rng.randint(11, 24)), "Monitoring reports a sustained inconsistency"),
+        (hms(ts + rng.randint(40, 70)), "Automatic recovery fails to restore normal readings"),
+    ]
+    out.extend(_table(["TIME", "EVENT"], [list(row) for row in timeline]))
+    out += ["", "INCIDENT FLOW"]
+    out.extend(_flow(timeline))
+    out += ["", "WHERE IT STARTED"]
     if c.distractor == "incident":
         out += [f"The first abnormal reading cannot be traced to a single source. Possible terminals: "
                 f"{c.node} and {c.node2}.",
@@ -474,7 +538,7 @@ def case_json(c: Case) -> dict:
         "candidates": [
             {"name": PROJECTS[p]["name"], "user_id": p.upper(), "role": PROJECTS[p]["sector"]} for p in ORDER
         ],
-        "player_files": {fid: FILES[fid][0] for fid in FILES},
+        "player_files": {**{fid: FILES[fid][0] for fid in FILES}, READ_ME_ID: READ_ME_FILENAME},
         "supporting_files": [FILES[f][0] for f in c.supporting],
         "intended_deduction": (
             "Find the incident change (the key log shows which change a key was used for), note the "
@@ -495,6 +559,7 @@ def main() -> None:
         folder = CASES_DIR / c.id
         folder.mkdir(parents=True)
         (folder / "case.json").write_text(json.dumps(case_json(c), indent=2) + "\n", encoding="utf-8")
+        (folder / READ_ME_FILENAME).write_text(build_readme(), encoding="utf-8")
         (folder / FILES["audit"][0]).write_text(build_audit(c), encoding="utf-8")
         (folder / FILES["access"][0]).write_text(build_access(c), encoding="utf-8")
         (folder / FILES["auth"][0]).write_text(build_auth(c), encoding="utf-8")

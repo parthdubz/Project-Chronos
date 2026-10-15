@@ -5,9 +5,14 @@ WHAT HAPPENED
 A core configuration rewrite switched off the safety limiters. The effect spread across the timeline network.
 
 TIMELINE OF EVENTS
+TIME     | EVENT
+---------+----------------------------------------------------
 20:19:02 | First abnormal reading: time-flux surge of 5958%
 20:19:16 | Monitoring reports a sustained inconsistency
 20:20:12 | Automatic recovery fails to restore normal readings
+
+INCIDENT FLOW
+  20:19:02 First abnormal reading: time-flux surge of 5958% -> 20:19:16 Monitoring reports a sustained inconsistency -> 20:20:12 Automatic recovery fails to restore normal readings
 
 WHERE IT STARTED
 The first abnormal reading came from Terminal Node Zeta-9.

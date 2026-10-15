@@ -2,24 +2,18 @@ SYSTEM CHANGE LOG
 Case R2-24 | Covers 16:45:11 to 18:56:11
 
 What this is: every change to a system setting is written down here.
-- Badge = the ID badge number of whoever made the change.
+- BADGE is the ID badge number of whoever made the change.
 - This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
 CHANGES
-17:32:11 | Change #3345 | At: Terminal Node Iota-5
-  Setting: archive cleanup schedule (NIGHTLY -> WEEKLY)
-  Result: APPLIED | Badge: B-3792
+TIME     | CHANGE       | TERMINAL             | SETTING CHANGE                                    | RESULT  | BADGE
+---------+--------------+----------------------+---------------------------------------------------+---------+-------
+17:32:11 | Change #3345 | Terminal Node Iota-5 | archive cleanup schedule (NIGHTLY -> WEEKLY)      | APPLIED | B-3792
+17:46:11 | Change #9347 | Terminal Node Iota-5 | heartbeat timeout (seconds) (5 -> 8)              | APPLIED | B-5376
+18:41:56 | Change #7813 | Transit Buffer TB-7  | heartbeat timeout (seconds) (5 -> 8)              | APPLIED | B-7343
+18:45:11 | Change #5781 | Transit Buffer TB-1  | transit buffer content (HELD -> FLUSHED (328 MB)) | APPLIED | B-3792
 
-17:46:11 | Change #9347 | At: Terminal Node Iota-5
-  Setting: heartbeat timeout (seconds) (5 -> 8)
-  Result: APPLIED | Badge: B-5376
-
-18:41:56 | Change #7813 | At: Transit Buffer TB-7
-  Setting: heartbeat timeout (seconds) (5 -> 8)
-  Result: APPLIED | Badge: B-7343
-
-18:45:11 | Change #5781 | At: Transit Buffer TB-1
-  Setting: transit buffer content (HELD -> FLUSHED (328 MB))
-  Result: APPLIED | Badge: B-3792
+CHANGE FLOW
+  17:32:11 Change #3345 -> 17:46:11 Change #9347 -> 18:41:56 Change #7813 -> 18:45:11 Change #5781
 
 END OF LOG

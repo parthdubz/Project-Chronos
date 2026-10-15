@@ -5,17 +5,24 @@ What this is: who logged in, at which terminal, and with what access level.
 Only FULL CONTROL can change a system setting. (VIEW ONLY < TEST ONLY < FULL CONTROL)
 
 BADGE REGISTRY (which project owns which badge)
-B-2763 | Project Alpha | Future Timeline | Lead: Dr. Aris Thorne
-B-4312 | Project Beta | Present Timeline | Lead: Commander V. Reyes
-B-6468 | Project Gamma | Past Timeline | Lead: Chief Eng. Sarah Chen
+BADGE  | PROJECT       | SECTOR           | LEAD
+-------+---------------+------------------+----------------------
+B-2763 | Project Alpha | Future Timeline  | Dr. Aris Thorne
+B-4312 | Project Beta  | Present Timeline | Commander V. Reyes
+B-6468 | Project Gamma | Past Timeline    | Chief Eng. Sarah Chen
 
 LOGIN RECORDS
-19:08:06 | Badge B-4312 | Operator Desk OD-6 | LOGGED IN | VIEW ONLY
-19:16:44 | Badge B-6468 | Diagnostics Bay DB-5 | LOGGED IN | FULL CONTROL
-19:25:25 | Badge B-2763 | Diagnostics Bay DB-5 | LOGGED IN | VIEW ONLY
-19:28:44 | Badge B-6468 | Maintenance Console MC-3 | LOGGED IN | TEST ONLY
-20:16:38 | Badge B-6468 | Terminal Node Zeta-9 | REFUSED | FULL CONTROL (not allowed for this badge)
-20:17:50 | Badge B-2763 | Terminal Node Omega-1 | LOGGED IN | FULL CONTROL
+TIME     | BADGE  | TERMINAL                 | STATUS    | LEVEL
+---------+--------+--------------------------+-----------+------------------------------------------
+19:08:06 | B-4312 | Operator Desk OD-6       | LOGGED IN | VIEW ONLY
+19:16:44 | B-6468 | Diagnostics Bay DB-5     | LOGGED IN | FULL CONTROL
+19:25:25 | B-2763 | Diagnostics Bay DB-5     | LOGGED IN | VIEW ONLY
+19:28:44 | B-6468 | Maintenance Console MC-3 | LOGGED IN | TEST ONLY
+20:16:38 | B-6468 | Terminal Node Zeta-9     | REFUSED   | FULL CONTROL (not allowed for this badge)
+20:17:50 | B-2763 | Terminal Node Omega-1    | LOGGED IN | FULL CONTROL
 20:18:26 - 20:18:52 | RECORDS LOST | the log buffer overflowed and the records in this interval were not recovered
+
+LOGIN FLOW
+  19:08:06 B-4312 LOGGED IN -> 19:16:44 B-6468 LOGGED IN -> 19:25:25 B-2763 LOGGED IN -> 19:28:44 B-6468 LOGGED IN -> 20:16:38 B-6468 REFUSED -> 20:17:50 B-2763 LOGGED IN -> RECORDS LOST
 
 END OF RECORDS

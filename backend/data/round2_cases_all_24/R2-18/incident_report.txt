@@ -5,9 +5,14 @@ WHAT HAPPENED
 The time bridge was forcibly disconnected. The effect spread across the timeline network.
 
 TIMELINE OF EVENTS
+TIME     | EVENT
+---------+----------------------------------------------------
 19:23:53 | First abnormal reading: 40 transit buffers lost
 19:24:14 | Monitoring reports a sustained inconsistency
 19:24:52 | Automatic recovery fails to restore normal readings
+
+INCIDENT FLOW
+  19:23:53 First abnormal reading: 40 transit buffers lost -> 19:24:14 Monitoring reports a sustained inconsistency -> 19:24:52 Automatic recovery fails to restore normal readings
 
 WHERE IT STARTED
 The first abnormal reading came from Console SEC-05.

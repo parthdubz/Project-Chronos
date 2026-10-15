@@ -2,24 +2,18 @@ SYSTEM CHANGE LOG
 Case R2-02 | Covers 19:56:28 to 22:08:28
 
 What this is: every change to a system setting is written down here.
-- Badge = the ID badge number of whoever made the change.
+- BADGE is the ID badge number of whoever made the change.
 - This file does not say which project a badge belongs to. login_records.log has the BADGE REGISTRY.
 
 CHANGES
-20:38:28 | Change #4018 | At: Operator Desk OD-2
-  Setting: health check interval (seconds) (30 -> 15)
-  Result: APPLIED | Badge: B-5306
+TIME     | CHANGE       | TERMINAL           | SETTING CHANGE                             | RESULT  | BADGE
+---------+--------------+--------------------+--------------------------------------------+---------+---------------------------------------
+20:38:28 | Change #4018 | Operator Desk OD-2 | health check interval (seconds) (30 -> 15) | APPLIED | B-5306
+20:50:28 | Change #5411 | Operator Desk OD-2 | queue size limit (512 -> 1024)             | APPLIED | B-5306
+21:52:27 | Change #8045 | Console SEC-11     | queue size limit (512 -> 1024)             | APPLIED | B-8259
+21:56:28 | Change #4334 | Console SEC-01     | time bridge link (CONNECTED -> FORCED OFF) | APPLIED | not recorded (run by a scheduled task)
 
-20:50:28 | Change #5411 | At: Operator Desk OD-2
-  Setting: queue size limit (512 -> 1024)
-  Result: APPLIED | Badge: B-5306
-
-21:52:27 | Change #8045 | At: Console SEC-11
-  Setting: queue size limit (512 -> 1024)
-  Result: APPLIED | Badge: B-8259
-
-21:56:28 | Change #4334 | At: Console SEC-01
-  Setting: time bridge link (CONNECTED -> FORCED OFF)
-  Result: APPLIED | Badge: not recorded (run by a scheduled task)
+CHANGE FLOW
+  20:38:28 Change #4018 -> 20:50:28 Change #5411 -> 21:52:27 Change #8045 -> 21:56:28 Change #4334
 
 END OF LOG
