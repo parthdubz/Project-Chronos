@@ -67,6 +67,15 @@ app.mount(
     name="static"
 )
 
+# Bruno (home-screen idle-sprite overlay): its own top-level, independently-tracked
+# directory - not inside frontend/public - so it deploys with a plain git clone/pull
+# like everything else, instead of depending on files hand-copied into the frontend.
+app.mount(
+    "/bruno-assets",
+    StaticFiles(directory=BASE_DIR.parent / "bruno"),
+    name="bruno-assets"
+)
+
 
 # Built frontend (frontend/dist, created by `npm run build`). When present, the
 # backend serves the whole app so one process hosts everything.

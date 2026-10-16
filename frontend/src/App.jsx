@@ -438,7 +438,7 @@ function AppContent() {
       )}
 
       <footer className="border-t border-slate-900 bg-[#04060c] py-2 px-4 text-center font-mono text-[10px] text-slate-600">
-        PROJECT CHRONOS // THE GLITCH • TECH FEST EVENT 2140
+        PROJECT CHRONOS // THE AI GLITCH • TECH FEST EVENT 2140
       </footer>
     </div>
     <SecureModeGuard

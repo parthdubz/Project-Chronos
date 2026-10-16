@@ -2,10 +2,17 @@ import React, { useState, useEffect, useRef } from 'react';
 import { soundFx } from '../utils/audio.js';
 import { Shield, Zap, RefreshCw } from 'lucide-react';
 import ChronosTitle from '../components/ChronosTitle.jsx';
+import BrunoPair from '../components/BrunoPair.jsx';
 
 export default function LandingGlitch({ onStart, onAdminMode, isStarting = false }) {
   const canvasRef = useRef(null);
+  const aiClubLogoRef = useRef(null);
+  const symbiTechLogoRef = useRef(null);
   const [entranceKey, setEntranceKey] = useState(0);
+  // One-way: once the mission starts, Bruno stays gone - isStarting/isCrtActive flips
+  // back to false partway through the CRT transition (while this screen is merely
+  // hidden via opacity, not unmounted), so it can't be used to drive this.
+  const [missionStarted, setMissionStarted] = useState(false);
 
   // Retro Matrix / Glitch Canvas effect in background
   useEffect(() => {
@@ -67,6 +74,7 @@ export default function LandingGlitch({ onStart, onAdminMode, isStarting = false
 
   const handleStartClick = () => {
     if (isStarting) return;
+    setMissionStarted(true);
     onStart?.();
   };
 
@@ -129,6 +137,7 @@ export default function LandingGlitch({ onStart, onAdminMode, isStarting = false
           {/* Left Logo: AI Club */}
           <div className="flex items-center justify-center shrink-0 select-none">
             <img
+              ref={aiClubLogoRef}
               src="/images/AI%20club.png"
               alt="AI Club Logo"
               className="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 object-contain drop-shadow-[0_0_20px_rgba(6,182,212,0.35)] hover:scale-105 transition-transform duration-300"
@@ -150,6 +159,7 @@ export default function LandingGlitch({ onStart, onAdminMode, isStarting = false
           {/* Right Logo: SymbiTech */}
           <div className="flex items-center justify-center shrink-0 select-none">
             <img
+              ref={symbiTechLogoRef}
               src="/images/SymbiTech.png"
               alt="SymbiTech Logo"
               className="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 object-contain drop-shadow-[0_0_20px_rgba(6,182,212,0.35)] hover:scale-105 transition-transform duration-300"
@@ -180,6 +190,7 @@ export default function LandingGlitch({ onStart, onAdminMode, isStarting = false
         </div>
 
       </div>
+      <BrunoPair leftAnchorRef={aiClubLogoRef} rightAnchorRef={symbiTechLogoRef} active={!missionStarted} />
     </div>
   );
 }
