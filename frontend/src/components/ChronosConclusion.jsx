@@ -630,7 +630,7 @@ export default function ChronosConclusion({ onComplete }) {
           onClick={finish}
           className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-cyan-400 to-sky-500 hover:from-cyan-300 hover:to-sky-400 text-slate-950 font-mono font-bold text-xs uppercase tracking-widest flex items-center gap-2 cursor-pointer shadow-[0_0_30px_rgba(6,182,212,0.6)] hover:shadow-[0_0_45px_rgba(6,182,212,0.9)] hover:scale-105 transition-all"
         >
-          <span>VIEW FINAL DEBRIEF & STANDINGS</span>
+          <span>VIEW FINAL DEBRIEF</span>
           <Play className="w-3.5 h-3.5 fill-current" />
         </button>
       </div>

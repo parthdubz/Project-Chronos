@@ -19,8 +19,9 @@ Leaderboard data
     for a team that has started Round 2, and stays None for a team that has not. While
     Round 2 is still running the value is flagged round2_provisional. A score recorded
     by an earlier build's culprit submission is used as recorded.
-  * Ranking follows EVENT_SPECIFICATIONS.md: total score, then earlier Round 3
-    completion, then earlier Round 2 completion, then earlier Round 1 completion.
+  * Ranking: total score, then total time (Round 1 start to Round 3 finish - only
+    set once Round 3 is done), then earlier Round 3 completion, then earlier Round 2
+    completion, then earlier Round 1 completion.
 """
 
 from __future__ import annotations
@@ -321,6 +322,30 @@ def leaderboard() -> list[dict[str, Any]]:
                 ledger[int(row["team_id"])] = (int(row["n"]), float(row["lost"]))
         except (sqlite3.OperationalError, ValueError, TypeError):
             pass  # Round 2 tables not created yet
+
+        # which Round 2 case each team played
+        r2_case: dict[int, str] = {}
+        try:
+            for row in connection.execute("SELECT team_id, case_id FROM round2_team_cases").fetchall():
+                r2_case[int(row["team_id"])] = row["case_id"]
+        except (sqlite3.OperationalError, ValueError, TypeError):
+            pass
+
+        # was the live AI API used for this team's questions? (n answered, n by canned fallback)
+        ai_use: dict[int, tuple[int, int, int]] = {}
+        try:
+            for row in connection.execute(
+                "SELECT team_id, "
+                "SUM(CASE WHEN ai_source IS NOT NULL AND ai_source != '' AND ai_source != 'fallback' THEN 1 ELSE 0 END) AS live, "
+                "SUM(CASE WHEN ai_source = 'fallback' THEN 1 ELSE 0 END) AS fallback, "
+                "SUM(CASE WHEN ai_response != '' AND (ai_source IS NULL OR ai_source = '') THEN 1 ELSE 0 END) AS unknown "
+                "FROM round2_chat_messages GROUP BY team_id"
+            ).fetchall():
+                ai_use[int(row["team_id"])] = (
+                    int(row["live"] or 0), int(row["fallback"] or 0), int(row["unknown"] or 0),
+                )
+        except (sqlite3.OperationalError, ValueError, TypeError):
+            pass  # table or column not there yet
     finally:
         connection.close()
 
@@ -350,6 +375,31 @@ def leaderboard() -> list[dict[str, Any]]:
         core = [v for v in (r1, r2, r3) if v is not None]
         recorded = [v for v in (r1, transition, r2, r3) if v is not None]
         r1_seconds = (r1_done - r1_start).total_seconds() if (r1_done and r1_start) else None
+        # Total time: Round 1 start to Round 3 finish (wall-clock, includes any waits between
+        # rounds). Only set once a team has actually finished Round 3 - an in-progress team's
+        # partial elapsed time is not comparable to a finished team's total.
+        total_time_seconds = (r3_done - r1_start).total_seconds() if (r3_done and r1_start) else None
+
+        # transition zone (from the clue the team was given)
+        zone = ""
+        clue_id = t["transition_clue_id"] if "transition_clue_id" in t.keys() else None
+        if clue_id is not None:
+            try:
+                from .transition_service import zone_for_clue
+
+                zone = zone_for_clue(int(clue_id)).upper()
+            except (ValueError, TypeError, IndexError):
+                zone = ""
+
+        # AI API: "Yes" when every answered question came from the live API, "No" when at
+        # least one had to use the built-in fallback, "" when no question was asked / unknown
+        live_n, fallback_n, unknown_n = ai_use.get(tid, (0, 0, 0))
+        if fallback_n:
+            ai_api_live = "No"
+        elif live_n:
+            ai_api_live = "Yes"
+        else:
+            ai_api_live = ""
 
         entries.append({
             "team_id": tid,
@@ -367,6 +417,9 @@ def leaderboard() -> list[dict[str, Any]]:
             "transition_score": transition,
             "round2_source": r2_source,
             "round2_provisional": r2 is not None and r2_source == "ai_deductions" and not r2_over,
+            "round2_case": r2_case.get(tid, ""),
+            "transition_zone": zone,
+            "ai_api_live": ai_api_live,
             "round2_questions_used": questions if r2_source else None,
             "round2_points_deducted": lost if r2_source else None,
             "total_score": sum(recorded) if recorded else None,
@@ -378,15 +431,19 @@ def leaderboard() -> list[dict[str, Any]]:
             "r3_completed_at": t["round3_completed_at"],
             "r1_time_diff": r1_seconds,
             "r1_time_formatted": _fmt_seconds(r1_seconds),
+            "total_time_seconds": total_time_seconds,
+            "total_time_formatted": _fmt_seconds(total_time_seconds),
             "_k": (r3_done, r2_done, r1_done),
+            "_total_time": total_time_seconds,
         })
 
     far = datetime.max.replace(tzinfo=timezone.utc)
 
     def sort_key(e):
         total = e["total_score"] if e["total_score"] is not None else float("-inf")
+        total_time = e["_total_time"] if e["_total_time"] is not None else float("inf")
         r3d, r2d, r1d = e["_k"]
-        return (-total, r3d or far, r2d or far, r1d or far, e["team_id"])
+        return (-total, total_time, r3d or far, r2d or far, r1d or far, e["team_id"])
 
     entries.sort(key=sort_key)
 
@@ -396,6 +453,7 @@ def leaderboard() -> list[dict[str, Any]]:
         entry["rank"] = entries[index - 1]["rank"] if (previous == tie_key and index) else index + 1
         previous = tie_key
         del entry["_k"]
+        del entry["_total_time"]
     return entries
 
 
@@ -411,8 +469,9 @@ def leaderboard_csv() -> str:
     writer = csv.writer(output)
     writer.writerow([
         "Rank", "Team Name", "Member 1", "Member 1 PRN", "Member 2", "Member 2 PRN",
-        "State", "Round 1 Score", "Round 1 Time", "Transition Score", "Round 2 Score", "Round 3 Score",
-        "Round 2 AI Questions Used", "Round 2 Provisional",
+        "State", "Round 1 Score", "Round 1 Time", "Transition Zone", "Transition Score",
+        "Round 2 Case", "Round 2 Score", "Round 3 Score",
+        "Round 2 AI Questions Used", "AI API Live (Yes/No)",
         "Total (recorded rounds)", "All rounds recorded", "Round 3 Completed At",
     ])
     for t in leaderboard():
@@ -420,11 +479,13 @@ def leaderboard_csv() -> str:
             t["rank"], t["team_name"], t["member_1_name"], t["member_1_prn"],
             t["member_2_name"], t["member_2_prn"], t["status"],
             "" if t["round1_score"] is None else t["round1_score"], t["r1_time_formatted"],
+            t["transition_zone"],
             "" if t["transition_score"] is None else t["transition_score"],
+            t["round2_case"],
             "" if t["round2_score"] is None else t["round2_score"],
             "" if t["round3_score"] is None else t["round3_score"],
             "" if t["round2_questions_used"] is None else t["round2_questions_used"],
-            "yes" if t["round2_provisional"] else "no",
+            t["ai_api_live"],
             "" if t["total_score"] is None else t["total_score"],
             "yes" if t["total_complete"] else "no", t["r3_completed_at"] or "",
         )])

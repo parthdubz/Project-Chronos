@@ -38,9 +38,9 @@ def _team_payload(row, message, session_token=""):
     }
 
 
-# A PRN is exactly 11 digits and starts with the batch prefix 24, 25, 26 or 27.
-PRN_PATTERN = re.compile(r"^(24|25|26|27)\d{9}$")
-PRN_RULE = "A PRN must be exactly 11 digits and start with 24, 25, 26 or 27."
+# A PRN is exactly 11 digits and starts with the batch prefix 23, 24, 25 or 26.
+PRN_PATTERN = re.compile(r"^(23|24|25|26)\d{9}$")
+PRN_RULE = "A PRN must be exactly 11 digits and start with 23, 24, 25 or 26."
 MAX_NAME_LENGTH = 50
 
 

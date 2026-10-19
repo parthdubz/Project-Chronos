@@ -11,7 +11,7 @@ import {
   Cpu
 } from 'lucide-react';
 
-const PRN_PATTERN = /^(24|25|26|27)\d{9}$/;
+const PRN_PATTERN = /^(23|24|25|26)\d{9}$/;
 
 export default function Login({ onLoginSuccess, onBackToLanding }) {
   const secureModeOn = useRef(true);
@@ -60,10 +60,10 @@ export default function Login({ onLoginSuccess, onBackToLanding }) {
       setErrorMsg('PRN credentials for both Member 1 and Member 2 are required.');
       return;
     }
-    // A PRN is exactly 11 digits and starts with 24, 25, 26 or 27.
+    // A PRN is exactly 11 digits and starts with 23, 24, 25 or 26.
     if (!PRN_PATTERN.test(formData.member1_prn.trim()) || !PRN_PATTERN.test(formData.member2_prn.trim())) {
       soundFx.playGlitch();
-      setErrorMsg('Each PRN must be exactly 11 digits and start with 24, 25, 26 or 27.');
+      setErrorMsg('Each PRN must be exactly 11 digits and start with 23, 24, 25 or 26.');
       return;
     }
 

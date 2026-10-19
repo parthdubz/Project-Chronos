@@ -75,8 +75,11 @@ const clock = (value) => {
 const SORTS = {
   rank: { label: 'Rank', fn: (a, b) => a.rank - b.rank || a.team_id - b.team_id },
   name: { label: 'Team name', fn: (a, b) => a.team_name.localeCompare(b.team_name) },
-  score: { label: 'Total score', fn: (a, b) => (b.total_score ?? -1) - (a.total_score ?? -1) },
-  r1time: { label: 'Round 1 time', fn: (a, b) => (a.r1_time_diff ?? 1e12) - (b.r1_time_diff ?? 1e12) },
+  // Equal total_score falls back to the backend's own rank (already tie-broken by
+  // earlier Round 3 finish, then Round 2, then Round 1 - see admin_service.leaderboard()),
+  // instead of leaving tied teams in an arbitrary, unstable order.
+  score: { label: 'Total score', fn: (a, b) => ((b.total_score ?? -1) - (a.total_score ?? -1)) || (a.rank - b.rank) },
+  r1time: { label: 'Round 1 time', fn: (a, b) => ((a.r1_time_diff ?? 1e12) - (b.r1_time_diff ?? 1e12)) || (a.rank - b.rank) },
 };
 
 export default function Leaderboard({ onLogout }) {

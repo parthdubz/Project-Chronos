@@ -64,9 +64,9 @@ def _chat_suggestions(case_id: str) -> list:
     sets, without needing any per-case generation or storage."""
     return random.Random(case_id).sample(CHAT_SUGGESTION_POOL, 3)
 
-# The PRD does not give a Round 2 duration. 20 minutes is a placeholder until
-# the final event specification exists; override with ROUND2_DURATION_SECONDS.
-DURATION_SECONDS = int(os.environ.get("ROUND2_DURATION_SECONDS", "1200"))
+# The PRD does not give a Round 2 duration. 10 minutes is the event's chosen value;
+# override with ROUND2_DURATION_SECONDS.
+DURATION_SECONDS = int(os.environ.get("ROUND2_DURATION_SECONDS", "600"))
 
 ACTIVE_STATE = "ROUND_2_ACTIVE"
 # States a team can be in once its Round 2 has ended (it may return to the Round 2 lobby
